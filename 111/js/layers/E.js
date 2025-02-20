@@ -657,7 +657,7 @@ addLayer("E", {
         95: {
             title:'E45',
 			cost(){
-				return n(player.Z.points.gte(12)?1e178:1e315);
+				return n(player.Z.points.gte(12)?1e178:'1e315');
 			},     
             description: "Eb5-7 amt boost C.(1.15^x)",
             unlocked() { return (hasUpgrade(this.layer, 94))},
@@ -673,7 +673,7 @@ addLayer("E", {
             title:'E46',
             description: "Em eff exp +0.02.",
 			cost(){
-				return n(player.Z.points.gte(12)?1e183:1e325);
+				return n(player.Z.points.gte(12)?1e183:'1e325');
 			},     
             unlocked() { return (challengeCompletions('E',31)>=3 && player.Z.points.gte(11))},
         },
