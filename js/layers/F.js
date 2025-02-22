@@ -22,11 +22,11 @@ addLayer("F", {
     }},
     resetsNothing(){return upg('F',65)},//||mil('I',1)
     passiveGeneration(){    let p=n(0)
-        if(mil("F", 9)||mil('I',1)) p=p.add(0.02)
+        if(mil("F", 9)||mil('I',1)) p=p.add(1)
         if(gcs('I',35)) p=n(1)
         return p},
     color: "#264321",
-    requires: new Decimal('1e700'), 
+    requires(){if(hasMilestone("Z",12))return new Decimal('1e600');return new Decimal('1e700');}, 
     resource: "F", 
     baseResource: "E", 
     baseAmount() {return player.E.points}, 
@@ -49,6 +49,7 @@ addLayer("F", {
     layerShown(){return ((mil('E',20))||player[this.layer].unlocked)},
     gainMult() { 
         mult = n(1)
+        if (mil('Z',12)) mult=Decimal.mul(mult,2)
         if (upg('F',21)) mult=Decimal.mul(mult,2)
         if (upg('F',23)) mult=Decimal.mul(mult,upgradeEffect('F',23))
         if (upg('F',32)) mult=Decimal.mul(mult,upgradeEffect('F',32))
@@ -60,15 +61,15 @@ addLayer("F", {
     milestones: {
         0: {requirementDescription: "1 total F (1",
             done() {return player[this.layer].total.gte('1')}, 
-            effectDescription: "keep A upg and chal,B mil,x1 E pas gain,x10 A/B/E.",
+            effectDescription: "keep A/B upg,A/C chal,B/C/D mil,x1 E pas gain,x10 A/B/E.<br>keep E chal gained at the start of Z reset.",
         },
         1: {requirementDescription: "2 total F (2",
             done() {return player[this.layer].total.gte('2')}, 
-            effectDescription: "keep C/D upg and mil,E mil.",
+            effectDescription: "keep C/D upg,E mil.",
         },
         2: {requirementDescription: "4 total F (3",
             done() {return player[this.layer].total.gte('4')}, 
-            effectDescription: "B26 ^1.1,keep C chal.",
+            effectDescription: "B26 ^1.1.",
         },
         3: {requirementDescription: "6 total F (4",
             done() {return player[this.layer].total.gte('6')}, 
@@ -76,7 +77,7 @@ addLayer("F", {
         },
         4: {requirementDescription: "15 total F (5",
             done() {return player[this.layer].total.gte('15')}, 
-            effectDescription: "keep B/E upg.",
+            effectDescription: "keep E upg.",
         },
         5: {requirementDescription: "50 total F (6",
             done() {return player[this.layer].total.gte('50')}, 
@@ -94,9 +95,9 @@ addLayer("F", {
             done() {return player[this.layer].total.gte('1e9')}, 
             effectDescription: "x1e100 pts,unlock a chal.",
         },
-        9: {requirementDescription: "1e26 total F (10",
-            done() {return player[this.layer].total.gte('1e26')}, 
-            effectDescription: "gain 2% F on reset/sec.",
+        9: {requirementDescription: "1e12 total F (10",
+            done() {return player[this.layer].total.gte('1e12')}, 
+            effectDescription: "gain 100% F on reset/sec.",
         },
         10: {requirementDescription: "1e120 total F (11",
             done() {return player[this.layer].total.gte('1e120')}, 
@@ -276,27 +277,20 @@ addLayer("F", {
         },
         25: {
             title:'F10',
-            description: "1e40x pts,mil 5 applies to all E babs.",
-            cost:new Decimal('3e6'),
-            unlocked() { return (upg(this.layer, 24))},
+            description: "1e40x pts, x5 bulk buy Eb5-7.",
+            cost:new Decimal(1000),
+            unlocked() { return (upg(this.layer, 24) && hasMilestone('Z', 12))},
         },
         31: {
             title:'F11',
             description: "new 2 C/D upg.",
-            cost:new Decimal('1.5e8'),
-            effect()  { 
-                let ef = player.F.total.add(10).log(10).pow(0.9).mul(2)
-                if (upg('F',32)) ef=Decimal.mul(ef,1.25)
-                if (upg('F',34)) ef=Decimal.mul(ef,1.28)
-                return ef;
-            },
-            //effectDisplay() { return "+"+format(this.effect()) },
+            cost:new Decimal(2000),
             unlocked() { return (upg(this.layer, 25))},
         },
         32: {
             title:'F12',
             description: "1e111x pts,total F boost itself(^0.1)",
-            cost:new Decimal('3e10'),
+            cost:new Decimal(4000),
             effect()  { 
                 let exp=n(0.1)
                 if (upg('F',33)) exp=Decimal.add(exp,0.1)
@@ -304,15 +298,15 @@ addLayer("F", {
                 let ef = player.F.total.add(1).pow(exp)
                 return ef;
             },
+            effectDisplay() { return format(this.effect())+"x" },
             unlocked() { return (upg(this.layer, 31))},
         },
         33: {
             title:'F13',
-            description: "F11 x1.25,F12 exp +0.1,F boost Bb5",
-            cost:new Decimal('1.2e12'),
+            description: "F12 exp +0.1,F boost Bb5",
+            cost:new Decimal(1e4),
             effect()  { 
                 let ef = player.F.total.add(10).log(10).pow(0.25).div(1.5)
-                //if (upg('F',42)) sc=Decimal.add(sc,3000)
                 if (upg('F',53)) ef=player.F.total.add(10).log(10).pow(0.28).div(1.35)
                 return ef;
             },
@@ -321,14 +315,14 @@ addLayer("F", {
         },
         34: {
             title:'F14',
-            description: "1e120x pts,Ek mul+0.4,F11 x1.28,nerf Bb scaling,bulk buy x5 Bb/Eb",
-            cost:new Decimal('1e14'),
+            description: "1e120x pts, Em exp+0.014",
+            cost:new Decimal(5e4),
             unlocked() { return (upg(this.layer, 33))},
         },
         35: {
             title:'F15',
-            description: "Fc1 eff x1.25,Bb3-4 +5%,Eb4 +8%,buy max Eb5/8,fix Bb cost.",
-            cost:new Decimal('5e20'),
+            description: "Fc1 eff x1.25,Bb3-4 +5%,Eb4 +8%,cheaper Bb3-5.",
+            cost:new Decimal('1e10'),
             unlocked() { return (upg(this.layer, 34))},
         },
         41: {
@@ -648,17 +642,14 @@ addLayer("F", {
         },
     },
     challenges:{
-        11: {//req F:8e9,1e14,1e18
+        11: {
             name: "Fc1",
             completionLimit: 3,
             challengeDescription: function() {
                 return "B/E prod ^0.25. <br> Completion: " +challengeCompletions(this.layer,this.id) + "/3"},
             unlocked() { return (mil("F", 8))},
             goal(){
-                // if (challengeCompletions("F", 11) == 0) return Decimal.pow(10,5840);
-                // if (challengeCompletions("F", 11) == 1) return Decimal.pow(10,6940);
-                // if (challengeCompletions("F", 11) == 2) return Decimal.pow(10,7050);
-                let a=[n('e5840'),n('e6940'),n('e7050'),n(0)]
+                let a=[n('e14200'),n('e14300'),n('e15500'),n(0)]
                 return a[(challengeCompletions(this.layer,this.id))]
             },            
             goalDescription:  function() {return format(this.goal())+' points'},

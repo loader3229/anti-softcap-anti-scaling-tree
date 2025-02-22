@@ -13,6 +13,7 @@ addLayer("E", {
         if (hasMilestone('F',0)) pg=Decimal.add(pg,1)
         if (hasMilestone('Z',9)) pg=Decimal.add(pg,10)
         if (hasMilestone('Z',11)) pg=Decimal.mul(pg,10)
+        if (hasMilestone('Z',12)) pg=Decimal.mul(pg,10)
         if (hasMilestone('E',10)) pg=Decimal.mul(pg,10)
         if (hasMilestone('E',11)) pg=Decimal.mul(pg,10)
         if (hasMilestone('E',15)) pg=Decimal.mul(pg,10)
@@ -212,9 +213,14 @@ addLayer("E", {
             if (mil("F",1)) keep.push("milestones")
             if (mil("F",4)) keep.push("upgrades")
             if (mil("F",5)) keep.push("challenges")
-            //if (hasMilestone("F",2)) player.E.challenges.push('11','12','21','22')
-            //if (hasMilestone("F",2)) keep.push(chal)
-            layerDataReset(this.layer, keep)}
+            layerDataReset(this.layer, keep)
+			if(player.Z.points.gte(11))player.E.challenges[11]=3;
+			if(player.Z.points.gte(11))player.E.challenges[12]=3;
+			if(player.Z.points.gte(12))player.E.challenges[21]=3;
+			if(player.Z.points.gte(12))player.E.challenges[22]=3;
+			if(player.Z.points.gte(13))player.E.challenges[31]=5;
+			if(player.Z.points.gte(13))player.E.challenges[32]=5;
+	}
         if (layer=="I") {        
             let keep = []
             if(gcs('I',12)) keep.push("challenges")
@@ -441,11 +447,8 @@ addLayer("E", {
 			},
             effect()  { 
                 let ef = player.E.points.add(10).log(10).pow(0.75).div(150).add(1)
-                if (ef.gte(10)) {
-                    if (hasUpgrade('F',81)) ef=Decimal.pow(ef,0.95).mul(Decimal.pow(10,0.05))
-                    else ef=Decimal.pow(ef,0.85).mul(Decimal.pow(10,0.15))}
+                if (hasMilestone('Z',12)) ef = player.E.points.add(10).log(10).pow(0.5).div(25).add(1)
                 if (hasUpgrade('E',74)) ef = ef.sub(1).mul(1.1).add(1)
-                //ef=ef.toDecimal()
                 return ef;          
             },
             unlocked() { return (hasUpgrade(this.layer, 51))},
@@ -721,6 +724,10 @@ addLayer("E", {
         if (player.E.auto1 && mil('F',6))  buyBuyable("E",11),buyBuyable("E",12),buyBuyable("E",13)
         if (player.E.auto2)  buyBuyable("E",21)
         if (player.E.auto3)  buyBuyable("E",31),buyBuyable("E",32),buyBuyable("E",33)
+        if (player.E.auto3 && upg('F',25))  buyBuyable("E",31),buyBuyable("E",32),buyBuyable("E",33)
+        if (player.E.auto3 && upg('F',25))  buyBuyable("E",31),buyBuyable("E",32),buyBuyable("E",33)
+        if (player.E.auto3 && upg('F',25))  buyBuyable("E",31),buyBuyable("E",32),buyBuyable("E",33)
+        if (player.E.auto3 && upg('F',25))  buyBuyable("E",31),buyBuyable("E",32),buyBuyable("E",33)
         if (player.E.auto4)  buyBuyable("E",41),buyBuyable("E",42)
         if (player.E.auto5)  buyBuyable("E",22)
     },
@@ -1228,7 +1235,8 @@ addLayer("E", {
         let exp=0.25
         if (hasMilestone('E',12))  exp=Decimal.add(exp,0.02)
         if (hasUpgrade('E',103))  exp=Decimal.add(exp,0.03) 
-        if (hasUpgrade('E',101))  exp=Decimal.add(exp,0.02)
+        if (hasUpgrade('E',101))  exp=Decimal.add(exp,0.02)    
+        if (hasUpgrade('F',34))  exp=Decimal.add(exp,0.014) 
         if (hasChallenge('E', 42))  exp = Decimal.add(exp,challengeEffect('E',42)/100)   
         if (inChallenge('E',42)) exp=0           
         let ef=player.E.Em.max(1).pow(exp)
@@ -1244,6 +1252,7 @@ addLayer("E", {
         if (inChallenge('E',42)) return new Decimal(1);
         if (hasChallenge('E', 42)) return player.E.Ek.add(1).pow(challengeEffect('E',42)/5+1);
 		return player.E.Ek.add(1);
+/*
         let m=3
         let p=0.85
         let scp=0.06
@@ -1257,7 +1266,7 @@ addLayer("E", {
         if (hasUpgrade('G',23))  scp=n(0)  
         if (player.E.Ek.gte('1e5000')) p=p/(player.E.Ek.log(10).div(5000).pow(scp))             
         let ef=player.E.Ek.add(1).log(10).pow(p).mul(m)
-        return ef
+        return ef*/
     },
     ekf2(){
         let ef=player.E.Ek.add(1).log(10).pow(0.12)

@@ -396,6 +396,14 @@ addLayer("A", {
             canComplete() {return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on Bb1-2.",
             rewardEffect() {
+		if(hasMilestone("Z",12)){
+			let ef1 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1000).pow(0.9).div(1.1));
+			let ef2 = Decimal.pow(10,buyableEffect('B',12).add(10).log10().add(1000).pow(0.9).div(1.1));
+                	let ef = ef1.mul(ef2)
+                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+			if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                	else return new Decimal(1)
+		}
                 let b=n(challengeCompletions("A", 41)).pow(1.25)
                 let ef1 = n(buyableEffect('B',11)).pow(n(0.12).add(b.div(40)))
                 let ef2 = n(buyableEffect('B',12)).pow(n(0.12).add(b.div(40)))

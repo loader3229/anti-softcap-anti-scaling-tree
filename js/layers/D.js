@@ -92,7 +92,7 @@ addLayer("D", {
         if (layer=="F") {        
             let keep = [];
             if (hasMilestone("F", 1)) keep.push("upgrades")
-            if (hasMilestone("F", 1)) keep.push("milestones")
+            if (hasMilestone("F", 0)) keep.push("milestones")
             layerDataReset(this.layer, keep)}
         if (layer=="I") {        
             let keep = []
@@ -113,8 +113,8 @@ addLayer("D", {
                 if (hasUpgrade('D',25)) ef = ef.mul(10000)
                 if (hasUpgrade('D',33)) ef = ef.mul(10000)
                 if (hasUpgrade('D',41)) ef = ef.mul(1e7)
-                if (hasUpgrade('D',51)) ef = ef.mul('1e40')
-                if (hasUpgrade('D',52)) ef = ef.mul('1e100')                
+                if (hasUpgrade('D',51)) ef = ef.mul('1e79')
+                if (hasUpgrade('D',52)) ef = ef.mul('1e200')                
                 if (hasUpgrade('D',22)) ef = ef.pow(1.2)
                 if (inChallenge('C',12)) ef = n(1)
                 if (hasUpgrade('E',64)) exp=exp.add(0.1)
@@ -291,14 +291,14 @@ addLayer("D", {
         },
         51: {
             title:'D21',
-            description: "x1e40 pts",
-            cost:new Decimal('1e14180'),
-            unlocked() { return (hasUpgrade('F', 25))},
+            description: "x1e79 pts",
+            cost:new Decimal('1e2500'),
+            unlocked() { return (hasUpgrade('F', 31))},
         },
         52: {
             title:'D22',
-            description: "x1e100 pts",
-            cost:new Decimal('1e15300'),
+            description: "x1e200 pts",
+            cost:new Decimal('1e4000'),
             unlocked() { return (hasUpgrade(this.layer, 51))},
         }
     }
