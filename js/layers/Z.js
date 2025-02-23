@@ -7,13 +7,13 @@ addLayer("Z", {
 		points: new Decimal(0),
     }},
     color: "#FFFFFF",
-    requires: new Decimal(1e100), // Can be a funct}ion that takes requirement increases into account
+    requires(){ if(hasMilestone("Z",13))return new Decimal(1); return new Decimal(1e100);}, // Can be a funct}ion that takes requirement increases into account
     resource: "Z", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","1e9000","1e30000","ee10"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","1e9000","1e30000","1e50000","1e4000000","ee10"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -46,8 +46,11 @@ addLayer("Z", {
 			if(player.Z.points.gte(12))player.E.challenges[22]=3;
 			if(player.Z.points.gte(13))player.E.challenges[31]=5;
 			if(player.Z.points.gte(13))player.E.challenges[32]=5;
+			if(player.Z.points.gte(14))player.E.challenges[41]=5;
+			if(player.Z.points.gte(14))player.E.challenges[42]=5;
 			if(player.Z.points.gte(6))player.A.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
 			if(player.Z.points.gte(7))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82];
+			if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
 			if(player.Z.points.gte(13))player.F.upgrades=[11];
 			if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
 			if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
@@ -61,11 +64,24 @@ addLayer("Z", {
             if (hasMilestone('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
                 if (hasChallenge('E',31))effective_B=effective_B.mul(challengeEffect('E',31))
 			if(player.Z.points.gte(11))effective_B=effective_B.mul(tmp.E.ekf);
-			player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(hasUpgrade('E',73)?2.6:hasUpgrade('E',43)?2.7:2.8).root(1.1).ceil().max(0));
-			player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(hasUpgrade('E',73)?7:hasUpgrade('E',43)?7.5:8).root(1.1).ceil().max(0));
-			player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(hasUpgrade('F',35)?3.6:9).root(1.1).ceil().max(0));
-			player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(hasUpgrade('F',35)?4.9:10).root(1.1).ceil().max(0));
-			player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(hasUpgrade('F',35)?700:hasUpgrade('D',44)?800:hasUpgrade('E',62)?900:1000).root(1.2).ceil().max(0));
+			player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(hasUpgrade('E',73)?2.6:hasUpgrade('E',43)?2.7:2.8).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(hasUpgrade('E',73)?7:hasUpgrade('E',43)?7.5:8).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(hasUpgrade('F',35)?3.6:9).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(hasUpgrade('F',35)?4.9:10).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(hasUpgrade('F',35)?700:hasUpgrade('D',44)?800:hasUpgrade('E',62)?900:1000).max(0).root(1.2).ceil().max(0));
+		}
+		if(player.Z.points.gte(14)){
+			let effective_E = player.E.points.add(1);
+			if (hasChallenge('E',41))effective_E=effective_E.mul(challengeEffect('E',41));
+			player.E.buyables[11]=player.E.buyables[11].max(effective_E.div(hasUpgrade('E',54)?1:1000).log(2).max(0).root(1.1).ceil().max(0));
+			player.E.buyables[12]=player.E.buyables[12].max(effective_E.div(hasUpgrade('E',54)?1:1000).log(3).max(0).root(1.1).ceil().max(0));
+			player.E.buyables[13]=player.E.buyables[13].max(effective_E.div(hasUpgrade('E',54)?1:40000).log(5).max(0).root(1.1).ceil().max(0));
+			player.E.buyables[21]=player.E.buyables[21].max(effective_E.div(hasUpgrade('E',94)?1:1e10).log(25).max(0).root(1.1).ceil().max(0));
+			player.E.buyables[31]=player.E.buyables[31].max(player.E.points.add(1).log(2).max(0).root(1.2).ceil().max(0));
+			player.E.buyables[32]=player.E.buyables[32].max(player.E.points.add(1).log(5).max(0).root(1.2).ceil().max(0));
+			player.E.buyables[33]=player.E.buyables[33].max(player.E.points.add(1).log(hasUpgrade("E",93)?9:10).max(0).root(1.2).ceil().max(0));
+			player.E.buyables[41]=player.E.buyables[41].max(player.E.points.add(1).div(1e24).log(10).max(0).root(1.2).ceil().max(0));		player.E.buyables[42]=player.E.buyables[42].max(player.E.points.add(1).div(1e40).log(10).max(0).root(1.2).ceil().max(0));	player.E.buyables[22]=player.E.buyables[22].max(player.E.points.add(1).div('1e330').log(1e6).max(0).root(1.5).ceil().max(0));
+
 		}
 	},
     milestones: {
@@ -120,6 +136,10 @@ addLayer("Z", {
         12: {requirementDescription: "13 Z",
             done() {return player[this.layer].points.gte(13)}, 
             effectDescription: "Start with Ec5-6 completed 5 times, all E milestones and the 1st F upgrade.<br>10x passive E.<br>points^1.011. 2x F.<br>change formulas of Ac7 and E22.",
+        },
+        13: {requirementDescription: "14 Z",
+            done() {return player[this.layer].points.gte(14)}, 
+            effectDescription: "Start with Ec7-8 completed 5 times and all C upgrades. 3x F.<br>Autobuy max E buyables.<br>Unlock F1 and F dimensions.",
         },
     },
 })

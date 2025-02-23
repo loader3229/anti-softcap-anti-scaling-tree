@@ -220,6 +220,8 @@ addLayer("E", {
 			if(player.Z.points.gte(12))player.E.challenges[22]=3;
 			if(player.Z.points.gte(13))player.E.challenges[31]=5;
 			if(player.Z.points.gte(13))player.E.challenges[32]=5;
+			if(player.Z.points.gte(14))player.E.challenges[41]=5;
+			if(player.Z.points.gte(14))player.E.challenges[42]=5;
 	}
         if (layer=="I") {        
             let keep = []
@@ -734,20 +736,12 @@ addLayer("E", {
     buyables:{
         11: {
             title: "Eb1", 
-            cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
+            cost(x) {
                 let cost = Decimal.pow(2, x.pow(1.1)).times(1000)
-				if (hasUpgrade('E',54)) cost = Decimal.pow(2, x.pow(1.1))
-                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))/*
-                let sc=40
-                if (hasUpgrade('E',104)) sc=Decimal.add(sc,10)
-                if (hasUpgrade('F',22)) sc=Decimal.add(sc,5)
-                let t=80
-                let p=0.3
-                if (x.gte(sc))  cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(p)) 
-                if (hasUpgrade('E',54)) cost = Decimal.pow(cost, 0.985)
-                if (hasUpgrade('E',103)) cost = Decimal.pow(cost, 0.99)
-                if (hasChallenge('E',41)) cost = Decimal.pow(cost, challengeEffect('E',41))*/
-                return cost},
+		if (hasUpgrade('E',54)) cost = Decimal.pow(2, x.pow(1.1))
+                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
+                return cost
+            },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let bas = 5
@@ -775,18 +769,10 @@ addLayer("E", {
             title: "Eb2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(3, x.pow(1.1)).times(1000)
-				if (hasUpgrade('E',54)) cost = Decimal.pow(3, x.pow(1.1))
-                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))   /*             
-                let sc=40
-                if (hasUpgrade('E',104)) sc=Decimal.add(sc,10)
-                if (hasUpgrade('F',22)) sc=Decimal.add(sc,5)
-                let t=80
-                let p=0.3
-                if (x.gte(sc))  cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(p))                
-                if (hasUpgrade('E',54)) cost = Decimal.pow(cost, 0.985)
-                if (hasUpgrade('E',103)) cost = Decimal.pow(cost, 0.99)
-                if (hasChallenge('E',41)) cost = Decimal.pow(cost, challengeEffect('E',41))*/
-                return cost},
+		if (hasUpgrade('E',54)) cost = Decimal.pow(3, x.pow(1.1))
+                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
+                return cost
+            },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let bas = 5
@@ -814,18 +800,10 @@ addLayer("E", {
             title: "Eb3", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(5, x.pow(1.1)).times(40000)
-				if (hasUpgrade('E',54)) cost = Decimal.pow(5, x.pow(1.1))
-                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))/*
-                let sc=40
-                if (hasUpgrade('E',104)) sc=Decimal.add(sc,10)
-                if (hasUpgrade('F',22)) sc=Decimal.add(sc,5)
-                let t=80
-                let p=0.3
-                if (x.gte(sc))  cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(p))    
-                if (hasUpgrade('E',54)) cost = Decimal.pow(cost, 0.985)
-                if (hasUpgrade('E',103)) cost = Decimal.pow(cost, 0.99)
-                if (hasChallenge('E',41)) cost = Decimal.pow(cost, challengeEffect('E',41))*/
-                return cost},
+		if (hasUpgrade('E',54)) cost = Decimal.pow(5, x.pow(1.1))
+                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
+                return cost
+            },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let bas = 5               
@@ -851,20 +829,13 @@ addLayer("E", {
             title: "Eb4", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(25, x.pow(1.1)).times(1e33)
-				if(hasMilestone('Z',9))cost = cost.div(100)
-				if(hasUpgrade('C',34))cost = cost.div(1e11)
-				if(hasUpgrade('E',94))cost = cost.div(1e10)
-                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))/*
-                if (hasUpgrade('E',94)) cost =Decimal.pow(25, x.pow(1.09)).times('1e29')
-                let sc=40
-                if (hasUpgrade('E',104)) sc=Decimal.add(sc,10)
-                if (hasUpgrade('F',22)) sc=Decimal.add(sc,5)
-                let t=80
-                let p=0.3
-                if (x.gte(sc))  cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(p))               
-                if (hasUpgrade('C',34)) cost =Decimal.pow(cost,0.98)
-                if (hasChallenge('E',41)) cost = Decimal.pow(cost, challengeEffect('E',41))*/
-                return cost},
+                if(hasMilestone('Z',9))cost = cost.div(100)
+                if(hasMilestone('Z',13))cost = cost.div(1e10)
+                if(hasUpgrade('C',34))cost = cost.div(1e11)
+                if(hasUpgrade('E',94))cost = cost.div(1e10)
+                if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
+                return cost
+            },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() { setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -887,7 +858,7 @@ addLayer("E", {
         31: {
             title: "Eb5", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(2, x.pow(1.2)).times(player.Z.points.gte(11)?1e20:1e30)
+                let cost = Decimal.pow(2, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e20:1e30)
                 return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -908,7 +879,7 @@ addLayer("E", {
         32: {
             title: "Eb6", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(5, x.pow(1.2)).times(player.Z.points.gte(11)?1e21:1e34)
+                let cost = Decimal.pow(5, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e21:1e34)
                 return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -930,8 +901,8 @@ addLayer("E", {
         33: {
             title: "Eb7", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10, x.pow(1.2)).times(player.Z.points.gte(11)?1e22:1e38)
-				if(hasUpgrade("E",93))cost = Decimal.pow(9, x.pow(1.2)).times(player.Z.points.gte(11)?1e22:1e38)
+                let cost = Decimal.pow(10, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e22:1e38)
+		if(hasUpgrade("E",93))cost = Decimal.pow(9, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e22:1e38)
                 return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -1014,19 +985,6 @@ addLayer("E", {
                 Effect: +" + format(this.effect())},
             unlocked() { return hasMilestone('E',18) }
         },
-    },
-    bulk(){
-        let tar=1
-        if (hasUpgrade('F', 25)) tar=Decimal.mul(tar,10)
-        if (hasUpgrade('F', 34)) tar=Decimal.mul(tar,5)
-        if (hasUpgrade('F', 62)) tar=Decimal.mul(tar,3)
-        if (hasUpgrade('F', 64)) tar=Decimal.mul(tar,3)
-        if (hasMilestone('F', 16)) tar=Decimal.mul(tar,10)
-        if (hasUpgrade('G', 14)) tar=Decimal.mul(tar,10)
-        if (hasUpgrade('G', 23)) tar=Decimal.mul(tar,10)
-        if (hasMilestone('G',2)) tar=Decimal.mul(tar,10)
-        if (hasMilestone('F',17)) tar=Decimal.mul(tar,Decimal.mul(5,player.G.total.add(10).log(10)))
-        return tar 
     },
     challenges: {
         11: {//11 after E10,12 E13,13 E15
@@ -1250,8 +1208,12 @@ addLayer("E", {
     },
     ekf() {
         if (inChallenge('E',42)) return new Decimal(1);
-        if (hasChallenge('E', 42)) return player.E.Ek.add(1).pow(challengeEffect('E',42)/5+1);
-		return player.E.Ek.add(1);
+	let eff=player.E.Ek.add(1);
+	let pow=1;
+        if (hasChallenge('E',42)) pow += (challengeEffect('E',42)/5);
+	if (hasUpgrade('F',62)) pow += 0.68;
+	eff = eff.pow(pow);
+	return eff;
 /*
         let m=3
         let p=0.85

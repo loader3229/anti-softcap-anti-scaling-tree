@@ -735,20 +735,6 @@ addLayer("B", {
             unlocked() { return hasMilestone('B',3) }
         }
     },
-    bulk(){
-        let tar=n(1)
-        if (hasMilestone('B', 8)) tar=Decimal.mul(tar,10)
-        if (hasMilestone('F', 2)) tar=Decimal.mul(tar,2)
-        if (hasUpgrade('F', 34)) tar=Decimal.mul(tar,5)
-        if (hasUpgrade('F', 62)) tar=Decimal.mul(tar,3)
-        if (hasUpgrade('F', 64)) tar=Decimal.mul(tar,3)
-        if (hasMilestone('F', 16)) tar=Decimal.mul(tar,10)
-        if (hasUpgrade('G', 14)) tar=Decimal.mul(tar,10)
-        if (hasUpgrade('G', 23)) tar=Decimal.mul(tar,10)
-        if (hasMilestone('G',2)) tar=Decimal.mul(tar,10)
-        if (hasMilestone('F',17)) tar=Decimal.mul(tar,Decimal.mul(5,player.G.total.add(10).log(10)))
-        return tar 
-    },
     /*scaling(){
         let sc=n(400)
         if (hasMilestone('E',15)) sc=Decimal.add(sc,100)
