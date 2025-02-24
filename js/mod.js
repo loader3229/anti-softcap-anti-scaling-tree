@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "Anti-softcap anti-scaling tree",
 	id: "asast",
-	author: "2^32/loader3229",
+	author: "4294967296 / loader3229",
 	pointsName: "points",
 	modFiles: ["layers/A.js", "layers/B.js","layers/C.js","layers/D.js","layers/E.js","layers/F.js","layers/G.js","layers/H.js","layers/I.js","layers/J.js","layers/Z.js","layers/ach.js","tree.js",],
 
@@ -17,73 +17,7 @@ let VERSION = {
 	name: "more about break infinity",
 }
 
-let changelog = `<h2>Changelog:</h2><br>
-    <h4>v0.7.2 (250210)</h4>
-		- add slog speeder. E:F4e10+. <br>
-    <h4>v0.7.1 (250129)</h4>
-		- add layer J,break infinity and challenge 'curse' E:1F32768+. <br>
-    <h3>--HAPPY NEW 2025---<h3>
-    <h4>v0.7.0.1 (241209)</h4>
-		- fix dH part's bug and achievements bug. <br>
-    <h4>v0.7 (241207)</h4>
-		- add row 4 reset and tons of qol. E:1F100 too <br>
-    <h4>v0.6.4 (241119)</h4>
-		- end of row 3. E:1F100 <br>
-    <h4>v0.6.3 (241110)</h4>
-		- add more dH and gsr upg. E:5.968F7 <br>
-    <h4>v0.6.2.1 (241101)</h4>
-		- fix lots of bugs,edit some description. <br>
-    <h4>v0.6.2 (241031)</h4>
-		- add GsR,dH,dH points.Edit some description. E:3.78F7 <br>
-    <h4>v0.6.1 (241012)</h4>
-		- add hyper and remove sth like 'softcap'.Offline lim is 100d. E:3.194F7 <br>
-    <h4>v0.6.0.1 (240929)</h4>
-		- fix bugs after H and the automation. <br>
-    <h4>v0.6 (240928)</h4>
-		- add H and harsh,some pre-F fixes. E:2.828F7<br>
-    <h4>v0.5.10 (240919)</h4>
-		- add GG and upg tree.  E:1.676F7<br>
-    <h4>v0.5.9< (240905)/h4>
-		- add Gsi/e and G31-55. <br>
-    <h4>v0.5.8 (240815)</h4>
-		- add Gs,reach F(tetration). <br>
-	<h4>v0.5.7 (240809)</h4>
-		- add F2(ID). <br>
-    <h4>v0.5.6.1 (240807)</h4>
-		- rebalance <br>
-    <h4>v0.5.6 (240803)</h4>
-		- add more G chal and G power, massive fixes against inflation. <br>
-    <h4>v0.5.5 (240725)</h4>
-		- add G chal and G power. <br>
-    <h4>v0.5.4 (240721)</h4>
-		- add layer G. <br>
-    <h4>v0.5.3.1 (240719)</h4>
-		- rebalance. <br>
-    <h4>v0.5.3 (240718)</h4>
-		- Add tickboost,like AG,etc. <br>
-    <h4>v0.5.2 (240715)</h4>
-		- Add F dim. <br>
-    <h4>v0.5.1 (240713)</h4>
-		- Add F and some powerful upg.<br> And some nerfs for balance. <br>
-    <h4>v0.4.2 (240705)</h4>
-		- fix buyable code,a bit rebalance. E:1e140300<br>
-    <h4>v0.4.1 (240701)</h4>
-		- Added achievements,Ek,Ec5-8,E31-50,etc.<br> And a TOUGH rebalance. <br>
-    <h4>v0.3.7 (240624)</h4>
-		- Added Em / rebalance <br>
-	<h4>v0.3.6 (240623)</h4>
-		- Added new C/D upg,E11-20<br>
-    <h4>v0.3.5.1 (240622)</h4>
-		- rebalance / Ec3-4,E21-28<br>
-    <h4>v0.3.4.1 (240620)</h4>
-		- E6-20 rebalance<br>
-	<h4>v0.3.4 (240620)</h4>
-		- Added E chal,E11-20  E:1e11900<br>
-	<h4>v0.3.3 (240619)</h4>
-		- Added E6-10<br>
-	<h4>v0.3.2 (240618) (first release)</h4>
-		- Added layer E. E:1e7100<br> 
-	project started at Mar,2024 `
+let changelog = ``
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -190,7 +124,7 @@ function getPointGen() {
 	gain=gain.min(tmp.H.php)
 	
 	
-	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e5600000","ee10"][player.Z.points.toNumber()]);
+	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","ee10"][player.Z.points.toNumber()]);
 	return gain
 }
 
@@ -200,14 +134,15 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+	'Original author: 4294967296 / Mod author: loader3229',
 	function() {
-		let s='current endgame:e5.6e6'
+		let s='Current Endgame: e1.5e7'
 		if(upg('G',155)||mil('I',0)) s=s+"<br><h4 style='color: #C52C14'>points gain is hardcapped at "+format(tmp.H.php)+"."
 		return s},//<br> points is hardcapped at 1F100.
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return tmp.H.phpb.gte(4e10)
+	return player.points.gte('e1.5e7')
 }
 
 //<br> bilibili: @bili_50929957100 / @loader3229

@@ -22,11 +22,13 @@ addLayer("F", {
     }},
     resetsNothing(){return upg('F',65)},//||mil('I',1)
     passiveGeneration(){    let p=n(0)
+if(hasMilestone("Z",14))p = p.add(1)
         if(mil("F", 9)||mil('I',1)) p=p.add(1)
-        if(gcs('I',35)) p=n(1)
+if(hasMilestone("Z",14))p = p.mul(10)
+        //if(gcs('I',35)) p=n(1)
         return p},
     color: "#264321",
-    requires(){if(hasMilestone("Z",13))return new Decimal('1e500');if(hasMilestone("Z",12))return new Decimal('1e600');return new Decimal('1e700');}, 
+    requires(){if(hasMilestone("Z",14))return new Decimal(1);if(hasMilestone("Z",13))return new Decimal('1e500');if(hasMilestone("Z",12))return new Decimal('1e600');return new Decimal('1e700');}, 
     resource: "F", 
     baseResource: "E", 
     baseAmount() {return player.E.points}, 
@@ -127,25 +129,25 @@ addLayer("F", {
             effectDescription: "x10 F1,start with 1e6 F1,unlock new upg.",
         },
         15: {requirementDescription: "2 tickboost (16",
-            done() {return (gba('F',102).gte(2) && hasMilestone('Z',14))}, 
-            unlocked() {return hasMilestone('Z',14)},
+            done() {return (gba('F',102).gte(2))}, 
+            unlocked() {return hasMilestone('Z',13)},
             effectDescription: "start with 1e30 F1,dimmult per buy +0.1,autobuy dims.",
             toggles: [["F","auto1"]]
         },
         16: {requirementDescription: "3 tickboost (17",
             done() {return (gba('F',102).gte(3) && hasMilestone('Z',14))}, 
             unlocked() {return hasMilestone('Z',14)},
-            effectDescription: "autobuy tickspeed,bulk buy x10 Bb/Eb.",
+            effectDescription: "autobuy tickspeed.",
             toggles: [["F","auto2"]]
         },
         17: {requirementDescription: "6 tickboost (18",
-            done() {return (gba('F',102).gte(6) && hasMilestone('Z',14))}, 
-            unlocked() {return hasMilestone('Z',14)},
+            done() {return (gba('F',102).gte(6) && hasMilestone('Z',15))}, 
+            unlocked() {return hasMilestone('Z',15)},
             effectDescription: "bulk buy Bb/Eb base on total G,G6/10 are stronger,unlock new upg,only can be bought in Gc.",
         },
         18: {requirementDescription: "19 tickboost (19",
-            done() {return (gba('F',102).gte(19) && hasMilestone('Z',14))}, 
-            unlocked() {return hasMilestone('Z',14)},
+            done() {return (gba('F',102).gte(19) && hasMilestone('Z',15))}, 
+            unlocked() {return hasMilestone('Z',15)},
             effectDescription: "edit F dim cost,Gc1p eff ^1.5.",
         },
     },
@@ -363,8 +365,6 @@ addLayer("F", {
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.F.total.add(10).log(10).mul(0.2)
-                if (!upg('G',44)) ef=ef.min('1e308')
-                if (ef.gte('1e500')) ef=Decimal.pow(10,ef.div('1e499').log(10).pow(0.9)).mul('1e500')
                 if (upg('F',63)) ef=Decimal.pow(ef,1.2)
                 return ef;
             },
@@ -380,8 +380,6 @@ addLayer("F", {
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.E.Em.add(10).log(10).div(80)
-                if (!upg('G',44)) ef=ef.min('1e308')
-                if (ef.gte('1e500')) ef=Decimal.pow(10,ef.div('1e499').log(10).pow(0.9)).mul('1e500')
                 if (upg('F',63)) ef=Decimal.pow(ef,1.2)
                 return ef;
             },
@@ -391,7 +389,7 @@ addLayer("F", {
         45: {
             title:'F20',
             description: "x4 F1",
-            cost:new Decimal('2e30'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e20);return new Decimal('2e30')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -400,14 +398,12 @@ addLayer("F", {
         51: {
             title:'F21',
             description: "Ek boost Fd1",
-            cost:new Decimal('1e34'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e25);return new Decimal(1e34)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.E.Ek.add(10).log(10).div(30)
-                if (!upg('G',44)) ef=ef.min('1e308')
-                if (ef.gte('1e500')) ef=Decimal.pow(10,ef.div('1e499').log(10).pow(0.9)).mul('1e500')
                 return ef;
             },
             effectDisplay() { return format(this.effect())+'x' },
@@ -416,7 +412,7 @@ addLayer("F", {
         52: {
             title:'F22',
             description: "^3 F1 eff,^1.002 pts.",
-            cost:new Decimal('1e40'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e32);return new Decimal(1e40)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -425,7 +421,7 @@ addLayer("F", {
         53: {
             title:'F23',
             description: "F13 is stronger,unlock a chal.",
-            cost:new Decimal('1e43'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e38);return new Decimal(1e43)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -434,7 +430,7 @@ addLayer("F", {
         54: {
             title:'F24',
             description: "F1 eff exp is 1",
-            cost:new Decimal('1e46'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e43);return new Decimal(1e46)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -443,7 +439,7 @@ addLayer("F", {
         55: {
             title:'F25',
             description: "Fd and tickspeed use F instead of F1.",
-            cost:new Decimal('1e50'),
+            cost(){if(hasMilestone('Z',14))return new Decimal(1e48);return new Decimal(1e50)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -461,7 +457,7 @@ addLayer("F", {
         62: {
             title:'F27',
             description: "Ek is stronger.",
-            cost:new Decimal('5e120'),
+            cost:new Decimal('1e120'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -469,14 +465,17 @@ addLayer("F", {
         },
         63: {
             title:'F28',
-            description: "F1 eff exp x2 and ^1.015,Ek applies to Bb further scaling,F18-19 ^1.2.",
-            cost:new Decimal('e1e7'),
+            description: "F1 eff exp x1.1,F18-19 ^1.2.",
+            cost:new Decimal('1e125'),
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "F1",
+            currencyInternalName: "F1",
             unlocked() { return (upg(this.layer, 62) && hasMilestone('Z',14))},
         },
         64: {
             title:'F29',
-            description: "bulk buy x3 Bb/Eb,F1 boost Fd1",
-            cost:new Decimal('1e148'),
+            description: "F1 boost Fd1",
+            cost:new Decimal('1e140'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -489,18 +488,18 @@ addLayer("F", {
         },
         65: {
             title:'F30',
-            description: "F1 boost Bb1-2,Eb1-3 base,^1.006 pts,F1 eff exp ^1.05,F resets nothing.",
-            cost:new Decimal('2e242'),
+            description: "F1 boost Bb1-2,Eb1-3 base,^1.006 pts,F1 eff exp x1.14,F resets nothing.",
+            cost:new Decimal('1e180'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
             effect()  { 
-                let ef = player.F.F1.add(10).log(10).pow(0.25).div(25).add(1)
+                let ef = player.F.F1.add(10).log(10).div(50).add(1)
                 if (upg('G',15))  ef=Decimal.pow(ef,1.1)
                 if (upg('G',23))  ef=Decimal.pow(ef,upgradeEffect('G',23))
                 return ef;
             },
-            effectDisplay() { return '^'+format(this.effect(),4) },
+            effectDisplay() { return '+'+format(this.effect(),4) },
             unlocked() { return (upg(this.layer, 64))},
         },
         71: {
@@ -683,10 +682,7 @@ addLayer("F", {
                 return "pts exp ^0.8. <br> Completion: " +challengeCompletions("F", 12) + "/3"},
             unlocked() { return (upg("F", 53))},
             goal(){
-                // if (challengeCompletions("F", 12) == 0) return Decimal.pow(10,1000);
-                // if (challengeCompletions("F", 12) == 1) return Decimal.pow(10,1e7);
-                // if (challengeCompletions("F", 12) == 2) return Decimal.pow(10,1e8);
-                let a=[n('e1000'),n('e2e5'),n('ee8'),n(0)]//edit at v0.6.4
+                let a=[n('ee3'),n('e2e5'),n('e5e5'),n(0)]//edit at v0.6.4
                 return a[(challengeCompletions(this.layer,this.id))]
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
@@ -695,7 +691,6 @@ addLayer("F", {
             rewardEffect() {
                 let exp = Decimal.mul(challengeCompletions("F", 12),0.06).add(0.08)
                 let ef = player.B.points.add(10).log(10).add(1).pow(exp)
-                if (ef.gte('1e500')) ef=Decimal.pow(10,ef.div('1e499').log(10).pow(0.85)).mul('1e500')
                 if (challengeCompletions("F", 12) >= 1)  return ef
                 else return new Decimal(1)
             },
@@ -725,6 +720,7 @@ addLayer("F", {
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
                 ef=Decimal.mul(ef,tmp.F.fdm)
+				
                 if (upg('F',43))  ef=Decimal.mul(ef,upgradeEffect('F',43))
                 if (upg('F',44))  ef=Decimal.mul(ef,upgradeEffect('F',44))
                 if (upg('F',51))  ef=Decimal.mul(ef,upgradeEffect('F',51))
@@ -1113,6 +1109,7 @@ addLayer("F", {
         ef = n(1)
         if (mil('Z',13))  ef=ef.mul(buyableEffect("F", 11))
         if (upg('F',41))  ef=ef.mul(2)
+        if(mil('Z',14)) ef = ef.mul(4);
         if (upg('F',45))  ef=ef.mul(4)
         if (mil('F',14))  ef=ef.mul(10)
         if (inChallenge('G', 11))  ef=ef.pow(0.8)
@@ -1162,7 +1159,7 @@ addLayer("F", {
     scaling(){
         ef = n(1.25)
         if (upg('F',42))  ef=ef.sub(0.01)
-        if (upg('G',13))  ef=ef.sub(0.05)
+        if (upg('G',13))  ef=ef.sub(0.01)
         if (upg('G',15))  ef=ef.sub(0.05)
         if (upg('G',22))  ef=ef.sub(0.05)
         if (upg('G',23))  ef=ef.sub(0.05)
@@ -1178,10 +1175,11 @@ addLayer("F", {
         let exp=n(0.15)  
         if (upg('F',52))  exp=Decimal.mul(exp,3)
         if (upg('F',54))  exp=Decimal.add(exp,0.55)
-        if (upg('F',63))  exp=Decimal.mul(exp,2)
+        if (upg('F',63))  exp=Decimal.mul(exp,1.1)
+        if (upg('F',65))  exp=Decimal.mul(exp,1.25/1.1)
         let ef=player.F.F1.max(1).pow(exp)
-        if (upg('F',63))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.015))
-        if (upg('F',65))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.05))
+        //if (upg('F',63))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.015))
+        //if (upg('F',65))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.05))
         if (upg('F',73))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.2))
         if (upg('G',31)) {
             let t=n(400)

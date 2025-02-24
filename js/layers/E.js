@@ -750,9 +750,9 @@ addLayer("E", {
                 if (hasUpgrade('F',14)) bas = Decimal.add(bas,0.3)
                 if (hasUpgrade('E',55)) bas = Decimal.add(bas,upgradeEffect('E',55))
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
+                if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
                 if (hasUpgrade('G',21)) bas = Decimal.mul(bas,upgradeEffect('G',21)[1])
-                if (hasUpgrade('F',65)) bas = Decimal.pow(bas,upgradeEffect('F',65))
                 if (inChallenge('E',21)) bas = 2
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -781,9 +781,9 @@ addLayer("E", {
                 if (hasUpgrade('F',14)) bas = Decimal.add(bas,0.3)
                 if (hasUpgrade('E',55)) bas = Decimal.add(bas,upgradeEffect('E',55))
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
+                if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
                 if (hasUpgrade('G',21)) bas = Decimal.mul(bas,Decimal.pow(buyableEffect('E',22),0.25))
-                if (hasUpgrade('F',65)) bas = Decimal.pow(bas,upgradeEffect('F',65))
                 if (inChallenge('E',21)) bas = 2
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -811,9 +811,9 @@ addLayer("E", {
                 if (hasUpgrade('F',14)) bas = Decimal.add(bas,0.3)
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
                 if (hasUpgrade('F',81)) bas = Decimal.add(bas,upgradeEffect('E',55))
+                if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
                 if (hasUpgrade('G',21)) bas = Decimal.mul(bas,Decimal.pow(buyableEffect('E',22),0.25))
-                if (hasUpgrade('F',65)) bas = Decimal.pow(bas,upgradeEffect('F',65))
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
