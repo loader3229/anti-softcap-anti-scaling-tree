@@ -13,7 +13,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee10","ee10"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","ee10"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -53,6 +53,7 @@ addLayer("Z", {
 			if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
 			if(player.Z.points.gte(15))player.D.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52];
 			if(player.Z.points.gte(13))player.F.upgrades=[11];
+			if(player.Z.points.gte(16))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 55];
 			if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
 			if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
 			if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -82,6 +83,18 @@ addLayer("Z", {
 			player.E.buyables[32]=player.E.buyables[32].max(player.E.points.add(1).log(5).max(0).root(1.2).ceil().max(0));
 			player.E.buyables[33]=player.E.buyables[33].max(player.E.points.add(1).log(hasUpgrade("E",93)?9:10).max(0).root(1.2).ceil().max(0));
 			player.E.buyables[41]=player.E.buyables[41].max(player.E.points.add(1).div(1e24).log(10).max(0).root(1.2).ceil().max(0));		player.E.buyables[42]=player.E.buyables[42].max(player.E.points.add(1).div(1e40).log(10).max(0).root(1.2).ceil().max(0));	player.E.buyables[22]=player.E.buyables[22].max(player.E.points.add(1).div('1e330').log(1e6).max(0).root(1.5).ceil().max(0));
+
+		}
+		if(player.Z.points.gte(17) || hasMilestone('G',3)){
+			player.F.fd1=player.F.fd1.max(player.F.buyables[11]=player.F.buyables[11].max(player.F.points.div(10).max(1).log(10).max(0).div(layers.F.scaling().pow(1)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd2=player.F.fd2.max(player.F.buyables[12]=player.F.buyables[12].max(player.F.points.div(100).max(1).log(10).max(0).div(layers.F.scaling().pow(2)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd3=player.F.fd3.max(player.F.buyables[13]=player.F.buyables[13].max(player.F.points.div(1e4).max(1).log(10).max(0).div(layers.F.scaling().pow(3)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd4=player.F.fd4.max(player.F.buyables[21]=player.F.buyables[21].max(player.F.points.div(1e7).max(1).log(10).max(0).div(layers.F.scaling().pow(4)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd5=player.F.fd5.max(player.F.buyables[22]=player.F.buyables[22].max(player.F.points.div(1e11).max(1).log(10).max(0).div(layers.F.scaling().pow(5)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd6=player.F.fd6.max(player.F.buyables[23]=player.F.buyables[23].max(player.F.points.div(1e16).max(1).log(10).max(0).div(layers.F.scaling().pow(6)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd7=player.F.fd7.max(player.F.buyables[31]=player.F.buyables[31].max(player.F.points.div(1e22).max(1).log(10).max(0).div(layers.F.scaling().pow(7)).root(layers.F.scaling()).ceil().max(0)));
+			player.F.fd8=player.F.fd8.max(player.F.buyables[32]=player.F.buyables[32].max(player.F.points.div(1e29).max(1).log(10).max(0).div(layers.F.scaling().pow(8)).root(layers.F.scaling()).ceil().max(0)));
+player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(1e10).max(1).log(10).max(0).root(layers.F.scaling()).ceil().max(0))
 
 		}
 	},
@@ -145,6 +158,18 @@ addLayer("Z", {
         14: {requirementDescription: "15 Z",
             done() {return player[this.layer].points.gte(15)}, 
             effectDescription: "Start with all D upgrades. 4x F and F1, 10x passive F and reduce requirement of F to 1.<br>change formula of Ac7.",
+        },
+        15: {requirementDescription: "16 Z",
+            done() {return player[this.layer].points.gte(16)}, 
+            effectDescription: "Start with first 15 F upgrades. 5x F and F1, 10x passive F.<br>F dims requires F instead of F1, but increase base F1 effect before F24. <br>change formula of Ac7 and F30.",
+        },
+        16: {requirementDescription: "17 Z",
+            done() {return player[this.layer].points.gte(17)}, 
+            effectDescription: "Autobuy max F dimensions. A1,B1,C1,D1 and F1 upgrade ^10; E1 ^100. 6x F and F1, 10x passive F.<br>change formula of Ac7.",
+        },
+        17: {requirementDescription: "18 Z",
+            done() {return player[this.layer].points.gte(18)}, 
+            effectDescription: "Start with all F milestones. Increase max completion for all E/F challenges and Gc1/Gc2 to 6. A1,B1,C1,D1,E1 and F1 upgrade ^10.",
         },
     },
 })

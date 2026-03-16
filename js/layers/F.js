@@ -25,6 +25,8 @@ addLayer("F", {
 if(hasMilestone("Z",14))p = p.add(1)
         if(mil("F", 9)||mil('I',1)) p=p.add(1)
 if(hasMilestone("Z",14))p = p.mul(10)
+if(hasMilestone("Z",15))p = p.mul(10)
+if(hasMilestone("Z",16))p = p.mul(10)
         //if(gcs('I',35)) p=n(1)
         return p},
     color: "#264321",
@@ -54,10 +56,14 @@ if(hasMilestone("Z",14))p = p.mul(10)
         if (mil('Z',12)) mult=Decimal.mul(mult,2)
         if (mil('Z',13)) mult=Decimal.mul(mult,3)
         if (mil('Z',14)) mult=Decimal.mul(mult,4)
+        if (mil('Z',15)) mult=Decimal.mul(mult,5)
+        if (mil('Z',16)) mult=Decimal.mul(mult,6)
         if (upg('F',21)) mult=Decimal.mul(mult,2)
         if (upg('F',23)) mult=Decimal.mul(mult,upgradeEffect('F',23))
         if (upg('F',32)) mult=Decimal.mul(mult,upgradeEffect('F',32))
         if (mil('Z',13)) mult=Decimal.mul(mult,tmp.F.F1f)
+
+                if (upg('G',14)) mult=Decimal.mul(mult,upgradeEffect('G',14))
 
         return mult
     },
@@ -143,12 +149,12 @@ if(hasMilestone("Z",14))p = p.mul(10)
         17: {requirementDescription: "6 tickboost (18",
             done() {return (gba('F',102).gte(6) && hasMilestone('Z',15))}, 
             unlocked() {return hasMilestone('Z',15)},
-            effectDescription: "bulk buy Bb/Eb base on total G,G6/10 are stronger,unlock new upg,only can be bought in Gc.",
+            effectDescription: "G10 is stronger,unlock new upg,only can be bought in Gc.",
         },
-        18: {requirementDescription: "19 tickboost (19",
-            done() {return (gba('F',102).gte(19) && hasMilestone('Z',15))}, 
-            unlocked() {return hasMilestone('Z',15)},
-            effectDescription: "edit F dim cost,Gc1p eff ^1.5.",
+        18: {requirementDescription: "18 tickboost (19",
+            done() {return (gba('F',102).gte(18) && hasMilestone('Z',16))}, 
+            unlocked() {return hasMilestone('Z',16)},
+            effectDescription: "Gc1p eff ^1.5, Em effect is better.",
         },
     },
     doReset(layer){
@@ -226,6 +232,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 if (upg('F',34)) ef=Decimal.mul(ef,'1e120')
                 if (upg('F',23)) exp=Decimal.add(exp,0.5)
                 if (upg('F',15)) ef=Decimal.pow(ef,n(buyableEffect("E",21).sub(1).mul(exp).add(1)))
+                if(mil("Z",16)) ef=ef.pow(10)
                 return ef;          
             },
             cost:new Decimal(1),
@@ -307,7 +314,6 @@ if(hasMilestone("Z",14))p = p.mul(10)
             effect()  { 
                 let exp=n(0.1)
                 if (upg('F',33)) exp=Decimal.add(exp,0.1)
-                if (upg('G',14)) exp=Decimal.add(exp,upgradeEffect('G',14).sub(1))
                 let ef = player.F.total.add(1).pow(exp)
                 return ef;
             },
@@ -341,7 +347,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         41: {
             title:'F16',
             description: "x2 F1,Bb5 +3%",
-            cost:new Decimal('2e4'),
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e15);return new Decimal(2e4)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -350,7 +356,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         42: {
             title:'F17',
             description: "Fd is cheaper",
-            cost:new Decimal('2e7'),
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e18);return new Decimal(2e7)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -359,7 +365,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         43: {
             title:'F18',
             description: "F boost Fd1",
-            cost:new Decimal('2e9'),
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e21);return new Decimal(2e9)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -374,7 +380,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         44: {
             title:'F19',
             description: "Em boost Fd1",
-            cost:new Decimal('5e16'),
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e24);return new Decimal(5e16)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -389,7 +395,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         45: {
             title:'F20',
             description: "x4 F1",
-            cost(){if(hasMilestone('Z',14))return new Decimal(1e20);return new Decimal('2e30')},
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e27);if(hasMilestone('Z',14))return new Decimal(1e20);return new Decimal(2e30)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -398,7 +404,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         51: {
             title:'F21',
             description: "Ek boost Fd1",
-            cost(){if(hasMilestone('Z',14))return new Decimal(1e25);return new Decimal(1e34)},
+            cost(){if(hasMilestone('Z',15))return new Decimal(1e29);if(hasMilestone('Z',14))return new Decimal(1e25);return new Decimal(1e34)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -448,7 +454,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         61: {
             title:'F26',
             description: "F dim mult per buy+0.1.",
-            cost:new Decimal('1e100'),
+            cost(){if(hasMilestone('Z',15))return new Decimal('1e90');return new Decimal('1e100')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -457,7 +463,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         62: {
             title:'F27',
             description: "Ek is stronger.",
-            cost:new Decimal('1e120'),
+            cost(){if(hasMilestone('Z',15))return new Decimal('1e100');return new Decimal('1e120')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -466,7 +472,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         63: {
             title:'F28',
             description: "F1 eff exp x1.1,F18-19 ^1.2.",
-            cost:new Decimal('1e125'),
+            cost(){if(hasMilestone('Z',15))return new Decimal('1e110');return new Decimal('1e125')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
@@ -489,12 +495,13 @@ if(hasMilestone("Z",14))p = p.mul(10)
         65: {
             title:'F30',
             description: "F1 boost Bb1-2,Eb1-3 base,^1.006 pts,F1 eff exp x1.14,F resets nothing.",
-            cost:new Decimal('1e180'),
+            cost(){if(hasMilestone('Z',15))return new Decimal('1e160');return new Decimal('1e180')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.F.F1.add(10).log(10).div(50).add(1)
+                if (mil('Z',15))  ef = player.F.F1.add(10).log(10).add(10).pow(0.25).mul(3).add(1)
                 if (upg('G',15))  ef=Decimal.pow(ef,1.1)
                 if (upg('G',23))  ef=Decimal.pow(ef,upgradeEffect('G',23))
                 return ef;
@@ -505,8 +512,8 @@ if(hasMilestone("Z",14))p = p.mul(10)
         71: {
             title:'F31',
             description: "F upg boost F dims.<br>(need Gc1).",
-            cost:n('1e848'),
-            canAfford() {return inChallenge('G',11)||gcs('I',43)}, //
+            cost:n('1e970'),
+            canAfford() {return inChallenge('G',11) && player.F.F1.gte('1e970')}, //
             effect()  { 
                 let a=player[this.layer].upgrades.length
                 let ef=n(1.075).pow(a)
@@ -522,8 +529,8 @@ if(hasMilestone("Z",14))p = p.mul(10)
         72: {
             title:'F32',
             description: "tickspeed mult x1.01,log G mults itself.(need Gc1).",
-            cost:n('1e895'),
-            canAfford() {return (inChallenge('G',11)||gcs('I',43))}, 
+            cost:n('1e1000'),
+            canAfford() {return inChallenge('G',11) && player.F.F1.gte('1e1000')}, // 
             effect()  { 
                 let ef = player.G.total.add(10).log(10)
                 return ef;          
@@ -536,12 +543,12 @@ if(hasMilestone("Z",14))p = p.mul(10)
         },
         73: {
             title:'F33',
-            description: "F1 eff exp ^1.2,Gb1 mults Fds.(need Gc1).",
-            cost:n('1e1030'),
-            canAfford() {return (inChallenge('G',11)||gcs('I',43))}, 
+            description: "F1 eff is better,Gb1 mults Fds.(need Gc1).",
+            cost:n('1e1234'),
+            canAfford() {return inChallenge('G',11) && player.F.F1.gte('1e1234')}, //  
             effect()  { 
                 let t = n(gba('G',11))
-                let ef=n(5).pow(t)
+                let ef=n(1.5).pow(t)
                 return ef;          
             },
             currencyLocation() {return player[this.layer]}, 
@@ -553,8 +560,8 @@ if(hasMilestone("Z",14))p = p.mul(10)
         74: {
             title:'F34',
             description: "Gb2 amt boost its base,Gc1p mults G.(need Gc1).",
-            cost:n('1e1155'),
-            canAfford() {return (inChallenge('G',11)||gcs('I',43))}, 
+            cost:n('1e1342'),
+            canAfford() {return inChallenge('G',11) && player.F.F1.gte('1e1342')}, //  
             effect()  { 
                 let t=n(gba('G',12))
                 let ef1=t.mul(0.06)
@@ -570,29 +577,29 @@ if(hasMilestone("Z",14))p = p.mul(10)
         75: {
             title:'F35',
             description: "Gb3 amt boost its base,F31 ^2,unlock next G chal.(need Gc1).",
-            cost:n('1e1615'),//1e1300
-            canAfford() {return (inChallenge('G',11)||gcs('I',43))}, 
+            cost:n('1e2666'),
+            canAfford() {return inChallenge('G',11) && player.F.F1.gte('1e2666')}, //   
             effect()  { 
                 let t = n(gba('G',13))
-                let ef=t.mul(0.08)
+                let ef=t.mul(0.001)
                 return ef;          
             },
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
-            unlocked() { return (upg(this.layer, 74))},
+            unlocked() { return (upg(this.layer, 74) && player.Z.points.gte(17))},
             effectDisplay() { return '+'+format(this.effect())},
         },
         81: {
             title:'F36',
-            description: "F dim mult +0.1,E25 is multiplicative at ^0.15 eff and applies to Eb3,reduce E22's nerf.(need Gc2)",         
+            description: "F dim mult +0.1,E25 is multiplicative at ^0.01 eff and applies to Eb3.(need Gc2)",         
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
-            cost:n('1e1290'),
-            canAfford() {return (inChallenge('G',12)||gcs('I',43))}, 
+            cost:n('1e1800'),
+            canAfford() {return inChallenge('G',12) && player.F.F1.gte('1e1800')},
             effect()  { 
-                let exp=n(0.15)
+                let exp=n(0.01)
                 let ef= Decimal.pow(upgradeEffect('E',55),exp)
                 return ef;
             },
@@ -601,15 +608,14 @@ if(hasMilestone("Z",14))p = p.mul(10)
         },
         82: {
             title:'F37',
-            description: "Gc1p mults Gb3 base,reduce Gb2-3 cost base.(need Gc2)",         
+            description: "Gc1p mults Gb3 base.(need Gc2)",         
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
-            cost:n('e5600'),//6000
-            canAfford() {return (inChallenge('G',12)||gcs('I',43))}, 
+            cost:n('e5600'),
+            canAfford() {return inChallenge('G',12) && player.F.F1.gte('1e5600')},
             effect()  { 
-                let exp=n(0.33)
-                let ef=player.G.Gc1p.add(10).log(10).pow(exp)
+                let ef=player.G.Gc1p.add(10).log(10).add(10).log(10).pow(0.1)
                 return ef;
             },
             effectDisplay() { return 'x'+format(this.effect()) },
@@ -617,12 +623,12 @@ if(hasMilestone("Z",14))p = p.mul(10)
         },
         83: {
             title:'F38',
-            description: "Gc2p eff ^1.5,tickboost cost scaling x0.8.(need Gc2)",         
+            description: "Gc2p eff ^1.5.(need Gc2)",         
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "F1",
             currencyInternalName: "F1",
-            cost:n('e8000'),//8600
-            canAfford() {return (inChallenge('G',12)||gcs('I',43))}, 
+            cost:n('e6900'),
+            canAfford() {return inChallenge('G',12) && player.F.F1.gte('1e6900')},
             unlocked() { return (upg(this.layer, 82))},
         },
         84: {
@@ -639,7 +645,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 return ef;
             },
             effectDisplay() { return 'x'+format(this.effect()) },
-            unlocked() { return (upg(this.layer, 83))},
+            unlocked() { return (upg(this.layer, 83) && hasMilestone('Z',17))},
         },
         85: {
             title:'F40',
@@ -649,7 +655,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
             currencyInternalName: "F1",
             cost:n('e1.865e8'),
             canAfford() {return (inChallenge('G',21)||gcs('I',43))}, 
-            unlocked() { return (upg(this.layer, 83))},
+            unlocked() { return (upg(this.layer, 83) && hasMilestone('Z',17))},
         },
     },
     challenges:{
@@ -732,7 +738,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: "+ format(player.F.fd1) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return mil('Z',13) },
             style: {'height':'150px'},
         },
@@ -756,7 +762,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd2) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (tmp.F.buyables[11].effect.gte(2)) },
             style: {'height':'150px'},
         },
@@ -780,7 +786,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd3) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (tmp.F.buyables[12].effect.gte(2)) },
             style: {'height':'150px'},
         },
@@ -804,7 +810,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd4) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (player.F.F1.gte(1e7)) },
             style: {'height':'150px'},
         },
@@ -828,7 +834,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd5) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (player.F.F1.gte(1e11)) },
             style: {'height':'150px'},
         },
@@ -852,7 +858,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd6) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (player.F.F1.gte(1e16)) },
             style: {'height':'150px'},
         },
@@ -876,7 +882,8 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd7) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { return (player.F.F1.gte(1e22)) },
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
+                else return (player.F.F1.gte(1e22)) },
             style: {'height':'150px'},
         },
         32: {
@@ -900,7 +907,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
                 Need: " + format(this.cost()) + " "+(upg('F',55)?"F":"F1")+" \n\
                 Amount: " + format(player.F.fd8) + "(" + format(player[this.layer].buyables[this.id])  +") \n\
                 Effect: x" + format(this.effect())},
-            unlocked() { if (gba('F',102).gte(1)) return true
+            unlocked() { if (gba('F',102).gte(1)||mil('Z',14)) return true
                 else return (player.F.F1.gte(1e29)) },
             style: {'height':'150px'},
         },
@@ -928,7 +935,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         102: {
             title: "tickboost", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                return x.pow(2).mul(8).add(12)
+                return x.pow(2).mul(mil('Z',15)?5:8).add(mil('Z',15)?10:412)
             },
             canAfford() { return player[this.layer].fd8.gte(this.cost()) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
@@ -1088,31 +1095,29 @@ if(hasMilestone("Z",14))p = p.mul(10)
     },
     tick(){let bas=n(1.05)
         let e=n(1.08)
-        let expc4=n(1.5)
-        let ef=[n(1.065),n(1.08),e.pow(gba('F',102)).mul(0.3).add(0.73)]
-        if(upg('G',52))  expc4=expc4.add(0.5)
-        if(upg('G',33)) e=e.add(0.005)
-        if(gcs('I',34)) e=e.add(0.001)
         if (hasChallenge('G',22)) e=e.add(challengeEffect('G',22))
+        let ef=[n(1.065),n(1.08),e.pow(gba('F',102)).mul(0.3).add(0.73)]
         if(gba('F',102).gte(1)) bas=ef[n(gba('F',102)).sub(1).min(2)]
-        // if (gba('F',102)==n(1)) bas=n(1.065)
-        // if (gba('F',102)==n(2)) bas=n(1.08)
-        // if (gba('F',102).gte(3)) bas=e.pow(gba('F',102)).mul(0.3).add(0.73)
+        if(gba('F',102).gte(10) && player.Z.points.gte(17)) bas=e.pow(gba('F',102).sqrt()).mul(0.1).add(1.25)
+        if(upg('G',33)) bas=bas.add(0.005)
         if(upg('F',72))  bas=Decimal.mul(bas.sub(1),1.01).add(1)
         if (hasChallenge('G',12))  bas=Decimal.mul(bas.sub(1),challengeEffect('G',12)).add(1)
         if(upg('G',54)) bas=Decimal.mul(bas.sub(1),upgradeEffect('G',54)).add(1)
         if(mil('G',14)) bas=Decimal.pow(bas,tmp.G.gsef)
+        let expc4=n(1.5)
+        if(upg('G',52))  expc4=expc4.add(0.5)
         if (inChallenge('G',22)) bas=n(1.05).add(gba('F',102).pow(expc4).div(100))
-        //if (bas.gte(2)) bas=Decimal.pow(10,bas.div(2).log(10).pow(0.96)).mul(2)
+            
         return bas},
     F1effect() {
         ef = n(1)
         if (mil('Z',13))  ef=ef.mul(buyableEffect("F", 11))
         if (upg('F',41))  ef=ef.mul(2)
         if(mil('Z',14)) ef = ef.mul(4);
+        if(mil('Z',15)) ef = ef.mul(5);
+        if(mil('Z',16)) ef = ef.mul(6);
         if (upg('F',45))  ef=ef.mul(4)
         if (mil('F',14))  ef=ef.mul(10)
-        if (inChallenge('G', 11))  ef=ef.pow(0.8)
         if (mil('G',8))  ef=ef.pow(tmp.F.F2f)
         if (mil('I',0))  ef=ef.pow(1.05).mul(1e10)
         if (mil('I',1))  ef=ef.pow(1.05).mul(1e10)
@@ -1129,7 +1134,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         ef = n(1)
         ef=Decimal.mul(ef,buyableEffect('F',101))
         if (upg('G',11))  ef=Decimal.mul(ef,2)
-        if (upg('G',21))  ef=Decimal.mul(ef,upgradeEffect('G',21)[0])
+        if (upg('G',21))  ef=Decimal.mul(ef,upgradeEffect('G',21))
         ef=Decimal.mul(ef,buyableEffect('G',12))
     	if (hasChallenge("G", 11))  ef = Decimal.mul(ef,challengeEffect('G',11))
         if (upg('F',71))  ef=Decimal.mul(ef,upgradeEffect('F',71))
@@ -1160,11 +1165,8 @@ if(hasMilestone("Z",14))p = p.mul(10)
         ef = n(1.25)
         if (upg('F',42))  ef=ef.sub(0.01)
         if (upg('G',13))  ef=ef.sub(0.01)
-        if (upg('G',15))  ef=ef.sub(0.05)
-        if (upg('G',22))  ef=ef.sub(0.05)
-        if (upg('G',23))  ef=ef.sub(0.05)
-        if (upg('G',25))  ef=ef.sub(0.05)
-        if (upg('G',35))  ef=ef.sub(0.05)
+        if (upg('G',22))  ef=ef.sub(0.005)
+        if (upg('G',35))  ef=ef.sub(0.005)
         return ef;
     },
     // sc2(){
@@ -1172,23 +1174,16 @@ if(hasMilestone("Z",14))p = p.mul(10)
     //     return ef;
     // },
     F1f() {
-        let exp=n(0.15)  
+        let exp=n(hasMilestone('Z',15)?0.25:0.15)  
         if (upg('F',52))  exp=Decimal.mul(exp,3)
-        if (upg('F',54))  exp=Decimal.add(exp,0.55)
+        if (upg('F',54))  exp=new Decimal(1)
         if (upg('F',63))  exp=Decimal.mul(exp,1.1)
         if (upg('F',65))  exp=Decimal.mul(exp,1.25/1.1)
+        if (upg('F',73))  exp=Decimal.mul(exp,1.3/1.25)
         let ef=player.F.F1.max(1).pow(exp)
-        //if (upg('F',63))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.015))
-        //if (upg('F',65))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.05))
-        if (upg('F',73))  ef=Decimal.pow(10,ef.add(10).log(10).pow(1.2))
         if (upg('G',31)) {
-            let t=n(400)
-            if (upg('G',35))  t=Decimal.add(t,-150)
-            if (mil('G',5))  t=Decimal.add(t,-50)
-            if (upg('G',43))  t=Decimal.add(t,-50)
-            if(mil('G',14)) t=t.div(tmp.G.gsef)
-            let sc=n(1.5).add(player.F.F1.div('1e1200').log(10).div(t))
-            if (player.F.F1.gte('1e1200')) ef=n('e21200').mul(Decimal.pow(10,player.F.F1.div('1e1199').log(10).pow(sc)))}//10^[(1200x2)^(1.015x1.05x1.21.2)]=e35331
+            if (player.F.F1.gte('1e1200'))ef = ef.mul(player.F.F1.div('1e1200').pow(player.F.F1.log10().log10().div(50)));
+        }
         return ef
     },
     F2f() {
@@ -1199,7 +1194,7 @@ if(hasMilestone("Z",14))p = p.mul(10)
         return ef
     },
     update(diff) {
-        if (mil('Z',13))  player.F.F1 = player.F.F1.add(tmp.F.F1effect.mul(player.F.fd1).mul(diff))
+        if (mil('Z',13))  player.F.F1 = player.F.F1.add(tmp.F.F1effect.mul(player.F.fd1).pow(inChallenge('G', 11)?0.9:1).mul(diff))
         if (tmp.F.buyables[11].effect.gte(1)) player.F.fd1 = player.F.fd1.add(tmp.F.buyables[12].effect.mul(player.F.fd2).mul(diff))
         if (tmp.F.buyables[12].effect.gte(1)) player.F.fd2 = player.F.fd2.add(tmp.F.buyables[13].effect.mul(player.F.fd3).mul(diff))
         if (tmp.F.buyables[13].effect.gte(1)) player.F.fd3 = player.F.fd3.add(tmp.F.buyables[21].effect.mul(player.F.fd4).mul(diff))

@@ -102,6 +102,7 @@ addLayer("A", {
                 if(upg("A",51)) ef=ef.mul(4000)
                 if(upg("A",54)) ef=ef.mul(3e4)
                 ef=ef.pow(buyableEffect("B",22))
+                if(mil("Z",16)) ef=ef.pow(10)
                 return ef
             },
             cost:new Decimal(1),
@@ -396,10 +397,20 @@ addLayer("A", {
             canComplete() {return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on Bb1-2.",
             rewardEffect() {
+		if(hasMilestone("Z",16)){
+			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(2/3).mul(10))
+                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+			if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                	else return new Decimal(1)
+		}
+		if(hasMilestone("Z",15)){
+			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(2e5).pow(0.75).mul(4))
+                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+			if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                	else return new Decimal(1)
+		}
 		if(hasMilestone("Z",14)){
-			let ef1 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85));
-			let ef2 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85));
-                	let ef = ef1.mul(ef2)
+			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85).mul(2))
                 	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
 			if (n(challengeCompletions("A", 41)).gte(1))  return ef
                 	else return new Decimal(1)

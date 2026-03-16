@@ -156,6 +156,7 @@ addLayer("B", {
 
                 ef=Decimal.pow(ef,buyableEffect("B",21))
 
+                if(mil("Z",16)) ef=ef.pow(10)
                 return ef;          
             },
             cost:new Decimal(1),
@@ -723,7 +724,7 @@ addLayer("B", {
                 if (hasUpgrade('F',33)) ef = Decimal.mul(ef,Decimal.add(1,upgradeEffect('F',33).div(100)))
                 if (hasUpgrade('F',41)) ef = Decimal.mul(ef,1.03)
                 ef=Decimal.mul(ef,buyableEffect('G',13))
-                if (hasUpgrade('G',23)) ef = Decimal.mul(ef,tmp.E.ekf2)
+                //if (hasUpgrade('G',23)) ef = Decimal.mul(ef,tmp.E.ekf2)
                 if (inChallenge('E',41)) ef = Decimal.mul(ef,0.4)
                 if (inChallenge('E',42)) ef = n(0)
                 return ef},

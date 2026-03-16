@@ -245,6 +245,7 @@ addLayer("E", {
                 if (hasUpgrade('E',55)) ef = ef*1e7
                 if (hasUpgrade('E',65)) ef = ef*1e8
                 ef=Decimal.pow(ef,buyableEffect("E",21))
+                if(mil("Z",16)) ef=ef.pow(100)
                 return ef;          
             },
             cost:new Decimal(1),
@@ -752,7 +753,6 @@ addLayer("E", {
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
                 if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
-                if (hasUpgrade('G',21)) bas = Decimal.mul(bas,upgradeEffect('G',21)[1])
                 if (inChallenge('E',21)) bas = 2
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -783,7 +783,6 @@ addLayer("E", {
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
                 if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
-                if (hasUpgrade('G',21)) bas = Decimal.mul(bas,Decimal.pow(buyableEffect('E',22),0.25))
                 if (inChallenge('E',21)) bas = 2
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -813,7 +812,6 @@ addLayer("E", {
                 if (hasUpgrade('F',81)) bas = Decimal.add(bas,upgradeEffect('E',55))
                 if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
-                if (hasUpgrade('G',21)) bas = Decimal.mul(bas,Decimal.pow(buyableEffect('E',22),0.25))
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -1196,6 +1194,7 @@ addLayer("E", {
         if (hasUpgrade('E',101))  exp=Decimal.add(exp,0.02)    
         if (hasUpgrade('F',34))  exp=Decimal.add(exp,0.014) 
         if (hasChallenge('E', 42))  exp = Decimal.add(exp,challengeEffect('E',42)/100)   
+        if (hasMilestone('F',18))  exp=Decimal.add(exp,0.01)
         if (inChallenge('E',42)) exp=0           
         let ef=player.E.Em.max(1).pow(exp)
         return ef
@@ -1212,23 +1211,10 @@ addLayer("E", {
 	let pow=1;
         if (hasChallenge('E',42)) pow += (challengeEffect('E',42)/5);
 	if (hasUpgrade('F',62)) pow += 0.68;
+	if (hasUpgrade('G',21)) pow += 1;
+	if (hasUpgrade('G',22)) pow += 1;
 	eff = eff.pow(pow);
 	return eff;
-/*
-        let m=3
-        let p=0.85
-        let scp=0.06
-        if (hasChallenge('E', 42))  m=Decimal.add(m,challengeEffect('E',42)*0.5)    
-        if (hasUpgrade('F',34))  m=Decimal.add(m,0.4)  
-        if (hasUpgrade('G',21))  m=Decimal.add(m,2)  
-        if (inChallenge('E',42)) m=0 
-        if (hasUpgrade('F',34))  scp=Decimal.add(scp,-0.015)  
-        if (hasUpgrade('G',21))  scp=Decimal.add(scp,-0.02)  
-        if (hasUpgrade('G',22))  scp=Decimal.add(scp,-0.02)  
-        if (hasUpgrade('G',23))  scp=n(0)  
-        if (player.E.Ek.gte('1e5000')) p=p/(player.E.Ek.log(10).div(5000).pow(scp))             
-        let ef=player.E.Ek.add(1).log(10).pow(p).mul(m)
-        return ef*/
     },
     ekf2(){
         let ef=player.E.Ek.add(1).log(10).pow(0.12)
