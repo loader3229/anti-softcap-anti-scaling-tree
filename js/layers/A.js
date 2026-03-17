@@ -103,6 +103,7 @@ addLayer("A", {
                 if(upg("A",54)) ef=ef.mul(3e4)
                 ef=ef.pow(buyableEffect("B",22))
                 if(mil("Z",16)) ef=ef.pow(10)
+                if(mil("Z",17)) ef=ef.pow(10)
                 return ef
             },
             cost:new Decimal(1),

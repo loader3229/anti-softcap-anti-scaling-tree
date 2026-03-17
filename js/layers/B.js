@@ -157,6 +157,7 @@ addLayer("B", {
                 ef=Decimal.pow(ef,buyableEffect("B",21))
 
                 if(mil("Z",16)) ef=ef.pow(10)
+                if(mil("Z",17)) ef=ef.pow(10)
                 return ef;          
             },
             cost:new Decimal(1),

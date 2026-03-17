@@ -246,6 +246,7 @@ addLayer("E", {
                 if (hasUpgrade('E',65)) ef = ef*1e8
                 ef=Decimal.pow(ef,buyableEffect("E",21))
                 if(mil("Z",16)) ef=ef.pow(100)
+                if(mil("Z",17)) ef=ef.pow(10)
                 return ef;          
             },
             cost:new Decimal(1),
@@ -809,7 +810,7 @@ addLayer("E", {
                 if (hasMilestone('E',5)) bas = Decimal.add(bas,1)
                 if (hasUpgrade('F',14)) bas = Decimal.add(bas,0.3)
                 if (hasMilestone('E',18)) bas = Decimal.add(bas,buyableEffect('E',22))
-                if (hasUpgrade('F',81)) bas = Decimal.add(bas,upgradeEffect('E',55))
+                if (hasUpgrade('F',81)) bas = Decimal.add(bas,upgradeEffect('E',55).div(player.Z.points.eq(18)?100:1))
                 if (hasUpgrade('F',65)) bas = Decimal.add(bas,upgradeEffect('F',65))
                 if (hasUpgrade('F',81)) bas = Decimal.mul(bas,upgradeEffect('F',81))
                 return bas},
@@ -987,24 +988,27 @@ addLayer("E", {
     challenges: {
         11: {//11 after E10,12 E13,13 E15
         name: "Ec1",
-        completionLimit: 3,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 3;},
         challengeDescription: function() {
-            return "C3/D5/E2 are disabled. <br> Completion: " +challengeCompletions("E", 11) + "/3"},
+            return "C3/D5/E2 are disabled. <br> Completion: " +challengeCompletions("E", 11) + (player.Z.points.gte(18)?"/6":"/3")},
         unlocked() { return (hasMilestone("E", 2))},
         goal(){
             if (challengeCompletions('E',11) == 0) return Decimal.pow(10,player.Z.points.gte(9)?2500:2610);
             if (challengeCompletions('E',11) == 1) return Decimal.pow(10,player.Z.points.gte(9)?3000:player.Z.points.gte(8)?3380:3560);
             if (challengeCompletions('E',11) == 2) return Decimal.pow(10,player.Z.points.gte(9)?3080:player.Z.points.gte(8)?3540:7150);
+            if (challengeCompletions('E',11) == 3) return new Decimal("e358e6");
+            if (challengeCompletions('E',11) == 4) return new Decimal("e12e8");
+            if (challengeCompletions('E',11) == 5) return new Decimal("e195e7");
         },            
         goalDescription:  function() {return format(this.goal())+' points'},
         canComplete(){return player.points.gte(this.goal())},
         rewardDescription: "boost to E base on Eb1-2.",
         rewardEffect() {
             let bas = Decimal.pow(challengeCompletions("E", 11),1.3)
+            if(challengeCompletions("E", 11) >= 4)bas = 4+challengeCompletions("E", 11)/10;
             let ef1 = Decimal.pow(buyableEffect('E',11),0.04+bas/100)
             let ef2 = Decimal.pow(buyableEffect('E',12),0.04+bas/75)
             let ef = Decimal.mul(ef1,ef2)
-            //if (challengeCompletions("E", 11) >= 3)  ef=Decimal.mul(ef,100)
             if (challengeCompletions("E", 11) >= 1)  return ef
             else return new Decimal(1)
         },
@@ -1012,22 +1016,25 @@ addLayer("E", {
         },
         12: {//21 after E15,22 E17,23 E19
             name: "Ec2",
-            completionLimit: 3,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 3;},
             challengeDescription: function() {
-                return "Bb1-2's base are stuck at 2. <br> Completion: " +challengeCompletions("E", 12) + "/3"},
+                return "Bb1-2's base are stuck at 2. <br> Completion: " +challengeCompletions("E", 12) + (player.Z.points.gte(18)?"/6":"/3")},
             unlocked() { return (hasMilestone("E", 3))},
             goal(){
                 if (challengeCompletions('E',12) == 0) return Decimal.pow(10,player.Z.points.gte(9)?3150:player.Z.points.gte(8)?3590:4320);
                 if (challengeCompletions('E',12) == 1) return Decimal.pow(10,player.Z.points.gte(9)?3300:player.Z.points.gte(8)?4300:8850);
                 if (challengeCompletions('E',12) == 2) return Decimal.pow(10,player.Z.points.gte(9)?3600:player.Z.points.gte(8)?4420:9860);
+                if (challengeCompletions('E',12) == 3) return new Decimal("e16e7");
+                if (challengeCompletions('E',12) == 4) return new Decimal("e14e8");
+                if (challengeCompletions('E',12) == 5) return new Decimal("e16e8");
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "boost to E base on Eb3.",
             rewardEffect() {
                 let bas = Decimal.pow(challengeCompletions("E", 12),1.35)
+                if(challengeCompletions("E", 11) >= 5)bas = 6+challengeCompletions("E", 12)/9;
                 let ef = Decimal.pow(buyableEffect('E',13),0.05+bas/100)
-                //if (challengeCompletions("E", 12) >= 3)  ef=Decimal.mul(ef,100)
                 if (challengeCompletions("E", 12) >= 1)  return ef
                 else return new Decimal(1)
             },
@@ -1035,14 +1042,17 @@ addLayer("E", {
         },
         21: {//31 after 1e45
             name: "Ec3",
-            completionLimit: 3,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 3;},
             challengeDescription: function() {
-                return "Eb1-2's base are stuck at 2. <br> Completion: " +challengeCompletions("E", 21) + "/3"},
+                return "Eb1-2's base are stuck at 2. <br> Completion: " +challengeCompletions("E", 21) + (player.Z.points.gte(18)?"/6":"/3")},
             unlocked() { return (hasMilestone("E", 7))},
             goal(){
                 if (challengeCompletions('E',21) == 0) return Decimal.pow(10,player.Z.points.gte(11)?7777:player.Z.points.gte(10)?9100:11400);
                 if (challengeCompletions('E',21) == 1) return Decimal.pow(10,player.Z.points.gte(11)?8000:player.Z.points.gte(10)?9500:12345);
                 if (challengeCompletions('E',21) == 2) return Decimal.pow(10,player.Z.points.gte(11)?8333:player.Z.points.gte(10)?9800:12870);
+                if (challengeCompletions('E',21) == 3) return new Decimal("e2125e5");
+                if (challengeCompletions('E',21) == 4) return new Decimal("e15e8");
+                if (challengeCompletions('E',21) == 5) return new Decimal("e25e8");
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete(){return player.points.gte(this.goal())},
@@ -1059,14 +1069,17 @@ addLayer("E", {
         },
         22: {//41 after 1e47
             name: "Ec4",
-            completionLimit: 3,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 3;},
             challengeDescription: function() {
-                return "nerf pts based on pts. <br> Completion: " +challengeCompletions("E", 22) + "/3 <br> currently: ^"+format(this.nerf(),6)},
+                return "nerf pts based on pts. <br> Completion: " +challengeCompletions("E", 22) + (player.Z.points.gte(18)?"/6":"/3") + " <br> currently: ^"+format(this.nerf(),6)},
             unlocked() { return (hasMilestone("E", 7))},
             goal(){
                 if (challengeCompletions('E',22) == 0) return Decimal.pow(10,player.Z.points.gte(11)?6000:player.Z.points.gte(10)?7000:9000);
                 if (challengeCompletions('E',22) == 1) return Decimal.pow(10,player.Z.points.gte(11)?6100:player.Z.points.gte(10)?7200:9500);
                 if (challengeCompletions('E',22) == 2) return Decimal.pow(10,player.Z.points.gte(11)?6200:player.Z.points.gte(10)?7400:10000);
+                if (challengeCompletions('E',22) == 3) return new Decimal("e1666e5");
+                if (challengeCompletions('E',22) == 4) return new Decimal("ee9");
+                if (challengeCompletions('E',22) == 5) return new Decimal("e18e8");
             },
             nerf() { return player.points.add(10).log(10).pow(-0.06).max('1e-100')},            
             goalDescription:  function() {return format(this.goal())+' points'},
@@ -1084,9 +1097,9 @@ addLayer("E", {
         },
         31: {//51
             name: "Ec5",
-            completionLimit: 5,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 5;},
             challengeDescription: function() {
-                return "Bb1-2's base are stuck at 1.2,Bb3-4,Eb4 is disabled. <br> Completion: " +challengeCompletions("E", 31) + "/5"},
+                return "Bb1-2's base are stuck at 1.2,Bb3-4,Eb4 is disabled. <br> Completion: " +challengeCompletions("E", 31) + (player.Z.points.gte(18)?"/6":"/5")},
             unlocked() { return (hasMilestone("E", 14))},
             goal(){
                 if (challengeCompletions('E',31) == 0) return Decimal.pow(10,player.Z.points.gte(12)?17600:22500);
@@ -1094,6 +1107,7 @@ addLayer("E", {
                 if (challengeCompletions('E',31) == 2) return Decimal.pow(10,player.Z.points.gte(12)?21111:27300);
                 if (challengeCompletions('E',31) == 3) return Decimal.pow(10,player.Z.points.gte(12)?29000:48800);
                 if (challengeCompletions('E',31) == 4) return Decimal.pow(10,player.Z.points.gte(12)?30000:50600);
+                if (challengeCompletions('E',31) == 5) return new Decimal("e15e8");
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete(){return player.points.gte(this.goal())},
@@ -1106,9 +1120,9 @@ addLayer("E", {
         },
         32: {//61
             name: "Ec6",
-            completionLimit: 5,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 5;},
             challengeDescription: function() {
-                return "nerf pts based on Em. <br> Completion: " +challengeCompletions("E", 32) + "/5 <br> currently: ^"+format(this.nerf(),6)},
+                return "nerf pts based on Em. <br> Completion: " +challengeCompletions("E", 32) +  (player.Z.points.gte(18)?"/6":"/5")+" <br> currently: ^"+format(this.nerf(),6)},
             unlocked() { return (hasMilestone("E", 14))},
             goal(){
                 if (challengeCompletions('E',32) == 0) return Decimal.pow(10,player.Z.points.gte(12)?10000:13200);
@@ -1116,6 +1130,7 @@ addLayer("E", {
                 if (challengeCompletions('E',32) == 2) return Decimal.pow(10,player.Z.points.gte(12)?12850:14850);
                 if (challengeCompletions('E',32) == 3) return Decimal.pow(10,player.Z.points.gte(12)?19000:20000);
                 if (challengeCompletions('E',32) == 4) return Decimal.pow(10,player.Z.points.gte(12)?22222:25850);
+                if (challengeCompletions('E',32) == 5) return Decimal.pow(10,2e9/3);
             },      
             nerf() { return player.E.Em.add(10).log(10).pow(-0.2).max('1e-100')},       
             goalDescription:  function() {return format(this.goal())+' points'},
@@ -1132,9 +1147,9 @@ addLayer("E", {
         },
         41: {//71
             name: "Ec7",
-            completionLimit: 5,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 5;},
             challengeDescription: function() {
-                return "Bb5/Eb4 x0.4. <br> Completion: " +challengeCompletions("E", 41) + "/5"},
+                return "Bb5/Eb4 x0.4. <br> Completion: " +challengeCompletions("E", 41) +  (player.Z.points.gte(18)?"/6":"/5")},
             unlocked() { return (hasMilestone("E", 16))},
             goal(){
                 if (challengeCompletions('E',41) == 0) return Decimal.pow(10,player.Z.points.gte(12)?31000:36300);
@@ -1142,6 +1157,7 @@ addLayer("E", {
                 if (challengeCompletions('E',41) == 2) return Decimal.pow(10,player.Z.points.gte(12)?38000:66600);
                 if (challengeCompletions('E',41) == 3) return Decimal.pow(10,player.Z.points.gte(12)?60000:84800);
                 if (challengeCompletions('E',41) == 4) return Decimal.pow(10,player.Z.points.gte(12)?75000:106500);
+                if (challengeCompletions('E',41) == 5) return new Decimal("e2e9");
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete(){return player.points.gte(this.goal())},
@@ -1153,9 +1169,9 @@ addLayer("E", {
         },
         42: {//7,8 aft 53,63.then 71 81 64 54 72 55 82 73 65 83 74 84 75 85
             name: "Ec8",
-            completionLimit: 5,
+            completionLimit(){if(player.Z.points.gte(18))return 6; return 5;},
             challengeDescription: function() {
-                return "nerf pts based on pts(stronger),Bb3-5/Eb4/Em/Ek are disabled. <br> Completion: " +challengeCompletions("E", 42) + "/5 <br> currently: ^"+format(this.nerf(),6)},
+                return "nerf pts based on pts(stronger),Bb3-5/Eb4/Em/Ek are disabled. <br> Completion: " +challengeCompletions("E", 42) + (player.Z.points.gte(18)?"/6":"/5")+" <br> currently: ^"+format(this.nerf(),6)},
             unlocked() { return (hasMilestone("E", 16))},
             goal(){
                 if (challengeCompletions('E',42) == 0) return Decimal.pow(10,player.Z.points.gte(12)?27000:29800);
@@ -1163,6 +1179,7 @@ addLayer("E", {
                 if (challengeCompletions('E',42) == 2) return Decimal.pow(10,player.Z.points.gte(12)?37500:60100);
                 if (challengeCompletions('E',42) == 3) return Decimal.pow(10,player.Z.points.gte(12)?51400:69870);
                 if (challengeCompletions('E',42) == 4) return Decimal.pow(10,player.Z.points.gte(12)?60606:88000);
+                if (challengeCompletions('E',42) == 5) return n("ee9");
             },
             nerf() { return player.points.add(10).log(10).pow(-0.12).max('1e-100')},            
             goalDescription:  function() {return format(this.goal())+' points'},
