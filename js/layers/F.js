@@ -961,21 +961,15 @@ if(hasMilestone("Z",16))p = p.mul(10)
         111: {
             title: "F2d1", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(1.05).pow(x).mul('2e8').add('1.7e9'))
+                let cost = Decimal.pow(10,n(1.01).pow(x).mul(player.Z.points.gte(23)?1:43300000))
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
-            buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
-                player.F.f2d1 = player.F.f2d1.add(1)},            
-            /*buy() {
-                //player.F.f2d1 = player.F.f2d1.add(1)
-                //setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
-                let tar=n(0)
-                tar=player.G.points.add(10).log(10).sub('3e9').div('2e8').sub(gba(this.layer, this.id)).sub(1).ceil().max(1)          
-                let c = this.cost(gba(this.layer, this.id).add(tar))
-                if (player.G.points.gte(c)) {player[this.layer].buyables[this.id] = player[this.layer].buyables[this.id].add(tar)
-                    player.F.f2d1= player.F.f2d1.add(tar)}},            */
-            base(){   let bas = n(25)
+            buy() {
+		setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
+                player.F.f2d1 = player.F.f2d1.add(1)
+	},            
+            base(){   let bas = n(player.Z.points.gte(23)?1.1:1.8)
                 return bas},
             effect(x) { 
                 let ef = Decimal.pow(this.base(),x).max(1)
@@ -993,13 +987,13 @@ if(hasMilestone("Z",16))p = p.mul(10)
         112: {
             title: "F2d2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(1.05).pow(x).mul('4e8').add('4.6e9'))//x.pow(1.5)
+                let cost = Decimal.pow(10,n(1.05).pow(x).mul('4e8').add(player.Z.points.gte(23)?0:'1.6e9'))//x.pow(1.5)
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
                 player.F.f2d2 = player.F.f2d2.add(1)},
-            base(){   let bas = n(25)
+            base(){   let bas = n(player.Z.points.gte(23)?2:25)
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -1102,8 +1096,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef;
     },
     F2effect() {
-        ef=n(1)
-        if(mil('G',8))  ef=ef.mul(buyableEffect("F", 111))
+        ef=buyableEffect("F", 111)
         return ef;
     },
     fdm(){
@@ -1179,7 +1172,8 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (tmp.F.buyables[22].effect.gte(1)) player.F.fd5 = player.F.fd5.add(tmp.F.buyables[23].effect.mul(player.F.fd6).mul(diff))
         if (tmp.F.buyables[23].effect.gte(1)) player.F.fd6 = player.F.fd6.add(tmp.F.buyables[31].effect.mul(player.F.fd7).mul(diff))
         if (tmp.F.buyables[31].effect.gte(1)) player.F.fd7 = player.F.fd7.add(tmp.F.buyables[32].effect.mul(player.F.fd8).mul(diff))
-        if (mil('G',8))  player.F.F2 = player.F.F2.add(tmp.F.F2effect.mul(player.F.f2d1).mul(diff))
+        if (hasUpgrade("G",51)) player.F.fd8 = player.F.fd8.add(player.G.Gc1p.mul(diff).mul(hasUpgrade("G",52)?buyableEffect('F',101):1))
+        if (player.Z.points.gte(22))  player.F.F2 = player.F.F2.add(tmp.F.F2effect.mul(player.F.f2d1).mul(diff))
         if (tmp.F.buyables[111].effect.gte(1)) player.F.f2d1 = player.F.f2d1.add(tmp.F.buyables[112].effect.mul(player.F.f2d2).mul(diff))
         if (tmp.F.buyables[112].effect.gte(1)) player.F.f2d2 = player.F.f2d2.add(tmp.F.buyables[113].effect.mul(player.F.f2d3).mul(diff))
         if (tmp.F.buyables[113].effect.gte(1)) player.F.f2d3 = player.F.f2d3.add(tmp.F.buyables[121].effect.mul(player.F.f2d4).mul(diff))

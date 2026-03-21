@@ -64,192 +64,192 @@ addLayer("G", {
             effectDescription: "tickboost resets nothing.",
         },
         2: {requirementDescription: "2e4 total G (3",
-            done() {return player[this.layer].total.gte('2e4')},
+            done() {return player[this.layer].total.gte('2e4') && hasMilestone('Z',15)},
             unlocked() {return hasMilestone('Z',15)}, 
             effectDescription: "unlock a chal,G4 is stronger.",
         },
         3: {requirementDescription: "1e9 total G (4",
-            done() {return player[this.layer].total.gte('1e9')},
+            done() {return player[this.layer].total.gte('1e9') && hasMilestone('Z',15)},
             unlocked() {return hasMilestone('Z',15)},  
             effectDescription: "buy max dims.",
         },
         4: {requirementDescription: "1e100 total G (5",
-            done() {return player[this.layer].total.gte('1e100')}, 
+            done() {return player[this.layer].total.gte('1e100') && hasMilestone('Z',16)}, 
             unlocked() {return hasMilestone('Z',16)},
             effectDescription: "autobuy Gb1-3.",
             toggles: [ ['G',"auto2"] ]
         },
         5: {requirementDescription: "1e800 total G (6",
-            done() {return player[this.layer].total.gte('1e800')}, 
+            done() {return player[this.layer].total.gte('1e800') && hasMilestone('Z',17)}, 
             unlocked() {return hasMilestone('Z',17)},
             effectDescription: "unlock another chal.",
         },
         6: {requirementDescription: "1e40000 total G (7",
-            done() {return player[this.layer].total.gte('1e40000')}, 
+            done() {return player[this.layer].total.gte('1e40000') && hasMilestone('Z',18)}, 
             unlocked() {return hasMilestone('Z',18)},
             effectDescription: "Gain Passive G.",
         },
         7: {requirementDescription: "e9.25e6 total G (8",
-            done() {return player[this.layer].total.gte('e9.25e6')}, 
+            done() {return player[this.layer].total.gte('e9.25e6') && hasMilestone('Z',19)}, 
             unlocked() {return hasMilestone('Z',19)},
             effectDescription: "Gc3p is stronger,unlock another chal.",
         },
-        8: {requirementDescription: "e2.02e8 total G (9",
-            done() {return player[this.layer].total.gte('e2.02e8')}, 
+        8: {requirementDescription(){if(hasMilestone('Z',21))return "e7e7 total G (9";return "e2.02e8 total G (9"},
+            done() {return player[this.layer].total.gte(hasMilestone('Z',21)?'e7e7':'e2.02e8') && hasMilestone('Z',19)}, 
             unlocked() {return hasMilestone('Z',19)},
             effectDescription: "Gc1p/Gc2p exp is 0.87/0.75,Gb1 base +0.5.",
         },
-        9: {requirementDescription: "e3.7e9 total G (10",
-            done() {return player[this.layer].total.gte('e3.7e9')}, 
+        9: {requirementDescription: "e2.5e8 total G (10",
+            done() {return player[this.layer].total.gte('e2.5e8') && hasMilestone('Z',21)}, 
             unlocked() {return hasMilestone('Z',21)},
             effectDescription: "autobuy F2 dims,Gc1p/Gc2p exp is 0.9/0.8.",
             toggles: [ ['G',"auto3"] ]
         },
-        10: {requirementDescription: "e4.05e10 total G (11",
-            done() {return player[this.layer].total.gte('e4.05e10')}, 
+        10: {requirementDescription: "e1e9 total G (11",
+            done() {return player[this.layer].total.gte('e1e9') && hasMilestone('Z',21)}, 
             unlocked() {return hasMilestone('Z',21)},
-            effectDescription: "buy max F2 dims,G21 ^2,gain Gc1p passively(^0.95).",
+            effectDescription: "buy max F2d1,G21 ^2,gain Gc1p passively(^0.95).",
         },
         11: {requirementDescription: "e1e11 total G (12",
-            done() {return player[this.layer].total.gte('e1e11')}, 
+            done() {return player[this.layer].total.gte('e1e11') && hasMilestone('Z',21)}, 
             unlocked() {return hasMilestone('Z',21)},
-            effectDescription: "bulk buy x10 tickboost.",
+            effectDescription: "gain Gc2p passively(^0.9). Gc2p multiply Gc1p. Gc2p exp is 0.85",
         },
-        12: {requirementDescription: "e1e14 total G (13",
-            done() {return player[this.layer].total.gte('e1e14')}, 
+        12: {requirementDescription: "e8e11 total G (13",
+            done() {return player[this.layer].total.gte('e8e11') && hasMilestone('Z',21)}, 
             unlocked() {return hasMilestone('Z',21)},
-            effectDescription: "gain Gc2p passively(^0.9).",
+            effectDescription: "gain Gc3p passively(^0.2). Gc3p multiply Gc2p. Gc3p exp is 0.25",
         },
         13: {requirementDescription: function(){let s="e1e1000 total G (14"
                 if(n(challengeCompletions('I',22)).gte(1)) s=s+' (reduced to '+format(tmp.G.m13r)+')'
                 return s},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             done() {return player[this.layer].total.gte(tmp.G.m13r)}, 
             effectDescription: "gain Gc3-4p passively(^0.2).",
         },
         14: {requirementDescription: "ee1e150 total G (15",
             done() {return player[this.layer].total.gte('ee1e150')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "gain G passively,buy max tickboost,REMOVE 75/100 TB scaling,unlock Gs.",
         },
         15: {requirementDescription: "eeee10 total G (16",
             done() {return player[this.layer].total.gte('eeee10')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "G28 eff is 1.3,Gs eff exp +0.2.",
         },
         16: {requirementDescription: "eeee24 total G (17",
             done() {return player[this.layer].total.gte('eeee24')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "autobuy Gsb1-3.",
             toggles: [ ['G',"auto4"] ]
         },
         17: {requirementDescription: "eee8e888 total G (18",
             done() {return player[this.layer].total.gte('eee8e888')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "edit Gsb1 cost and buy max,edit multiple Gsb base,pts boost Gs at stronger eff.",
         },
         18: {requirementDescription: "4.127F5 total G(eeee13400) (19",//.264
             done() {return player[this.layer].total.gte('eeee13400')}, //18377 previously.(before some softcaps)
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "autobuy Gsb4-5,nerf Gsb1,2,4 scaling.",
             toggles: [ ['G',"auto5"] ]        
         },
         19: {requirementDescription: "5.035F5 total G(eeee108272) (20",
             done() {return player[this.layer].total.gte('eeee108272')},//107540 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "dilate b1 to 1.05,b2,5 x1.1,b4,7,8 is cheaper / unlock 2 buyables.b10 x1.1 at 1e5103 Gse / b8 x1.05 at 1e5171 Gse.",
         },
         20: {requirementDescription: "6.666F5 total G(eeee4638800) (21",
             done() {return player[this.layer].total.gte('eeee4638800')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "autobuy Gsb7-8,unlock new Gt,b10 eff nerf is weaker / keep Gt1-2 and buff b2/t1 at 1e13144 Gse / nerf GG scaling at 1e27700 Gse / t1 ^3 and keep t3-4 at 1e49180 Gse.",
             toggles: [ ['G',"auto6"] ]        
         },
         21: {requirementDescription: "1e109722 total Gse & 1.007F6 total G(eeee1.456e10) (22",//1e111960
             done() {return player.G.Gsetot.gte('1e109722')&&player[this.layer].total.gte('eeee1.456e10')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "unlock a new path from 5th row,b6-9 hardcap +0.005,edit b2 cost and buy max / nerf GG sc at 311 GG / t12 raise Gsi instead at 1e260000 Gse.",
         },
         22: {requirementDescription: "465 total GG (23",
             done() {return player.G.GGtot.gte('465')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "unlock a qol for row 5-7 upg tree.",
         },
         23: {requirementDescription: "489 total GG (24",
             done() {return player.G.GGtot.gte('489')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "unlock more r8-9 upg,nerf ???.",
         },
         24: {requirementDescription: "708 total GG (25",
             done() {return player.G.GGtot.gte('708')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "unlock another split and another buyable for GG,b6,9,10 are cheaper.",
         },
         25: {requirementDescription: "e10635468 total Gse (26",
             done() {return player.G.Gsetot.gte('e10635468')}, //e7074100
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "autobuy GG gain,keep t5/8,buff r9-10,buy max b3/5/7.",//GG2 is cheaper,
             toggles: [ ['G',"auto7"] ] 
         },
         26: {requirementDescription: "1503 total GG (27",
             done() {return player.G.GGtot.gte('1503')}, 
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "nerf ??? and unlock the next layer.",//(coming soon)
         },
         27: {requirementDescription: "1950 total GG (28",
             done() {return player.G.GGtot.gte('1950')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "keep t6,7,13,babs cost nothing.",//for inf growth
         },
         28: {requirementDescription: "2789 total GG (29",
             done() {return player.G.GGtot.gte('2789')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "keep t19,e2e9 e nerf +0.01.",
         },
         29: {requirementDescription: "3200 total GG (30",
             done() {return player.G.GGtot.gte('3200')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "b9 is much cheaper,H4 ^1.12.",
         },
         30: {requirementDescription: "e1.34e26 total Gse (31",
             done() {return player.G.Gsetot.gte('e1.34e26')},//
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "sb10 limit +5,i eff exp +0.0025,unlock GsR.",
         },
         31: {requirementDescription: "1e301 total GsR (32",
             done() {return player.G.Gsr.gte('1e301')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "sb6 exp +0.03,hyper slog +0.001,unlock dH.",
         },
         32: {requirementDescription: "5e927 total GsR (33",
             done() {return player.G.Gsr.gte('5e927')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "e nerfs +0.005(improved at 3e1071),remove dH1 scaling,dHp3-4 sc -0.05,nerf rs at 1e1164/1e1284/5e1432.",
         },
         33: {requirementDescription: "e9.918e118 total Gse (34",
             done() {return player.G.Gsetot.gte('e9.918e118')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "nerf r1/dhp2,remove sb6 lim,boost dH5 at 4 dH5,boost dHs at 2e6935/5e7628 GsR.",//,GG sc slower at 1e14030
         },
         34: {requirementDescription: "e1.7e199 total Gse (35",
             done() {return player.G.Gsetot.gte('e1.7e199')},//ee415
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "autobuy sb6,hb1/y1 sc -0.01,nerf dH5 threshold at e1.48e480(again at e2.93e495/e2.86e603).<br>TIPS:sb6 cost jumps at 2000(10^10^x^2.25)",
             toggles: [ ['G',"auto8"] ] 
         },
         35: {requirementDescription: "e1e652 total Gse (36",
             done() {return player.G.Gsetot.gte('e1e652')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "buy max sb6,dilate ha/hy to 1.01,e 1st nerf +0.03(0.04 at ee767).",
         },
         36: {requirementDescription: "e1e1580 total Gse (37",
             done() {return player.G.Gsetot.gte('e1e1580')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "buy max r2/4,e nerf is 0.87/0.9/0.94 at e7.5e1581/ee1658/ee2010,and FINALLY REMOVE it with G75.",//
         },
         37: {requirementDescription: "e1e2125 total Gse (38",
             done() {return player.G.Gsetot.gte('e1e2125')},
-            unlocked() {return hasMilestone('Z',21)},
+            unlocked() {return hasMilestone('Z',22)},
             effectDescription: "i eff +0.005,H36 is massively changed,buy max sb11-12.",
         },
         // 38: {requirementDescription: "e1e2125 total Gse (39",
@@ -503,7 +503,7 @@ addLayer("G", {
         44: {
             title:'G19',
             description: "G16 exp is 0.02,F39 is stronger.",         
-            cost:new Decimal('e84848484'),
+            cost(){if(hasMilestone("Z",21))return new Decimal("e55e6");return new Decimal('e84848484')},
             unlocked() { return (hasUpgrade(this.layer, 43))},
         },
         45: {
@@ -514,7 +514,7 @@ addLayer("G", {
         },
         51: {
             title:'G21',
-            description: "Gc4p boost F2 dims,boost its exp by 0.01.",         
+            description: "Gc4p boost F2 dims,boost its exp by 0.01. Gc1p generate Fd8.",         
             cost:new Decimal('e1.6e10'),
             effect()  { 
                 let exp=n(1.25)
@@ -527,14 +527,14 @@ addLayer("G", {
         },
         52: {
             title:'G22',
-            description: "TB is quadratic in Gc4,Gb1 ^1.3,unlock another 2 F2 dim.",         
-            cost:new Decimal('e3.4e10'),
+            description: "Gb1 ^1.3,unlock another 2 F2 dim. Tickspeed affects Fd8 gen.",         
+            cost:new Decimal('e2.8e10'),
             unlocked() { return (hasUpgrade(this.layer, 51))},
         },
         53: {
             title:'G23',
             description: "Gcps eff are better,F1 boost F2.",         
-            cost:new Decimal('e4.13e10'),
+            cost:new Decimal('e5.1e10'),
             effect()  { 
                 let exp=n(0.4)
                 let ef=player.F.F1.add(10).log(10).pow(exp)
@@ -1650,7 +1650,10 @@ addLayer("G", {
         13: {
             title: "Gb3", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                if(player.Z.points.gte(20)){
+                if(player.Z.points.gte(23)){
+                    return Decimal.pow(10, Decimal.pow(2, x));
+                }
+		if(player.Z.points.gte(20)){
                     return Decimal.pow(100, Decimal.pow(2, x));
                 }
                 let cost = Decimal.pow(1000, x.pow(player.Z.points.gte(17)?3:1.5)).mul(player.Z.points.gte(19)?1:player.Z.points.gte(17)?1e9:1e12)
@@ -1658,7 +1661,7 @@ addLayer("G", {
 		return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
-            buy() { setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
+            buy() { if(!player.Z.points.gte(23))setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let base = n(1.1)              
             if (hasUpgrade('G',42)) base = n(1.11)
                 if (hasUpgrade('F',75))  base=Decimal.add(base,upgradeEffect('F',75))
@@ -2714,14 +2717,14 @@ addLayer("G", {
                 // if (challengeCompletions("G", 22) == 2) return n('e2.35e9');
                 // if (challengeCompletions("G", 22) == 3) return n('e3.02e9');
                 // if (challengeCompletions("G", 22) == 4) return n('e1.93e10');
-                let a=[n('e3.73e8'),n('e9.72e8'),n('e2.35e9'),n('e3.02e9'),n('e1.93e10'),n('e1.93e10')]
+                let a=[n(player.Z.points.gte(22)?'e7.75e7':'e3.73e8'),n('e9.72e8'),n('e2.35e9'),n('e3.02e9'),n('e1.93e10'),n('e1.93e10')]
                 return a[n(challengeCompletions(this.layer,this.id))]
             },            
             goalDescription:  function() {return format(this.goal())+' F1'},
             canComplete(){return player.F.F1.gte(this.goal())},
             rewardDescription: "Gc4 comp multiply F dim buy mult based on tickboost.<br>unlock Gc4p at 3 comp,edit Gc3p and Gc4p formula at 4 and 5 comp.",
             rewardEffect() {
-                let ef = player.F.buyables[102].mul(challengeCompletions("G", 22)).div(50000).add(1)
+                let ef = player.F.buyables[102].mul(challengeCompletions("G", 22)).div(player.Z.points.gte(22)?5000:50000).add(1)
                 if (challengeCompletions("G", 22) >= 1)  return ef
                 else return new Decimal(1)
             },
@@ -2738,9 +2741,10 @@ addLayer("G", {
         if (hasUpgrade('G',43)) exp=exp.add(0.03)
         if(hasMilestone('G',8)) exp=exp.add(0.3)
         if(hasMilestone('G',9)) exp=exp.add(0.03)//0.9
-        if(gcs('I',42)) exp=exp.add(0.01)
+        //if(gcs('I',42)) exp=exp.add(0.01)
         if (inChallenge('G',11)){if (player.F.F1.gte('1e1080')) ef=Decimal.pow(10,player.F.F1.div('1e1080').log(10).pow(exp).div(hasUpgrade('G',34)?1:10))}
-        //if(mil('G',10)||gcs('I',65)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
+        if(mil('G',10)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
+	if(mil('G',11)) ef = ef.mul(player.G.Gc2p.add(1));
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
@@ -2754,9 +2758,11 @@ addLayer("G", {
         if (hasUpgrade('G',43)) exp=Decimal.add(exp,0.06)//0.7
         if(hasMilestone('G',8)) exp=Decimal.add(exp,0.05)
         if(hasMilestone('G',9)) exp=Decimal.add(exp,0.05)
-        if(gcs('I',42)) exp=exp.add(0.01)
+        if(hasMilestone('G',11)) exp=Decimal.add(exp,0.05)
+        //if(gcs('I',42)) exp=exp.add(0.01)
         if (inChallenge('G',12)){if (player.F.F1.gte('1e3050')) ef=Decimal.pow(10,player.F.F1.div('1e3050').log(10).pow(exp))}
-        //if(mil('G',12)||gcs('I',65)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
+        if(mil('G',11)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
+	if(mil('G',12)) ef = ef.mul(player.G.Gc3p.add(1));
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
@@ -2764,16 +2770,13 @@ addLayer("G", {
         let ef=n(0)
         let exp=n(3)
         let exp2=n(0.2)
-        if (hasUpgrade('G',55)) exp2=exp2.add(0.05)
-        if (mil('I',6))  exp2=exp2.add(buyableEffect('I',21))
-        if(gcs('I',45)&&player.G.points.gte('ee16')) exp2=exp2.add(0.05)
-        if(gcs('I',55)&&player.G.points.gte('ee16')) exp2=exp2.add(0.03)
         if (hasUpgrade('F',85)) exp=exp.mul(2)
+        if(hasMilestone('G',12)) exp2=Decimal.add(exp2,0.05)
         if (inChallenge('G',21)){
             if (player.F.F1.gte('1e168000')){
                 if (challengeCompletions("G", 22)>=4) ef=Decimal.pow(10,player.F.F1.div('1e168000').log(10).pow(exp2))
                 else ef=player.F.F1.div('1e168000').log(10).pow(exp)} }
-        //if(hasMilestone('G',13)) ef=Decimal.pow(10,player.F.F1.pow(0.2).add(10).log(10).pow(exp))
+        if(hasMilestone('G',12)) ef=Decimal.pow(10,player.F.F1.pow(hasUpgrade('G',55)?1:0.2).add(10).log(10).pow(exp2))
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
@@ -2809,7 +2812,7 @@ addLayer("G", {
         let exp=n(0.04)
         if(hasMilestone('G',7)) exp=Decimal.mul(exp,1.5)
         if (hasUpgrade('G',53))  exp=Decimal.add(exp,0.02)
-        let ef=Decimal.pow(player.G.Gc3p,exp).add(1)
+        let ef=Decimal.pow(player.G.Gc3p,exp).add(1).min("1e1300")
         return ef},
     gc4ef(){
         let exp=n(1.5)

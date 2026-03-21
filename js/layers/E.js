@@ -454,6 +454,7 @@ addLayer("E", {
                 let ef = player.E.points.add(10).log(10).pow(0.75).div(150).add(1)
                 if (hasMilestone('Z',12)) ef = player.E.points.add(10).log(10).pow(0.5).div(25).add(1)
                 if (hasUpgrade('E',74)) ef = ef.sub(1).mul(1.1).add(1)
+                if (hasMilestone('Z',21)) ef = player.E.points.add(10).log(10).pow(0.45).div(5).add(1)
                 return ef;          
             },
             unlocked() { return (hasUpgrade(this.layer, 51))},

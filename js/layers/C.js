@@ -268,7 +268,7 @@ addLayer("C", {
             cost:new Decimal('e88e5'),
             unlocked() { return player.Z.points.gte(21)},
             effect()  { 
-                return player.C.points.pow(upg('C',45)?0.125:0.1).add(1);  
+                return player.C.points.pow(upg('C',54)?0.4001:upg('C',53)?1/3:upg('C',52)?0.2:upg('C',51)?0.15:upg('C',45)?0.125:0.1).add(1);  
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
         },
@@ -287,6 +287,30 @@ addLayer("C", {
             description: "C18 is better",
             cost:new Decimal('e55e13'),
             unlocked() { return player.Z.points.gte(21)},
+        },
+        51: {
+            title:'C21',
+            description: "C18 is better",
+            cost:new Decimal('e191e13'),
+            unlocked() { return player.Z.points.gte(22)},
+        },
+        52: {
+            title:'C22',
+            description: "C18 is better",
+            cost:new Decimal('e12e16'),
+            unlocked() { return player.Z.points.gte(22)},
+        },
+        53: {
+            title:'C23',
+            description: "C18 is better",
+            cost:new Decimal('e342e15'),
+            unlocked() { return player.Z.points.gte(22)},
+        },
+        54: {
+            title:'C24',
+            description: "C18 is better",
+            cost:new Decimal('e112e18'),
+            unlocked() { return player.Z.points.gte(22)},
         },
     },
     challenges: {

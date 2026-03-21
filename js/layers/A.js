@@ -105,6 +105,7 @@ addLayer("A", {
                 ef=ef.pow(buyableEffect("B",22))
                 if(mil("Z",16)) ef=ef.pow(10)
                 if(mil("Z",17)) ef=ef.pow(10)
+		if(mil("Z",21)) ef=ef.pow(1.3080372873291066)
                 return ef
             },
             cost:new Decimal(1),
