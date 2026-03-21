@@ -27,6 +27,7 @@ addLayer("B", {
     baseAmount() {return player.A.points}, 
     type: "normal", 
     exponent(){
+        if(player.Z.points.gte(21))return n(0.07);
 		return n(0.2).mul(Decimal.pow(0.95,player.Z.points));
 	},
     gainExp() {return n(1)},
@@ -58,6 +59,7 @@ addLayer("B", {
         mult = mult.mul(hasUpgrade("E",92)?upgradeEffect("E",92):1)
         mult = mult.mul(mil("F", 0)?10:1)
         mult = mult.mul(mil("I", 0)?5:1)
+        mult = mult.mul(hasUpgrade("C", 43)?upgradeEffect('C',43):1)
         mult = mult.pow(hasUpgrade("E", 65)?1.004:1)
         if (inChallenge('F',11)) mult=mult.pow(0.25)
         return mult

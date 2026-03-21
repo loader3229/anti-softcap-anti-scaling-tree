@@ -25,6 +25,7 @@ addLayer("D", {
     baseAmount() {return player.C.points}, 
     type: "normal", 
 	exponent(){
+        if(player.Z.points.gte(21))return n(0.08);
 		return n(0.22).mul(Decimal.pow(0.95,player.Z.points));
 	},
     gainExp() {
@@ -42,6 +43,7 @@ addLayer("D", {
         mult = mult.pow(hasUpgrade(this.layer,22)?1.2:1)
         mult = mult.mul(hasUpgrade('A',52)?2:1)
         mult = mult.mul(hasUpgrade('A',64)?upgradeEffect('A',64):1)
+        mult = mult.mul(hasUpgrade('C',44)?upgradeEffect('C',44):1)
         mult = mult.mul(buyableEffect("E",13))
         mult = mult.mul(mil("I", 0)?5:1)
 
@@ -302,6 +304,16 @@ addLayer("D", {
             description: "x1e200 pts",
             cost:new Decimal('1e4000'),
             unlocked() { return (hasUpgrade(this.layer, 51))},
-        }
+        },
+        53: {
+            title:'D23',
+            description: "D boost C",
+            cost:new Decimal('e34e5'),
+            unlocked() { return player.Z.points.gte(21)},
+            effect()  { 
+                return player.D.points.add(1);     
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
+        },
     }
 })

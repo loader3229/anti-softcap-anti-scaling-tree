@@ -29,6 +29,7 @@ addLayer("A", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
+        if(player.Z.points.gte(21))return n(0.18);
 		return n(0.5).mul(Decimal.pow(0.95,player.Z.points));
 	}, // Prestige currency exponent
     gainExp() {// Calculate the exponent on main currency from bonuses
@@ -398,6 +399,12 @@ addLayer("A", {
             canComplete() {return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on Bb1-2.",
             rewardEffect() {
+		if(hasMilestone("Z",20)){
+			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(0.6).mul(50))
+                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+			if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                	else return new Decimal(1)
+		}
 		if(hasMilestone("Z",16)){
 			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(2/3).mul(10))
                 	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))

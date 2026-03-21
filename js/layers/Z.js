@@ -5,6 +5,8 @@ addLayer("Z", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+		best: new Decimal(0),
+
     }},
     color: "#FFFFFF",
     requires(){ if(hasMilestone("Z",13))return new Decimal(1); return new Decimal(1e100);}, // Can be a funct}ion that takes requirement increases into account
@@ -13,13 +15,21 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","ee15"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee18"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "z", description: "Z: Reset for Z points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
+	tabFormat: [
+        "main-display",
+        "prestige-button",
+        "resource-display",
+	"clickables",
+	"milestones"
+
+	],
     layerShown(){return true},
     doReset(layer){
         if (layer=="Z") {
@@ -50,6 +60,14 @@ addLayer("Z", {
 			if(player.Z.points.gte(14))player.E.challenges[42]=5;
 			if(player.Z.points.gte(20))player.F.challenges[11]=3;
 			if(player.Z.points.gte(20))player.F.challenges[12]=3;
+			if(player.Z.points.gte(21))player.E.challenges[11]=6;
+			if(player.Z.points.gte(21))player.E.challenges[12]=6;
+			if(player.Z.points.gte(21))player.E.challenges[21]=6;
+			if(player.Z.points.gte(21))player.E.challenges[22]=6;
+			if(player.Z.points.gte(21))player.E.challenges[31]=6;
+			if(player.Z.points.gte(21))player.E.challenges[32]=6;
+			if(player.Z.points.gte(21))player.E.challenges[41]=6;
+			if(player.Z.points.gte(21))player.E.challenges[42]=6;
 			if(player.Z.points.gte(6))player.A.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
 			if(player.Z.points.gte(7))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82];
 			if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
@@ -62,9 +80,12 @@ addLayer("Z", {
 			if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
 			if(player.Z.points.gte(13))player.E.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
 			if(player.Z.points.gte(18))player.F.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
+			player.points=new Decimal(10);
+			for(let i=0;i<10;i++)updateTemp();
 		}
     },
 	update(){
+		player.Z.best=player.Z.best.min(21).floor();
 		if(player.Z.points.gte(9)){
 			let effective_B = player.B.points.add(1).mul(10);
             if (hasMilestone('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
@@ -105,90 +126,142 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 			player.G.buyables[11]=player.G.buyables[11].max(player.G.points.add(1).log(10).max(0).root(1.1).ceil().max(0));
 			player.G.buyables[12]=player.G.buyables[12].max(player.G.points.add(1).log(100).max(0).root(1.2).ceil().max(0));
         }
-        if(hasUpgrade('F',85)){
-			player.F.buyables[102]=player.F.buyables[102].max(player.F.buyables[32].div(5).sqrt().floor());
+        if(player.Z.points.gte(21) || hasUpgrade('F',85)){
+			player.F.buyables[102]=player.F.buyables[102].max(player.F.buyables[32].div(player.Z.points.gte(21)?1:5).sqrt().floor());
         }
 	},
     milestones: {
         0: {requirementDescription: "1 Z",
-            done() {return player[this.layer].points.gte(1)}, 
+            done() {return player.Z.points.gte(1)}, 
             effectDescription: "100x A/B passive, unlock D.",
         },
         1: {requirementDescription: "2 Z",
-            done() {return player[this.layer].points.gte(2)}, 
+            done() {return player.Z.points.gte(2)}, 
             effectDescription: "100x A/B/C passive.",
         },
         2: {requirementDescription: "3 Z",
-            done() {return player[this.layer].points.gte(3)}, 
+            done() {return player.Z.points.gte(3)}, 
             effectDescription: "100x A/B/C passive, 1x D passive.<br>cheaper B buyables, square B26 base effect.",
         },
         3: {requirementDescription: "4 Z",
-            done() {return player[this.layer].points.gte(4)}, 
+            done() {return player.Z.points.gte(4)}, 
             effectDescription: "100x A/B/C/D passive. Start with first 6 A chall completed.<br>points^1.05. B35 is stronger.",
         },
         4: {requirementDescription: "5 Z",
-            done() {return player[this.layer].points.gte(5)}, 
+            done() {return player.Z.points.gte(5)}, 
             effectDescription: "100x A/B/C/D passive. Start with first 2 C chall completed.<br>Reduce requirement of A/B/C/D to 1.<br>All mult to B26 applied to base. points^1.02.",
         },
         5: {requirementDescription: "6 Z",
-            done() {return player[this.layer].points.gte(6)}, 
+            done() {return player.Z.points.gte(6)}, 
             effectDescription: "Start with all A upgrades. A9^15.",
         },
         6: {requirementDescription: "7 Z",
-            done() {return player[this.layer].points.gte(7)}, 
+            done() {return player.Z.points.gte(7)}, 
             effectDescription: "Start with all B upgrades. cheaper B buyables.",
         },
         7: {requirementDescription: "8 Z",
-            done() {return player[this.layer].points.gte(8)}, 
+            done() {return player.Z.points.gte(8)}, 
             effectDescription: "Start with Ac7 completed 5 times. Base of first 2 B buyables +1",
         },
         8: {requirementDescription: "9 Z",
-            done() {return player[this.layer].points.gte(9)}, 
+            done() {return player.Z.points.gte(9)}, 
             effectDescription: "Autobuy Max B buyables. cheaper Bb3. change Bb5 formula. 10x E.",
         },
         9: {requirementDescription: "10 Z",
-            done() {return player[this.layer].points.gte(10)}, 
+            done() {return player.Z.points.gte(10)}, 
             effectDescription: "Start with all B & C milestones. change Bb5 formula.<br>10x passive E and unlock Em. cheaper Eb4. Stronger E25.",
         },
         10: {requirementDescription: "11 Z",
-            done() {return player[this.layer].points.gte(11)}, 
+            done() {return player.Z.points.gte(11)}, 
             effectDescription: "Start with first 2 E chall completed 3 times.<br>unlock Ek. cheaper Eb5-7.",
         },
         11: {requirementDescription: "12 Z",
-            done() {return player[this.layer].points.gte(12)}, 
+            done() {return player.Z.points.gte(12)}, 
             effectDescription: "Start with Ec3-4 completed 3 times and all D milestones.<br>10x passive E and Reduce requirement of E to 1.<br>points^1.13 and Ec3-4 applied before powerer.<br>change Bb5 formula.",
         },
         12: {requirementDescription: "13 Z",
-            done() {return player[this.layer].points.gte(13)}, 
+            done() {return player.Z.points.gte(13)}, 
             effectDescription: "Start with Ec5-6 completed 5 times, all E milestones and the 1st F upgrade.<br>10x passive E.<br>points^1.011. 2x F.<br>change formulas of Ac7 and E22.",
         },
         13: {requirementDescription: "14 Z",
-            done() {return player[this.layer].points.gte(14)}, 
+            done() {return player.Z.points.gte(14)}, 
             effectDescription: "Start with Ec7-8 completed 5 times and first 17 C upgrades. 3x F.<br>Autobuy max E buyables.<br>Unlock F1 and F dimensions.",
         },
         14: {requirementDescription: "15 Z",
-            done() {return player[this.layer].points.gte(15)}, 
-            effectDescription: "Start with first 17 D upgrades. 4x F and F1, 10x passive F and reduce requirement of F to 1.<br>change formula of Ac7.",
+            done() {return player.Z.points.gte(15)}, 
+            effectDescription: "Start with first 22 D upgrades. 4x F and F1, 10x passive F and reduce requirement of F to 1.<br>change formula of Ac7.",
         },
         15: {requirementDescription: "16 Z",
-            done() {return player[this.layer].points.gte(16)}, 
+            done() {return player.Z.points.gte(16)}, 
             effectDescription: "Start with first 15 F upgrades. 5x F and F1, 10x passive F.<br>F dims requires F instead of F1, but increase base F1 effect before F24. <br>change formula of Ac7 and F30.",
         },
         16: {requirementDescription: "17 Z",
-            done() {return player[this.layer].points.gte(17)}, 
+            done() {return player.Z.points.gte(17)}, 
             effectDescription: "Autobuy max F dimensions. A1,B1,C1,D1 and F1 upgrade ^10; E1 ^100. 6x F and F1, 10x passive F.<br>change formula of Ac7. Change Gb3 cost.",
         },
         17: {requirementDescription: "18 Z",
-            done() {return player[this.layer].points.gte(18)}, 
+            done() {return player.Z.points.gte(18)}, 
             effectDescription: "Start with all F milestones. Increase max completion for all E challenges to 6. A1,B1,C1,D1,E1 and F1 upgrade ^10. Tickspeed boost effect is changed.",
         },
         18: {requirementDescription: "19 Z",
-            done() {return player[this.layer].points.gte(19)}, 
+            done() {return player.Z.points.gte(19)}, 
             effectDescription: "Start with first 30 F upgrades. Reduce requirement of G to 1. Also initial cost of F dims and G buyables are 1. Change G7 and G8.",
         },
         19: {requirementDescription: "20 Z",
-            done() {return player[this.layer].points.gte(20)}, 
+            done() {return player.Z.points.gte(20)}, 
             effectDescription: "Start with Fc1-2 completed 3 times. Autobuy max Gb1-Gb2. Change Fd and Gb3 cost but increase F1 effect.",
         },
+        20: {requirementDescription: "21 Z",
+            done() {return player.Z.points.gte(21)}, 
+            effectDescription: "Start with Ec1-8 completed 6 times. Change tickboost cost and autobuy max tickboost. Change Fd cost and Ac7 but increase F1 effect. Unlock more C and D upgrades.",
+        },
     },
+	setZ(a){
+		if(a === undefined)return;
+		player.Z.points=new Decimal(a).floor();
+		player.Z.milestones=[];
+		for(let i=0;i<new Decimal(a).floor().toNumber();i++){
+			player.Z.milestones.push(i+'');
+		}
+		player.Z.best=player.Z.best.max(player.Z.points);
+		layers.Z.doReset('Z');
+	},
+	clickables: {
+        11: {
+            title() {
+                return "-1 Z"
+            },
+            canClick() {
+                return player.Z.points.gte(1)
+            },
+            onClick() {
+                if (!player.Z.points.gte(1)) return;
+                layers.Z.setZ(player.Z.points.sub(1));
+            },
+            unlocked: true,
+        },21: {
+            title() {
+                return "Force Z Reset"
+            },
+            canClick() {
+                return true;
+            },
+            onClick() {
+                layers.Z.setZ(player.Z.points);
+            },
+            unlocked: true,
+        },	12: {
+            title() {
+                return "+1 Z"
+            },
+            canClick() {
+                return player.Z.points.lt(player.Z.best);
+            },
+            onClick() {
+                if (!player.Z.points.lt(player.Z.best)) return;
+                layers.Z.setZ(player.Z.points.add(1));
+            },
+            unlocked: true,
+        },	
+	}
 })
