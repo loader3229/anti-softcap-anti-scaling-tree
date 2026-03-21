@@ -939,7 +939,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
             title: "tickboost", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 if(player.Z.points.gte(21))return x.add(1).pow(2)
-                return x.pow(2).mul(mil('Z',15)?5:8).add(mil('Z',15)?10:412)
+                return x.pow(2).mul(mil('Z',15)?5:8).add(mil('Z',15)?10:12)
             },
             canAfford() { return player[this.layer].buyables[32].gte(this.cost()) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))

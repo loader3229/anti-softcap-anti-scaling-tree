@@ -198,7 +198,7 @@ addLayer("E", {
             "Ek": {
                 unlocked() {return (hasMilestone("Z", 10))},
                 content: [["display-text", () => "You have <h3 style='color: #177261; text-shadow: 0 0 3px #c2b280'>" + format(player.E.Ek) + "</h3> Ek, divide Bb costs by <h3 style='color: #177261; text-shadow: 0 0 3px #c2b280'> " + format(tmp.E.ekf) + " </h3>.<br>" + "<h4>" + format(tmp.E.Ekeffect) + " Ek/s<h4> <br>"],
-                ["display-text", function() {if(upg('G',32)) return "Ek mults Bb5 base by <h3 style='color: #177261; text-shadow: 0 0 3px #c2b280'> " + format(tmp.E.ekf2) + " </h3>after upgrade G12.<br>" }],
+               // ["display-text", function() {if(upg('G',32)) return "Ek mults Bb5 base by <h3 style='color: #177261; text-shadow: 0 0 3px #c2b280'> " + format(tmp.E.ekf2) + " </h3>after upgrade G12.<br>" }],
                 ["buyables",[4]]]},
         }
     },
