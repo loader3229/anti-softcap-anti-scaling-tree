@@ -898,7 +898,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
                 player.F.fd8 = player.F.fd8.add(1)
             },
             base(){   let bas = tmp.F.fdbas
-                if (challengeCompletions("G", 21)>=3) bas=Decimal.mul(bas,tmp.G.gc3ef)
+                if (player.Z.points.lt(23) && challengeCompletions("G", 21)>=3) bas=Decimal.mul(bas,tmp.G.gc3ef)
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -987,7 +987,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         112: {
             title: "F2d2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(1.05).pow(x).mul('4e8').add(player.Z.points.gte(23)?0:'1.6e9'))//x.pow(1.5)
+                let cost = Decimal.pow(10,n(player.Z.points.gte(23)?1.01:1.05).pow(x).mul('4e8').add(player.Z.points.gte(23)?0:'1.6e9'))//x.pow(1.5)
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
@@ -1126,6 +1126,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (upg('F',81)) ef=Decimal.add(ef,0.1)
         if (hasChallenge('G',21)) ef=Decimal.add(ef,challengeEffect('G',21))
         ef=ef.add(tmp.G.gc4ef)
+	if(player.Z.points.gte(23)) ef=Decimal.mul(ef,tmp.G.gc3ef)
         if(gcs('I',33)) ef=ef.mul(1.1)
         if (hasChallenge('G',22)) ef=ef.mul(challengeEffect('G',22))
         if(inChallenge('G',12)) ef=ef.pow(0.5)

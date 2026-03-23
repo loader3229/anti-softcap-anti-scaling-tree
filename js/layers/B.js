@@ -198,6 +198,7 @@ addLayer("B", {
                 let ef = 0.3
                 if (hasUpgrade('B', 32))  ef = ef*1.5
                 if (hasUpgrade('C', 22))  ef = ef*1.3
+		if (hasUpgrade('D', 54)) ef = 1
                 return player[this.layer].points.pow(ef);          
             },
             effectDisplay() { return format(this.effect())+"x" }, 

@@ -50,6 +50,7 @@ addLayer("A", {
         mult = mult.mul(buyableEffect("E",11))
         mult = mult.mul(mil("F",0)?10:1)
         mult = mult.mul(mil("I",0)?5:1)
+        mult = mult.mul(hasUpgrade("D", 55)?upgradeEffect('D',55):1)
         //if (mil('G',14)&&mult.gte('10^^4'))  mult=n(10).pow(n(10).pow(n(10).pow(n(10).pow(mult.log(10).log(10).log(10).log(10).add(tmp.G.gsre)))))
         if(mil('G',14)) mult=mult.mul(player.points)
         return mult

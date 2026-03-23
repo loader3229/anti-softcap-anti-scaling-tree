@@ -315,5 +315,21 @@ addLayer("D", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
         },
+        54: {
+            title:'D24',
+            description: "B6 is better",
+            cost:new Decimal('e846e15'),
+            unlocked() { return player.Z.points.gte(23)},
+        },
+        55: {
+            title:'D25',
+            description: "B boost A",
+            cost:new Decimal('e2e20'),
+            unlocked() { return player.Z.points.gte(23)},
+            effect()  { 
+                return player.B.points.add(1);     
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
+        },
     }
 })
