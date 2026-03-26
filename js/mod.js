@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.023",
-	name: "F2",
+	num: "1.025",
+	name: "Gs",
 }
 
 let changelog = ``
@@ -106,8 +106,8 @@ function getPointGen() {
 		if (hasChallenge("E", 22))  gain = gain.mul(challengeEffect('E',22))
 	}
 
-
-	if (mil('G',14)&&gain.gte('10^^5'))  gain=n(10).pow(n(10).pow(n(10).pow(n(10).pow(gain.log(10).log(10).log(10).log(10).add(tmp.G.gsre)))))
+    if (mil('G',14))gain = gain.pow(tmp.G.gsef1)
+	// if (mil('G',14)&&gain.gte('10^^5'))  gain=n(10).pow(n(10).pow(n(10).pow(n(10).pow(gain.log(10).log(10).log(10).log(10).add(tmp.G.gsre)))))
 		
 	let tet=n(0)
 	if(gcs('I',124))  tet=tet.add(0.3)
@@ -124,7 +124,7 @@ function getPointGen() {
 	gain=gain.min(tmp.H.php)
 	
 	
-	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","10^^1e100"][player.Z.points.toNumber()]);
+	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","10^^1e100"][player.Z.points.min(26).toNumber()]);
 	return gain
 }
 
@@ -136,13 +136,13 @@ function addedPlayerData() { return {
 var displayThings = [
 	'Original author: 4294967296 / Mod author: loader3229',
 	function() {
-		let s='Current Endgame: e4.14e28'
+		let s='Current Endgame: ee10000'
 		if(upg('G',155)||mil('I',0)) s=s+"<br><h4 style='color: #C52C14'>points gain is hardcapped at "+format(tmp.H.php)+"."
 		return s},//<br> points is hardcapped at 1F100.
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte('e4.14e28')
+	return player.points.gte('eee4')
 }
 
 //<br> bilibili: @bili_50929957100 / @loader3229

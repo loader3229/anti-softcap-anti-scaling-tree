@@ -504,6 +504,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
             effect()  { 
                 let ef = player.F.F1.add(10).log(10).div(50).add(1)
                 if (mil('Z',15))  ef = player.F.F1.add(10).log(10).add(10).pow(0.25).mul(3).add(1)
+                if (mil('Z',23))  ef = player.F.F1.add(10).log(10).add(10).pow(0.25).div(10).add(1)
                 if (upg('G',15))  ef=Decimal.pow(ef,1.1)
                 if (upg('G',23))  ef=Decimal.pow(ef,upgradeEffect('G',23))
                 return ef;
@@ -987,13 +988,13 @@ if(hasMilestone("Z",16))p = p.mul(10)
         112: {
             title: "F2d2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(player.Z.points.gte(23)?1.01:1.05).pow(x).mul('4e8').add(player.Z.points.gte(23)?0:'1.6e9'))//x.pow(1.5)
+                let cost = Decimal.pow(10,n(player.Z.points.gte(23)?1.01:1.05).pow(x).mul(player.Z.points.gte(24)?1e4:4e8).add(player.Z.points.gte(23)?0:'1.6e9'))//x.pow(1.5)
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
                 player.F.f2d2 = player.F.f2d2.add(1)},
-            base(){   let bas = n(player.Z.points.gte(23)?2:25)
+            base(){   let bas = n(player.Z.points.gte(24)?1.2:player.Z.points.gte(23)?2:25)
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -1012,13 +1013,13 @@ if(hasMilestone("Z",16))p = p.mul(10)
         113: {
             title: "F2d3", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(1.05).pow(x).mul('6e8').add('3.94e10'))
+                let cost = Decimal.pow(10,n(player.Z.points.gte(24)?1.01:1.05).pow(x).mul(player.Z.points.gte(24)?1e8:6e8).add(player.Z.points.gte(24)?0:'3.94e10'))
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
                 player.F.f2d3 = player.F.f2d3.add(1)},
-            base(){   let bas = n(20)
+            base(){   let bas = n(player.Z.points.gte(24)?1.3:20)
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -1036,13 +1037,13 @@ if(hasMilestone("Z",16))p = p.mul(10)
         121: {
             title: "F2d4", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = Decimal.pow(10,n(1.05).pow(x).mul('1e9').add('9.99e11'))
+                let cost = Decimal.pow(10,n(player.Z.points.gte(24)?1.01:1.05).pow(x).mul(player.Z.points.gte(24)?1e12:1e9).add(player.Z.points.gte(24)?0:'9.99e11'))
                 return cost},
             canAfford() { let cost = this.cost()
                 return player.G.points.gte(cost) },
             buy() {setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))
                 player.F.f2d4 = player.F.f2d4.add(1)},
-            base(){   let bas = n(40)
+            base(){   let bas = n(player.Z.points.gte(24)?1.4:40)
                 return bas},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
@@ -1074,7 +1075,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
             if (hasChallenge('G',12))  bas=Decimal.mul(bas.sub(1),challengeEffect('G',12)).add(1)
         }
         if(upg('G',54)) bas=Decimal.mul(bas.sub(1),upgradeEffect('G',54)).add(1)
-        if(mil('G',14)) bas=Decimal.pow(bas,tmp.G.gsef)
+        // if(mil('G',14)) bas=Decimal.pow(bas,tmp.G.gsef)
         let expc4=n(1.5)
         if(upg('G',52))  expc4=expc4.add(0.5)
         if (inChallenge('G',22)) bas=n(1);
@@ -1162,6 +1163,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
     },
     F2f() {
         let ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(0.1).sub(1).div(10).add(1);
+        if (player.Z.points.gte(24)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1);
         return ef
     },
     update(diff) {

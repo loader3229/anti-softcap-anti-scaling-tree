@@ -25,6 +25,7 @@ addLayer("D", {
     baseAmount() {return player.C.points}, 
     type: "normal", 
 	exponent(){
+        if(player.Z.points.gte(25))return n(0.1);
         if(player.Z.points.gte(21))return n(0.08);
 		return n(0.22).mul(Decimal.pow(0.95,player.Z.points));
 	},
@@ -154,6 +155,7 @@ addLayer("D", {
             unlocked() { return (hasUpgrade(this.layer, 14))},
             effect()  { 
                 let ef = 0.8
+		if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
                 if (inChallenge('E',11))  ef = 0
                 return player[this.layer].points.add(1).pow(ef);          
             },
@@ -317,8 +319,8 @@ addLayer("D", {
         },
         54: {
             title:'D24',
-            description: "B6 is better",
-            cost:new Decimal('e846e15'),
+            description(){return player.Z.points.gte(25)?"B6, C3 and D5 are better":"B6 is better"},
+            cost(){return new Decimal(player.Z.points.gte(24)?"e435e17":'e846e15')},
             unlocked() { return player.Z.points.gte(23)},
         },
         55: {

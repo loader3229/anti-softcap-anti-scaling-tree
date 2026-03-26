@@ -1006,6 +1006,7 @@ addLayer("E", {
         canComplete(){return player.points.gte(this.goal())},
         rewardDescription: "boost to E base on Eb1-2.",
         rewardEffect() {
+            if (challengeCompletions("E", 11) >= 9)return Decimal.pow(buyableEffect('E',11).mul(buyableEffect('E',12)),0.2)
             let bas = Decimal.pow(challengeCompletions("E", 11),1.3)
             if(challengeCompletions("E", 11) >= 4)bas = 4+challengeCompletions("E", 11)/10;
             let ef1 = Decimal.pow(buyableEffect('E',11),0.04+bas/100)
@@ -1034,6 +1035,7 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "boost to E base on Eb3.",
             rewardEffect() {
+                if (challengeCompletions("E", 12) >= 9)return Decimal.pow(buyableEffect('E',13),0.2)
                 let bas = Decimal.pow(challengeCompletions("E", 12),1.35)
                 if(challengeCompletions("E", 11) >= 5)bas = 6+challengeCompletions("E", 12)/9;
                 let ef = Decimal.pow(buyableEffect('E',13),0.05+bas/100)
@@ -1060,6 +1062,8 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on A-B pts upg.",
             rewardEffect() {
+                if (challengeCompletions("E", 21) >= 10)return Decimal.pow(upgradeEffect('A',11).mul(upgradeEffect('B',11)),1000)
+                if (challengeCompletions("E", 21) >= 9)return Decimal.pow(upgradeEffect('A',11).mul(upgradeEffect('B',11)),100)
                 let b = Decimal.pow(challengeCompletions("E", 21),1.35)
                 let ef1 = Decimal.pow(upgradeEffect('A',11),0.06+b/60)
                 let ef2 = Decimal.pow(upgradeEffect('B',11),0.06+b/60)
@@ -1088,6 +1092,8 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on C-D pts upg.",
             rewardEffect() {
+                if (challengeCompletions("E", 22) >= 10)return Decimal.pow(upgradeEffect('C',11).mul(upgradeEffect('D',11)),1000)
+                if (challengeCompletions("E", 22) >= 9)return Decimal.pow(upgradeEffect('C',11).mul(upgradeEffect('D',11)),100)
                 let b = Decimal.pow(challengeCompletions("E", 22),1.35)
                 let ef1 = Decimal.pow(upgradeEffect('C',11),0.08+b/40)
                 let ef2 = Decimal.pow(upgradeEffect('D',11),0.08+b/40)
@@ -1115,6 +1121,8 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "Bb1-5 are cheaper.",
             rewardEffect() {
+                if (challengeCompletions("E", 31) >= 10) return Decimal.pow(layers.E.ekf(),5).mul("ee20");
+                if (challengeCompletions("E", 31) >= 9) return Decimal.pow(layers.E.ekf(),2).mul("ee10");
                 return Decimal.pow(1e10,challengeCompletions("E", 31));
             },
             rewardDisplay() {return "/"+format(this.rewardEffect(),4)+(player.Z.points.gte(11)?'<br> \n\
@@ -1139,10 +1147,12 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "Ec6 comp add to Eb6-7 base.",
             rewardEffect() {
+                if (challengeCompletions("E", 32) >= 10) return Decimal.add(1e20,player.E.buyables[31].mul(player.E.buyables[32]).mul(player.E.buyables[33]));
+                if (challengeCompletions("E", 32) >= 9) return Decimal.add(1e10,player.E.buyables[32].add(player.E.buyables[33]));
                 //let t=Decimal.mul(challengeCompletions("E", 31),0.0025)
                 let ef=(challengeCompletions("E", 32))*0.2
                 if (hasUpgrade('F',24)) ef=Decimal.mul(ef,1.5)
-                if (challengeCompletions("E", 32) >= 1)  return ef
+                if (challengeCompletions("E", 32) >= 1) return ef
                 else return new Decimal(0)
             },
             rewardDisplay() {return '+'+format(this.rewardEffect())},
@@ -1165,6 +1175,7 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "Eb1-4 are cheaper",
             rewardEffect() {
+                if (challengeCompletions("E", 41) >= 9) return Decimal.pow(layers.E.ekf(),0.02).mul("ee10");
                 return Decimal.pow(10,challengeCompletions("E", 41));
             },
             rewardDisplay() {return "/"+format(this.rewardEffect(),3)},
@@ -1188,21 +1199,24 @@ addLayer("E", {
             canComplete(){return player.points.gte(this.goal())},
             rewardDescription: "boost to Em/Ek eff.",
             rewardEffect() {
+                if (challengeCompletions("E", 42) >= 10)return 60;
+                if (challengeCompletions("E", 42) >= 9)return 10;
                 let ef=challengeCompletions("E", 42)
                 if (hasUpgrade('E',104)) ef=Decimal.mul(ef,1.2)
                 if (hasUpgrade('F',24)) ef=Decimal.mul(ef,1.1)
                 if (challengeCompletions("E", 42) >= 1)  return ef
                 else return new Decimal(0)
             },
-            rewardDisplay() {return 'Em:+'+format(this.rewardEffect()/100)+' exp,\n\
-                Ek:+'+format(this.rewardEffect()/5)+' exp'},
+            rewardDisplay() {return 'Em:+'+format(this.rewardEffect()/100+(challengeCompletions("E", 42)>=9?0.056:0))+' exp,\n\
+                Ek:+'+format(this.rewardEffect()/5+(challengeCompletions("E", 42)>=9?4.32:0))+' exp'},
         },
     },
     Emeffect() {
         ef = new Decimal(1)
         ef=Decimal.mul(ef,(buyableEffect("E", 31)))
         ef=Decimal.mul(ef,(buyableEffect("E", 32)))
-            ef=Decimal.mul(ef,(buyableEffect("E", 33)))
+        ef=Decimal.mul(ef,(buyableEffect("E", 33)))
+        if(hasUpgrade('C',55))ef = Decimal.mul(ef,upgradeEffect("C",55));
         if (hasUpgrade('E',105)) ef=Decimal.pow(ef,1.01)
         return ef;
     },
@@ -1212,6 +1226,7 @@ addLayer("E", {
         if (hasUpgrade('E',103))  exp=Decimal.add(exp,0.03) 
         if (hasUpgrade('E',101))  exp=Decimal.add(exp,0.02)    
         if (hasUpgrade('F',34))  exp=Decimal.add(exp,0.014) 
+        if(challengeCompletions("E", 42) >= 9) exp=Decimal.add(exp,0.056);
         if (hasChallenge('E', 42))  exp = Decimal.add(exp,challengeEffect('E',42)/100)   
         if (hasMilestone('F',18))  exp=Decimal.add(exp,0.01)
         if (inChallenge('E',42)) exp=0           
@@ -1222,6 +1237,7 @@ addLayer("E", {
         ef = new Decimal(1)
         ef=Decimal.mul(ef,(buyableEffect("E", 41)))
         ef=Decimal.mul(ef,(buyableEffect("E", 42)))
+        if(hasUpgrade('C',55))ef = Decimal.mul(ef,upgradeEffect("C",55));
         return ef;
     },
     ekf() {
@@ -1229,6 +1245,7 @@ addLayer("E", {
 	let eff=player.E.Ek.add(1);
 	let pow=1;
         if (hasChallenge('E',42)) pow += (challengeEffect('E',42)/5);
+        if(challengeCompletions("E", 42) >= 9) pow += 4.32;
 	if (hasUpgrade('F',62)) pow += 0.68;
 	if (hasUpgrade('G',21)) pow += 1;
 	if (hasUpgrade('G',22)) pow += 1;
@@ -1242,5 +1259,9 @@ addLayer("E", {
     update(diff) {
         if (hasMilestone("Z", 9))  player.E.Em = player.E.Em.add(tmp.E.Emeffect.mul(diff))
         if (hasMilestone("Z", 10))  player.E.Ek = player.E.Ek.add(tmp.E.Ekeffect.mul(diff))
+        if(hasUpgrade("B",83))for(i in layers.E.challenges){
+            if(i == "rows" || i == "cols")continue;
+            player.E.challenges[i]=hasUpgrade("B",84)?9:8;
+        }
     },
 })

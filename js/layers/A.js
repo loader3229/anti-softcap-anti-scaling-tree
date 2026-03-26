@@ -25,10 +25,11 @@ addLayer("A", {
 		return new Decimal(10);
 	}, // Can be a funct}ion that takes requirement increases into account
     resource: "A", // Name of prestige currency
-    baseResource: "points", // Name of resource prestige is based on
-    baseAmount() {return player.points}, // Get the current amount of baseResource
+    baseResource() {if(player.Z.points.gte(25))return "Zp";return "points"}, 
+    baseAmount() {if(player.Z.points.gte(25))return layers.Z.getZp();return player.points}, 
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
+        if(player.Z.points.gte(24))return n(0.2);
         if(player.Z.points.gte(21))return n(0.18);
 		return n(0.5).mul(Decimal.pow(0.95,player.Z.points));
 	}, // Prestige currency exponent
@@ -52,7 +53,7 @@ addLayer("A", {
         mult = mult.mul(mil("I",0)?5:1)
         mult = mult.mul(hasUpgrade("D", 55)?upgradeEffect('D',55):1)
         //if (mil('G',14)&&mult.gte('10^^4'))  mult=n(10).pow(n(10).pow(n(10).pow(n(10).pow(mult.log(10).log(10).log(10).log(10).add(tmp.G.gsre)))))
-        if(mil('G',14)) mult=mult.mul(player.points)
+        // if(mil('G',14)) mult=mult.mul(player.points)
         return mult
     },
     softcap(){return new Decimal(Infinity)},
@@ -131,7 +132,7 @@ addLayer("A", {
         },
         15: {
             title:'A5',
-            description: "point/s^1.1.",
+            description(){if(player.Z.points.gte(25))return "Zp boost points.";return "point/s^1.1.";},
             cost: new Decimal(10),
             unlocked() { return (upg(this.layer, 14))},
             effect()  {let ef=n(0.1)
@@ -140,6 +141,7 @@ addLayer("A", {
                 if (inChallenge("A", 12))  ef = ef.mul(0.25)
                 if (inChallenge("A", 22))  ef = n(0)
                 if (inChallenge("A", 31))  ef = n(0)
+                if(player.Z.points.gte(25))return layers.Z.getZp().pow(ef).add(1);
                 return player.points.pow(ef).add(1);          
             },
             effectDisplay() { return format(this.effect())+"x" }, 

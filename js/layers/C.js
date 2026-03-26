@@ -23,10 +23,12 @@ addLayer("C", {
 		return new Decimal(2e36);
 	},
     resource: "C", 
-    baseResource: "points", 
-    baseAmount() {return player.points}, 
+    baseResource() {if(player.Z.points.gte(25))return "B";return "points"}, 
+    baseAmount() {if(player.Z.points.gte(25))return player.B.points;return player.points}, 
     type: "normal", 
 	exponent(){
+        if(player.Z.points.gte(31))return n(0.2);
+        if(player.Z.points.gte(25))return Decimal.pow(0.95,player.Z.points.mul(5).sub(100)).mul(3);
         if(player.Z.points.gte(21))return n(0.05);
 		return n(0.15).mul(Decimal.pow(0.95,player.Z.points));
 	},
@@ -148,6 +150,7 @@ addLayer("C", {
                 let ef = 0.5
                 if (hasUpgrade('C',23))  ef = ef*1.3
                 if (hasUpgrade('C',24))  ef = ef*1.2
+		if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
                 if (inChallenge('C',11))  ef = 0
                 if (inChallenge('E',11))  ef = 0
                 return player[this.layer].points.add(1).pow(ef);          
@@ -267,7 +270,14 @@ addLayer("C", {
             description: "C boost B",
             cost:new Decimal('e88e5'),
             unlocked() { return player.Z.points.gte(21)},
-            effect()  { 
+            effect()  {
+                if(player.Z.points.gte(26))return player.C.points.pow(upg('C',54)?1:upg('C',53)?0.7:upg('C',52)?0.5:upg('C',51)?0.3:upg('C',45)?0.2:0.1).add(1);
+
+		if(player.Z.points.gte(25)&&upg('C',54)){
+			return Decimal.pow(10,player.C.points.add(10).log10().div(player.C.points.add(10).log10().div(1e100).pow(0.5).add(1)));
+		}
+                if(player.Z.points.gte(25))return player.C.points.pow(upg('C',53)?0.6:upg('C',52)?0.4:upg('C',51)?0.2:upg('C',45)?0.125:0.1).add(1).min("ee100");
+                if(player.Z.points.gte(24))return player.C.points.pow(upg('C',54)?1/3:upg('C',53)?0.3:upg('C',52)?0.25:upg('C',51)?0.15:upg('C',45)?0.125:0.1).add(1);  
                 return player.C.points.pow(upg('C',54)?0.4001:upg('C',53)?1/3:upg('C',52)?0.2:upg('C',51)?0.15:upg('C',45)?0.125:0.1).add(1);  
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -291,26 +301,36 @@ addLayer("C", {
         51: {
             title:'C21',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(23)?"e4e15":'e191e13')},
+            cost(){return new Decimal(player.Z.points.gte(25)?"e967e17":player.Z.points.gte(24)?"e156e18":player.Z.points.gte(23)?"e4e15":'e191e13')},
             unlocked() { return player.Z.points.gte(22)},
         },
         52: {
             title:'C22',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(23)?"e325e15":'e12e16')},
+            cost(){return new Decimal(player.Z.points.gte(25)?Decimal.pow(10,4e21/9):player.Z.points.gte(24)?"e305e20":player.Z.points.gte(23)?"e325e15":'e12e16')},
             unlocked() { return player.Z.points.gte(22)},
         },
         53: {
             title:'C23',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(23)?"e585e15":'e342e15')},
+            cost(){return new Decimal(player.Z.points.gte(25)?"e8e24":player.Z.points.gte(24)?"e369e22":player.Z.points.gte(23)?"e585e15":'e342e15')},
             unlocked() { return player.Z.points.gte(22)},
         },
         54: {
             title:'C24',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(23)?"e204e17":'e112e18')},
+            cost(){return new Decimal(player.Z.points.gte(24)?"e91e27":player.Z.points.gte(23)?"e204e17":'e112e18')},
             unlocked() { return player.Z.points.gte(22)},
+        },
+        55: {
+            title:'C25',
+            description: "F boost Em and Ek",
+            cost(){return new Decimal("e3e20")},
+            unlocked() { return player.Z.points.gte(25)},
+            effect()  { 
+                return player.F.points.add(1);     
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
         },
     },
     challenges: {

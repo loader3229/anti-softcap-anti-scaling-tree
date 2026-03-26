@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","ee100"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee99990"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -26,6 +26,7 @@ addLayer("Z", {
         "main-display",
         "prestige-button",
         "resource-display",
+        ["display-text",function(){if(player.Z.points.gte(25))return "You have "+format(layers.Z.getZp())+" Zp (based on points), which are boosting points by "+format(upgradeEffect("A",15))+"x (A5 effect)";return "";}],
 	"clickables",
 	"milestones"
 
@@ -75,6 +76,7 @@ addLayer("Z", {
 			if(player.Z.points.gte(13))player.F.upgrades=[11];
 			if(player.Z.points.gte(16))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 55];
 			if(player.Z.points.gte(18))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
+			if(player.Z.points.gte(24))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
 			if(player.Z.points.gte(23))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25];
 			if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
 			if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
@@ -93,11 +95,11 @@ addLayer("Z", {
             if (hasMilestone('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
                 if (hasChallenge('E',31))effective_B=effective_B.mul(challengeEffect('E',31))
 			if(player.Z.points.gte(11))effective_B=effective_B.mul(tmp.E.ekf);
-			player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(hasUpgrade('E',73)?2.6:hasUpgrade('E',43)?2.7:2.8).max(0).root(1.1).ceil().max(0));
-			player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(hasUpgrade('E',73)?7:hasUpgrade('E',43)?7.5:8).max(0).root(1.1).ceil().max(0));
-			player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?3.6:9).max(0).root(1.1).ceil().max(0));
-			player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?4.9:10).max(0).root(1.1).ceil().max(0));
-			player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(hasUpgrade('F',35)?700:hasUpgrade('D',44)?800:hasUpgrade('E',62)?900:1000).max(0).root(1.2).ceil().max(0));
+			player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('E',73)?2.6:hasUpgrade('E',43)?2.7:2.8).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('E',73)?7:hasUpgrade('E',43)?7.5:8).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?3.6:9).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?4.9:10).max(0).root(1.1).ceil().max(0));
+			player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('F',35)?700:hasUpgrade('D',44)?800:hasUpgrade('E',62)?900:1000).max(0).root(player.Z.points.gte(24)?1.1:1.2).ceil().max(0));
 		}
 		if(player.Z.points.gte(14)){
 			let effective_E = player.E.points.add(1);
@@ -135,8 +137,12 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 			player.F.f2d1 = player.F.f2d1.max(player.F.buyables[111]=player.F.buyables[111].max(player.G.points.add(1).log10().max(1).div(player.Z.points.gte(23)?1:43300000).log(1.01).ceil().max(0)));
         }
         if(player.Z.points.gte(23)){
-			player.F.f2d2 = player.F.f2d2.max(player.F.buyables[112]=player.F.buyables[112].max(player.G.points.add(1).log10().max(1).div(4e8).log(1.01).ceil().max(0)));
+			player.F.f2d2 = player.F.f2d2.max(player.F.buyables[112]=player.F.buyables[112].max(player.G.points.add(1).log10().max(1).div(player.Z.points.gte(24)?1e4:4e8).log(1.01).ceil().max(0)));
 			player.G.buyables[13] = player.G.buyables[13].max(player.G.points.add(1).log10().max(1).log(2).max(0));
+        }
+        if(player.Z.points.gte(24) && upg('G',52)){
+			player.F.f2d3 = player.F.f2d3.max(player.F.buyables[113]=player.F.buyables[113].max(player.G.points.add(1).log10().max(1).div(1e8).log(1.01).ceil().max(0)));
+			player.F.f2d4 = player.F.f2d4.max(player.F.buyables[121]=player.F.buyables[121].max(player.G.points.add(1).log10().max(1).div(1e12).log(1.01).ceil().max(0)));
         }
 
 
@@ -232,7 +238,15 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         22: {requirementDescription: "23 Z",
             done() {return player.Z.points.gte(23)}, 
-            effectDescription: "Start with first 10 G upgrades. Change Fd cost and Gc3p but increase F1 effect. Change F2 dimension costs, buy max F2d1 and F2d2. Buy max and decimal Gb3.",
+            effectDescription: "Start with first 10 G upgrades. Change Fd cost and Gc3p but increase F1 effect. Change F2 dimension costs, buy max F2d1 and F2d2. Buy max and decimal Gb3. Unlock more D upgrades.",
+        },
+        23: {requirementDescription: "24 Z",
+            done() {return player.Z.points.gte(24)}, 
+            effectDescription: "Start with first 40 F upgrades. Change Fd cost and F30 but increase F1 effect. Change all B buyables. Change F2 dimension costs, buy max F2d3 and F2d4. Increase F2 effect.",
+        },
+        24: {requirementDescription: "25 Z",
+            done() {return player.Z.points.gte(25)}, 
+            effectDescription: "Unlock Zp. A gain is based on Zp instead of points. C gain is based on B now. A5 changed to Zp boost points. Change Fd cost but increase F1 effect.",
         },
     },
 	setZ(a){
@@ -245,6 +259,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 		player.Z.best=player.Z.best.max(player.Z.points);
 		layers.Z.doReset('Z');
 	},
+    getZp(){
+        if(player.Z.points.lt(25))return player.points;
+        return Decimal.pow(10,player.points.add(10).log10().pow(Decimal.pow(0.99,player.Z.points.sub(24))));
+    },
 	clickables: {
         11: {
             title() {
