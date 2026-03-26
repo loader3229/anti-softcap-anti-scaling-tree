@@ -89,7 +89,7 @@ addLayer("Z", {
 		}
     },
 	update(){
-		player.Z.best=player.Z.best.min(21).floor();
+		player.Z.best=player.Z.best.floor();
 		if(player.Z.points.gte(9)){
 			let effective_B = player.B.points.add(1).mul(10);
             if (hasMilestone('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
