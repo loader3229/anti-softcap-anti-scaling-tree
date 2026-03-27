@@ -106,7 +106,7 @@ function getPointGen() {
 		if (hasChallenge("E", 22))  gain = gain.mul(challengeEffect('E',22))
 	}
 
-    if (mil('G',14))gain = gain.pow(tmp.G.gsef1)
+    if (mil('G',14) || player.Z.points.gte(26))gain = gain.pow(tmp.G.gsef1)
 	// if (mil('G',14)&&gain.gte('10^^5'))  gain=n(10).pow(n(10).pow(n(10).pow(n(10).pow(gain.log(10).log(10).log(10).log(10).add(tmp.G.gsre)))))
 		
 	let tet=n(0)
@@ -124,7 +124,7 @@ function getPointGen() {
 	gain=gain.min(tmp.H.php)
 	
 	
-	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","10^^1e100"][player.Z.points.min(26).toNumber()]);
+	gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","eee10","eee25","10^^1e100"][player.Z.points.min(27).toNumber()]);
 	return gain
 }
 

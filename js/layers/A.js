@@ -138,7 +138,8 @@ addLayer("A", {
             effect()  {let ef=n(0.1)
                 if (upg('B', 32))  ef = ef.add(0.05)
                 if (upg('B', 35))  ef = ef.add(0.05)                
-                if (inChallenge("A", 12))  ef = ef.mul(0.25)
+                if (inChallenge("A", 12))  ef = ef.mul(0.25)       
+                if (player.Z.points.gte(27))  ef = ef.mul(5)
                 if (inChallenge("A", 22))  ef = n(0)
                 if (inChallenge("A", 31))  ef = n(0)
                 if(player.Z.points.gte(25))return layers.Z.getZp().pow(ef).add(1);

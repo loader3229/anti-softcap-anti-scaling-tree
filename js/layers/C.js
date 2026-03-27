@@ -301,25 +301,25 @@ addLayer("C", {
         51: {
             title:'C21',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(25)?"e967e17":player.Z.points.gte(24)?"e156e18":player.Z.points.gte(23)?"e4e15":'e191e13')},
+            cost(){return new Decimal(player.Z.points.gte(26)?"e3e9":player.Z.points.gte(25)?"e967e17":player.Z.points.gte(24)?"e156e18":player.Z.points.gte(23)?"e4e15":'e191e13')},
             unlocked() { return player.Z.points.gte(22)},
         },
         52: {
             title:'C22',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(25)?Decimal.pow(10,4e21/9):player.Z.points.gte(24)?"e305e20":player.Z.points.gte(23)?"e325e15":'e12e16')},
+            cost(){return new Decimal(player.Z.points.gte(27)?"e3e11":player.Z.points.gte(25)?Decimal.pow(10,4e21/9):player.Z.points.gte(24)?"e305e20":player.Z.points.gte(23)?"e325e15":'e12e16')},
             unlocked() { return player.Z.points.gte(22)},
         },
         53: {
             title:'C23',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(25)?"e8e24":player.Z.points.gte(24)?"e369e22":player.Z.points.gte(23)?"e585e15":'e342e15')},
+            cost(){return new Decimal(player.Z.points.gte(27)?"e3e14":player.Z.points.gte(25)?"e8e24":player.Z.points.gte(24)?"e369e22":player.Z.points.gte(23)?"e585e15":'e342e15')},
             unlocked() { return player.Z.points.gte(22)},
         },
         54: {
             title:'C24',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(24)?"e91e27":player.Z.points.gte(23)?"e204e17":'e112e18')},
+            cost(){return new Decimal(player.Z.points.gte(27)?"e3e17":player.Z.points.gte(24)?"e91e27":player.Z.points.gte(23)?"e204e17":'e112e18')},
             unlocked() { return player.Z.points.gte(22)},
         },
         55: {

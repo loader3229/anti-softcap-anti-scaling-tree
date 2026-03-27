@@ -1261,7 +1261,7 @@ addLayer("E", {
         if (hasMilestone("Z", 10))  player.E.Ek = player.E.Ek.add(tmp.E.Ekeffect.mul(diff))
         if(hasUpgrade("B",83))for(i in layers.E.challenges){
             if(i == "rows" || i == "cols")continue;
-            player.E.challenges[i]=hasUpgrade("B",84)?9:8;
+            player.E.challenges[i]=hasUpgrade("B",85)?10:hasUpgrade("B",84)?9:8;
         }
     },
 })

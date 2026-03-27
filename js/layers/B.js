@@ -442,6 +442,12 @@ addLayer("B", {
             cost:new Decimal('e467e17'),
             unlocked() { return player.Z.points.gte(25)},
         },
+        85: {
+            title:'B40',
+            description: "Set your E challenge completions to 10, this will greatly increase reward from E challenges. Also Gs gain base x2 and ^2.",
+            cost:new Decimal('ee1000'),
+            unlocked() { return player.Z.points.gte(26)},
+        },
     },
     automate(){
         if (player.B.auto) {  buyBuyable("B",11),buyBuyable("B",12),buyBuyable("B",21)

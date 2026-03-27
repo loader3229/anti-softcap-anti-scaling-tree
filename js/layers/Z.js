@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee99990"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee250"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -69,6 +69,10 @@ addLayer("Z", {
 			if(player.Z.points.gte(21))player.E.challenges[32]=6;
 			if(player.Z.points.gte(21))player.E.challenges[41]=6;
 			if(player.Z.points.gte(21))player.E.challenges[42]=6;
+			if(player.Z.points.gte(26))player.G.challenges[11]=5;
+			if(player.Z.points.gte(26))player.G.challenges[12]=5;
+			if(player.Z.points.gte(27))player.G.challenges[21]=5;
+			if(player.Z.points.gte(27))player.G.challenges[22]=5;
 			if(player.Z.points.gte(6))player.A.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
 			if(player.Z.points.gte(7))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82];
 			if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
@@ -247,6 +251,14 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         24: {requirementDescription: "25 Z",
             done() {return player.Z.points.gte(25)}, 
             effectDescription: "Unlock Zp. A gain is based on Zp instead of points. C gain is based on B now. A5 changed to Zp boost points. Change Fd cost but increase F1 effect.",
+        },
+        25: {requirementDescription: "26 Z",
+            done() {return player.Z.points.gte(26)}, 
+            effectDescription: "Start with Gc1 and Gc2 completed 5 times. Permenantly unlock Gs, and you can gain Gs when you reach 1e10 G. Gs 1st effect exp ^1.2. Change Fd cost but increase F1 effect.",
+        },
+        26: {requirementDescription: "27 Z",
+            done() {return player.Z.points.gte(27)}, 
+            effectDescription: "Start with Gc3 and Gc4 completed 5 times. Gs 1st effect exp ^1.5. Change Fd cost but increase F1 effect.",
         },
     },
 	setZ(a){
