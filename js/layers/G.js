@@ -778,7 +778,7 @@ addLayer("G", {
         94: {
             title:'G44',
             description: "Gsb5 cost base /4,Gsb3 cost base /10,Gsi gain exp +0.4,eff x1.2.",         
-            cost:new Decimal('1e570'),
+            cost:new Decimal('1e540'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsi",
             currencyInternalName: "Gsi",
@@ -787,7 +787,7 @@ addLayer("G", {
         95: {
             title:'G45',
             description: "G30 base is 0.995,Gsi gain x1.05^(Gsb1 amt),Gsi eff x1.2.",         
-            cost:new Decimal('1e749'),
+            cost:new Decimal('1e685'),
             currencyLocation() {return player[this.layer]},  
             currencyDisplayName: "Gsi",
             currencyInternalName: "Gsi",
@@ -1944,8 +1944,8 @@ addLayer("G", {
                 let e=n(2.1)
                 //if (x.gte(6)) e=e.add(0.3)
                 //if (hasUpgrade('G',104))  e=e.sub(0.15)
-                let cost = Decimal.pow(bas, x.pow(e)).times('1e700')
-                if(hasUpgrade('G',111)) cost=cost.div('1e700')
+                let cost = Decimal.pow(bas, x.pow(e)).times('1e600')
+                if(hasUpgrade('G',111)) cost=cost.div('1e600')
                 /*let e2=n(0.75)
                 if (x.gte(40))  e2=e2.add(0.05)
                 if (x.gte(56))  e2=e2.add(x.sub(54).div(200))
