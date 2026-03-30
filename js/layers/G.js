@@ -559,7 +559,7 @@ addLayer("G", {
         55: {
             title:'G25',
             description: "Gc1p/Gc2p/Gc3p/Gc4p exp are 0.95/0.9/0.85/0.8,G24 exp is 0.3,gain Gc powers at full F1.",     
-            cost(){return new Decimal(player.Z.points.gte(25)?Decimal.pow(10,1e16/3):player.Z.points.gte(23)?"e1.65e14":'e3.8e13')},
+            cost(){return new Decimal(player.Z.points.gte(25)?Decimal.pow(10,1e16/3):player.Z.points.gte(24)?"e1.65e14":'e3.8e13')},
             unlocked() { return (hasMilestone(this.layer, 13))},
         },
         //Gs upgs
