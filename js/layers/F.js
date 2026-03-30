@@ -1164,6 +1164,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
     F2f() {
         let ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(0.1).sub(1).div(10).add(1);
         if (player.Z.points.gte(24)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1);
+        if (player.Z.points.gte(28)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1).pow(2);
         return ef
     },
     update(diff) {

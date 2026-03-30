@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee250"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eeee10","eeee10"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -149,6 +149,15 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 			player.F.f2d4 = player.F.f2d4.max(player.F.buyables[121]=player.F.buyables[121].max(player.G.points.add(1).log10().max(1).div(1e12).log(1.01).ceil().max(0)));
         }
 
+        if(player.Z.points.gte(27) && mil('G',17)){
+			let effective_Gs = player.G.Gs.add(1);
+                	if (hasUpgrade('G',81))  effective_Gs=effective_Gs.mul(upgradeEffect('G',81))
+                	if (hasUpgrade('G',65))  effective_Gs=effective_Gs.root(upgradeEffect('G',65))
+
+			player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(4.1).max(0).root(1.35).ceil().max(0));
+			player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(100).max(0).root(1).ceil().max(0));
+        }
+
 
 	},
     milestones: {
@@ -259,6 +268,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         26: {requirementDescription: "27 Z",
             done() {return player.Z.points.gte(27)}, 
             effectDescription: "Start with Gc3 and Gc4 completed 5 times. Gs 1st effect exp ^1.5. Change Fd cost but increase F1 effect.",
+        },
+        27: {requirementDescription: "28 Z",
+            done() {return player.Z.points.gte(28)}, 
+            effectDescription: "F2 effect is better. Gs 1st effect exp ^2. Change Fd cost but increase F1 effect.",
         },
     },
 	setZ(a){
