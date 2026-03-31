@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee10000"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
