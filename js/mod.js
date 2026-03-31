@@ -13,7 +13,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.031",
+	num: "1.031?",
 	name: "GG",
 }
 
@@ -144,7 +144,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte('eeee100')
+	return Decimal.tetrate(10,player.points.max(1).slog().mul(2).pow(2)).gte('eeee100')
 }
 
 //<br> bilibili: @bili_50929957100 / @loader3229
