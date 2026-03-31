@@ -1,18 +1,18 @@
 
-function exponentialFormat(num, precision, mantissa = true) {
+function exponentialFormat_(num, precision, mantissa = true) {
     let e = num.log10().floor()
     let m = num.div(Decimal.pow(10, e))
     if (m.toStringWithDecimalPlaces(precision) == 10) {
         m = decimalOne
         e = e.add(1)
     }
-    e = (e.gte(1e9) ? format(e, 3) : (e.gte(10000) ? commaFormat(e, 0) : e.toStringWithDecimalPlaces(0)))
+    e = (e.gte(1e9) ? format_(e, 3) : (e.gte(10000) ? commaFormat_(e, 0) : e.toStringWithDecimalPlaces(0)))
     if (mantissa)
         return m.toStringWithDecimalPlaces(precision) + "e" + e
     else return "e" + e
 }
 
-function commaFormat(num, precision) {
+function commaFormat_(num, precision) {
     if (num === null || num === undefined) return "NaN"
     if (num.mag < 0.001) return (0).toFixed(precision)
     let init = num.toStringWithDecimalPlaces(precision)
@@ -23,7 +23,7 @@ function commaFormat(num, precision) {
 }
 
 
-function regularFormat(num, precision) {
+function regularFormat_(num, precision) {
     if (num === null || num === undefined) return "NaN"
     if (num.mag < 0.0001) return (0).toFixed(precision)
     if (num.mag < 0.1 && precision !==0) precision = Math.max(precision, 4)
@@ -40,51 +40,51 @@ function sumValues(x) {
     return x.reduce((a, b) => Decimal.add(a, b))
 }
 
-function format(decimal, precision = 2, small) {
+function format_(decimal, precision = 2, small) {
     small = small || modInfo.allowSmall
     decimal = new Decimal(decimal)
     if (isNaN(decimal.sign) || isNaN(decimal.layer) || isNaN(decimal.mag)) {
         player.hasNaN = true;
         return "NaN"
     }
-    if (decimal.sign < 0) return "-" + format(decimal.neg(), precision, small)
+    if (decimal.sign < 0) return "-" + format_(decimal.neg(), precision, small)
     if (decimal.mag == Number.POSITIVE_INFINITY) return "Infinity"
     if (decimal.gte("eeee1000")) {
         var slog = decimal.slog()
-        if (slog.gte(1e6)) return "F" + format(slog.floor())
-        else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
+        if (slog.gte(1e6)) return "F" + format_(slog.floor())
+        else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat_(slog.floor(), 0)
     }
-    else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
-    else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
-    else if (decimal.gte(1e9)) return exponentialFormat(decimal, precision)
-    else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
-    else if (decimal.gte(0.0001) || !small) return regularFormat(decimal, precision)
+    else if (decimal.gte("1e1000000")) return exponentialFormat_(decimal, 0, false)
+    else if (decimal.gte("1e10000")) return exponentialFormat_(decimal, 0)
+    else if (decimal.gte(1e9)) return exponentialFormat_(decimal, precision)
+    else if (decimal.gte(1e3)) return commaFormat_(decimal, 0)
+    else if (decimal.gte(0.0001) || !small) return regularFormat_(decimal, precision)
     else if (decimal.eq(0)) return (0).toFixed(precision)
 
     decimal = invertOOM(decimal)
     let val = ""
-    if (decimal.lt("1e1000")){
-        val = exponentialFormat(decimal, precision)
+    if (decimal.lt_("1e1000")){
+        val = exponentialFormat_(decimal, precision)
         return val.replace(/([^(?:e|F)]*)$/, '-$1')
     }
     else   
-        return format(decimal, precision) + "⁻¹"
+        return format_(decimal, precision) + "⁻¹"
 
 }
 
-function formatWhole(decimal) {
+function formatWhole_(decimal) {
     decimal = new Decimal(decimal)
-    if (decimal.gte(1e9)) return format(decimal, 2)
-    if (decimal.lte(0.99) && !decimal.eq(0)) return format(decimal, 2)
-    return format(decimal, 0)
+    if (decimal.gte(1e9)) return format_(decimal, 2)
+    if (decimal.lte(0.99) && !decimal.eq(0)) return format_(decimal, 2)
+    return format_(decimal, 0)
 }
 
 function formatTime(s) {
-    if (s < 60) return format(s) + "s"
-    else if (s < 3600) return formatWhole(Math.floor(s / 60)) + "m " + format(s % 60) + "s"
-    else if (s < 86400) return formatWhole(Math.floor(s / 3600)) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
-    else if (s < 31536000) return formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
-    else return formatWhole(Math.floor(s / 31536000)) + "y " + formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
+    if (s < 60) return format_(s) + "s"
+    else if (s < 3600) return formatWhole(Math.floor(s / 60)) + "m " + format_(s % 60) + "s"
+    else if (s < 86400) return formatWhole(Math.floor(s / 3600)) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format_(s % 60) + "s"
+    else if (s < 31536000) return formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format_(s % 60) + "s"
+    else return formatWhole(Math.floor(s / 31536000)) + "y " + formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format_(s % 60) + "s"
 }
 
 function toPlaces(x, precision, maxAccepted) {
@@ -97,8 +97,8 @@ function toPlaces(x, precision, maxAccepted) {
 }
 
 // Will also display very small numbers
-function formatSmall(x, precision=2) { 
-    return format(x, precision, true)    
+function formatSmall_(x, precision=2) { 
+    return format_(x, precision, true)    
 }
 
 function invertOOM(x){
@@ -108,4 +108,20 @@ function invertOOM(x){
     x = new Decimal(10).pow(e).times(m)
 
     return x
+}
+
+function formatWhole(a) {
+	a=new Decimal(a);
+    a=Decimal.tetrate(10,a.max(1).slog().mul(2).pow(2));
+	return format_(a);
+}
+function formatSmall(a) {
+	a=new Decimal(a);
+    a=Decimal.tetrate(10,a.max(1).slog().mul(2).pow(2));
+	return format_(a);
+}
+function format(a) {
+	a=new Decimal(a);
+    a=Decimal.tetrate(10,a.max(1).slog().mul(2).pow(2));
+	return format_(a);
 }
