@@ -62,7 +62,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (upg('F',21)) mult=Decimal.mul(mult,2)
         if (upg('F',23)) mult=Decimal.mul(mult,upgradeEffect('F',23))
         if (upg('F',32)) mult=Decimal.mul(mult,upgradeEffect('F',32))
-        if (mil('Z',13)) mult=Decimal.mul(mult,tmp.F.F1f)
+        if (player.Z.points.gte(14) && player.Z.points.lte(28)) mult=Decimal.mul(mult,tmp.F.F1f)
 
                 if (upg('G',14)) mult=Decimal.mul(mult,upgradeEffect('G',14))
 
@@ -196,7 +196,9 @@ if(hasMilestone("Z",16))p = p.mul(10)
                 unlocked() {return (mil("Z",13))},
                 content: [["raw-html", () => `<h4 style="opacity:.5">this part is from Antimatter Dimensions(but easier).<br></h4>`]
                 //["raw-html", () => `<h4 style="opacity:.5">like Em,F1 mults F.<br></h4>`]
-                ,["display-text", () => "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, mult F by <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F1f) + "x</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"],
+                ,["display-text", function(){
+		if(player.Z.points.gte(29))return "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, points ^<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F1f2) + "</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"
+		return "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, mult F by <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F1f) + "x</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"}],
                 ,["display-text", () => "dim mult per buy: x<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(tmp.F.fdbas)],
                 ,["display-text", () => "tickspeed mult per buy: x<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(tmp.F.tick,4)],
                 ,["buyables",[1,2,3,10]]
@@ -1134,6 +1136,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+	if (player.Z.points.gte(29))return n(10);
         ef = n(1.25)
         if (upg('F',42))  ef=ef.sub(0.01)
         if (upg('G',13))  ef=ef.sub(0.01)
@@ -1160,6 +1163,20 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f)
         if (player.Z.points.gte(20)) ef = Decimal.pow(10, ef.max(1).log10().pow(Decimal.pow(1.05,player.Z.points.sub(19))));
         return ef
+    },
+    F1f2() {
+        let exp=n(hasMilestone('Z',15)?0.25:0.15)  
+        if (upg('F',52))  exp=Decimal.mul(exp,3)
+        if (upg('F',54))  exp=new Decimal(1)
+        if (upg('F',63))  exp=Decimal.mul(exp,1.1)
+        if (upg('F',65))  exp=Decimal.mul(exp,1.25/1.1)
+        if (upg('F',73))  exp=Decimal.mul(exp,1.3/1.25)
+        let ef=player.F.F1.add(10).log10();
+        if (upg('G',31) && ef.gte(1200))ef = ef.pow(1.5).div(1200**0.5);
+	ef = Decimal.pow(10,ef.log10().div(5).pow(0.99)).max(ef.pow(0.05));
+	ef = ef.pow(exp);
+        if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f);
+        return ef;
     },
     F2f() {
         let ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(0.1).sub(1).div(10).add(1);
