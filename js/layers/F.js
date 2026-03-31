@@ -719,6 +719,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         11: {
             title: "Fd1", 
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling)).mul(player.Z.points.gte(19)?1:10)
             },
             canAfford() { let cost = this.cost()
@@ -750,6 +751,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         12: {
             title: "Fd2", 
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(2))).mul(player.Z.points.gte(19)?1:100)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -774,6 +776,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         13: {
             title: "Fd3",  
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(3))).mul(player.Z.points.gte(19)?1:1e4)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -798,6 +801,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         21: {
             title: "Fd4",  
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(4))).mul(player.Z.points.gte(19)?1:1e7)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -822,6 +826,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         22: {
             title: "Fd5",  
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(5))).mul(player.Z.points.gte(19)?1:1e11)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -846,6 +851,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         23: {
             title: "Fd6",   
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(6))).mul(player.Z.points.gte(19)?1:1e16)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -870,6 +876,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         31: {
             title: "Fd7",
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(7))).mul(player.Z.points.gte(19)?1:1e22)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -894,6 +901,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         32: {
             title: "Fd8", 
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(8))).mul(player.Z.points.gte(19)?1:1e29)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -919,6 +927,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         101: {
             title: "tickspeed",
             cost(x) {
+		if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling)).mul(player.Z.points.gte(19)?1:1e10)
             },
             canAfford() { return player[this.layer][upg('F',55)?"points":"F1"].gte(this.cost()) },
@@ -941,6 +950,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         102: {
             title: "tickboost", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
+                if(player.Z.points.gte(30))return x.add(1)
                 if(player.Z.points.gte(21))return x.add(1).pow(2)
                 return x.pow(2).mul(mil('Z',15)?5:8).add(mil('Z',15)?10:12)
             },
@@ -1136,6 +1146,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+	if (player.Z.points.gte(30))return Decimal.pow(1.01,player.Z.points.sub(28).min(3));
 	if (player.Z.points.gte(29))return n(10);
         ef = n(1.25)
         if (upg('F',42))  ef=ef.sub(0.01)
@@ -1146,10 +1157,6 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if(inChallenge('G',21)) ef = ef.pow(1.02).mul(1.02)
         return ef;
     },
-    // sc2(){
-    //     ef = n(1.5)
-    //     return ef;
-    // },
     F1f() {
         let exp=n(hasMilestone('Z',15)?0.25:0.15)  
         if (upg('F',52))  exp=Decimal.mul(exp,3)
@@ -1173,7 +1180,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (upg('F',73))  exp=Decimal.mul(exp,1.3/1.25)
         let ef=player.F.F1.add(10).log10();
         if (upg('G',31) && ef.gte(1200))ef = ef.pow(1.5).div(1200**0.5);
-	ef = Decimal.pow(10,ef.log10().div(5).pow(0.99)).max(ef.pow(0.05));
+	if ((!upg('G',64) || player.Z.points.lt(30)) && player.Z.points.lt(31))ef = Decimal.pow(10,ef.log10().div(5).pow(0.99)).max(ef.pow(0.05));
 	ef = ef.pow(exp);
         if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f);
         return ef;
@@ -1182,6 +1189,8 @@ if(hasMilestone("Z",16))p = p.mul(10)
         let ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(0.1).sub(1).div(10).add(1);
         if (player.Z.points.gte(24)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1);
         if (player.Z.points.gte(28)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1).pow(2);
+        if (player.Z.points.gte(30)) ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(2);
+	if (upg('G',64) && player.Z.points.gte(31)) ef = ef.mul(player.F.F2.add(1).log(10).add(1).pow(0.04));
         return ef
     },
     update(diff) {
