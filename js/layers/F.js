@@ -1146,6 +1146,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+	if (player.Z.points.gte(33))return n(1.06);
 	if (player.Z.points.gte(30))return Decimal.pow(1.01,player.Z.points.sub(28).min(3));
 	if (player.Z.points.gte(29))return n(10);
         ef = n(1.25)
@@ -1191,6 +1192,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (player.Z.points.gte(28)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1).pow(2);
         if (player.Z.points.gte(30)) ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(2);
 	if (upg('G',64) && player.Z.points.gte(31)) ef = ef.mul(player.F.F2.add(1).log(10).add(1).pow(player.Z.points.gte(32)?0.06:0.04));
+	if (player.Z.points.gte(33)) ef = player.F.F2.add(10).log(10).pow(0.1);
         return ef
     },
     update(diff) {
