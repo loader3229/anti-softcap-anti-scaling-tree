@@ -4,35 +4,35 @@ addLayer("C", {
     position: 0, 
     startData() { return {
         unlocked: false,
-		points: new Decimal(0),
+        points: new Decimal(0),
     }},
     passiveGeneration(){    let pg=1
         if (hasMilestone("D", 2))  pg=pg*100
         if (hasMilestone("B", 5))  pg=pg*100
-		
-		
+        
+        
         if (mil("Z", 2))  pg=Decimal.mul(pg,100)
         if (mil("Z", 3))  pg=Decimal.mul(pg,100)
         if (mil("Z", 4))  pg=Decimal.mul(pg,100)
         if (mil("Z", 1))  return n(pg).mul(100);
         return (mil("D", 1)||mil('I',1))?pg:0
-		},
+        },
     color: "#A73E16",
     requires(){
-		if (mil("Z", 4)) return new Decimal(1);
-		return new Decimal(2e36);
-	},
+        if (mil("Z", 4)) return new Decimal(1);
+        return new Decimal(2e36);
+    },
     resource: "C", 
     baseResource() {if(player.Z.points.gte(25))return "B";return "points"}, 
     baseAmount() {if(player.Z.points.gte(25))return player.B.points;return player.points}, 
     type: "normal", 
-	exponent(){
+    exponent(){
         if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(31))return n(0.2);
         if(player.Z.points.gte(25))return Decimal.pow(0.95,player.Z.points.mul(5).sub(100)).mul(3);
         if(player.Z.points.gte(21))return n(0.05);
-		return n(0.15).mul(Decimal.pow(0.95,player.Z.points));
-	},
+        return n(0.15).mul(Decimal.pow(0.95,player.Z.points));
+    },
     gainExp() {
         return new Decimal(1)
     },
@@ -57,7 +57,7 @@ addLayer("C", {
         return mult
     },
     softcap(){return new Decimal(Infinity)},
-	softcapPower(){return new Decimal(1)},
+    softcapPower(){return new Decimal(1)},
     branches: ['A','B'],
     milestones: {
         0: {requirementDescription: "3 total C",
@@ -151,7 +151,7 @@ addLayer("C", {
                 let ef = 0.5
                 if (hasUpgrade('C',23))  ef = ef*1.3
                 if (hasUpgrade('C',24))  ef = ef*1.2
-		if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
+        if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
                 if (inChallenge('C',11))  ef = 0
                 if (inChallenge('E',11))  ef = 0
                 return player[this.layer].points.add(1).pow(ef);          
@@ -203,17 +203,17 @@ addLayer("C", {
         31: {
             title:'C11',
             description: "1e7x pts.",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e789':player.Z.points.gte(10)?'1e950':'1e1800');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e789':player.Z.points.gte(10)?'1e950':'1e1800');
+            },
             unlocked() { return (challengeCompletions("E", 21) >= 2)},
         },
         32: {
             title:'C12',
             description: "C upg boost E.<br>(1.3^x).",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e876':player.Z.points.gte(10)?'1e1100':'1e2760');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e876':player.Z.points.gte(10)?'1e1100':'1e2760');
+            },
             effect()  { 
                 let bas=1.3
                 let a=player.C.upgrades.length
@@ -227,9 +227,9 @@ addLayer("C", {
         33: {
             title:'C13',
             description: "Eb1 amt boost pts.<br>(1.5^x).",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e900':player.Z.points.gte(10)?'1e1200':'1e2835');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e900':player.Z.points.gte(10)?'1e1200':'1e2835');
+            },
             effect()  { 
                 let a=getBuyableAmount('E', 11)
                 let ef = Decimal.pow(1.5,a)
@@ -241,17 +241,17 @@ addLayer("C", {
         34: {
             title:'C14',
             description: "Eb4 is cheaper.",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e975':'1e2906');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e975':'1e2906');
+            },
             unlocked() { return (hasUpgrade(this.layer, 33))},
         },
         35: {
             title:'C15',
             description: "E3/E4 ^1.2",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e1000':'1e2996');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e1000':'1e2996');
+            },
             unlocked() { return (hasUpgrade(this.layer, 34))},
         },
         41: {
@@ -274,9 +274,9 @@ addLayer("C", {
             effect()  {
                 if(player.Z.points.gte(26))return player.C.points.pow(upg('C',54)?1:upg('C',53)?0.7:upg('C',52)?0.5:upg('C',51)?0.3:upg('C',45)?0.2:0.1).add(1);
 
-		if(player.Z.points.gte(25)&&upg('C',54)){
-			return Decimal.pow(10,player.C.points.add(10).log10().div(player.C.points.add(10).log10().div(1e100).pow(0.5).add(1)));
-		}
+        if(player.Z.points.gte(25)&&upg('C',54)){
+            return Decimal.pow(10,player.C.points.add(10).log10().div(player.C.points.add(10).log10().div(1e100).pow(0.5).add(1)));
+        }
                 if(player.Z.points.gte(25))return player.C.points.pow(upg('C',53)?0.6:upg('C',52)?0.4:upg('C',51)?0.2:upg('C',45)?0.125:0.1).add(1).min("ee100");
                 if(player.Z.points.gte(24))return player.C.points.pow(upg('C',54)?1/3:upg('C',53)?0.3:upg('C',52)?0.25:upg('C',51)?0.15:upg('C',45)?0.125:0.1).add(1);  
                 return player.C.points.pow(upg('C',54)?0.4001:upg('C',53)?1/3:upg('C',52)?0.2:upg('C',51)?0.15:upg('C',45)?0.125:0.1).add(1);  

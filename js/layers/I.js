@@ -4,7 +4,7 @@ addLayer("I", {
     position: 0, 
     startData() { return {
         unlocked:false,
-		points:n(0),
+        points:n(0),
         qolpoints:n(0),
         time:n(0),
         resetamt:n(0),
@@ -34,8 +34,8 @@ addLayer("I", {
     // },
     // getNextAt() {
     //     let t=tmp.I.getResetGain.add(1).max(1)
-	// 	let a=n(10).tetrate(t.pow(4/3).mul(100))
-	// 	return a
+    //     let a=n(10).tetrate(t.pow(4/3).mul(100))
+    //     return a
     // },
     // prestigeButtonText() {
     //     let s='Reset for '+format(tmp.I.getResetGain)+' I<br>'
@@ -175,7 +175,7 @@ addLayer("I", {
         return ef
     },
     softcap(){return n(Infinity)},
-	softcapPower(){return n(1)},
+    softcapPower(){return n(1)},
     microtabs: {
         stuff: {       
             // "Upgrades": {

@@ -4,7 +4,7 @@ addLayer("H", {
     position: 3, 
     startData() { return {
         unlocked: false,
-		points: n(0),
+        points: n(0),
         max: n(0),
         harsh: n(0),
         hyper: n(0),
@@ -57,7 +57,7 @@ addLayer("H", {
         return mult
     },
     softcap(){return n(Infinity)},
-	softcapPower(){return n(1)},
+    softcapPower(){return n(1)},
     branches: ['G'],
     effect(){
         let ef=player.H.max.pow(0.7).div(180)

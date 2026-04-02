@@ -4,7 +4,7 @@ addLayer("A", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+        points: new Decimal(0),
     }},
     passiveGeneration(){
         let pg=0
@@ -21,9 +21,9 @@ addLayer("A", {
         return pg},
     color: "#4BDC13",
     requires(){
-		if (mil("Z", 4)) return new Decimal(1);
-		return new Decimal(10);
-	}, // Can be a funct}ion that takes requirement increases into account
+        if (mil("Z", 4)) return new Decimal(1);
+        return new Decimal(10);
+    }, // Can be a funct}ion that takes requirement increases into account
     resource: "A", // Name of prestige currency
     baseResource() {if(player.Z.points.gte(25))return "Zp";return "points"}, 
     baseAmount() {if(player.Z.points.gte(25))return layers.Z.getZp();return player.points}, 
@@ -32,8 +32,8 @@ addLayer("A", {
         if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(24))return n(0.2);
         if(player.Z.points.gte(21))return n(0.18);
-		return n(0.5).mul(Decimal.pow(0.95,player.Z.points));
-	}, // Prestige currency exponent
+        return n(0.5).mul(Decimal.pow(0.95,player.Z.points));
+    }, // Prestige currency exponent
     gainExp() {// Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
@@ -58,7 +58,7 @@ addLayer("A", {
         return mult
     },
     softcap(){return new Decimal(Infinity)},
-	softcapPower(){return new Decimal(1)},
+    softcapPower(){return new Decimal(1)},
     doReset(layer){
         if (layer=="F") {        
             let keep = [];
@@ -108,7 +108,7 @@ addLayer("A", {
                 ef=ef.pow(buyableEffect("B",22))
                 if(mil("Z",16)) ef=ef.pow(10)
                 if(mil("Z",17)) ef=ef.pow(10)
-		if(mil("Z",21)) ef=ef.pow(1.3080372873291066)
+        if(mil("Z",21)) ef=ef.pow(1.3080372873291066)
                 return ef
             },
             cost:new Decimal(1),
@@ -182,7 +182,7 @@ addLayer("A", {
                 if (upg('A',44)) ef = ef.pow(1.25)
                 if (upg('A',52)) ef = ef.pow(1.15)
 
-				if(hasMilestone('Z',5))ef = ef.pow(15)
+                if(hasMilestone('Z',5))ef = ef.pow(15)
 
                 if (inChallenge("A",12)) ef = ef.pow(0.25)
                 if (inChallenge("A",22)) ef = n(1)
@@ -405,38 +405,38 @@ addLayer("A", {
             canComplete() {return player.points.gte(this.goal())},
             rewardDescription: "boost to pts base on Bb1-2.",
             rewardEffect() {
-		if(hasMilestone("Z",20)){
-			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(0.6).mul(50))
-                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
-			if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                	else return new Decimal(1)
-		}
-		if(hasMilestone("Z",16)){
-			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(2/3).mul(10))
-                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
-			if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                	else return new Decimal(1)
-		}
-		if(hasMilestone("Z",15)){
-			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(2e5).pow(0.75).mul(4))
-                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
-			if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                	else return new Decimal(1)
-		}
-		if(hasMilestone("Z",14)){
-			let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85).mul(2))
-                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
-			if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                	else return new Decimal(1)
-		}
-		if(hasMilestone("Z",12)){
-			let ef1 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1000).pow(0.9).div(1.1));
-			let ef2 = Decimal.pow(10,buyableEffect('B',12).add(10).log10().add(1000).pow(0.9).div(1.1));
-                	let ef = ef1.mul(ef2)
-                	if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
-			if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                	else return new Decimal(1)
-		}
+        if(hasMilestone("Z",20)){
+            let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(0.6).mul(50))
+                    if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+            if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                    else return new Decimal(1)
+        }
+        if(hasMilestone("Z",16)){
+            let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(2/3).mul(10))
+                    if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+            if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                    else return new Decimal(1)
+        }
+        if(hasMilestone("Z",15)){
+            let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(2e5).pow(0.75).mul(4))
+                    if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+            if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                    else return new Decimal(1)
+        }
+        if(hasMilestone("Z",14)){
+            let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85).mul(2))
+                    if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+            if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                    else return new Decimal(1)
+        }
+        if(hasMilestone("Z",12)){
+            let ef1 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1000).pow(0.9).div(1.1));
+            let ef2 = Decimal.pow(10,buyableEffect('B',12).add(10).log10().add(1000).pow(0.9).div(1.1));
+                    let ef = ef1.mul(ef2)
+                    if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
+            if (n(challengeCompletions("A", 41)).gte(1))  return ef
+                    else return new Decimal(1)
+        }
                 let b=n(challengeCompletions("A", 41)).pow(1.25)
                 let ef1 = n(buyableEffect('B',11)).pow(n(0.12).add(b.div(40)))
                 let ef2 = n(buyableEffect('B',12)).pow(n(0.12).add(b.div(40)))

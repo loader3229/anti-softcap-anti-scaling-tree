@@ -4,7 +4,7 @@ addLayer("J", {
     position: 0, 
     startData() { return {
         unlocked:false,
-		points:n(0),
+        points:n(0),
         bp:n(0),
         ss:n(0),
     }},
@@ -40,7 +40,7 @@ addLayer("J", {
     // milestones: {
     // },
     softcap(){return n(Infinity)},
-	softcapPower(){return n(1)},
+    softcapPower(){return n(1)},
     microtabs: {
         stuff: {       
             "Milestones": {

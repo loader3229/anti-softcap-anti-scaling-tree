@@ -4,7 +4,7 @@ addLayer("G", {
     position: 2, 
     startData() { return {
         unlocked: false,
-		points: new Decimal(0),
+        points: new Decimal(0),
         Gc1p: new Decimal(0),
         Gc2p: new Decimal(0),
         Gc3p: new Decimal(0),
@@ -28,10 +28,10 @@ addLayer("G", {
     baseResource: "F1", 
     baseAmount() {return player.F.F1}, 
     type: "normal",
-	exponent(){
+    exponent(){
         if(player.Z.points.gte(34))return n(1);
-		return n(0.02).mul(Decimal.pow(0.95,player.Z.points));
-	}, 
+        return n(0.02).mul(Decimal.pow(0.95,player.Z.points));
+    }, 
     gainExp() {
         let e=n(1)
         if(mil('I',0)) e=e.mul(1.03)
@@ -151,7 +151,7 @@ addLayer("G", {
         18: {requirementDescription: "1F5 total G(eeee10) (19",//.264
             done() {return player[this.layer].total.gte('eeee10') && hasMilestone('Z',30)},
             unlocked() {return hasMilestone('Z',30)},
-            effectDescription(){ if(player.G.points.gte(33))return "autobuy Gsb4-5.";if(player.G.points.gte(32))return "autobuy Gsb4-5. Gsb5 is cheaper.";return "autobuy Gsb4-5. Change Gs effect formula."},
+            effectDescription(){ if(player.Z.points.gte(33))return "autobuy Gsb4-5.";if(player.Z.points.gte(32))return "autobuy Gsb4-5. Gsb5 is cheaper.";return "autobuy Gsb4-5. Change Gs effect formula."},
             toggles: [ ['G',"auto5"] ]        
         },
         19: {requirementDescription: "2.41F5 total G(eee1.095e257) (20",
@@ -340,7 +340,7 @@ addLayer("G", {
         }                                                                                                                                                                                                                                                                                                                    //for convenience             
     },                                                                                                                                                                                                                                                                                                                                                 //for convenience
     softcap(){return new Decimal(Infinity)},
-	softcapPower(){return new Decimal(1)},
+    softcapPower(){return new Decimal(1)},
     tabFormat: [
         "main-display",
         "prestige-button",
@@ -688,14 +688,14 @@ addLayer("G", {
             currencyInternalName() {return hasMilestone('Z',33)?"Gsi":"Gs"},
             effect()  { 
                 let exp=n(3)
-		if(hasUpgrade('G',91))exp=player.G.Gsi.add(1e100).log(10).sqrt()
+        if(hasUpgrade('G',91))exp=player.G.Gsi.add(1e100).log(10).sqrt()
                 if(hasUpgrade('G',82)) exp=exp.mul(hasMilestone('Z',28)?2:1.6)
-		if(hasMilestone('Z',28))exp = exp.div(3.2)
+        if(hasMilestone('Z',28))exp = exp.div(3.2)
                 let ef=player.F.F2.add(10).log(10).pow(exp).min("ee24")
-		if(hasMilestone('Z',31)){
-			exp = exp.mul(3.2)
-			ef=player.F.F2.add(10).log(10).add(10).log(10).pow(exp);
-		}
+        if(hasMilestone('Z',31)){
+            exp = exp.mul(3.2)
+            ef=player.F.F2.add(10).log(10).add(10).log(10).pow(exp);
+        }
                 return ef;
             },
             effectDisplay() { return '/'+format(this.effect()) },
@@ -728,19 +728,19 @@ addLayer("G", {
             currencyInternalName: "Gsi",
             effect()  { 
                 let exp=player.G.Gsi.add(1e10).log(10).div(100)
-		if(player.Z.points.eq(28)){
-			exp = player.G.Gsi.add(10).log(10).sqrt().div(50)
-			if(player.G.Gsi.gte(1e100))exp = player.G.Gsi.add(10).log(10).pow(1.5).div(100).div(player.G.Gsi.add(10).log(10).sqrt().add(40))
-			if(player.G.Gsi.gte(1e225))exp = player.G.Gsi.add(10).log(10).mul(3).div(1100)
-		}else if(player.Z.points.eq(29))exp = player.G.Gsi.add(10).log(10).sqrt().div(100)
-		else if(player.Z.points.eq(30))exp = player.G.Gsi.add(10).log(10).sqrt().div(100).min(0.7)
+        if(player.Z.points.eq(28)){
+            exp = player.G.Gsi.add(10).log(10).sqrt().div(50)
+            if(player.G.Gsi.gte(1e100))exp = player.G.Gsi.add(10).log(10).pow(1.5).div(100).div(player.G.Gsi.add(10).log(10).sqrt().add(40))
+            if(player.G.Gsi.gte(1e225))exp = player.G.Gsi.add(10).log(10).mul(3).div(1100)
+        }else if(player.Z.points.eq(29))exp = player.G.Gsi.add(10).log(10).sqrt().div(100)
+        else if(player.Z.points.eq(30))exp = player.G.Gsi.add(10).log(10).sqrt().div(100).min(0.7)
                 else if(player.Z.points.eq(31))exp = player.G.Gsi.add(10).log(10).sqrt().div(1000)
                 let ef=player.F.F2.add(10).log(10).pow(exp)
-		if(hasMilestone('Z',31)){
-			exp = player.G.Gsi.add(10).log(10).sqrt().div(hasMilestone('Z',33)?100:10)
-			ef=player.F.F2.add(10).log(10).add(10).log(10).pow(exp);
-		}
-		if(player.Z.points.gte(30) && player.Z.points.lte(31))return ef.min("1e3000")
+        if(hasMilestone('Z',31)){
+            exp = player.G.Gsi.add(10).log(10).sqrt().div(hasMilestone('Z',33)?100:10)
+            ef=player.F.F2.add(10).log(10).add(10).log(10).pow(exp);
+        }
+        if(player.Z.points.gte(30) && player.Z.points.lte(31))return ef.min("1e3000")
                 return ef;
             },
             effectDisplay() { return 'x'+format(this.effect()) },
@@ -807,7 +807,7 @@ addLayer("G", {
             currencyInternalName: "Gsi",
             effect()  { 
                 let b = getBuyableAmount('G',21)
-		if(hasMilestone('Z',30))return b.add(1).mul(layers.G.buyables[21].extra().add(1)).pow(hasUpgrade('G',105)?20:10);
+        if(hasMilestone('Z',30))return b.add(1).mul(layers.G.buyables[21].extra().add(1)).pow(hasUpgrade('G',105)?20:10);
                 let ba=n(1.05)
                 if(hasUpgrade('G',105)) ba=ba.add(0.02)
                 let ef=n(ba).pow(b.pow(hasMilestone('Z',28)?0.9:1))
@@ -835,7 +835,7 @@ addLayer("G", {
             effect()  { 
                 let ba = upgradeEffect('G',95)
                 let exp=n(0.15)
-		if(player.Z.points.gte(30))exp = n(0.1)
+        if(player.Z.points.gte(30))exp = n(0.1)
                 if(hasUpgrade('G',103)) exp=exp.add(0.05)
                 if(hasUpgrade('G',104)) exp=exp.add(0.05)
                 let ef=n(ba).pow(exp)
@@ -878,7 +878,7 @@ addLayer("G", {
             currencyInternalName: "Gse",
             effect()  { 
                 let b = getBuyableAmount('G',31)
-		if(hasMilestone('Z',30))return b.add(1).mul(layers.G.buyables[31].extra().add(1)).pow(player.Z.points.gte(32)?10:1);
+        if(hasMilestone('Z',30))return b.add(1).mul(layers.G.buyables[31].extra().add(1)).pow(player.Z.points.gte(32)?10:1);
                 let ba=n(1.05)
                 let ef=n(ba).pow(b.pow(hasMilestone('Z',29)?0.9:1))
                 return ef;
@@ -1284,7 +1284,7 @@ addLayer("G", {
                 setClickableState(this.layer,this.id,1)
             },
             effect(){
-		return Decimal.pow(1e8,player.G.GGtot.pow(gcs('G',43)?1.5:1)).pow(hasUpgrade('G',131)?10:1)
+        return Decimal.pow(1e8,player.G.GGtot.pow(gcs('G',43)?1.5:1)).pow(hasUpgrade('G',131)?10:1)
                 //let d=n(400)
                 //if(gcs('G',43))  d=d.mul(0.8)
                 //if(gcs('G',51))  d=d.mul(0.8)
@@ -1698,12 +1698,12 @@ addLayer("G", {
                 if(player.Z.points.gte(23)){
                     return Decimal.pow(10, Decimal.pow(2, x));
                 }
-		if(player.Z.points.gte(20)){
+        if(player.Z.points.gte(20)){
                     return Decimal.pow(100, Decimal.pow(2, x));
                 }
                 let cost = Decimal.pow(1000, x.pow(player.Z.points.gte(17)?3:1.5)).mul(player.Z.points.gte(19)?1:player.Z.points.gte(17)?1e9:1e12)
                 if(x.gte(10) && player.Z.points.gte(19))cost = Decimal.pow(1000, x.pow(6).div(1000));
-		return cost
+        return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() { if(!player.Z.points.gte(23))setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1728,12 +1728,12 @@ addLayer("G", {
         21: {
             title: "Gsb1", 
             cost(x) {
-		if (mil('G',17) || player.Z.points.gte(29)) {
-			let cost = Decimal.pow(hasUpgrade("G",122)?4:4.1, x.pow(hasUpgrade("G",122)?1.25:1.35))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-                	if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
-			return cost
-		}
+        if (mil('G',17) || player.Z.points.gte(29)) {
+            let cost = Decimal.pow(hasUpgrade("G",122)?4:4.1, x.pow(hasUpgrade("G",122)?1.25:1.35))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+                    if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
+            return cost
+        }
 
                 let bas=n(10)
                 if (hasUpgrade('G',61)) bas=n(5)
@@ -1759,7 +1759,7 @@ addLayer("G", {
                 return e
             },
             base(){
-		let t=n(1.1)
+        let t=n(1.1)
                 if (hasUpgrade('G',103)) t=t.add(0.1)
                 if(hasUpgrade('G',105)) t=t.mul(1.05)
                 let base = player.G.Gs.add(10).log(10).pow(t)   
@@ -1784,12 +1784,12 @@ addLayer("G", {
         22: {
             title: "Gsb2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-		if (player.Z.points.gte(30)) {
-			let cost = Decimal.pow(hasUpgrade("G",92)?5:10, x.pow(player.Z.points.gte(33)?2:2.5))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-                	if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
-			return cost
-		}
+        if (player.Z.points.gte(30)) {
+            let cost = Decimal.pow(hasUpgrade("G",92)?5:10, x.pow(player.Z.points.gte(33)?2:2.5))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+                    if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
+            return cost
+        }
 
                 let bas=n(1e5)
                 if (hasUpgrade('G',85))  bas=Decimal.mul(bas,0.4)
@@ -1816,23 +1816,23 @@ addLayer("G", {
             },
             base(){
                 let base = player.G.Gs.add(10).log(10).pow(0.6).div(200);
-		if(player.Z.points.gte(32))base = player.G.Gs.add(1).log(10).cbrt().div(115);
+        if(player.Z.points.gte(32))base = player.G.Gs.add(1).log(10).cbrt().div(115);
                 if (hasUpgrade('G',64)) base=base.mul(1.15)
                 if (hasMilestone('G',19)) base=base.mul(1.1)
-		if(player.Z.points.gte(32))return base;
+        if(player.Z.points.gte(32))return base;
                 return base.min(1111)
             },
             purchaseLimit() {
-		if(hasMilestone('Z',29))return Decimal.dInf
-		let lim=n(4000)
-		return lim
-		},
+        if(hasMilestone('Z',29))return Decimal.dInf
+        let lim=n(4000)
+        return lim
+        },
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let exp=n(1)
                 let ef = Decimal.mul(this.base(),x.add(this.extra()).pow(exp)).add(1)
                 return ef},
             display() { // Everything else displayed in the buyable button after the title
-		if(hasMilestone('Z',29))return "Gs gain base +^"+ format(this.base()) + "  \n\
+        if(hasMilestone('Z',29))return "Gs gain base +^"+ format(this.base()) + "  \n\
                 Cost: " + format(this.cost()) + " Gs \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
                 Effect: ^" + format(this.effect())
@@ -1847,19 +1847,19 @@ addLayer("G", {
             title: "Gsb3", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 if (player.Z.points.gte(30)) {
-			let cost = Decimal.pow(1000, x.pow(3))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-                	if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
-			return cost
-		}
-		if (mil('G',17)) {
-			let cost = Decimal.pow(100, x)
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-                	if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
-			return cost
-		}
+            let cost = Decimal.pow(1000, x.pow(3))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+                    if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
+            return cost
+        }
+        if (mil('G',17)) {
+            let cost = Decimal.pow(100, x)
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+                    if (hasUpgrade('G',81))  cost=cost.div(upgradeEffect('G',81))
+            return cost
+        }
 
-		let bas=n(1000)
+        let bas=n(1000)
                 let e=n(1.2)
                 if (hasUpgrade('G',94))  bas=bas.div(10)
                 if (hasUpgrade('G',104))  e=e.sub(0.1)
@@ -1872,23 +1872,23 @@ addLayer("G", {
             canAfford() { return player[this.layer].Gs.gte(this.cost()) },
             buy() { if(!mil('G',27) && player.Z.points.lt(30)) {player[this.layer].Gs = player[this.layer].Gs.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
-	extra(){
+    extra(){
                 let e=n(0)
                 if (hasUpgrade('G',player.Z.points.gte(33)?73:102) && player.Z.points.gte(32))  e=e.add(getBuyableAmount('G',33))
                 if (hasUpgrade('G',player.Z.points.gte(33)?73:102) && player.Z.points.gte(32))  e=e.add(layers.G.buyables[33].ex())
                 return e
             },
             base(){   
-			if(player.Z.points.gte(30))return player.G.Gs.add(1).log(10).cbrt().div(hasUpgrade('G',125)?100:110).mul(hasMilestone('G',19)?1.1:1);
+            if(player.Z.points.gte(30))return player.G.Gs.add(1).log(10).cbrt().div(hasUpgrade('G',125)?100:110).mul(hasMilestone('G',19)?1.1:1);
                   let base = player.G.Gs.add(10).log(10).div(1000).mul(player.G.buyables[23].add(1))   
                 if (hasUpgrade('G',125))  base=base.mul('1.1')
                 return base},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.mul(this.base(),x.add(this.extra()))
-		if (player.Z.points.gte(30)) ef = ef.add(1)
+        if (player.Z.points.gte(30)) ef = ef.add(1)
                 return ef},
             display() { // Everything else displayed in the buyable button after the title
-		if(hasMilestone('Z',29))return "Gs eff +^"+ format(this.base()) + "  \n\
+        if(hasMilestone('Z',29))return "Gs eff +^"+ format(this.base()) + "  \n\
                 Cost: " + format(this.cost()) + " Gs \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
                 Effect: ^" + format(this.effect());
@@ -1901,18 +1901,18 @@ addLayer("G", {
         31: {
             title: "Gsb4", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-		if (player.Z.points.gte(31)) {
-			let cost = Decimal.pow(hasUpgrade("G",93)?4:4.8, x.pow(hasUpgrade("G",122)?1.5:1.6))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-			return cost
-		}
+        if (player.Z.points.gte(31)) {
+            let cost = Decimal.pow(hasUpgrade("G",93)?4:4.8, x.pow(hasUpgrade("G",122)?1.5:1.6))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+            return cost
+        }
                 let bas=n(10)
                 let e=n(1.4)
                 if (hasUpgrade('G',85))  bas=n(7)
                 if (hasUpgrade('G',93))  bas=n(5)
                 if (hasUpgrade('G',112))  bas=n(4.9)
-		if (x.gte(200) && player.Z.points.gte(30))e = e.add(0.03)
-		if (x.gte(286) && player.Z.points.gte(30))e = x.div(200)
+        if (x.gte(200) && player.Z.points.gte(30))e = e.add(0.03)
+        if (x.gte(286) && player.Z.points.gte(30))e = x.div(200)
                 let cost = Decimal.pow(bas, x.pow(e)).times('10')
                 if (hasUpgrade('G',104) && player.Z.points.lt(30))  cost=cost.pow(upgradeEffect('G',104))
                 if (hasUpgrade('G',73) && player.Z.points.gte(30))  cost=cost.pow(upgradeEffect('G',65))
@@ -1935,9 +1935,9 @@ addLayer("G", {
                 return e
             },
             purchaseLimit() {let lim=n(1000)
-		if(player.Z.points.gte(31))return Decimal.dInf
-		return lim
-		},
+        if(player.Z.points.gte(31))return Decimal.dInf
+        return lim
+        },
             base(){   let base = player.G.Gsi.add(10).log(10).pow(1.1).mul(2)
                 if (hasUpgrade('G',player.Z.points.gte(33)?75:85))  base=Decimal.mul(base,upgradeEffect('G',player.Z.points.gte(33)?75:85)) 
                 if (hasMilestone('G',19)) base=base.mul(1.1)  
@@ -1963,17 +1963,17 @@ addLayer("G", {
         32: {
             title: "Gsb5", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-		if (player.Z.points.gte(32)) {
-			let cost = Decimal.pow(player.Z.points.gte(33)?5:100, x.pow(player.Z.points.gte(33)?2:hasMilestone("G",18)?2:3))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-			return cost
-		}
+        if (player.Z.points.gte(32)) {
+            let cost = Decimal.pow(player.Z.points.gte(33)?5:100, x.pow(player.Z.points.gte(33)?2:hasMilestone("G",18)?2:3))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+            return cost
+        }
                 let bas=n(1e4)
                 let e=n(1.85)
                 if (hasUpgrade('G',94) && player.Z.points.lt(30)) bas=bas.mul(0.25)
                 if (hasMilestone('G',17))  bas=n(1000)
                 if (hasUpgrade('G',112))  bas=n(500)
-		if (x.gte(62))e = x.mul(0.03)
+        if (x.gte(62))e = x.mul(0.03)
                 let cost = Decimal.pow(bas, x.pow(e)).times(player.Z.points.gte(31)?1:player.Z.points.gte(29)?'1e100':'1e64')
                 if (hasUpgrade('G',103) && player.Z.points.lt(31)) cost=cost.div(player.Z.points.gte(29)?'1e100':'1e64')
                 if (hasUpgrade('G',104) && player.Z.points.lt(31))  cost=cost.pow(upgradeEffect('G',104))
@@ -1981,11 +1981,11 @@ addLayer("G", {
                 return cost
             },
             purchaseLimit() {let lim=n(40)
-		if(player.Z.points.gte(32))return Decimal.dInf
-		if(mil('Z',28))lim = lim.add(20)
-		if(hasUpgrade("G",115) && player.Z.points.gte(31))lim = lim.add(40)
-		return lim
-		},
+        if(player.Z.points.gte(32))return Decimal.dInf
+        if(mil('Z',28))lim = lim.add(20)
+        if(hasUpgrade("G",115) && player.Z.points.gte(31))lim = lim.add(40)
+        return lim
+        },
             canAfford() { return player[this.layer].Gsi.gte(this.cost()) },
             buy() { if(!mil('G',27) && player.Z.points.lt(32)) {player[this.layer].Gsi = player[this.layer].Gsi.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1998,15 +1998,15 @@ addLayer("G", {
                 return e
             },
             base(){   let base = player.G.Gsi.add(10).log(10).pow(0.65).div(100)  
-		if(player.Z.points.gte(32))base = player.G.Gsi.add(1).log(10).cbrt().div(100)
+        if(player.Z.points.gte(32))base = player.G.Gsi.add(1).log(10).cbrt().div(100)
                 if (hasMilestone('G',19)) base=base.mul(1.1) 
                 return base},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.mul(this.base(),x.add(this.extra()))
-		if (player.Z.points.gte(32)) ef = ef.add(1)
+        if (player.Z.points.gte(32)) ef = ef.add(1)
                 return ef},
             display() { // Everything else displayed in the buyable button after the title
-		if(hasMilestone('Z',31))return "Gsi gain base +^"+ format(this.base()) + "  \n\
+        if(hasMilestone('Z',31))return "Gsi gain base +^"+ format(this.base()) + "  \n\
                 Cost: " + format(this.cost()) + " Gsi \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
                 Effect: ^" + format(this.effect())
@@ -2022,7 +2022,7 @@ addLayer("G", {
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let bas=n('1e20')
                 let e=n(2.1)
-		if (x.gte(21))e = x.mul(0.1)
+        if (x.gte(21))e = x.mul(0.1)
                 if(player.Z.points.gte(33))bas = n(10), e = x.mul(0.2).add(1)
                 let cost = Decimal.pow(bas, x.pow(e)).times(player.Z.points.gte(32)?1:hasMilestone('Z',28)?'1e500':hasMilestone('Z',27)?'1e700':'1e600')
                 if(hasUpgrade('G',111) && player.Z.points.lt(32)) cost=cost.div(hasMilestone('Z',28)?'1e500':hasMilestone('Z',27)?'1e700':'1e600')
@@ -2030,9 +2030,9 @@ addLayer("G", {
                 return cost
             },
             purchaseLimit() {let lim=n(7)
-		if(mil('Z',28))lim = lim.add(3)
-		if(mil('Z',30))lim = lim.add(5)
-		if(hasUpgrade("G",115) && player.Z.points.gte(31))lim = lim.add(85)
+        if(mil('Z',28))lim = lim.add(3)
+        if(mil('Z',30))lim = lim.add(5)
+        if(hasUpgrade("G",115) && player.Z.points.gte(31))lim = lim.add(85)
                 //if(mil('H',6)) lim=lim.add(5)
                 //if(upg('H',42)) lim=lim.add(1)
                 //if(upg('G',143)) lim=lim.add(2)
@@ -2043,8 +2043,8 @@ addLayer("G", {
             buy() { if(!mil('G',27)) {player[this.layer].Gsi = player[this.layer].Gsi.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   
-		if(player.Z.points.gte(33))return this.hardcap();
-		let base = player.G.Gsi.add(10).log(10).pow(0.4).div(600) 
+        if(player.Z.points.gte(33))return this.hardcap();
+        let base = player.G.Gsi.add(10).log(10).pow(0.4).div(600) 
                 if (hasUpgrade('G',103)) base=base.mul(1.25)  
                 let sc=n(0.7)
                 if (base.gte(0.03)) base=base.div(0.03).pow(sc).mul(0.03)
@@ -2055,13 +2055,13 @@ addLayer("G", {
                 if(player.Z.points.gte(33) && hasUpgrade("G",65)){
                     hp=n(player.G.upgrades.length-20).mul(0.01).max(0.05);
                 }else if(hasUpgrade("G",115) && player.Z.points.gte(31))hp = hp.add(0.25)
-		if(hasUpgrade("G",123))hp = hp.add(0.02)
+        if(hasUpgrade("G",123))hp = hp.add(0.02)
                 if(upg('G',125)) hp=hp.add(upgradeEffect('G',125))
                 if(hasMilestone('G',21)) hp=hp.add(0.005)
                 if(upg('G',133)) hp=hp.add(0.02)
                 if(gcs('G',102)) hp=hp.add(clickableEffect('G',102))
                 if(gcs('G',111)) hp=hp.add(clickableEffect('G',111))
-		if(hasUpgrade('G',103) && player.Z.points.gte(33))hp = hp.mul(1.25)
+        if(hasUpgrade('G',103) && player.Z.points.gte(33))hp = hp.mul(1.25)
                 return hp
             },
             ex(){
@@ -2071,9 +2071,9 @@ addLayer("G", {
             },
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = this.base().mul(x.add(this.ex()))
-                if(player.G.points.gte(33))return ef.add(1)
+                if(player.Z.points.gte(33))return ef.add(1)
                 let sc=n(0.5)
-		if(player.G.Gsetot.gte("1e4555"))sc=sc.add(0.25);
+                if(player.G.Gsetot.gte("1e4555"))sc=sc.add(0.25);
                 if(mil('G',21)) sc=sc.add(0.03)
                 if(gcs('G',121)) sc=sc.add(0.07)
                 if(gcs('G',104)) sc=sc.add(0.02)
@@ -2082,9 +2082,10 @@ addLayer("G", {
                 if(mil('H',10)) sc=sc.add(0.01)//0.73
                 if(upg('G',154)) sc=sc.add(0.02)
                 if(ef.gte(4.2))  ef=ef.div(4.2).pow(sc).mul(4.2)
-                return ef},
+                return ef
+            },
             display() { // Everything else displayed in the buyable button after the title
-                if(player.G.points.gte(33))return "Gsi eff +^"+ format(this.base(),3)  + "  \n\
+                if(player.Z.points.gte(33))return "Gsi eff +^"+ format(this.base(),3)  + "  \n\
                 Cost: " + format(this.cost()) + " Gsi \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +"/"+format(this.purchaseLimit())+" + "+format(this.ex())+"\n\
                 Effect: ^" + format(this.effect());
@@ -2098,38 +2099,38 @@ addLayer("G", {
         41: {
             title: "Gsb7", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                if (hasUpgrade('G',162)) {
-			let cost = Decimal.pow(4, x.pow(1.4))
-                	if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
-			return cost
-		}
-		let bas=n(10)
+                if (hasUpgrade('G',162) || player.Z.points.gte(35)) {
+                let cost = Decimal.pow(4, x.pow(1.4))
+                    if (hasUpgrade('G',65))  cost=cost.pow(upgradeEffect('G',65))
+            return cost
+        }
+        let bas=n(10)
                 //if (hasUpgrade('G',104))  bas=bas.sub(4)
                 if (hasMilestone('G',17))  bas=bas.sub(1)
                 if (hasUpgrade('G',122))bas = n(4)
                 let e=n(1.45)
                 if (x.gte(500) && player.Z.points.lt(29)) e=e.add(0.1)
-		if (hasMilestone('G',20))e = n(1.44)
+        if (hasMilestone('G',20))e = n(1.44)
                 if(gcs('G',51)) e=e.sub(0.04)
                 let cost = Decimal.pow(bas, x.pow(e)).times('200')
                 if (hasUpgrade('G',104) && player.Z.points.gte(31))  cost=cost.pow(upgradeEffect('G',104))
                 return cost
             },
             purchaseLimit() {let lim=n(100)
-		if(hasUpgrade('G',162))return Decimal.dInf
-		if(player.Z.points.gte(30))lim = lim.add(100)
-		if(hasUpgrade('G',122))lim = lim.add(800)
-		if (hasMilestone('G',20))lim = lim.add(1000)
-		if(hasUpgrade('G',125))lim = lim.add(1000)
-		return lim
-		},
+                if(hasUpgrade('G',162) || player.Z.points.gte(35))return Decimal.dInf
+                if(player.Z.points.gte(30))lim = lim.add(100)
+                if(hasUpgrade('G',122))lim = lim.add(800)
+                if (hasMilestone('G',20))lim = lim.add(1000)
+                if(hasUpgrade('G',125))lim = lim.add(1000)
+                return lim
+            },
             canAfford() { return player[this.layer].Gse.gte(this.cost()) },
             buy() { if(!mil('G',27)) {player[this.layer].Gse = player[this.layer].Gse.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             extra(){
                 let e=n(0)
                 if (hasUpgrade('G',114))  e=e.add(getBuyableAmount('G',player.Z.points.gte(31)?42:43)).add(getBuyableAmount('G',44))
-		if (hasUpgrade('G',114) && player.Z.points.gte(34)) e=e.add(layers.G.buyables[42].extra())
+        if (hasUpgrade('G',114) && player.Z.points.gte(34)) e=e.add(layers.G.buyables[42].extra())
                 return e
             },
             base(){   let base = player.G.Gse.add(10).log(10).pow(1.1).mul(player.Z.points.gte(33)?1:2)
@@ -2140,7 +2141,7 @@ addLayer("G", {
                 let ef = Decimal.pow(this.base(),x.add(this.extra())).max(1)
                 return ef},
             display() { // Everything else displayed in the buyable button after the title
-		if(hasUpgrade('G',162))return "Gse gain x"+ format(this.base()) + "  \n\
+        if(hasUpgrade('G',162))return "Gse gain x"+ format(this.base()) + "  \n\
                 Cost: " + format(this.cost()) + " Gse \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
                 Effect: x" + format(this.effect())
@@ -2165,11 +2166,11 @@ addLayer("G", {
                 return cost
             },
             purchaseLimit() {let lim=n(20)
-		if(upg('G',123))lim = lim.add(80)
-		if(upg('G',164))lim = lim.add(1900)
-		return lim
-		},
-		extra(){
+        if(upg('G',123))lim = lim.add(80)
+        if(upg('G',164))lim = lim.add(1900)
+        return lim
+        },
+        extra(){
                 let e=n(0)
                 if (hasUpgrade('G',115) && player.Z.points.gte(34))  e=e.add(getBuyableAmount('G',43))
                 return e
@@ -2210,15 +2211,15 @@ addLayer("G", {
                 return cost
             },
             purchaseLimit() {let lim=n(10)
-		if(upg('G',123))lim = lim.add(90)
-		return lim
-		},
+        if(upg('G',123))lim = lim.add(90)
+        return lim
+        },
             canAfford() { return player[this.layer].Gse.gte(this.cost()) },
             buy() { if(!mil('G',27)) {player[this.layer].Gse = player[this.layer].Gse.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){
-		if(player.Z.points.gte(33))return this.hardcap();
-		   let base = player.G.Gsi.add(10).log(10).pow(0.38).div(750)
+        if(player.Z.points.gte(33))return this.hardcap();
+           let base = player.G.Gsi.add(10).log(10).pow(0.38).div(750)
                 let sc=n(0.7)
                 if (base.gte(0.02)) base=base.div(0.02).pow(sc).mul(0.02) 
                 if(getClickableState('G',31))  base=base.mul(1.02)
@@ -2235,14 +2236,14 @@ addLayer("G", {
                 hp=hp.add(tmp.H.effect)
                 if(upg('G',133)) hp=hp.add(0.02)
                 if(gcs('G',121)) hp=hp.mul(1.06)
-		if(getClickableState('G',31) && player.Z.points.gte(33))hp = hp.mul(1.02)
+        if(getClickableState('G',31) && player.Z.points.gte(33))hp = hp.mul(1.02)
                 return hp
             },
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.mul(this.base(),x)
-		if(hasUpgrade('G',131))return ef;
+        if(hasUpgrade('G',131))return ef;
                 let sc=n(0.5)
-		if(player.G.Gsetot.gte('1e6415'))sc = sc.add(0.1)
+        if(player.G.Gsetot.gte('1e6415'))sc = sc.add(0.1)
                 if(hasMilestone('G',21)) sc=sc.add(0.03)
                 if(gcs('G',121)) sc=sc.add(0.07)
                 if(hasUpgrade('G',133)) sc=sc.add(0.02)
@@ -2250,7 +2251,7 @@ addLayer("G", {
                 if(ef.gte(1.1))  ef=ef.div(1.1).pow(sc).mul(1.1)
                 return ef},
             display() { // Everything else displayed in the buyable button after the title
-                if(player.G.points.gte(33))return "Gse 1st eff exp +"+ format(this.base(),3)  + "  \n\
+                if(player.Z.points.gte(33))return "Gse 1st eff exp +"+ format(this.base(),3)  + "  \n\
                 Cost: " + format(this.cost()) + " Gse \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +"/"+format(this.purchaseLimit())+" \n\
                 Effect: +" + format(this.effect());
@@ -2269,8 +2270,8 @@ addLayer("G", {
                 return cost
             },
             purchaseLimit() {let lim=n(20)
-		if(upg('G',122))lim = lim.add(10)
-		if(player.G.Gsetot.gte('1e6415'))lim = lim.add(10)
+        if(upg('G',122))lim = lim.add(10)
+        if(player.G.Gsetot.gte('1e6415'))lim = lim.add(10)
                 if(mil('G',30)) lim=lim.add(5)
                 if(mil('H',8)) lim=lim.add(10)
                 //if(player.H.max.gte(681)) lim=lim.add(5)
@@ -2632,7 +2633,7 @@ addLayer("G", {
             title: "Gsb13", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let bas=n(10)
-		if(hasUpgrade("G",124))bas = n(4)
+        if(hasUpgrade("G",124))bas = n(4)
                 let e=n(1.5)
                 let cost = Decimal.pow(bas, x.pow(e)).times(player.G.Gsetot.gte('1e24000')?1:100)
                 if (hasUpgrade('G',163))  cost=cost.pow(upgradeEffect('G',65))
@@ -2644,7 +2645,7 @@ addLayer("G", {
             extra(){
                 let e=n(0)
                 if (hasUpgrade('G',161))  e=e.add(getBuyableAmount('G',82))
-		if (hasUpgrade('G',161)) e=e.add(layers.G.buyables[82].extra())
+        if (hasUpgrade('G',161)) e=e.add(layers.G.buyables[82].extra())
                 return e
             },
             base(){   let base = player.G.Gsq.add(10).log(10)
@@ -2674,7 +2675,7 @@ addLayer("G", {
             extra(){
                 let e=n(0)
                 if (hasUpgrade('G',165))  e=e.add(getBuyableAmount('G',83))
-		if (hasUpgrade('G',165)) e=e.add(layers.G.buyables[83].extra())
+        if (hasUpgrade('G',165)) e=e.add(layers.G.buyables[83].extra())
                 return e
             },
             base(){   let base = player.G.Gsq.add(10).log(10).cbrt().div(20)
@@ -2814,7 +2815,7 @@ addLayer("G", {
         },
     },
     gc1g(){
-	if(player.Z.points.gte(32))return player.F.F1;
+    if(player.Z.points.gte(32))return player.F.F1;
         let ef=n(0)
         let exp=n(0.5)
         let exp2=n(0.95)
@@ -2827,12 +2828,12 @@ addLayer("G", {
         if (hasUpgrade('G',55)) exp=exp.add(0.05)
         if (inChallenge('G',11)){if (player.F.F1.gte('1e1080')) ef=Decimal.pow(10,player.F.F1.div('1e1080').log(10).pow(exp).div(hasUpgrade('G',34)?1:10))}
         if(mil('G',10)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
-	if(mil('G',11)) ef = ef.mul(player.G.Gc2p.add(1));
+    if(mil('G',11)) ef = ef.mul(player.G.Gc2p.add(1));
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
     gc2g(){
-	if(player.Z.points.gte(32))return player.F.F1;
+    if(player.Z.points.gte(32))return player.F.F1;
         let ef=n(0)
         let exp=n(0.6)
         let exp2=n(0.9)
@@ -2847,12 +2848,12 @@ addLayer("G", {
         //if(gcs('I',42)) exp=exp.add(0.01)
         if (inChallenge('G',12)){if (player.F.F1.gte('1e3050')) ef=Decimal.pow(10,player.F.F1.div('1e3050').log(10).pow(exp))}
         if(mil('G',11)) ef=n(10).pow(player.F.F1.pow(exp2).add(10).log(10).pow(exp))
-	if(mil('G',12)) ef = ef.mul(player.G.Gc3p.add(1));
+    if(mil('G',12)) ef = ef.mul(player.G.Gc3p.add(1));
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
     gc3g(){
-	if(player.Z.points.gte(32))return player.F.F1;
+    if(player.Z.points.gte(32))return player.F.F1;
         let ef=n(0)
         let exp=n(3)
         let exp2=n(0.2)
@@ -2865,12 +2866,12 @@ addLayer("G", {
                 if (challengeCompletions("G", 22)>=4) ef=Decimal.pow(10,player.F.F1.div('1e168000').log(10).pow(exp2))
                 else ef=player.F.F1.div('1e168000').log(10).pow(exp)} }
         if(hasMilestone('G',12)) ef=Decimal.pow(10,player.F.F1.pow(hasUpgrade('G',55)?1:0.2).add(10).log(10).pow(exp2))
-	if(mil('G',13)) ef = ef.mul(player.G.Gc4p.add(1));
+    if(mil('G',13)) ef = ef.mul(player.G.Gc4p.add(1));
         if (hasUpgrade('G',41)) ef=Decimal.pow(ef,upgradeEffect('G',41))
         return ef
     },
     gc4g(){
-	if(player.Z.points.gte(32))return player.F.F1;
+    if(player.Z.points.gte(32))return player.F.F1;
         let ef=n(0)
         let exp=n(2)
         let exp2=n(0.14)
@@ -2903,7 +2904,7 @@ addLayer("G", {
         if (hasUpgrade('G',53))  exp=Decimal.add(exp,0.02)
         if (hasUpgrade('G',55))  exp=new Decimal(1)
         let ef=Decimal.pow(player.G.Gc3p,exp).add(1).min("1e1300")
-	if(player.Z.points.gte(23))ef = Decimal.pow(player.G.Gc3p,exp).add(10).log(10)
+    if(player.Z.points.gte(23))ef = Decimal.pow(player.G.Gc3p,exp).add(10).log(10)
         return ef},
     gc4ef(){
         let exp=n(1.5)
@@ -2924,16 +2925,16 @@ addLayer("G", {
     gsb(){
         let ef=n(0)
         if (player.G.points.gte('ee17')) ef=player.G.points.log(10).log(10).log(10).sub(1.23).div(50)
-	if(player.Z.points.gte(26) && player.G.points.gte(1e10)) ef = player.G.points.log(10).log(10).log(10).div(50)
-	if(player.Z.points.gte(30)) ef = player.G.points.add(1e10).log(10).log(10).log(10).div(200)
+    if(player.Z.points.gte(26) && player.G.points.gte(1e10)) ef = player.G.points.log(10).log(10).log(10).div(50)
+    if(player.Z.points.gte(30)) ef = player.G.points.add(1e10).log(10).log(10).log(10).div(200)
         if (hasUpgrade('G',61))ef = ef.mul(player.Z.points.eq(29)?2:50)
         if (hasUpgrade('B',85))ef = ef.mul(2)
-	if (hasUpgrade('G',62))ef = ef.mul(2)
+    if (hasUpgrade('G',62))ef = ef.mul(2)
         let exp=n(1)
         if (hasUpgrade('G',62))  exp=Decimal.mul(exp,2)
         if (hasUpgrade('B',85))  exp=Decimal.mul(exp,2)
         exp=Decimal.mul(exp,buyableEffect('G',22))
-	if (hasUpgrade('G',101))exp = exp.mul(1.05)
+    if (hasUpgrade('G',101))exp = exp.mul(1.05)
         ef = ef.pow(exp)
         ef=ef.mul(buyableEffect('G',21))
         if (hasUpgrade('G',72)) ef=ef.mul(upgradeEffect('G',72))
@@ -3008,7 +3009,7 @@ addLayer("G", {
         if (hasMilestone('G',15))  exp=exp.mul(1.5)
         if (hasUpgrade('G',83))  exp=exp.mul(player.Z.points.gte(33)?2:(10/7))
         let ret=player.G.Gs.add(10).log10().pow(exp).min("ee10");
-	if(hasMilestone('G',18))ret = Decimal.pow(10,player.G.Gs.add(10).log10().sqrt().mul(exp).div(10000));
+    if(hasMilestone('G',18))ret = Decimal.pow(10,player.G.Gs.add(10).log10().sqrt().mul(exp).div(10000));
         if(player.Z.points.gte(32))ret = player.G.Gs.add(1).pow(exp);
         if(player.Z.points.gte(34))return Decimal.pow(10,ret.log10().pow(6));
         if(player.Z.points.gte(31))return Decimal.pow(10,ret.log10().pow(1.2));
@@ -3020,17 +3021,17 @@ addLayer("G", {
         return ef
     },
     gsib(){
-	if(!hasUpgrade('G',83) && player.Z.points.lt(30))return n(0);
+    if(!hasUpgrade('G',83) && player.Z.points.lt(30))return n(0);
         let ef=n(0)
         let exp=n(player.Z.points.gte(32)?1:1.1)
         if(player.Z.points.lte(31))exp=exp.mul(n(buyableEffect('G',32)).add(1))
-	else exp=exp.mul(buyableEffect('G',32))
+    else exp=exp.mul(buyableEffect('G',32))
         if (hasUpgrade('G',94) && player.Z.points.lt(31)) exp=exp.add(0.4)
         if (hasUpgrade('G',105) && player.Z.points.lt(32)) exp=exp.add(0.3)
         if (hasUpgrade('G',94) && player.Z.points.gte(31)) exp=exp.mul(2)
         if (hasUpgrade('G',105) && player.Z.points.gte(32)) exp=exp.mul(2)
         if (player.G.Gs.gte(hasMilestone('Z',27)?'1e1000':'1e780')) ef=player.G.Gs.add(10).log(10).sub(hasMilestone('Z',27)?1000:780).max(0).pow(exp).div(hasMilestone('Z',27)?100:10)
-	if(player.Z.points.gte(30)) ef = player.G.Gs.add(1).log(10).max(0).pow(exp).div(player.Z.points.gte(32)?50:200);
+    if(player.Z.points.gte(30)) ef = player.G.Gs.add(1).log(10).max(0).pow(exp).div(player.Z.points.gte(32)?50:200);
         if (hasUpgrade('G',61) && player.Z.points.gte(32))ef = ef.mul(50)
         if (hasUpgrade('G',72) && player.Z.points.gte(34)) ef=ef.mul(upgradeEffect('G',72))
         ef=ef.mul(buyableEffect('G',31))
@@ -3063,7 +3064,7 @@ addLayer("G", {
         let ef=player.G.Gs.add(10).log(10).pow(tmp.G.gsief).max(1)
         return ef}, 
     gseb(){
-	if(!hasUpgrade('G',101) && player.Z.points.lt(34))return n(0);
+    if(!hasUpgrade('G',101) && player.Z.points.lt(34))return n(0);
         let ef=n(0)
         let exp=n(0.9)
         if (upg('G',105)) exp=exp.add(0.05)
@@ -3071,16 +3072,16 @@ addLayer("G", {
         if(gcs('G',91)) exp=exp.mul(1.2)
         if(player.G.Gsi.gte('1e345')) ef=player.G.Gsi.add(10).log(10).sub(345).max(0).pow(exp).div(2)
         if(hasMilestone('Z',28)&&player.G.Gsi.gte('1e200')) ef=player.G.Gsi.add(10).log(10).sub(200).max(0).pow(exp).div(2)
-	if(player.Z.points.gte(34)) ef = player.G.Gsi.add(1).log(10).max(0).pow(exp).div(10);
+    if(player.Z.points.gte(34)) ef = player.G.Gsi.add(1).log(10).max(0).pow(exp).div(10);
         ef=ef.mul(buyableEffect('G',41))
-	if(upg("G", 115) && player.Z.points.gte(34))ef=ef.mul(tmp.G.gsqr)
+    if(upg("G", 115) && player.Z.points.gte(34))ef=ef.mul(tmp.G.gsqr)
         if(upg('G',102))  ef=ef.mul(upgradeEffect('G',102))
         if(upg('G',105))  ef=ef.mul(upgradeEffect('G',105))
         if(gcs('G',21))  ef=ef.mul(clickableEffect('G',21))
         if(gcs('G',33))  ef=ef.mul(clickableEffect('G',33))
         if(gcs('G',71))  ef=ef.mul(clickableEffect('G',71))
         if(gcs('G',61))  ef=ef.pow(clickableEffect('G',61))
-	return ef
+    return ef
         if(mil('G',25))    {if(gcs('G',102))  ef=ef.pow(1.005)
             if(gcs('G',111))  ef=ef.pow(1.004)}
         if(gcs('G',122))  ef=ef.pow(1.01)
@@ -3167,12 +3168,12 @@ addLayer("G", {
         ef=ef.min(tmp.G.ehp)
         return ef},
     gsqb(){
-	if(!hasUpgrade('G',115) || player.Z.points.lt(34))return n(0);
-	let exp = buyableEffect('G',82)
+    if(!hasUpgrade('G',115) || player.Z.points.lt(34))return n(0);
+    let exp = buyableEffect('G',82)
         if(gcs('G',112)) exp = exp.mul(clickableEffect('G',112))
-	let ef=player.G.Gse.add(10).log(10).sub(1000).max(0).pow(exp).div(100);
+    let ef=player.G.Gse.add(10).log(10).sub(1000).max(0).pow(exp).div(100);
         ef=ef.mul(buyableEffect('G',81))
-	return ef;
+    return ef;
     },
     gsqef(){
         exp = buyableEffect('G',83)
@@ -3240,9 +3241,9 @@ addLayer("G", {
         if (mil("G", 14) || player.Z.points.gte(26))  player.G.Gs = player.G.Gs.add(tmp.G.gsb.mul(diff))
         if (upg("G", 83) || player.Z.points.gte(30))  player.G.Gsi = player.G.Gsi.add(tmp.G.gsib.mul(diff))
         if (upg("G", 91) || player.Z.points.gte(34))  player.G.Gse = player.G.Gse.add(tmp.G.gseb.mul(diff))
-	if(upg("G", 115) && player.Z.points.gte(34)) player.G.Gsq = player.G.Gsq.add(tmp.G.gsqb.mul(diff))
+    if(upg("G", 115) && player.Z.points.gte(34)) player.G.Gsq = player.G.Gsq.add(tmp.G.gsqb.mul(diff))
         if (mil("G", 30))  player.G.Gsr = player.G.Gsr.add(tmp.G.gsrb.mul(diff))
-	player.G.GGtot = player.G.buyables[61].add(player.G.buyables[62].mul(hasUpgrade('G',133)?10:5)).add(player.G.buyables[63].mul(10)).mul(tmp.G.ggmt)
+    player.G.GGtot = player.G.buyables[61].add(player.G.buyables[62].mul(hasUpgrade('G',133)?10:5)).add(player.G.buyables[63].mul(10)).mul(tmp.G.ggmt)
         if (upg("G", 115))  player.G.GG = player.G.GGtot.sub(player.G.Gtc)
         player.G.Gsetot = player.G.Gsetot.max(player.G.Gse)
     },

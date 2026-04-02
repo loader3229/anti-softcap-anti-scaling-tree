@@ -4,32 +4,32 @@ addLayer("D", {
     position: 1, 
     startData() { return {
         unlocked: false,
-		points: new Decimal(0),
+        points: new Decimal(0),
     }},
     passiveGeneration(){    let d_pg=100
-	
+    
         if (mil("Z", 3))  d_pg=Decimal.mul(d_pg,100)
         if (mil("Z", 4))  d_pg=Decimal.mul(d_pg,100)
-		if(mil("B", 5) ||mil('I',1))return n(d_pg);
+        if(mil("B", 5) ||mil('I',1))return n(d_pg);
         if (mil("Z", 4))  return n(10000);
         if (mil("Z", 3))  return n(100);
         if (mil("Z", 2))  return n(1);
         return (mil("B", 5)||mil('I',1))?d_pg:0},
     color: "#720202",
     requires(){
-		if (mil("Z", 4)) return new Decimal(1);
-		return new Decimal(1e11);
-	},
+        if (mil("Z", 4)) return new Decimal(1);
+        return new Decimal(1e11);
+    },
     resource: "D", 
     baseResource: "C", 
     baseAmount() {return player.C.points}, 
     type: "normal", 
-	exponent(){
+    exponent(){
         if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(25))return n(0.1);
         if(player.Z.points.gte(21))return n(0.08);
-		return n(0.22).mul(Decimal.pow(0.95,player.Z.points));
-	},
+        return n(0.22).mul(Decimal.pow(0.95,player.Z.points));
+    },
     gainExp() {
         return new Decimal(1)
     },
@@ -75,7 +75,7 @@ addLayer("D", {
         },
     },
     softcap(){return new Decimal(Infinity)},
-	softcapPower(){return new Decimal(1)},
+    softcapPower(){return new Decimal(1)},
     microtabs: {
         stuff: {       
             "Upgrades": {
@@ -156,7 +156,7 @@ addLayer("D", {
             unlocked() { return (hasUpgrade(this.layer, 14))},
             effect()  { 
                 let ef = 0.8
-		if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
+        if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
                 if (inChallenge('E',11))  ef = 0
                 return player[this.layer].points.add(1).pow(ef);          
             },
@@ -244,17 +244,17 @@ addLayer("D", {
         41: {
             title:'D16',
             description: "1e7x pts.",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e158':player.Z.points.gte(10)?'1e185':'1e350');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e158':player.Z.points.gte(10)?'1e185':'1e350');
+            },
             unlocked() { return (hasUpgrade('C', 31))},
         },
         42: {
             title:'D17',
             description: "D upg boost E.<br>(1.25^x).",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e185':player.Z.points.gte(10)?'1e225':'1e628');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e185':player.Z.points.gte(10)?'1e225':'1e628');
+            },
             effect()  { 
                 let a=player.D.upgrades.length
                 let bas =1.25
@@ -269,9 +269,9 @@ addLayer("D", {
         43: {
             title:'D18',
             description: "Eb2 amt boost pts.<br>(1.75^x).",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e195':player.Z.points.gte(10)?'1e265':'1e648');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e195':player.Z.points.gte(10)?'1e265':'1e648');
+            },
             effect()  { 
                 let a=getBuyableAmount('E', 12)
                 let ef = Decimal.pow(1.75,a)
@@ -283,17 +283,17 @@ addLayer("D", {
         44: {
             title:'D19',
             description: "Bb5 is cheaper.",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e200':'1e750');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e200':'1e750');
+            },
             unlocked() { return (hasUpgrade('D', 43))},
         },
         45: {
             title:'D20',
             description: "E12/E15 ^1.2",
-			cost(){
-				return n(player.Z.points.gte(11)?'1e222':'1e999');
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?'1e222':'1e999');
+            },
             unlocked() { return (hasUpgrade('D', 44))},
         },
         51: {

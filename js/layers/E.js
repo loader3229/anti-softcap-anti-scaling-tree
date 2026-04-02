@@ -4,7 +4,7 @@ addLayer("E", {
     position: 2, 
     startData() { return {
         unlocked: false,
-		points: new Decimal(0),
+        points: new Decimal(0),
         Em: new Decimal(0),
         Ek: new Decimal(0),
     }},
@@ -20,19 +20,19 @@ addLayer("E", {
         return pg},
     color: "#789A89",
     requires(){
-		if (player.Z.points.gte(12)) return new Decimal(1);
-		if (mil("Z", 4)) return new Decimal('1e390');
-		return new Decimal('1e426');
-	},
+        if (player.Z.points.gte(12)) return new Decimal(1);
+        if (mil("Z", 4)) return new Decimal('1e390');
+        return new Decimal('1e426');
+    },
     resource: "E", 
     baseResource: "B", 
     baseAmount() {return player.B.points}, 
     type: "normal", 
-	exponent(){
+    exponent(){
         if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(21))return n(0.005);
-		return n(0.015).mul(Decimal.pow(0.95,player.Z.points));
-	},
+        return n(0.015).mul(Decimal.pow(0.95,player.Z.points));
+    },
     gainExp() {
         return new Decimal(1)
     },
@@ -74,7 +74,7 @@ addLayer("E", {
         return mult
     },
     softcap(){return new Decimal(Infinity)},
-	softcapPower(){return new Decimal(1)},
+    softcapPower(){return new Decimal(1)},
     branches: ['A','B','D'],
     milestones: {
         0: {requirementDescription: "1000 total E (1",
@@ -149,29 +149,29 @@ addLayer("E", {
             effectDescription: "10x E passive.",
         },
         16: {requirementDescription: "1e209 total E (17",
-			unlocked(){ return player.Z.points.gte(11)},
+            unlocked(){ return player.Z.points.gte(11)},
             done() {return player[this.layer].total.gte('1e209') && player.Z.points.gte(11)}, 
             effectDescription: "unlock final 2 chal.",
         },
         17: {requirementDescription: "1e233 total E (18",
-			unlocked(){ return player.Z.points.gte(11)},
+            unlocked(){ return player.Z.points.gte(11)},
             done() {return player[this.layer].total.gte('1e233') && player.Z.points.gte(11)}, 
             effectDescription: "autobuy Eb8-9.",
             toggles: [ ["E","auto4"] ]
         },
         18: {requirementDescription: "1e330 total E (19",
-			unlocked(){ return player.Z.points.gte(12)},
+            unlocked(){ return player.Z.points.gte(12)},
             done() {return player[this.layer].total.gte('1e330') && player.Z.points.gte(12)}, 
             effectDescription: "unlock the final buyable.",
         },
         19: {requirementDescription: "1e400 total E (20",
-			unlocked(){ return player.Z.points.gte(12)},
+            unlocked(){ return player.Z.points.gte(12)},
             done() {return player[this.layer].total.gte('1e400') && player.Z.points.gte(12)}, 
             effectDescription: "autobuy Eb10,E47 ^1.6.",
             toggles: [ ["E","auto5"] ]
         },
         20: {requirementDescription: "1e650 total E (21",
-			unlocked(){ return player.Z.points.gte(12)},
+            unlocked(){ return player.Z.points.gte(12)},
             done() {return player[this.layer].total.gte('1e650') && player.Z.points.gte(12)}, 
             effectDescription: "x2025 E,unlock the next layer.",
         },
@@ -216,15 +216,15 @@ addLayer("E", {
             if (mil("F",4)) keep.push("upgrades")
             if (mil("F",5)) keep.push("challenges")
             layerDataReset(this.layer, keep)
-			if(player.Z.points.gte(11))player.E.challenges[11]=3;
-			if(player.Z.points.gte(11))player.E.challenges[12]=3;
-			if(player.Z.points.gte(12))player.E.challenges[21]=3;
-			if(player.Z.points.gte(12))player.E.challenges[22]=3;
-			if(player.Z.points.gte(13))player.E.challenges[31]=5;
-			if(player.Z.points.gte(13))player.E.challenges[32]=5;
-			if(player.Z.points.gte(14))player.E.challenges[41]=5;
-			if(player.Z.points.gte(14))player.E.challenges[42]=5;
-	}
+            if(player.Z.points.gte(11))player.E.challenges[11]=3;
+            if(player.Z.points.gte(11))player.E.challenges[12]=3;
+            if(player.Z.points.gte(12))player.E.challenges[21]=3;
+            if(player.Z.points.gte(12))player.E.challenges[22]=3;
+            if(player.Z.points.gte(13))player.E.challenges[31]=5;
+            if(player.Z.points.gte(13))player.E.challenges[32]=5;
+            if(player.Z.points.gte(14))player.E.challenges[41]=5;
+            if(player.Z.points.gte(14))player.E.challenges[42]=5;
+    }
         if (layer=="I") {        
             let keep = []
             if(gcs('I',12)) keep.push("challenges")
@@ -400,57 +400,57 @@ addLayer("E", {
         41: {
             title:'E16',
             description: "E15 ^1.5,x5 E.",
-			cost(){
-				return n(player.Z.points.gte(8)?1e13:5e14);
-			},
+            cost(){
+                return n(player.Z.points.gte(8)?1e13:5e14);
+            },
             unlocked() { return  (challengeCompletions("E", 12) >= 1)},
         },
         42: {
             title:'E17',
             description: "Eb1-2 base +1,x2 E.",
-			cost(){
-				return n(player.Z.points.gte(8)?5e14:1e16);
-			},
+            cost(){
+                return n(player.Z.points.gte(8)?5e14:1e16);
+            },
             unlocked() { return (hasUpgrade(this.layer, 41))},
         },
         43: {
             title:'E18',
             description: "Bb1-2 are cheaper.",
-			cost(){
-				return n(player.Z.points.gte(8)?5e16:2e17);
-			},
+            cost(){
+                return n(player.Z.points.gte(8)?5e16:2e17);
+            },
             unlocked() { return (hasUpgrade(this.layer, 42))},
         },
         44: {
             title:'E19',
             description: "E2 ^1.5",
-			cost(){
-				return n(player.Z.points.gte(8)?1e19:3e26);
-			},
+            cost(){
+                return n(player.Z.points.gte(8)?1e19:3e26);
+            },
             unlocked() { return (hasUpgrade(this.layer, 43))},
         },
         45: {
             title:'E20',
             description: "Bb5 is stronger.<br> (+10%)",
-			cost(){
-				return n(1e20);
-			},
+            cost(){
+                return n(1e20);
+            },
             unlocked() { return (hasUpgrade(this.layer, 44) && player.Z.points.gte(9))},
         },
         51: {
             title:'E21',
             description: "x1e6 pts.",
-			cost(){
-				return n(1e23);
-			},
+            cost(){
+                return n(1e23);
+            },
             unlocked() { return (hasUpgrade(this.layer, 45))},
         },
         52: {
             title:'E22',
             description: "Ac7 is stronger based on E.",
-			cost(){
-				return n(5e24);
-			},
+            cost(){
+                return n(5e24);
+            },
             effect()  { 
                 let ef = player.E.points.add(10).log(10).pow(0.75).div(150).add(1)
                 if (hasMilestone('Z',12)) ef = player.E.points.add(10).log(10).pow(0.5).div(25).add(1)
@@ -464,28 +464,28 @@ addLayer("E", {
         53: {
             title:'E23',
             description: "Bb5 is stronger (+10%)<br>and x1e6 pts.",
-			cost(){
-				return n(1e25);
-			},
+            cost(){
+                return n(1e25);
+            },
             unlocked() { return (hasUpgrade(this.layer, 52))},
         },
         54: {
             title:'E24',
             description: "Eb1-3 are cheaper.",
-			cost(){
-				return n(player.Z.points.gte(10)?1e31:1e35);
-			},
+            cost(){
+                return n(player.Z.points.gte(10)?1e31:1e35);
+            },
             unlocked() { return (hasUpgrade(this.layer, 53))},
         },
         55: {
             title:'E25',
             description: "x1e7 pts,add Eb1-2 base.",
-			cost(){
-				return n(player.Z.points.gte(10)?1e36:2e40);
-			},
+            cost(){
+                return n(player.Z.points.gte(10)?1e36:2e40);
+            },
             effect()  { 
                 let ef = Decimal.add(player.E.points,10).log(10).pow(0.8).div(50)
-				if(player.Z.points.gte(9))ef = Decimal.add(player.E.points,10).log(10).div(40)
+                if(player.Z.points.gte(9))ef = Decimal.add(player.E.points,10).log(10).div(40)
                 return ef;          
             },
             effectDisplay() { return '+'+format(this.effect()) }, 
@@ -494,33 +494,33 @@ addLayer("E", {
         61: {
             title:'E26',
             description: "Eb4 applies to C/D(nerfed,40%).",
-			cost(){
-				return n(player.Z.points.gte(10)?1e48:2e50);
-			},
+            cost(){
+                return n(player.Z.points.gte(10)?1e48:2e50);
+            },
             unlocked() { return (hasMilestone(this.layer, 8))},
         },
         62: {
             title:'E27',
             description: "Bb5 is cheaper.",
-			cost(){
-				return n(player.Z.points.gte(10)?2e48:3e51);
-			},
+            cost(){
+                return n(player.Z.points.gte(10)?2e48:3e51);
+            },
             unlocked() { return (hasUpgrade(this.layer, 61))},
         },
         63: {
             title:'E28',
             description: "E3/4/12/15 ^1.2.",
-			cost(){
-				return n(player.Z.points.gte(10)?1e49:5e52);
-			},
+            cost(){
+                return n(player.Z.points.gte(10)?1e49:5e52);
+            },
             unlocked() { return (hasUpgrade(this.layer, 62))},
         },
         64: {
             title:'E29',
             description: "E26 +10%.<br>unlock new C/D upg.",
-			cost(){
-				return n(player.Z.points.gte(11)?1e52:player.Z.points.gte(10)?1e53:2e55);
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?1e52:player.Z.points.gte(10)?1e53:2e55);
+            },
             unlocked() { return (hasUpgrade(this.layer, 63))},
         },
         65: {
@@ -550,33 +550,33 @@ addLayer("E", {
         73: {
             title:'E33',
             description: "Bb1-2 are cheaper.",
-			cost(){
-				return n(player.Z.points.gte(11)?1e97:1e100);
-			},
+            cost(){
+                return n(player.Z.points.gte(11)?1e97:1e100);
+            },
             unlocked() { return (hasUpgrade(this.layer, 72))},
         },
         74: {
             title:'E34',
             description: "E22 x1.1.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e110:1e125);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e110:1e125);
+            },
             unlocked() { return (hasUpgrade(this.layer, 73) && player.Z.points.gte(11))},
         },
         75: {
             title:'E35',
             description: "C12/D17 base +0.1.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e113:1e130);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e113:1e130);
+            },
             unlocked() { return (hasUpgrade(this.layer, 74))},
         },
         81: {
             title:'E36',
             description: "E31 ^1.5.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e116:1e135);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e116:1e135);
+            },
             unlocked() { return (hasUpgrade(this.layer, 75))},
         },
         82: {
@@ -584,36 +584,36 @@ addLayer("E", {
             description: "Em mults B.",
             effect()  { 
                 let ef = 0.1
-				if(player.Z.points.gte(12))ef = 0.2
+                if(player.Z.points.gte(12))ef = 0.2
                 return player.E.Em.add(1).pow(ef);          
             },
-			cost(){
-				return n(player.Z.points.gte(12)?1e120:1e140);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e120:1e140);
+            },
             effectDisplay() { return format(this.effect())+"x" }, 
             unlocked() { return (hasUpgrade(this.layer, 81))},
         },
         83: {
             title:'E38',
             description: "E8 base +0.15.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e126:1e145);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e126:1e145);
+            },
             unlocked() { return (hasUpgrade(this.layer, 82))},
         },
         84: {
             title:'E39',
             description: "E7 ^1.5.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e132:1e155);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e132:1e155);
+            },
             unlocked() { return (hasUpgrade(this.layer, 83))},
         },
         85: {
             title:'E40',
-			cost(){
-				return n(player.Z.points.gte(12)?1e134:1e160);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e134:1e160);
+            },
             description: "Eb5-7 amt boost pts.<br>(1.7^x).",
             unlocked() { return (hasUpgrade(this.layer, 84))},
             effect()  { 
@@ -627,16 +627,16 @@ addLayer("E", {
         91: {
             title:'E41',
             description: "E8 base +0.15.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e136:1e162);
-			},
+            cost(){
+                return n(player.Z.points.gte(12)?1e136:1e162);
+            },
             unlocked() { return (hasUpgrade(this.layer, 85))},
         },
         92: {
             title:'E42',
-			cost(){
-				return n(player.Z.points.gte(12)?1e144:1e177);
-			},     
+            cost(){
+                return n(player.Z.points.gte(12)?1e144:1e177);
+            },     
             description: "Eb5-7 amt boost B.<br>(1.3^x).",
             unlocked() { return (hasUpgrade(this.layer, 91))},
             effect()  { 
@@ -651,24 +651,24 @@ addLayer("E", {
         93: {
             title:'E43',
             description: "Eb7 is cheaper,<br>E42 base +0.1.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e157:1e265);
-			},     
+            cost(){
+                return n(player.Z.points.gte(12)?1e157:1e265);
+            },     
             unlocked() { return (hasUpgrade(this.layer, 92))},
         },
         94: {
             title:'E44',
             description: "Eb4 is cheaper,<br>E8 base +0.1.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e164:1e290);
-			},     
+            cost(){
+                return n(player.Z.points.gte(12)?1e164:1e290);
+            },     
             unlocked() { return (hasUpgrade(this.layer, 93))},
         },
         95: {
             title:'E45',
-			cost(){
-				return n(player.Z.points.gte(12)?1e178:'1e315');
-			},     
+            cost(){
+                return n(player.Z.points.gte(12)?1e178:'1e315');
+            },     
             description: "Eb5-7 amt boost C.(1.15^x)",
             unlocked() { return (hasUpgrade(this.layer, 94))},
             effect()  { 
@@ -682,9 +682,9 @@ addLayer("E", {
         101: {
             title:'E46',
             description: "Em eff exp +0.02.",
-			cost(){
-				return n(player.Z.points.gte(12)?1e183:'1e325');
-			},     
+            cost(){
+                return n(player.Z.points.gte(12)?1e183:'1e325');
+            },     
             unlocked() { return (challengeCompletions('E',31)>=3 && player.Z.points.gte(11))},
         },
         102: {
@@ -743,7 +743,7 @@ addLayer("E", {
             title: "Eb1", 
             cost(x) {
                 let cost = Decimal.pow(2, x.pow(1.1)).times(1000)
-		if (hasUpgrade('E',54)) cost = Decimal.pow(2, x.pow(1.1))
+        if (hasUpgrade('E',54)) cost = Decimal.pow(2, x.pow(1.1))
                 if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
                 return cost
             },
@@ -773,7 +773,7 @@ addLayer("E", {
             title: "Eb2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(3, x.pow(1.1)).times(1000)
-		if (hasUpgrade('E',54)) cost = Decimal.pow(3, x.pow(1.1))
+        if (hasUpgrade('E',54)) cost = Decimal.pow(3, x.pow(1.1))
                 if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
                 return cost
             },
@@ -803,7 +803,7 @@ addLayer("E", {
             title: "Eb3", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(5, x.pow(1.1)).times(40000)
-		if (hasUpgrade('E',54)) cost = Decimal.pow(5, x.pow(1.1))
+        if (hasUpgrade('E',54)) cost = Decimal.pow(5, x.pow(1.1))
                 if (hasChallenge('E',41)) cost = Decimal.div(cost, challengeEffect('E',41))
                 return cost
             },
@@ -904,7 +904,7 @@ addLayer("E", {
             title: "Eb7", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let cost = Decimal.pow(10, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e22:1e38)
-		if(hasUpgrade("E",93))cost = Decimal.pow(9, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e22:1e38)
+        if(hasUpgrade("E",93))cost = Decimal.pow(9, x.pow(1.2)).times(player.Z.points.gte(14)?1:player.Z.points.gte(11)?1e22:1e38)
                 return cost
             },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -1243,15 +1243,15 @@ addLayer("E", {
     },
     ekf() {
         if (inChallenge('E',42)) return new Decimal(1);
-	let eff=player.E.Ek.add(1);
-	let pow=1;
+    let eff=player.E.Ek.add(1);
+    let pow=1;
         if (hasChallenge('E',42)) pow += (challengeEffect('E',42)/5);
         if(challengeCompletions("E", 42) >= 9) pow += 4.32;
-	if (hasUpgrade('F',62)) pow += 0.68;
-	if (hasUpgrade('G',21)) pow += 1;
-	if (hasUpgrade('G',22)) pow += 1;
-	eff = eff.pow(pow);
-	return eff;
+    if (hasUpgrade('F',62)) pow += 0.68;
+    if (hasUpgrade('G',21)) pow += 1;
+    if (hasUpgrade('G',22)) pow += 1;
+    eff = eff.pow(pow);
+    return eff;
     },
     ekf2(){
         let ef=player.E.Ek.add(1).log(10).pow(0.12)
