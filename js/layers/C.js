@@ -27,6 +27,7 @@ addLayer("C", {
     baseAmount() {if(player.Z.points.gte(25))return player.B.points;return player.points}, 
     type: "normal", 
 	exponent(){
+        if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(31))return n(0.2);
         if(player.Z.points.gte(25))return Decimal.pow(0.95,player.Z.points.mul(5).sub(100)).mul(3);
         if(player.Z.points.gte(21))return n(0.05);

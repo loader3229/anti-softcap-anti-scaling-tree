@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
 	base(){
-		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeeee6","10^^10"][player.Z.points.toNumber()]);
+		return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","10^^10"][player.Z.points.toNumber()]);
 	},
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -171,6 +171,11 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 			if(player.Z.points.gte(31))player.G.buyables[31]=player.G.buyables[31].max(effective_Gsi.add(1).log(hasUpgrade("G",93)?4:4.8).max(0).root(hasUpgrade("G",122)?1.5:1.6).ceil().max(0));
 			if(player.Z.points.gte(32))player.G.buyables[32]=player.G.buyables[32].max(effective_Gsi.add(1).log(player.Z.points.gte(33)?5:100).max(0).root(player.Z.points.gte(33)?2:hasMilestone("G",18)?2:3).ceil().max(0));
         }
+	if(player.Z.points.gte(34)){
+			let effective_Gse = player.G.Gse.add(1);
+                	if (hasUpgrade('G',65))  effective_Gse=effective_Gse.root(upgradeEffect('G',65))
+			if(hasUpgrade("G",162))player.G.buyables[41]=player.G.buyables[41].max(effective_Gse.add(1).log(4).max(0).root(1.4).ceil().max(0));
+        }
         if(player.Z.points.gte(30)){
 		let target=Decimal.pow(10, player.F.points.add(10).log10().log10().root(layers.F.scaling()));
 			player.F.fd1=player.F.fd1.max(player.F.buyables[11]=player.F.buyables[11].max(target));
@@ -316,7 +321,11 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         32: {requirementDescription: "33 Z",
             done() {return player.Z.points.gte(33)}, 
-            effectDescription: "Gsb6 and Gsb9 base is fixed to its hardcap, and any mult to base multiply to its hardcap. Increase Gs and F2 effect.",
+            effectDescription: "Gsb6 and Gsb9 bases are fixed to hardcap, and any mult to base multiply to its hardcap. Change Fd cost but increase Gs and F2 effect.",
+        },
+        33: {requirementDescription: "34 Z",
+            done() {return player.Z.points.gte(34)}, 
+            effectDescription: "A-G gain exponents are 1. Gs effect exp ^5. Permanently unlock Gse.",
         },
     },
 	setZ(a){

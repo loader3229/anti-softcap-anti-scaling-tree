@@ -51,7 +51,7 @@ addLayer("H", {
     hotkeys: [
         {key: "h", description: "H: Reset for H points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return ((upg('G',133))||player[this.layer].unlocked)},
+    layerShown(){return player.Z.points.gte(35)},
     gainMult() { 
         mult = n(1)
         return mult

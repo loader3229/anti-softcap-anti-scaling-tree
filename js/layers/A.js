@@ -29,6 +29,7 @@ addLayer("A", {
     baseAmount() {if(player.Z.points.gte(25))return layers.Z.getZp();return player.points}, 
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
+        if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(24))return n(0.2);
         if(player.Z.points.gte(21))return n(0.18);
 		return n(0.5).mul(Decimal.pow(0.95,player.Z.points));

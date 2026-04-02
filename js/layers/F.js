@@ -36,6 +36,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
     baseAmount() {return player.E.points}, 
     type: "normal", 
 	exponent(){
+        if(player.Z.points.gte(34))return n(1);
         if(player.Z.points.gte(21))return n(0.0025);
 		return n(0.0075).mul(Decimal.pow(0.95,player.Z.points));
 	},
