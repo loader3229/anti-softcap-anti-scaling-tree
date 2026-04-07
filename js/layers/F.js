@@ -206,7 +206,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
                 ]}, 
             "F2": {
                 unlocked() {return player.Z.points.gte(22)},//false
-                content: [["display-text", () => "You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, raise F1 effect by ^<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"],
+                content: [["display-text", () => (player.Z.points.gte(37)?("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, F1 effect slog +<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"):("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, raise F1 effect by ^<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"))],
                 ,["buyables",[11,12]]]},   
         }
     },
@@ -721,6 +721,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         11: {
             title: "Fd1", 
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling)).mul(player.Z.points.gte(19)?1:10)
             },
@@ -753,6 +754,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         12: {
             title: "Fd2", 
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(2))).mul(player.Z.points.gte(19)?1:100)
             },
@@ -778,6 +780,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         13: {
             title: "Fd3",  
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(3))).mul(player.Z.points.gte(19)?1:1e4)
             },
@@ -803,6 +806,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         21: {
             title: "Fd4",  
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(4))).mul(player.Z.points.gte(19)?1:1e7)
             },
@@ -828,6 +832,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         22: {
             title: "Fd5",  
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(5))).mul(player.Z.points.gte(19)?1:1e11)
             },
@@ -853,6 +858,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         23: {
             title: "Fd6",   
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(6))).mul(player.Z.points.gte(19)?1:1e16)
             },
@@ -878,6 +884,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         31: {
             title: "Fd7",
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(7))).mul(player.Z.points.gte(19)?1:1e22)
             },
@@ -903,6 +910,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         32: {
             title: "Fd8", 
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling).mul(tmp.F.scaling.pow(8))).mul(player.Z.points.gte(19)?1:1e29)
             },
@@ -929,6 +937,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         101: {
             title: "tickspeed",
             cost(x) {
+        if(player.Z.points.gte(37))return Decimal.tetrate(10, x.add(1).slog().mul(tmp.F.scaling).add(1));
         if(player.Z.points.gte(30))return Decimal.pow(10, Decimal.pow(10, x.add(1).log10().pow(tmp.F.scaling)));
                 return Decimal.pow(10, x.pow(tmp.F.scaling)).mul(player.Z.points.gte(19)?1:1e10)
             },
@@ -1148,6 +1157,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+    if (player.Z.points.gte(37))return n(1.001);
     if (player.Z.points.gte(33))return n(1.06);
     if (player.Z.points.gte(30))return Decimal.pow(1.01,player.Z.points.sub(28).min(3));
     if (player.Z.points.gte(29))return n(10);
@@ -1185,7 +1195,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (upg('G',31) && ef.gte(1200))ef = ef.pow(1.5).div(1200**0.5);
     if ((!upg('G',64) || player.Z.points.lt(30)) && player.Z.points.lt(31))ef = Decimal.pow(10,ef.log10().div(5).pow(0.99)).max(ef.pow(0.05));
     ef = ef.pow(exp);
-        if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f);
+        if (player.Z.points.gte(37)) ef = Decimal.tetrate(10, ef.add(10).slog().add(layers.F.F2f()));else if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f);
         return ef;
     },
     F2f() {
@@ -1195,6 +1205,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (player.Z.points.gte(30)) ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(2);
     if (upg('G',64) && player.Z.points.gte(31)) ef = ef.mul(player.F.F2.add(1).log(10).add(1).pow(player.Z.points.gte(32)?0.06:0.04));
     if (player.Z.points.gte(33)) ef = player.F.F2.add(10).log(10).pow(0.1);
+    if (player.Z.points.gte(37)) ef = player.F.F2.add(10).slog().mul(0.002);
         return ef
     },
     update(diff) {

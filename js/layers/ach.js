@@ -764,7 +764,7 @@ addLayer("ac", {
         },
         261: {
             name: "151.hyped",
-            done() {return (mil('H',4))},
+            done() {return (mil('H',3))},
             tooltip: "unlock hyper",
         },
         262: {
