@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-    num: "1.038",
-    name: "GsR",
+    num: "1.039",
+    name: "dH",
 }
 
 let changelog = ``
@@ -140,13 +140,13 @@ function addedPlayerData() { return {
 var displayThings = [
     'Original author: 4294967296 / Mod author: loader3229',
     function() {
-        let s='Current Endgame: eeeee170 (2.23F6)'
+        let s='Current Endgame: 3F6'
         if(upg('G',155)||mil('I',0)) s=s+"<br><h4 style='color: #C52C14'>points gain is hardcapped at "+format(tmp.H.php)+"."
         return s},//<br> points is hardcapped at 1F100.
 ]
 // Determines when the game "ends"
 function isEndgame() {
-    return player.points.gte('eeeee170')
+    return player.points.gte('eeeeee3')
 }
 
 //<br> bilibili: @bili_50929957100 / @loader3229

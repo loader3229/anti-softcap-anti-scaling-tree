@@ -38,7 +38,7 @@ addLayer("H", {
         if(player.H.points.gte(15) || player.Z.points.gte(38)) exp=player.H.points.sub(6).min(min)
         if(player.Z.points.gte(38)) exp=exp.max(10)
         if(player.Z.points.gte(39)) exp=exp.max(11.29)
-        if(upg('G',144)) exp=exp.div(tmp.H.dhef[1])
+        if(upg('G',144) && tmp.H.dhef[1]) exp=exp.div(tmp.H.dhef[1])
         return exp
     },
     base() {
@@ -459,8 +459,8 @@ addLayer("H", {
         },
         42: {
             title:'H17',
-            description: "remove next e nerf,H16 exp is 1.6,dilate b9 by 1.02,sb6 limit +1,y5 limit +2,sb6 beyond 155 give r1.", //b8+1
-            cost:new Decimal('e7.34e33'),//904
+            description: "dilate b9 by 1.02,y5 limit +2,Gsb6 boost Gsq6 and GsR.", //b8+1
+            cost:new Decimal('e6.6e34'),//904
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -684,8 +684,8 @@ addLayer("H", {
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#00FFE6":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsr.gte(tmp.H.dhreq[0])},
             onClick() {player.H.dh[0]=player.H.dh[0].add(1)
-                if(mil('H',18)&&!gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(0.5).sub(1).ceil().max(player.H.dh[0])
-                if(gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(5/9).sub(1).ceil().max(player.H.dh[0])
+                //if(mil('H',18)&&!gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(0.5).sub(1).ceil().max(player.H.dh[0])
+                //if(gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(5/9).sub(1).ceil().max(player.H.dh[0])
             },
             unlocked() {return mil('G',31)},
         },
@@ -1220,14 +1220,6 @@ addLayer("H", {
                 return e
             },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
-            bulk(){let t=n(0)
-                let c=n(0)
-                if(player[this.layer].auto4) {
-                    if(upg('G',142)) t=t.add(10)
-                    if(mil('H',13)) t=t.max(player.H.hyper.max(1).log(10).max(1).log(10).pow(this.sc().pow(-1)).sub(1).ceil().sub(gba(this.layer, this.id)).max(0))
-                    c=this.cost(gba(this.layer, this.id).add(t))
-                    if (player[this.layer].hyper.gte(c)) setBuyableAmount(this.layer,this.id,gba(this.layer, this.id).add(t))}    
-                },
             buy() { if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   
@@ -1278,13 +1270,6 @@ addLayer("H", {
                 //if(gba(this.layer, this.id).gte(80000)) e=e.mul(1.05)
                 return e
             },
-            bulk(){let t=n(0)
-                let c=n(0)
-                if(player[this.layer].auto8) {
-                    if(mil('H',16)) t=t.max(player.H.hyper.max(1).log(10).max(1).log(10).pow(this.sc().pow(-1)).sub(1).ceil().sub(gba(this.layer, this.id)).max(0))
-                    c=this.cost(gba(this.layer, this.id).add(t))
-                    if (player[this.layer].hyper.gte(c)) setBuyableAmount(this.layer,this.id,gba(this.layer, this.id).add(t))}    
-                },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
             buy() { if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1326,13 +1311,6 @@ addLayer("H", {
                 //if(upg('H',31)) e=e.div(upgradeEffect('H',81))
                 return e
             },
-            bulk(){let t=n(0)
-                let c=n(0)
-                if(player[this.layer].auto6) {
-                    if(mil('H',15)&&player.H.max.gte('3300')) t=t.max(player.H.hyper.max(1).log(10).max(1).log(10).pow(this.sc().pow(-1)).sub(1).ceil().sub(gba(this.layer, this.id)).max(0))
-                    c=this.cost(gba(this.layer, this.id).add(t))
-                    if (player[this.layer].hyper.gte(c)) setBuyableAmount(this.layer,this.id,gba(this.layer, this.id).add(t))}    
-                },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
             buy() {if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1425,13 +1403,6 @@ addLayer("H", {
                 if(upg('H',35)) e=e.div(1.03)
                 return e
             },
-            bulk(){let t=n(0)
-                let c=n(0)
-                if(player[this.layer].auto6) {
-                    if(mil('H',15)&&player.H.max.gte('3300')) t=t.max(player.H.hyper.max(1).log(10).max(1).log(10).pow(this.sc().pow(-1)).sub(1).ceil().sub(gba(this.layer, this.id)).max(0))
-                    c=this.cost(gba(this.layer, this.id).add(t))
-                    if (player[this.layer].hyper.gte(c)) setBuyableAmount(this.layer,this.id,gba(this.layer, this.id).add(t))}    
-                },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
             buy() {if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1477,12 +1448,6 @@ addLayer("H", {
                 let e=n(0.35)
                 return e
             },
-            bulk(){
-                let tar=n(0)
-                if(upg('G',152)&&player.H.auto7)   tar=player[this.layer].dhp.add(10).log(10).mul(2).max(1).log(10).pow(this.sc().pow(-1)).sub(getBuyableAmount(this.layer, this.id)).sub(1).ceil().max(1)
-                let c = this.cost(getBuyableAmount(this.layer, this.id).add(tar))
-                if (player[this.layer].dhp.gte(c)) player[this.layer].buyables[this.id] = player[this.layer].buyables[this.id].add(tar)
-            },
             canAfford() { return player[this.layer].dhp.gte(this.cost()) },
             buy() { if(!mil('I',3)) player[this.layer].dhp = player[this.layer].dhp.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
@@ -1513,12 +1478,6 @@ addLayer("H", {
                 let e=n(0.25)
                 if(mil('G',33)) e=e.sub(0.01)
                 return e
-            },
-            bulk(){
-                let tar=n(0)
-                if(upg('G',152)&&player.H.auto7)   tar=player[this.layer].dhp.add(10).log(10).div(3).max(1).log(10).pow(this.sc().pow(-1)).sub(getBuyableAmount(this.layer, this.id)).sub(1).ceil().max(1)
-                let c = this.cost(getBuyableAmount(this.layer, this.id).add(tar))
-                if (player[this.layer].dhp.gte(c)) player[this.layer].buyables[this.id] = player[this.layer].buyables[this.id].add(tar)
             },
             canAfford() { return player[this.layer].dhp.gte(this.cost()) },
             buy() { if(!mil('I',3)) player[this.layer].dhp = player[this.layer].dhp.sub(this.cost())
@@ -1690,7 +1649,7 @@ addLayer("H", {
         if(mil('G',34)) {if(player.G.Gsetot.gte('e1.48e480')) e[4]=e[4].sub(0.6)//2.1
             if(player.G.Gsetot.gte('e2.86e603')) e[4]=e[4].sub(0.6)}//1.5
         let ef=[n(0),n(0),n(0),n(0),n(0)]
-        ef[0]=n(10).pow(player.H.dh[0].add(1).pow(e[0]).mul(6)).mul('1e303')//1e309
+        ef[0]=n(10).pow(player.H.dh[0].add(1).pow(e[0]).mul(6)).mul('1e240')
         ef[1]=n(10).pow(n(10).pow(player.H.dh[1].add(1).pow(e[1]).mul(2).add(130.942)))
         ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(3).add(262.25))
         ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500).add(690300)
