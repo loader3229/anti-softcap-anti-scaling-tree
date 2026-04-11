@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","10^^10"][player.Z.points.toNumber()]);
+        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -89,6 +89,7 @@ addLayer("Z", {
             if(player.Z.points.gte(32))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
             if(player.Z.points.gte(36))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
             if(player.Z.points.gte(37))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75];
+            if(player.Z.points.gte(38))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
             if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
             if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
             if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -357,6 +358,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         36: {requirementDescription: "37 Z",
             done() {return player.Z.points.gte(37)}, 
             effectDescription: "Start with first 10 Gs upgrades and first 2 H milestones. Change Fd costs, F1/F2 effects. Change Gsb8 cost and remove Gsb8 limit, permanently autobuy max Gsb8. Permanently unlock GG.",
+        },
+        37: {requirementDescription: "38 Z",
+            done() {return player.Z.points.gte(38)}, 
+            effectDescription: "Start with first 15 Gs upgrades. Change Gs effect. Permanently unlock Gsq. H cost is changed below 16.",
         },
     },
     setZ(a){

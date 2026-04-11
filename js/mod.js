@@ -5,16 +5,16 @@ let modInfo = {
     pointsName: "points",
     modFiles: ["layers/A.js", "layers/B.js","layers/C.js","layers/D.js","layers/E.js","layers/F.js","layers/G.js","layers/H.js","layers/I.js","layers/J.js","layers/Z.js","layers/ach.js","tree.js",],
 
-    discordName: "",
-    discordLink: "",
+	discordName: "loader3229's Discord Server",
+	discordLink: "https://discord.gg/jztUReQ2vT",
     initialStartPoints: new Decimal (10), // Used for hard resets and new players
     offlineLimit: 8760,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-    num: "1.037",
-    name: "Gsg",
+    num: "1.038",
+    name: "GsR",
 }
 
 let changelog = ``
@@ -109,7 +109,8 @@ function getPointGen() {
     if ((mil('G',14) || player.Z.points.gte(26)) && player.Z.points.lt(30))gain = gain.pow(tmp.G.gsef1)
     if (player.Z.points.gte(29))gain = gain.pow(tmp.F.F1f2)
 
-if (player.Z.points.gte(30))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G.gsef2))
+        if (player.Z.points.gte(30) && player.Z.points.lt(38))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G.gsef2))
+        if (player.Z.points.gte(38) && gain.gte(1e10))gain = Decimal.pow(10,Decimal.pow(10,gain.add(1).log10().add(1).log10().pow(tmp.G.gsef3)))
             
     let tet=n(0)
     if(upg('G',194)) tet = tet.add(upgradeEffect('G',194))
@@ -128,7 +129,7 @@ if (player.Z.points.gte(30))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G
     gain=gain.min(tmp.H.php)
     
     
-    gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","eee10","eee25","eee75","eee360","eee2e4","eeee110","eeee2000","eeeee5","eeeee7","eeeee11","eeeee21","eeeee31","10^^1e100"][player.Z.points.min(38).toNumber()]);
+    gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","eee10","eee25","eee75","eee360","eee2e4","eeee110","eeee2000","eeeee5","eeeee7","eeeee11","eeeee21","eeeee31","eeeeee3","10^^1e100"][player.Z.points.min(39).toNumber()]);
     return gain
 }
 
@@ -140,13 +141,13 @@ function addedPlayerData() { return {
 var displayThings = [
     'Original author: 4294967296 / Mod author: loader3229',
     function() {
-        let s='Current Endgame: eeeee30 (1.477F6)'
+        let s='Current Endgame: eeeee170 (2.23F6)'
         if(upg('G',155)||mil('I',0)) s=s+"<br><h4 style='color: #C52C14'>points gain is hardcapped at "+format(tmp.H.php)+"."
         return s},//<br> points is hardcapped at 1F100.
 ]
 // Determines when the game "ends"
 function isEndgame() {
-    return player.points.gte('eeeee30')
+    return player.points.gte('eeeee170')
 }
 
 //<br> bilibili: @bili_50929957100 / @loader3229
