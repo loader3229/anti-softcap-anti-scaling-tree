@@ -35,10 +35,9 @@ addLayer("H", {
         if(mil('I',9)) min=min.sub(1000)
         if(mil('I',11)) min=min.sub(500)//1000
         if(gba('J',101).gte(6)) min=min.sub(800)//200
-        if(player.H.points.gte(15)) exp=player.H.points.sub(6).min(min)
-        if(player.Z.points.gte(38)){
-            exp=player.H.points.max(16).sub(6).min(min)
-        }
+        if(player.H.points.gte(15) || player.Z.points.gte(38)) exp=player.H.points.sub(6).min(min)
+        if(player.Z.points.gte(38)) exp=exp.max(10)
+        if(player.Z.points.gte(39)) exp=exp.max(11.29)
         if(upg('G',144)) exp=exp.div(tmp.H.dhef[1])
         return exp
     },
@@ -290,7 +289,7 @@ addLayer("H", {
         14: {
             title:'H4',
             description: "Unlock a new Gt.",         
-            cost:new Decimal(9), 
+            cost(){return new Decimal(9)}, 
             unlocked() { return (upg(this.layer, 13) && player.Z.points.gte(36))},
         },
         15: {
@@ -321,7 +320,7 @@ addLayer("H", {
         22: {
             title:'H7',
             description: "b9 is much cheaper,Hb5 -0.02.",     
-            cost(){return new Decimal(mil('Z',37)?'e7e13':mil('Z',36)?'e8.17e12':'e2.147e12')},  
+            cost(){return new Decimal(mil('Z',38)?'e2e16':mil('Z',37)?'e7e13':mil('Z',36)?'e8.17e12':'e2.147e12')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -330,7 +329,7 @@ addLayer("H", {
         23: {
             title:'H8',
             description: "H raise b1 base,dilate harsh to 1.002.",         
-            cost(){return new Decimal(mil('Z',37)?'ee14':mil('Z',36)?'e1.29e13':'e3.11e12')},  
+            cost(){return new Decimal(mil('Z',38)?'e1.4e17':mil('Z',37)?'ee14':mil('Z',36)?'e1.29e13':'e3.11e12')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -345,7 +344,7 @@ addLayer("H", {
         24: {
             title:'H9',
             description: "Gsb16 boost harsh.",         
-            cost(){return new Decimal(mil('Z',37)?'e6e14':mil('Z',36)?'e6.85e13':'e1.84e13')},  
+            cost(){return new Decimal(mil('Z',38)?'e8e17':mil('Z',37)?'e6e14':mil('Z',36)?'e6.85e13':'e1.84e13')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -360,7 +359,7 @@ addLayer("H", {
         25: {
             title:'H10',
             description: "H31-32 ^2,Hb2/4/5 give b1.", 
-            cost(){return new Decimal(mil('Z',37)?'ee15':mil('Z',36)?'ee14':'e2.146e13')},  
+            cost(){return new Decimal(mil('Z',38)?'e2.9e18':mil('Z',37)?'ee15':mil('Z',36)?'ee14':'e2.146e13')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -369,7 +368,7 @@ addLayer("H", {
         31: {
             title:'H11',
             description: "H39 exp +0.4,Hb1 boost y6 1st eff,H36 app to Hb2 and Hy2.",       
-            cost:new Decimal('e4.5e30'),
+            cost(){return new Decimal(mil('Z',38)?'e4e32':'e4.5e30')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -384,8 +383,8 @@ addLayer("H", {
         },
         32: {
             title:'H12',
-            description: "y1 boost y2 eff,H11 exp +0.15.",       
-            cost:new Decimal('e1.12e31'),
+            description: "y1 boost y2 eff,H11 exp +0.15.",            
+            cost(){return new Decimal(mil('Z',38)?'ee33':'e1.12e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -400,7 +399,7 @@ addLayer("H", {
         33: {
             title:'H13',
             description: "y2 boost y4 1st eff,y6 2nd eff exp +0.04.", //remove next e nerf,      
-            cost:new Decimal('e1.46e31'),
+            cost(){return new Decimal(mil('Z',38)?'ee34':'e1.46e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -414,8 +413,8 @@ addLayer("H", {
         },
         34: {
             title:'H14',
-            description: "Gse raise ha/hy,y5->y2,y5->y4,b8->b5.",   
-            cost:new Decimal('e1.92e31'),
+            description: "Gse raise ha/hy,y5->y2,y5->y4,b8->b5.",      
+            cost(){return new Decimal(mil('Z',38)?'e2e34':'e1.92e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -430,7 +429,7 @@ addLayer("H", {
         35: {
             title:'H15',
             description: "harsh add to Gse 2nd eff hardcap, and all Hy costs are cheaper.", 
-            cost:new Decimal('e2.8e31'),
+            cost(){return new Decimal(mil('Z',38)?'e3e34':'e2.8e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -445,7 +444,7 @@ addLayer("H", {
         41: {
             title:'H16',
             description: "hyper add to Gse 2nd eff hardcap.", 
-            cost:new Decimal('e4e31'),
+            cost(){return new Decimal(mil('Z',38)?'e5e34':'e4e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -516,7 +515,7 @@ addLayer("H", {
         62: {
             title:'H27',
             description: "Hb2 cost exp -0.02,unlock a bab.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e280':hasMilestone('Z',36)?'1e270':'2e263')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e295':hasMilestone('Z',37)?'1e280':hasMilestone('Z',36)?'1e270':'2e263')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -525,7 +524,7 @@ addLayer("H", {
         63: {
             title:'H28',
             description: "Hb7 base +0.005,b5 -0.005,har^1.05.", 
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e410':hasMilestone('Z',36)?'1e397':'5e387')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e450':hasMilestone('Z',37)?'1e410':hasMilestone('Z',36)?'1e397':'5e387')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -534,7 +533,7 @@ addLayer("H", {
         64: {
             title:'H29',
             description: "Hb6 base +0.01,Hb1 base exp +0.05,unlock a bab.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e630':hasMilestone('Z',36)?'1e594':'5e586')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e650':hasMilestone('Z',37)?'1e630':hasMilestone('Z',36)?'1e594':'5e586')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -543,7 +542,7 @@ addLayer("H", {
         65: {
             title:'H30',
             description: "Hb5 cost -0.03,Hb1 base exp +0.05.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e890':hasMilestone('Z',36)?'1e869':'1e836')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e1000':hasMilestone('Z',37)?'1e890':hasMilestone('Z',36)?'1e869':'1e836')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -552,7 +551,7 @@ addLayer("H", {
         71: {
             title:'H31',
             description: "H raise harsh and Gse,b1 amt ^1.02.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e1820':hasMilestone('Z',36)?'1e1230':'5e1186')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e1325':hasMilestone('Z',37)?'1e1820':hasMilestone('Z',36)?'1e1230':'5e1186')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -570,7 +569,7 @@ addLayer("H", {
         72: {
             title:'H32',
             description: "GG raise harsh and Gse,b2 exp -0.02.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e3505':hasMilestone('Z',36)?'1e2282':'1e2221')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e4000':hasMilestone('Z',37)?'1e3505':hasMilestone('Z',36)?'1e2282':'1e2221')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -587,7 +586,7 @@ addLayer("H", {
         73: {
             title:'H33',
             description: "H beyond 12 provide b2,b2 exp -0.04.",    
-            cost(){return new Decimal(hasMilestone('Z',36)?'1e5000':'1e3003')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e6300':hasMilestone('Z',36)?'1e5000':'1e3003')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -600,7 +599,7 @@ addLayer("H", {
         74: {
             title:'H34',
             description: "b7 exp -0.04 and base +0.005,b4 -0.02,b5 -0.005.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e6570':hasMilestone('Z',36)?'1e6344':'5e3594')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'ee4':hasMilestone('Z',37)?'1e6570':hasMilestone('Z',36)?'1e6344':'5e3594')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -609,7 +608,7 @@ addLayer("H", {
         75: {
             title:'H35',
             description: "Hb1 base exp +0.2,H31-32 ^1.25,unlock the final bab.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e7717':hasMilestone('Z',36)?'1e7465':'5e4542')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e11230':hasMilestone('Z',37)?'1e7717':hasMilestone('Z',36)?'1e7465':'5e4542')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -618,7 +617,7 @@ addLayer("H", {
         81: {
             title:'H36',
             description: "Gsb6 amt div Hb1/Hy1 cost exp.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'e208595':'e183174')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'e506600':hasMilestone('Z',37)?'e208595':'e183174')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -638,7 +637,7 @@ addLayer("H", {
         82: {
             title:'H37',
             description: "H31-32 boost hyper,free bab:b3-->b2,y3-->y2-->y1.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'e536880':'e336215')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'e927000':hasMilestone('Z',37)?'e536880':'e336215')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -647,7 +646,7 @@ addLayer("H", {
         83: {
             title:'H38',
             description: "remove Hb1 nerf,b5 mul b1 eff amt instead.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'e784000':'e600000')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'e1454600':hasMilestone('Z',37)?'e784000':'e600000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -656,7 +655,7 @@ addLayer("H", {
         84: {
             title:'H39',
             description: "H36 ^1.5,b2/y2 sc -0.05,Gsi mult ha/hy,unlock 3 new bab.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'e1199160':'e958794')},
+            cost(){return new Decimal(hasMilestone('Z',37)?'e2399000':hasMilestone('Z',37)?'e1199160':'e958794')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -672,7 +671,7 @@ addLayer("H", {
         85: {
             title:'H40',
             description: "hyper eff exp +0.05,b/y1-2 exp /1.01.",    
-            cost(){return new Decimal(hasMilestone('Z',37)?'e49906000':'e29963000')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'e566e6':hasMilestone('Z',37)?'e49906000':'e29963000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",

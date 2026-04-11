@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","10^^10"][player.Z.points.toNumber()]);
+        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","10^^10","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -90,6 +90,7 @@ addLayer("Z", {
             if(player.Z.points.gte(36))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
             if(player.Z.points.gte(37))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75];
             if(player.Z.points.gte(38))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+            if(player.Z.points.gte(39))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95];
             if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
             if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
             if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -97,6 +98,7 @@ addLayer("Z", {
             if(player.Z.points.gte(18))player.F.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
             if(player.Z.points.gte(22))player.G.milestones=['0','1','2','3','4','5','6'];
             if(player.Z.points.gte(31))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
+            if(player.Z.points.gte(39))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
             if(player.Z.points.gte(37))player.H.milestones=['0','1'];
             player.points=new Decimal(10);
             for(let i=0;i<10;i++)updateTemp();
@@ -363,6 +365,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             done() {return player.Z.points.gte(38)}, 
             effectDescription: "Start with first 15 Gs upgrades. Change Gs effect. Permanently unlock Gsq. H cost is changed below 16.",
         },
+        38: {requirementDescription: "39 Z",
+            done() {return player.Z.points.gte(39)}, 
+            effectDescription: "Start with first 20 Gs upgrades and G milestones. H cost is changed below 17. Permanently unlock Gsb10-12, increase Gsb11/Gsb12 effects and decrease their costs.",
+        },
     },
     setZ(a){
         if(a === undefined)return;
@@ -377,7 +383,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
     getZp(){
         if(player.Z.points.lt(25))return player.points;
     if(player.Z.points.gte(35)){
-        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025][player.Z.points.sub(35).toNumber()]));
+        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003][player.Z.points.sub(35).toNumber()]));
     }
     if(player.Z.points.gte(29)){
         return Decimal.pow(10,Decimal.pow(10,player.points.add(1).log10().add(1).log10().pow(Decimal.pow(0.99,player.Z.points.sub(28)))));

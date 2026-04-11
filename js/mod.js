@@ -120,7 +120,6 @@ function getPointGen() {
     if(mil('J',8)) tet=tet.mul(2)
     if(mil('J',11)) tet=tet.mul(tmp.J.ssef)
     if(mil('I',23)) tet=tet.mul(tmp.I.hief[4])
-    gain=n(10).tetrate(gain.max(10).slog().add(tet))
     if(gcs('I',311)) {if(gain.gte('10^^25')&&mil('I',21)) gain=n(10).tetrate(gain.max(10).slog().add(tet))
         else if(gain.gte('10^^10')&&gba('J',101).gte(23)) gain=n(10).tetrate(gain.max(10).slog().add(tet))
         else gain=n(10).tetrate(gain.max(10).slog().sub(tmp.I.resv[0]).max(0))}
