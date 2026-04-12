@@ -1157,7 +1157,7 @@ addLayer("G", {
         164: {
             title:'Gsq4',
             description(){if(hasMilestone('Z',34))return "Increase Gsb10 hardcap.";return "Increase Gsb8 hardcap."},
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e1546':hasMilestone('Z',36)?'1e1386':hasMilestone('Z',35)?'1e1322':hasMilestone('Z',34)?'1e652':'1e342')},
+            cost(){return new Decimal(hasMilestone('Z',37)?'1e1546':hasMilestone('Z',36)?'1e1350':hasMilestone('Z',35)?'1e1322':hasMilestone('Z',34)?'1e652':'1e342')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsq",
             currencyInternalName: "Gsq",
