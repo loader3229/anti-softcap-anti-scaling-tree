@@ -1295,6 +1295,7 @@ addLayer("G", {
             effect()  { 
                 let ef=player.G.Gsg.add(10).log10().pow(mil('Z',37)?0.01:mil('Z',36)?1:0.985);
                 if(upg('G',205))ef = ef.pow(1.225);
+                if(upg('G',215))ef = ef.pow(6.8/1.225);
                 return ef;
             },
             effectDisplay() { return '^'+format(this.effect()) },
@@ -1438,6 +1439,24 @@ addLayer("G", {
             title:'Gsg18',
             description: "G30 affects Gsb17.",
             cost(){return new Decimal('1e1653')},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsg",
+            currencyInternalName: "Gsg",
+            unlocked() { return (upg('G',143))},
+        },
+        214: {
+            title:'Gsg19',
+            description: "Hyper gain ^10",
+            cost(){return new Decimal('1e2352')},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsg",
+            currencyInternalName: "Gsg",
+            unlocked() { return (upg('G',143))},
+        },
+        215: {
+            title:'Gsg20',
+            description: "Gsg5 is better.",
+            cost(){return new Decimal('1e2593')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsg",
             currencyInternalName: "Gsg",
@@ -2900,14 +2919,13 @@ addLayer("G", {
         74: {
             title: "Gr4", 
             cost(x) {
-                let c = n(10).pow(n(2).pow(x.pow(this.sc()))).mul(n(1000).pow(x)).mul('1e412')
+                let c = n(10).pow(n(2).pow(x.pow(this.sc()))).mul(n(1000).pow(x)).mul('1e420')
                 //if(x.gte(100)) c = n(10).pow(n(2).pow(x.sub(5).pow(this.sc())))
                 if(mil('G',36)) c=n(10).pow(n(2).pow(x.pow(this.sc())))
                 return c
             },
             sc(){
-                let e=n(0.4)
-                if(getBuyableAmount(this.layer, this.id).gte(25)) e=e.add(0.05)
+                let e=n(1)
                 if(player[this.layer].Gsr.gte('1e1164')) e=e.mul(0.99)
                 return e
             },
