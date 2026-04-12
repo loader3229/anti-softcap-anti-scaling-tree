@@ -1157,7 +1157,7 @@ addLayer("G", {
         164: {
             title:'Gsq4',
             description(){if(hasMilestone('Z',34))return "Increase Gsb10 hardcap.";return "Increase Gsb8 hardcap."},
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e1546':hasMilestone('Z',36)?'1e1350':hasMilestone('Z',35)?'1e1322':hasMilestone('Z',34)?'1e652':'1e342')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'1e1546':hasMilestone('Z',37)?'1e1386':hasMilestone('Z',35)?'1e1322':hasMilestone('Z',34)?'1e652':'1e342')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsq",
             currencyInternalName: "Gsq",
@@ -3706,6 +3706,7 @@ addLayer("G", {
         if (mil("G", 30))  player.G.Gsr = player.G.Gsr.add(tmp.G.gsrb.mul(diff))
     player.G.GGtot = player.G.buyables[61].add(player.G.buyables[62].mul(hasUpgrade('G',133)?10:5)).add(player.G.buyables[63].mul(10)).mul(tmp.G.ggmt)
         if (upg("G", player.Z.points.gte(35)?82:115) || player.Z.points.gte(37))  player.G.GG = player.G.GGtot.sub(player.G.Gtc)
+	if(player.G.GG.lt(0))layers.G.clickables[11].onClick();
         player.G.Gsetot = player.G.Gsetot.max(player.G.Gse)
     },
 })
