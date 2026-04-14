@@ -655,7 +655,7 @@ addLayer("H", {
         84: {
             title:'H39',
             description: "H36 ^1.5,b2/y2 sc -0.05,Gsi mult ha/hy,unlock 3 new bab.",   
-            cost(){return new Decimal(hasMilestone('Z',37)?'e2399000':hasMilestone('Z',37)?'e1199160':'e958794')},
+            cost(){return new Decimal(hasMilestone('Z',38)?'e2399000':hasMilestone('Z',37)?'e1199160':'e958794')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
