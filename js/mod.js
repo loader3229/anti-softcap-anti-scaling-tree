@@ -112,6 +112,8 @@ function getPointGen() {
         if (player.Z.points.gte(30) && player.Z.points.lt(38))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G.gsef2))
         if (player.Z.points.gte(38) && gain.gte(1e10))gain = Decimal.pow(10,Decimal.pow(10,gain.add(1).log10().add(1).log10().pow(tmp.G.gsef3)))
             
+    if (inChallenge("A", 42))  gain = n(0)
+
     let tet=n(0)
     if(upg('G',194)) tet = tet.add(upgradeEffect('G',194))
     if(gcs('I',124))  tet=tet.add(0.3)

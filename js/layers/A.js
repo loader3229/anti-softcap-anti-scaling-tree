@@ -447,5 +447,18 @@ addLayer("A", {
             },
             rewardDisplay() {return format(this.rewardEffect())+"x"},
         },
+        42: {
+            name: "Ac8",
+            completionLimit: 5,
+            challengeDescription: function() {
+                return "base point gain is 0, only point slog adder is effective<br> Completion: " +challengeCompletions(this.layer,this.id) + "/5"},
+            unlocked() { return (mil('Z',39))},
+            goal(){
+                let a=[n('e500'),n('e540'),n('e580'),n('e700'),n('e2025'),n(0)]
+                return a[(challengeCompletions(this.layer,this.id))]
+            },            
+            goalDescription:  function() {return format(this.goal())+' points'},
+            canComplete() {return player.points.gte(this.goal())},
+        }
     }
 })
