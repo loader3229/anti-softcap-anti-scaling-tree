@@ -602,7 +602,7 @@ addLayer("G", {
         },
         65: {
             title:'G30',
-            description(){return hasMilestone('Z',36)?"Gsb1-8 are cheaper based on G upg amount. Each G upg also boost Gsb6 base by +0.01":hasMilestone('Z',35)?"Gsb1-7 are cheaper based on G upg amount. Each G upg also boost Gsb6 base by +0.01":hasMilestone('Z',34)?"Gsb1-7 are cheaper based on Gs upg amount. Each Gs upg also boost Gsb6 base by +0.01":hasMilestone('Z',32)?"Gsb1-6 are cheaper based on Gs upg amount. Each Gs upg also boost Gsb6 base by +0.01":"Gs buyables are cheaper based on Gs upg amount."},
+            description(){return hasMilestone('Z',39)?"Gsb1-12 are cheaper based on G upg amount. Each G upg also boost Gsb6 base by +0.01":hasMilestone('Z',36)?"Gsb1-8 are cheaper based on G upg amount. Each G upg also boost Gsb6 base by +0.01":hasMilestone('Z',35)?"Gsb1-7 are cheaper based on G upg amount. Each G upg also boost Gsb6 base by +0.01":hasMilestone('Z',34)?"Gsb1-7 are cheaper based on Gs upg amount. Each Gs upg also boost Gsb6 base by +0.01":hasMilestone('Z',32)?"Gsb1-6 are cheaper based on Gs upg amount. Each Gs upg also boost Gsb6 base by +0.01":"Gs buyables are cheaper based on Gs upg amount."},
             cost(){return new Decimal(hasMilestone('Z',35)?0:hasMilestone('Z',34)?'1e35':hasMilestone('Z',33)?'1e26':hasMilestone('Z',32)?'1e700':hasMilestone('Z',30)?'1e450':hasMilestone('Z',29)?'1e390':hasMilestone('Z',28)?'1e182':hasMilestone('Z',27)?'1e128':hasMilestone('Z',26)?'1e110':'1e100')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',34)?"Gse":hasMilestone('Z',33)?"Gsi":"Gs"},
@@ -825,7 +825,7 @@ addLayer("G", {
         101: {
             title:'G46',
             description(){if(hasMilestone('Z',37))return "Gs, Gsi, Gse and Gsq gain base ^1.05.";if(hasMilestone('Z',33))return "Gs gain base ^1.05.";return "Gs gain base ^1.05,unlock Gse."},         
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e9':hasMilestone('Z',37)?'5e5':hasMilestone('Z',36)?'1e591300':hasMilestone('Z',35)?'1e463400':hasMilestone('Z',34)?'1e49168':hasMilestone('Z',32)?'1e375':hasMilestone('Z',31)?'1e264':hasMilestone('Z',28)?'1e220':'1e420')},
+            cost(){return new Decimal(hasMilestone('Z',39)?0:hasMilestone('Z',38)?'1e9':hasMilestone('Z',37)?'5e5':hasMilestone('Z',36)?'1e591300':hasMilestone('Z',35)?'1e463400':hasMilestone('Z',34)?'1e49168':hasMilestone('Z',32)?'1e375':hasMilestone('Z',31)?'1e264':hasMilestone('Z',28)?'1e220':'1e420')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
@@ -834,7 +834,7 @@ addLayer("G", {
         102: {
             title:'G47',
             description(){return player.Z.points.eq(32)?"G45 mult Gse at ^0.1 eff, Gsb6 add to Gsb5 and Gsb3.":player.Z.points.gte(30)?"G45 mult Gse at ^0.1 eff.":"G45 mult Gse at ^0.15 eff,Gsb1 cost base -0.4."},
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e10':hasMilestone('Z',37)?'1e6':hasMilestone('Z',36)?'1e7610':hasMilestone('Z',35)?'1e7330':hasMilestone('Z',34)?'1e3428':hasMilestone('Z',32)?'1e24':hasMilestone('Z',28)?'1e6':'2.5e6')},
+            cost(){return new Decimal(hasMilestone('Z',39)?0:hasMilestone('Z',38)?'1e10':hasMilestone('Z',37)?'1e6':hasMilestone('Z',36)?'1e7610':hasMilestone('Z',35)?'1e7330':hasMilestone('Z',34)?'1e3428':hasMilestone('Z',32)?'1e24':hasMilestone('Z',28)?'1e6':'2.5e6')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -853,7 +853,7 @@ addLayer("G", {
         103: {
             title:'G48',
             description: "remove Gsb5 linear cost,G47 exp +0.05,boost Gsb1/6 base.", 
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e12':hasMilestone('Z',37)?'3e6':hasMilestone('Z',36)?'1e1018500':hasMilestone('Z',35)?'1e759700':hasMilestone('Z',34)?'1e3800':hasMilestone('Z',32)?'1e545':hasMilestone('Z',31)?'1e320':hasMilestone('Z',30)?'1e275':hasMilestone('Z',29)?'1e540':hasMilestone('Z',28)?'1e368':'1e590')},
+            cost(){return new Decimal(hasMilestone('Z',39)?0:hasMilestone('Z',38)?'1e12':hasMilestone('Z',37)?'3e6':hasMilestone('Z',36)?'1e1018500':hasMilestone('Z',35)?'1e759700':hasMilestone('Z',34)?'1e3800':hasMilestone('Z',32)?'1e545':hasMilestone('Z',31)?'1e320':hasMilestone('Z',30)?'1e275':hasMilestone('Z',29)?'1e540':hasMilestone('Z',28)?'1e368':'1e590')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
@@ -862,7 +862,7 @@ addLayer("G", {
         104: {
             title:'G49',
             description(){return player.Z.points.gte(36)?"Each G upgrade add Gsb9 base by 0.001.":player.Z.points.gte(35)?"For G30's 1st effect, each Gs upgrade will count one previous G upgrade as a Gs upgrade. Gsb3 add Gsb2.":player.Z.points.gte(33)?"G30 applies to Gsb7. Gsb3 add Gsb2.":player.Z.points.gte(31)?"G30 applies to Gsb7 at ^0.3 eff. Gsb3 add Gsb2.":player.Z.points.gte(30)?"G30 applies to Gsb5 at ^0.3 eff. Gsb3 add Gsb2.":"G30 applies to Gsb4-5 at ^0.3 eff and reduce Gsb2-3 cost."},
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e14':hasMilestone('Z',37)?'5e6':hasMilestone('Z',36)?'1e9420':hasMilestone('Z',35)?'1e9020':hasMilestone('Z',34)?'1e4222':hasMilestone('Z',33)?'1e84':hasMilestone('Z',32)?'1e85':hasMilestone('Z',30)?'1e30':hasMilestone('Z',28)?'1e21':'1e38')},
+            cost(){return new Decimal(hasMilestone('Z',39)?0:hasMilestone('Z',38)?'1e14':hasMilestone('Z',37)?'5e6':hasMilestone('Z',36)?'1e9420':hasMilestone('Z',35)?'1e9020':hasMilestone('Z',34)?'1e4222':hasMilestone('Z',33)?'1e84':hasMilestone('Z',32)?'1e85':hasMilestone('Z',30)?'1e30':hasMilestone('Z',28)?'1e21':'1e38')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -878,7 +878,7 @@ addLayer("G", {
         105: {
             title:'G50',
             description(){return player.Z.points.gte(32)?"Gse gain x(Gsb4 amt x Gsb4 extra)^10,G45 eff is 20,Gsb1 base ^1.05,boost Gsi/e exp.":player.Z.points.gte(31)?"Gse gain x(Gsb4 amt x Gsb4 extra),G45 eff is 20,Gsb1 base ^1.05,boost Gsi/e exp.":player.Z.points.gte(30)?"Gse gain x1.05^(Gsb4 amt^0.9),G45 eff is 1.07,Gsb1 base ^1.05,boost Gsi/e exp.":"Gse gain x1.05^(Gsb4 amt),G45 eff is 1.07,Gsb1 base ^1.05,boost Gsi/e exp."},    
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e20':hasMilestone('Z',37)?'7e6':hasMilestone('Z',36)?'1e10750':hasMilestone('Z',35)?'1e10270':hasMilestone('Z',34)?'1e9405':hasMilestone('Z',32)?'1e170':hasMilestone('Z',30)?'1e43':hasMilestone('Z',28)?'1e28':'1e120')},
+            cost(){return new Decimal(hasMilestone('Z',39)?0:hasMilestone('Z',38)?'1e20':hasMilestone('Z',37)?'7e6':hasMilestone('Z',36)?'1e10750':hasMilestone('Z',35)?'1e10270':hasMilestone('Z',34)?'1e9405':hasMilestone('Z',32)?'1e170':hasMilestone('Z',30)?'1e43':hasMilestone('Z',28)?'1e28':'1e120')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -895,7 +895,7 @@ addLayer("G", {
         111: {
             title:'G51',
             description(){return player.Z.points.gte(39)?"Gsb2 add to Gsb1, Gsb5 add to Gsb4.":"Gsb2 add to Gsb1, Gsb5 add to Gsb4,unlock another buyable."}, 
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e25':hasMilestone('Z',37)?'1e7':hasMilestone('Z',36)?'1e12385':hasMilestone('Z',35)?'1e11815':hasMilestone('Z',34)?'1e10941':hasMilestone('Z',32)?'1e340':hasMilestone('Z',31)?'1e129':hasMilestone('Z',30)?'1e82':'1e49')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e45':hasMilestone('Z',38)?'1e25':hasMilestone('Z',37)?'1e7':hasMilestone('Z',36)?'1e12385':hasMilestone('Z',35)?'1e11815':hasMilestone('Z',34)?'1e10941':hasMilestone('Z',32)?'1e340':hasMilestone('Z',31)?'1e129':hasMilestone('Z',30)?'1e82':'1e49')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -904,7 +904,7 @@ addLayer("G", {
         112: {
             title:'G52',
             description(){return player.Z.points.gte(30)?"Gsb5 is better, Gsb5/8 is cheaper, Gsb5 add to Gsb2.":"Gsb5 is better, Gsb5/8 is cheaper."},    
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e30':hasMilestone('Z',37)?'2e7':hasMilestone('Z',36)?'1e15190':hasMilestone('Z',35)?'1e14380':hasMilestone('Z',34)?'1e12410':hasMilestone('Z',32)?'1e500':hasMilestone('Z',31)?'1e166':hasMilestone('Z',30)?'1e92':hasMilestone('Z',29)?'1e65':'1e113')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e48':hasMilestone('Z',38)?'1e30':hasMilestone('Z',37)?'2e7':hasMilestone('Z',36)?'1e15190':hasMilestone('Z',35)?'1e14380':hasMilestone('Z',34)?'1e12410':hasMilestone('Z',32)?'1e500':hasMilestone('Z',31)?'1e166':hasMilestone('Z',30)?'1e92':hasMilestone('Z',29)?'1e65':'1e113')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -913,7 +913,7 @@ addLayer("G", {
         113: {
             title:'G53',
             description(){return player.Z.points.gte(30)?"Gsb2 is cheaper,Gsb7 add to Gsb4.":"Gsb2 is cheaper,Gse 2nd eff exp +0.03."}, 
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e40':hasMilestone('Z',37)?'5e7':hasMilestone('Z',36)?'1e16570':hasMilestone('Z',35)?'1e15360':hasMilestone('Z',34)?'1e13264':hasMilestone('Z',32)?'1e540':hasMilestone('Z',31)?'1e171':hasMilestone('Z',30)?'1e98':hasMilestone('Z',29)?'1e120':'1e200')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e52':hasMilestone('Z',38)?'1e40':hasMilestone('Z',37)?'5e7':hasMilestone('Z',36)?'1e16570':hasMilestone('Z',35)?'1e15360':hasMilestone('Z',34)?'1e13264':hasMilestone('Z',32)?'1e540':hasMilestone('Z',31)?'1e171':hasMilestone('Z',30)?'1e98':hasMilestone('Z',29)?'1e120':'1e200')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -922,7 +922,7 @@ addLayer("G", {
         114: {
             title:'G54',
             description(){return player.Z.points.gte(32)?"extra bab:b8->b5 and b7,b10->b7,b8 bas x1.05.":player.Z.points.gte(31)?"extra bab:b8->b7,b10->b7,b8 bas x1.05.":"extra bab:b9-10->b7,b6(x0.2)->b4,b8 bas x1.05."}, 
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e50':hasMilestone('Z',37)?'1e8':hasMilestone('Z',36)?'1e17470':hasMilestone('Z',35)?'1e16210':hasMilestone('Z',34)?'1e14143':hasMilestone('Z',32)?'1e597':hasMilestone('Z',31)?'1e191':hasMilestone('Z',30)?'1e103':hasMilestone('Z',29)?'1e345':'1e461')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e54':hasMilestone('Z',38)?'1e50':hasMilestone('Z',37)?'1e8':hasMilestone('Z',36)?'1e17470':hasMilestone('Z',35)?'1e16210':hasMilestone('Z',34)?'1e14143':hasMilestone('Z',32)?'1e597':hasMilestone('Z',31)?'1e191':hasMilestone('Z',30)?'1e103':hasMilestone('Z',29)?'1e345':'1e461')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -931,7 +931,7 @@ addLayer("G", {
         115: {
             title:'G55',
             description(){return player.Z.points.gte(38)?"Increase some hardcaps. Gsb9 add to Gsb8.":player.Z.points.gte(35)?"Increase some hardcaps. Unlock Gsq. Gsb9 add to Gsb8.":player.Z.points.gte(34)?"Increase some hardcaps. Unlock GG, Gsq and an upg tree. Gsb9 add to Gsb8.":player.Z.points.gte(31)?"Increase some hardcaps. Unlock GG and an upg tree.":"extra bab:b6(x0.6,total 0.8)->b4,unlock GG and a upg tree."},
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e54':hasMilestone('Z',37)?'1e14':hasMilestone('Z',36)?'ee9':hasMilestone('Z',35)?'ee8':player.Z.points.eq(32)?'1e2692':'ee4')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e55':hasMilestone('Z',38)?'1e54':hasMilestone('Z',37)?'1e14':hasMilestone('Z',36)?'ee9':hasMilestone('Z',35)?'ee8':player.Z.points.eq(32)?'1e2692':'ee4')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
@@ -939,7 +939,7 @@ addLayer("G", {
         },
         121: {
             title:'G56',
-            description(){return player.Z.points.gte(39)?"GG is cheaper, unlock new Gt.":"GG is cheaper. Unlock Gsb11 and Gsb12,unlock new Gt."},          
+            description(){return player.Z.points.gte(40)?"Point Gain slog +0.01":player.Z.points.gte(39)?"GG is cheaper, unlock new Gt.":"GG is cheaper. Unlock Gsb11 and Gsb12,unlock new Gt."},          
             cost(){return new Decimal(hasMilestone('Z',38)?'1e55':hasMilestone('Z',37)?'1e16':hasMilestone('Z',36)?'1e24830':hasMilestone('Z',35)?'1e19560':hasMilestone('Z',34)?'1e18920':hasMilestone('Z',33)?'1e1605':hasMilestone('Z',32)?'1e1494':'1e592')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -958,7 +958,7 @@ addLayer("G", {
         123: {
             title:'G58',
             description: "Gsb6/Gsb9 hardcap +0.02. Increase Gsb8/Gsb9 limit.",    
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e173':hasMilestone('Z',37)?'1e19':hasMilestone('Z',36)?'1e34120':hasMilestone('Z',35)?'1e26400':hasMilestone('Z',34)?'1e26190':hasMilestone('Z',33)?'1e3506':hasMilestone('Z',32)?'1e3120':'1e1203')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e188':hasMilestone('Z',38)?'1e173':hasMilestone('Z',37)?'1e19':hasMilestone('Z',36)?'1e34120':hasMilestone('Z',35)?'1e26400':hasMilestone('Z',34)?'1e26190':hasMilestone('Z',33)?'1e3506':hasMilestone('Z',32)?'1e3120':'1e1203')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -967,7 +967,7 @@ addLayer("G", {
         124: {
             title:'G59',
             description(){return player.Z.points.gte(34)?"Gsb9 hardcap +0.03,Gsb11-13 are cheaper,buff Gse 2nd eff.":"Gsb9 hardcap +0.03,Gsb11-12 are cheaper,buff Gse 2nd eff."},
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e174':hasMilestone('Z',37)?'1e21':hasMilestone('Z',36)?'1e40970':hasMilestone('Z',35)?'1e36500':hasMilestone('Z',34)?'1e33600':hasMilestone('Z',33)?'1e6178':'1e5922')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e190':hasMilestone('Z',38)?'1e174':hasMilestone('Z',37)?'1e21':hasMilestone('Z',36)?'1e40970':hasMilestone('Z',35)?'1e36500':hasMilestone('Z',34)?'1e33600':hasMilestone('Z',33)?'1e6178':'1e5922')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
             currencyInternalName() {return hasMilestone('Z',37)?"Gsq":"Gse"},
@@ -1138,8 +1138,8 @@ addLayer("G", {
         },
         162: {
             title:'Gsq2',
-            description(){if(hasMilestone('Z',36))return "G30 affects Gsb9.";if(hasMilestone('Z',34))return "Remove Gsb8 limit, change Gsb8 cost and autobuy max Gsb8.";return "Remove Gsb7 limit, change Gsb7 cost and autobuy max Gsb7."},       
-            cost(){return new Decimal(hasMilestone('Z',38)?1e172:hasMilestone('Z',37)?1e150:hasMilestone('Z',36)?1e135:hasMilestone('Z',34)?1e134:1e130)},
+            description(){if(hasMilestone('Z',39))return "G30 affects Gsb15.";if(hasMilestone('Z',36))return "G30 affects Gsb9.";if(hasMilestone('Z',34))return "Remove Gsb8 limit, change Gsb8 cost and autobuy max Gsb8.";return "Remove Gsb7 limit, change Gsb7 cost and autobuy max Gsb7."},       
+            cost(){return new Decimal(hasMilestone('Z',39)?1e189:hasMilestone('Z',38)?1e172:hasMilestone('Z',37)?1e150:hasMilestone('Z',36)?1e135:hasMilestone('Z',34)?1e134:1e130)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsq",
             currencyInternalName: "Gsq",
@@ -1148,7 +1148,7 @@ addLayer("G", {
         163: {
             title:'Gsq3',
             description: "G30 affects Gsb13.",  
-            cost(){return new Decimal(hasMilestone('Z',38)?1e285:hasMilestone('Z',37)?1e151:hasMilestone('Z',36)?1e145:1e135)},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e314':hasMilestone('Z',38)?1e285:hasMilestone('Z',37)?1e151:hasMilestone('Z',36)?1e145:1e135)},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "Gsq",
             currencyInternalName: "Gsq",
@@ -1475,7 +1475,7 @@ addLayer("G", {
                 if (player.G.Gsetot.gte('1e13144')) scs("G",21,1),scs("G",31,1)
                 if (player.G.Gsetot.gte('1e42090')) scs("G",32,1),scs("G",33,1)
                 if (mil('G',25)) scs("G",41,1),scs("G",51,1)
-                if (mil('G',27)) scs("G",42,1),scs("G",43,1),scs("G",44,1)//scs("G",91,1)
+                if (mil('G',27)) scs("G",42,1),scs("G",43,1),scs("G",44,1)
                 if (mil('G',28)) scs("G",91,1)
                 if (upg('H',15)) scs("G",101,1)
                 if(n(challengeCompletions('I',22)).gte(3)) scs("G",21,1),scs("G",31,1),scs("G",32,1),scs("G",33,1),scs("G",41,1),scs("G",51,1),scs("G",42,1),scs("G",43,1),scs("G",44,1),scs("G",91,1)
@@ -1566,7 +1566,7 @@ addLayer("G", {
             onClick() {if (!player.G.Gsetot.gte('1e42090')) {player.G.Gtc=player.G.Gtc.add(this.cost())}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('G',121)},
+            unlocked() {return hasUpgrade('G',121) || player.Z.points.gte(40)},
             branches(){return ["21"]},
         },
         33: {
@@ -1582,7 +1582,7 @@ addLayer("G", {
         return Decimal.pow(1e8,player.G.GGtot.pow(gcs('G',43)?1.5:1)).pow(hasUpgrade('G',131)?10:1)
                 return ef
             },
-            unlocked() {return hasUpgrade('G',player.Z.points.gte(35)?91:115)},
+            unlocked() {return hasUpgrade('G',player.Z.points.gte(35)?91:115) || player.Z.points.gte(40)},
             branches(){return ["21"]},
         },
         41: {
@@ -1605,7 +1605,7 @@ addLayer("G", {
             onClick() {if (!mil('G',27)) {player.G.Gtc=player.G.Gtc.add(20)}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('G',125)},
+            unlocked() {return hasUpgrade('G',125) || player.Z.points.gte(40)},
             branches(){return ["31","33"]},
         },
         43: {
@@ -1616,7 +1616,7 @@ addLayer("G", {
             onClick() {if (!hasMilestone('G',27)) {player.G.Gtc=player.G.Gtc.add(18)}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('G',121)},
+            unlocked() {return hasUpgrade('G',121) || player.Z.points.gte(40)},
             branches(){return ["31","33"]},
         },
         44: {
@@ -1633,7 +1633,7 @@ addLayer("G", {
                 if (gcs('G',82))  ef=ef.pow('1.2')
                 return ef
             },
-            unlocked() {return hasUpgrade('G',125)},
+            unlocked() {return hasUpgrade('G',125) || player.Z.points.gte(40)},
             branches(){return ["21"]},
         },
         51: {
@@ -1644,12 +1644,12 @@ addLayer("G", {
             onClick() {if (!hasMilestone('G',25)) {player.G.Gtc=player.G.Gtc.add(18)}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasMilestone('G',20)},
+            unlocked() {return hasMilestone('G',20) || player.Z.points.gte(40)},
             branches(){return ["41","42","43"]},
         },
         61: {
             title(){return "Gt9"},
-            display(){return "Gse raise itself (base on max) <br> cost: 36 GG <br> eff:^"+format(this.effect(),4)},
+            display(){return "Gse raise itself (base on total) <br> cost: 36 GG <br> eff:^"+format(this.effect(),4)},
             style() { return { 'background-color': gcs(this.layer,this.id)?"#77BF5F":layers.G.clickables[this.id].canClick()?"#695735":"#BF8F8F"}},
             canClick() {return player.G.GG.gte(36)&&!gcs(this.layer,this.id)&&gcs(this.layer,51)},
             onClick() {player.G.Gtc=player.G.Gtc.add(36)
@@ -1665,7 +1665,7 @@ addLayer("G", {
         },
         62: {
             title(){return "Gt10"},
-            display(){return "Gsi raise itself (base on max) <br> cost: 39 GG <br> eff:^"+format(this.effect(),4)},
+            display(){return "Gsi raise itself <br> cost: 39 GG <br> eff:^"+format(this.effect(),4)},
             style() { return { 'background-color': gcs(this.layer,this.id)?"#77BF5F":layers.G.clickables[this.id].canClick()?"#695735":"#BF8F8F"}},
             canClick() {return player.G.GG.gte(39)&&!gcs(this.layer,this.id)&&gcs(this.layer,51)},
             onClick() {player.G.Gtc=player.G.Gtc.add(39)
@@ -1681,7 +1681,7 @@ addLayer("G", {
         },
         63: {
             title(){return "Gt16"},
-            display(){return "Gs raise itself (base on max) <br> cost: 32 GG <br> eff:^"+format(this.effect(),4)},
+            display(){return "Gs raise itself <br> cost: 32 GG <br> eff:^"+format(this.effect(),4)},
             style() { return { 'background-color': gcs(this.layer,this.id)?"#77BF5F":layers.G.clickables[this.id].canClick()?"#695735":"#BF8F8F"}},
             canClick() {return player.G.GG.gte(32)&&!gcs(this.layer,this.id)&&gcs(this.layer,51)},
             onClick() {player.G.Gtc=player.G.Gtc.add(32)
@@ -1795,7 +1795,7 @@ addLayer("G", {
             onClick() {if(!mil('G',28)) {player.G.Gtc=player.G.Gtc.add(160)}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('G',131)},
+            unlocked() {return hasUpgrade('G',131) || player.Z.points.gte(40)},
             branches(){return ["81","82","83"]},
         },
         101: {
@@ -1806,7 +1806,7 @@ addLayer("G", {
             onClick() {if(!mil('H',15)) {player.G.Gtc=player.G.Gtc.add(80)}
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasMilestone('G',23)},
+            unlocked() {return hasMilestone('G',23) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         102: {
@@ -1824,7 +1824,7 @@ addLayer("G", {
                 if(ef.gte(0.04)) ef=ef.div(0.04).pow(0.6).mul(0.04)  
                 return ef
             },
-            unlocked() {return hasMilestone('G',23)},
+            unlocked() {return hasMilestone('G',23) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         111: {
@@ -1843,7 +1843,7 @@ addLayer("G", {
                 ef=ef.min(0.6)           
                 return ef
             },
-            unlocked() {return hasMilestone('G',25)},
+            unlocked() {return hasMilestone('G',25) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         112: {
@@ -1858,7 +1858,7 @@ addLayer("G", {
                 let ef=player.G.Gsq.add(1).log(10).add(1).log(10).pow(1.25).div(10).add(1)
                 return ef
             },
-            unlocked() {return hasMilestone('G',25)},
+            unlocked() {return hasMilestone('G',25) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         121: {
@@ -1869,7 +1869,7 @@ addLayer("G", {
             onClick() {player.G.Gtc=player.G.Gtc.add(200)
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('H',11)},
+            unlocked() {return hasUpgrade('H',11) || player.Z.points.gte(40)},
             branches(){return ["111"]},
         },
         122: {
@@ -1880,7 +1880,7 @@ addLayer("G", {
             onClick() {player.G.Gtc=player.G.Gtc.add(200)
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('H',12)},
+            unlocked() {return hasUpgrade('H',12) || player.Z.points.gte(40)},
             branches(){return ["112"]},
         },
         103: {
@@ -1891,7 +1891,7 @@ addLayer("G", {
             onClick() {player.G.Gtc=player.G.Gtc.add(800)
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('H',13)},
+            unlocked() {return hasUpgrade('H',13) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         104: {
@@ -1902,7 +1902,7 @@ addLayer("G", {
             onClick() {player.G.Gtc=player.G.Gtc.add(600)
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('H',14)},
+            unlocked() {return hasUpgrade('H',14) || player.Z.points.gte(40)},
             branches(){return ["91"]},
         },
         131: {
@@ -1913,8 +1913,25 @@ addLayer("G", {
             onClick() {player.G.Gtc=player.G.Gtc.add(900)
                 setClickableState(this.layer,this.id,1)
             },
-            unlocked() {return hasUpgrade('G',135)},
+            unlocked() {return hasUpgrade('G',135) || player.Z.points.gte(40)},
             branches(){return ["121","122"]},
+        },
+
+        64: {
+            title(){return "Gt29"},
+            display(){return "Gsq raise itself <br> cost: ??? GG <br> eff:^"+format(this.effect(),4)},
+            style() { return { 'background-color': gcs(this.layer,this.id)?"#77BF5F":layers.G.clickables[this.id].canClick()?"#695735":"#BF8F8F"}},
+            canClick() {return player.G.GG.gte(10000)&&!gcs(this.layer,this.id)&&gcs(this.layer,51)},
+            onClick() {player.G.Gtc=player.G.Gtc.add(10000)
+                setClickableState(this.layer,this.id,1)
+            },
+            effect(){
+                let exp=n(1)
+                let ef=player.G.Gsq.add(10).log(10).add(10).log(10).pow(exp).div(100).add(0.99)
+                return ef
+            },
+            unlocked() {return player.Z.points.gte(40)},
+            branches(){return ["51"]},
         },
     },
     automate(){
@@ -2526,7 +2543,7 @@ addLayer("G", {
                 let cost = Decimal.pow(bas, x.pow(e)).times(player.Z.points.gte(36)?1:player.Z.points.gte(29)?'1e48':'2e52')   
                 if (mil('G',24))  cost=cost.pow(0.8)
                 if (mil('G',26))  cost=cost.pow(0.8)
-                if (hasUpgrade('G',162) && hasMilestone('G',36)) cost=cost.pow(upgradeEffect('G',65))
+                if ((hasUpgrade('G',162) && hasMilestone('G',36)) || player.Z.points.gte(40)) cost=cost.pow(upgradeEffect('G',65))
                 if (upg('G',111)) cost=cost.div('2e5')
                 return cost
             },
@@ -2595,6 +2612,7 @@ addLayer("G", {
                 let e=n(0.75)
                 if(player.Z.points.gte(36))e = n(1)
                 let cost = n(10).pow(n(2).pow(x.pow(e))).mul(player.Z.points.gte(36)?1:upg('G',122)?1:player.Z.points.gte(30)?'1e60':'1e100')
+		if(player.Z.points.gte(40))cost = cost.pow(upgradeEffect('G',65))
                 return cost
             },
             purchaseLimit() {let lim=n(20)
@@ -2611,7 +2629,8 @@ addLayer("G", {
             canAfford() { return player[this.layer].Gse.gte(this.cost()) },
             buy() { if(!mil('G',27)) {player[this.layer].Gse = player[this.layer].Gse.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
-            base(){   let b = player.G.Gse.add(10).log(10).pow(0.5).div(300) 
+            base(){   let b = player.G.Gse.add(10).log(10).pow(0.5).div(300)
+		if(player.Z.points.gte(40))b = player.G.Gse.add(10).log(10).pow(0.1)
                 if(player.G.Gsetot.gte('1e6415')) b=b.mul(1.1)
                 b=b.min(this.hardcap())
                 return b},
@@ -2647,7 +2666,8 @@ addLayer("G", {
         51: {
             title: "Gsb11", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                let cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(20)).mul('1e647')
+		if(player.Z.points.gte(40))return n(10).pow(n(2).pow(x.pow(this.sc())).mul(upgradeEffect('G',65)))
+		let cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(20)).mul('1e647')
                 if(upg('G',124)) cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(16))
                 if(upg('G',131)) cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(10))
                 if(upg('G',132)) cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(6))
@@ -2655,6 +2675,7 @@ addLayer("G", {
                 return cost
             },
             sc(){
+		if(player.Z.points.gte(40))return n(0.5)
                 let e=n(0.95)
 		if(player.Z.points.gte(39))e = n(0.53)
                 if(upg('G',121))  e=e.sub(0.03)
@@ -2684,6 +2705,7 @@ addLayer("G", {
         52: {
             title: "Gsb12", 
             cost(x) {
+		if(player.Z.points.gte(40))return n(10).pow(n(2).pow(x.pow(this.sc())).mul(upgradeEffect('G',65)))
                 let cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(25)).mul('1e1175')
                 if(upg('G',124)) cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(20))
                 if(upg('G',131)) cost = n(10).pow(n(2).pow(x.pow(this.sc())).mul(12))
@@ -2692,6 +2714,7 @@ addLayer("G", {
                 return cost
             },
             sc(){
+		if(player.Z.points.gte(40))return n(1)
                 let e=n(1.05)
 		if(player.Z.points.gte(39))e = n(1.04)
                 if(upg('G',121))  e=e.sub(0.04)
@@ -2721,6 +2744,7 @@ addLayer("G", {
         61: {
             title: "GG1", 
             cost(x) {
+		if(player.Z.points.gte(40))return n(10).pow(x.pow(this.scaling()))
                 let cost = n(10).pow(x.pow(this.scaling())).mul(player.Z.points.gte(35)?1:player.Z.points.gte(31)?'1e400':'1e700')
                 if (hasUpgrade('G',121))cost = n(10).pow(x.pow(this.scaling()))
                 return cost
@@ -2734,7 +2758,7 @@ addLayer("G", {
                 a=a.mul(tmp.G.ggmt)
                 return a
             },
-            buy() { if(!mil('G',27)) {player[this.layer].Gse = player[this.layer].Gse.sub(this.cost())}
+            buy() { if(!mil('G',27) && player.Z.points.lt(40)) {player[this.layer].Gse = player[this.layer].Gse.sub(this.cost())}
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             effect(x) { 
@@ -2771,7 +2795,7 @@ addLayer("G", {
                 Cost: " + format(this.cost()) + " points \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: +" + format(this.effect())},
-            unlocked() { return hasUpgrade('G',132) }
+            unlocked() { return hasUpgrade('G',132) || player.Z.points.gte(40) }
         },
         63: {
             title: "GG3", 
@@ -2800,7 +2824,7 @@ addLayer("G", {
                 Cost: " + format(this.cost()) + " Gsq \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: +" + format(this.effect())},
-            unlocked() { return hasUpgrade('G',133) }
+            unlocked() { return hasUpgrade('G',133) || player.Z.points.gte(40) }
         },
         71: {
             title: "Gr1", 
@@ -3033,6 +3057,8 @@ addLayer("G", {
                 let e=n(3)
                 if(player.Z.points.gte(38) && x.gte(15))e = x.div(5)
                 let cost = Decimal.pow(bas, x.pow(e)).times(player.G.Gsetot.gte('1e24000')?1:1e14)
+                if (hasUpgrade('G',162) && player.Z.points.gte(40))  cost=cost.pow(upgradeEffect('G',65))
+
                 return cost
             },
             canAfford() { return player[this.layer].Gsq.gte(this.cost()) },
@@ -3470,12 +3496,13 @@ addLayer("G", {
         return ret;
     }, 
     gsef3(){
-        let ret=Decimal.tetrate(10,player.G.Gs.add(1e10).pow(buyableEffect('G',23)).slog().sub(player.Z.points.gte(39)?1.8:1.9)).sqrt();
+        let ret=Decimal.tetrate(10,player.G.Gs.add(1e10).pow(buyableEffect('G',23)).slog().sub(player.Z.points.eq(39)?1.8:1.9)).sqrt();
+	if(player.Z.points.gte(40))ret=Decimal.tetrate(10,player.G.Gs.add(1e10).pow(buyableEffect('G',23)).slog().sub(1.75));
         if (hasMilestone('G',15))  ret=ret.mul(1.5)
         ret=ret.mul(buyableEffect('H',33));
         ret=ret.mul(buyableEffect('H',63)[0])
-        ret=ret.mul(hasUpgrade('G',75)?upgradeEffect('G',75):1);
-        ret=ret.pow(hasUpgrade('G',83)?2:1);
+        if(upg('G',75))ret=ret.mul(upgradeEffect('G',75));
+        if(upg('G',83))ret=ret.pow(2);
         if(upg('H',21))ret=ret.pow(upgradeEffect('H',21))
         if(upg('G',185))ret=ret.pow(upgradeEffect('G',185))
         if(upg('G',134))ret=Decimal.pow(10,ret.add(1).log10().pow(1.01));
@@ -3610,6 +3637,7 @@ addLayer("G", {
         if(upg('G',173)) ef = ef.mul(upgradeEffect('G',173))
         if(upg("G", 175) && player.Z.points.gte(36))ef=ef.mul(tmp.G.gsgr)
         if(upg("G", 44) && player.Z.points.gte(38))ef=ef.mul(player.H.points.add(1))
+        if(gcs('G',64))  ef=ef.pow(clickableEffect('G',64))
         return ef;
     },
     gsqef(){

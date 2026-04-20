@@ -449,16 +449,24 @@ addLayer("A", {
         },
         42: {
             name: "Ac8",
-            completionLimit: 5,
+            completionLimit: 1,
             challengeDescription: function() {
-                return "base point gain is 0, only point slog adder is effective<br> Completion: " +challengeCompletions(this.layer,this.id) + "/5"},
+                return "base point gain is 0, only point slog adder is effective. In this challenge, points add to point slog. (+"+format(this.eff())+", max 3.5)<br> Completion: " +challengeCompletions(this.layer,this.id) + "/1"
+            },
+            eff(){
+                if(player.points.gte("10^^5"))return n(3.5);
+                let eff=Decimal.pow(1e-4,player.points.mul(5).div(player.points.div(1e15).pow(0.5).add(1).min("eee11")).slog()).add(1e-10).log(1e-4).add(1).max(0);
+                return eff;
+            },
             unlocked() { return (mil('Z',39))},
             goal(){
-                let a=[n('e500'),n('e540'),n('e580'),n('e700'),n('e2025'),n(0)]
+                let a=[n(1e20),n(1e30)]
                 return a[(challengeCompletions(this.layer,this.id))]
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete() {return player.points.gte(this.goal())},
+            rewardDescription() {return "Ac8's positive eff is applied outside Ac8 at a reduced rate"},
+            rewardDisplay() {return "+"+formatSmall(this.eff().mul(player.A.challenges[42]).div(1000))},
         }
     }
 })

@@ -38,6 +38,7 @@ addLayer("H", {
         if(player.H.points.gte(15) || player.Z.points.gte(38)) exp=player.H.points.sub(6).min(min)
         if(player.Z.points.gte(38)) exp=exp.max(10)
         if(player.Z.points.gte(39)) exp=exp.max(11.29)
+        if(player.Z.points.gte(40)) exp=exp.max(11.41)
         if(upg('G',144) && tmp.H.dhef[1]) exp=exp.div(tmp.H.dhef[1])
         return exp
     },
