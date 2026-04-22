@@ -38,7 +38,7 @@ addLayer("H", {
         if(player.H.points.gte(15) || player.Z.points.gte(38)) exp=player.H.points.sub(6).min(min)
         if(player.Z.points.gte(38)) exp=exp.max(10)
         if(player.Z.points.gte(39)) exp=exp.max(11.29)
-        if(player.Z.points.gte(40)) exp=exp.max(11.41)
+        if(player.Z.points.gte(40)) exp=exp.max(11.92)
         if(upg('G',144) && tmp.H.dhef[1]) exp=exp.div(tmp.H.dhef[1])
         return exp
     },
@@ -257,7 +257,7 @@ addLayer("H", {
     upgrades: {
         11: {
             title:'H1',
-            description: "Autobuy max GG1,unlock a new Gt.",         
+            description(){if(player.Z.points.gte(40))return "Gt16 is better.";return "Autobuy max GG1,unlock a new Gt."},         
             cost:new Decimal('e2.315e8'),
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
@@ -265,7 +265,7 @@ addLayer("H", {
         },
         12: {
             title:'H2',
-            description: "boost t13/17,unlock a new Gt.",         
+            description(){if(player.Z.points.gte(40))return "boost t13/17.";return "boost t13/17,unlock a new Gt."},
             cost(){return new Decimal(mil('Z',35)?'e1.728e9':'e2.328e8')},
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
@@ -274,7 +274,7 @@ addLayer("H", {
         },
         13: {
             title:'H3',
-            description: "max H raise Gs,unlock a new Gt.",  
+            description(){if(player.Z.points.gte(40))return "max H raise Gs.";return "max H raise Gs,unlock a new Gt."},
             cost(){return new Decimal(mil('Z',35)?'e2.328e9':'e2.49e8')},
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
@@ -289,13 +289,13 @@ addLayer("H", {
         },
         14: {
             title:'H4',
-            description: "Unlock a new Gt.",         
+            description(){if(player.Z.points.gte(40))return "Gt10 is better.";return "Unlock a new Gt."},
             cost(){return new Decimal(9)}, 
             unlocked() { return (upg(this.layer, 13) && player.Z.points.gte(36))},
         },
         15: {
             title:'H5',
-            description: "keep t20,b11-12 base +0.004.",         
+            description(){if(player.Z.points.gte(40))return "keep t20,b11-12 base +1.";return "keep t20,b11-12 base +0.004."},       
             cost:new Decimal('e4.84e9'),
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
@@ -316,7 +316,7 @@ addLayer("H", {
                 return ef;
             },
             effectDisplay() { return '^'+format(this.effect(),3) },
-            unlocked() { return (upg(this.layer, 75))},
+            unlocked() { return (upg(this.layer, 75) || (mil(this.layer,2) && player.Z.points.gte(40)))},
         },
         22: {
             title:'H7',
@@ -506,8 +506,8 @@ addLayer("H", {
         //harsh upgs
         61: {
             title:'H26',
-            description: "Hb1 base exp +0.1.", //  ,remove Gse 2nd nerf      
-            cost(){return new Decimal(hasMilestone('Z',37)?'1e200':'1e182')},
+            description: "Hb1 base exp +0.1.",      
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e230':hasMilestone('Z',37)?'1e200':'1e182')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -516,7 +516,7 @@ addLayer("H", {
         62: {
             title:'H27',
             description: "Hb2 cost exp -0.02,unlock a bab.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e295':hasMilestone('Z',37)?'1e280':hasMilestone('Z',36)?'1e270':'2e263')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e333':hasMilestone('Z',38)?'1e295':hasMilestone('Z',37)?'1e280':hasMilestone('Z',36)?'1e270':'2e263')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -525,7 +525,7 @@ addLayer("H", {
         63: {
             title:'H28',
             description: "Hb7 base +0.005,b5 -0.005,har^1.05.", 
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e450':hasMilestone('Z',37)?'1e410':hasMilestone('Z',36)?'1e397':'5e387')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e500':hasMilestone('Z',38)?'1e450':hasMilestone('Z',37)?'1e410':hasMilestone('Z',36)?'1e397':'5e387')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -534,7 +534,7 @@ addLayer("H", {
         64: {
             title:'H29',
             description: "Hb6 base +0.01,Hb1 base exp +0.05,unlock a bab.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e650':hasMilestone('Z',37)?'1e630':hasMilestone('Z',36)?'1e594':'5e586')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e800':hasMilestone('Z',38)?'1e650':hasMilestone('Z',37)?'1e630':hasMilestone('Z',36)?'1e594':'5e586')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -543,7 +543,7 @@ addLayer("H", {
         65: {
             title:'H30',
             description: "Hb5 cost -0.03,Hb1 base exp +0.05.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e1000':hasMilestone('Z',37)?'1e890':hasMilestone('Z',36)?'1e869':'1e836')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e1111':hasMilestone('Z',38)?'1e1000':hasMilestone('Z',37)?'1e890':hasMilestone('Z',36)?'1e869':'1e836')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -552,7 +552,7 @@ addLayer("H", {
         71: {
             title:'H31',
             description: "H raise harsh and Gse,b1 amt ^1.02.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e1325':hasMilestone('Z',37)?'1e1820':hasMilestone('Z',36)?'1e1230':'5e1186')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e1345':hasMilestone('Z',38)?'1e1325':hasMilestone('Z',37)?'1e1820':hasMilestone('Z',36)?'1e1230':'5e1186')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -570,7 +570,7 @@ addLayer("H", {
         72: {
             title:'H32',
             description: "GG raise harsh and Gse,b2 exp -0.02.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e4000':hasMilestone('Z',37)?'1e3505':hasMilestone('Z',36)?'1e2282':'1e2221')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e4500':hasMilestone('Z',38)?'1e4000':hasMilestone('Z',37)?'1e3505':hasMilestone('Z',36)?'1e2282':'1e2221')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -587,7 +587,7 @@ addLayer("H", {
         73: {
             title:'H33',
             description: "H beyond 12 provide b2,b2 exp -0.04.",    
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e6300':hasMilestone('Z',36)?'1e5000':'1e3003')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e8000':hasMilestone('Z',38)?'1e6300':hasMilestone('Z',36)?'1e5000':'1e3003')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -609,7 +609,7 @@ addLayer("H", {
         75: {
             title:'H35',
             description: "Hb1 base exp +0.2,H31-32 ^1.25,unlock the final bab.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'1e11230':hasMilestone('Z',37)?'1e7717':hasMilestone('Z',36)?'1e7465':'5e4542')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'1e11280':hasMilestone('Z',38)?'1e11230':hasMilestone('Z',37)?'1e7717':hasMilestone('Z',36)?'1e7465':'5e4542')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -638,7 +638,7 @@ addLayer("H", {
         82: {
             title:'H37',
             description: "H31-32 boost hyper,free bab:b3-->b2,y3-->y2-->y1.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'e927000':hasMilestone('Z',37)?'e536880':'e336215')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'e963000':hasMilestone('Z',38)?'e927000':hasMilestone('Z',37)?'e536880':'e336215')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -647,7 +647,7 @@ addLayer("H", {
         83: {
             title:'H38',
             description: "remove Hb1 nerf,b5 mul b1 eff amt instead.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'e1454600':hasMilestone('Z',37)?'e784000':'e600000')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'e1644000':hasMilestone('Z',38)?'e1454600':hasMilestone('Z',37)?'e784000':'e600000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -656,7 +656,7 @@ addLayer("H", {
         84: {
             title:'H39',
             description: "H36 ^1.5,b2/y2 sc -0.05,Gsi mult ha/hy,unlock 3 new bab.",   
-            cost(){return new Decimal(hasMilestone('Z',38)?'e2399000':hasMilestone('Z',37)?'e1199160':'e958794')},
+            cost(){return new Decimal(mil('Z',39)?'e2660000':hasMilestone('Z',38)?'e2399000':hasMilestone('Z',37)?'e1199160':'e958794')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -815,8 +815,7 @@ addLayer("H", {
         11: {
             title: "Hb1", 
             cost(x) { 
-                let cost = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))//.mul(n(1.5).pow(x))
-                //if(mil('H',11)&&player.H.hyper.gte('e9e500')) c=n(10).pow(n(10).pow(x.pow(this.sc())))
+                let cost = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return cost
             },
             sc(){
@@ -831,7 +830,7 @@ addLayer("H", {
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
-            buy() {if(!upg('G',141)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
+            buy() {if(!upg('G',204) && !upg('G',141) && player.Z.points.lt(40)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   
                 let e=n(1.5)
@@ -1174,7 +1173,7 @@ addLayer("H", {
                 return e
             },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
-            buy() { if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
+            buy() { if(!upg('G',141) && !upg('G',203)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   
                 let e=n(1.2)

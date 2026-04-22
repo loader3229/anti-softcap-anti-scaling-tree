@@ -449,9 +449,13 @@ addLayer("A", {
         },
         42: {
             name: "Ac8",
-            completionLimit: 1,
+            completionLimit(){ 
+		let ret=1;
+		if(hasUpgrade("G",204))ret++;
+		return ret;
+		},
             challengeDescription: function() {
-                return "base point gain is 0, only point slog adder is effective. In this challenge, points add to point slog. (+"+format(this.eff())+", max 3.5)<br> Completion: " +challengeCompletions(this.layer,this.id) + "/1"
+                return "base point gain is 0, only point slog adder is effective. In this challenge, points add to point slog. (+"+format(this.eff())+", max 3.5)<br> Completion: " +challengeCompletions(this.layer,this.id) + "/"+this.completionLimit();
             },
             eff(){
                 if(player.points.gte("10^^5"))return n(3.5);
@@ -460,7 +464,7 @@ addLayer("A", {
             },
             unlocked() { return (mil('Z',39))},
             goal(){
-                let a=[n(1e20),n(1e30)]
+                let a=[n(1e20),n(1e22),n(1e30)]
                 return a[(challengeCompletions(this.layer,this.id))]
             },            
             goalDescription:  function() {return format(this.goal())+' points'},

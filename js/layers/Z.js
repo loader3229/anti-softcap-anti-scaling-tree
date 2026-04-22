@@ -211,7 +211,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
                 player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
                 player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
             }
-            if(hasUpgrade("G",204)){
+            if(hasUpgrade("G",204) || player.Z.points.gte(40)){
                 player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
             }
         }
@@ -377,7 +377,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         39: {requirementDescription: "40 Z",
             done() {return player.Z.points.gte(40)}, 
-            effectDescription: "Start with first 25 Gs upgrades and G milestones. Permanently unlock and autobuy max Gsb11-12 and GG1-3. Permanently unlock first 31 Gts.",
+            effectDescription: "Start with first 25 Gs upgrades and G milestones. Permanently unlock and autobuy max Gsb11-12 and GG1-3. Permanently unlock first 31 Gts. Unlock Ac8. Permanently autobuy max Hb1.",
         },
 
     },
@@ -393,8 +393,13 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
     },
     getZp(){
         if(player.Z.points.lt(25))return player.points;
+    if(player.Z.points.gte(40)){
+        let ret=player.points.add(1).slog().div(1.005);
+	if(ret.gte(6.392))ret = player.points.add(1).slog().div(1.006).max(6.392);
+	return Decimal.tetrate(10,ret);
+    }
     if(player.Z.points.gte(35)){
-        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003,1.005][player.Z.points.sub(35).toNumber()]));
+        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003][player.Z.points.sub(35).toNumber()]));
     }
     if(player.Z.points.gte(29)){
         return Decimal.pow(10,Decimal.pow(10,player.points.add(1).log10().add(1).log10().pow(Decimal.pow(0.99,player.Z.points.sub(28)))));
