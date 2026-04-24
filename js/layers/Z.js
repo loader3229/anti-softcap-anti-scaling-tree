@@ -214,6 +214,9 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             if(hasUpgrade("G",204) || player.Z.points.gte(40)){
                 player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
             }
+            if(hasUpgrade("G",213) && player.Z.points.gte(40)){
+                player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
+            }
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
@@ -377,7 +380,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         39: {requirementDescription: "40 Z",
             done() {return player.Z.points.gte(40)}, 
-            effectDescription: "Start with first 25 Gs upgrades and G milestones. Permanently unlock and autobuy max Gsb11-12 and GG1-3. Permanently unlock first 31 Gts. Unlock Ac8. Permanently autobuy max Hb1.",
+            effectDescription: "Start with first 25 Gs upgrades and G milestones. Permanently unlock and autobuy max Gsb11-12 and GG1-3. Permanently unlock first 30 Gts. Unlock Ac8. Permanently autobuy max Hb1.",
         },
 
     },
@@ -396,6 +399,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
     if(player.Z.points.gte(40)){
         let ret=player.points.add(1).slog().div(1.005);
 	if(ret.gte(6.392))ret = player.points.add(1).slog().div(1.006).max(6.392);
+	if(ret.gte(6.5))ret = player.points.add(1).slog().div(1.007).max(6.5);
 	return Decimal.tetrate(10,ret);
     }
     if(player.Z.points.gte(35)){

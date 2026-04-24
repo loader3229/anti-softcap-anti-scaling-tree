@@ -231,7 +231,7 @@ addLayer("H", {
                 unlocked() {return (mil("G",31))},
                 content: [["display-text", () => "dH1-current: <h3 style='color: #00FFE6; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[0]) + "</h3> (best:"+ format(player.H.dhmax[0]) + ")(next at "+ format(tmp.H.dhreq[0])+" GsR) boost GsR by x<h3 style='color: #00FFE6; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[0]) +"<h4>"]
                 ,["display-text", function() {if(upg('G',144)) return "dH2-current: <h3 style='color: #2EDEC4; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[1]) + "</h3> (best:"+ format(player.H.dhmax[1]) + ")(next at "+ format(tmp.H.dhreq[1])+" hyper) reduce H threshold by /<h3 style='color: #2EDEC4; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[1]) +"<h4>"}]
-                ,["display-text", function() {if(upg('G',145)) return "dH3-current: <h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[2]) + "</h3> (best:"+ format(player.H.dhmax[2]) + ")(next at "+ format(tmp.H.dhreq[2])+" Gsb4 amt) raise harsh by ^<h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[2]) +"<h4>"}]
+                ,["display-text", function() {if(upg('G',145)) return "dH3-current: <h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[2]) + "</h3> (best:"+ format(player.H.dhmax[2]) + ")(next at "+ format(tmp.H.dhreq[2])+" Gsg) raise harsh by ^<h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[2]) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',145)) return "dH4-current: <h3 style='color: #9BFFBD; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[3]) + "</h3> (best:"+ format(player.H.dhmax[3]) + ")(next at "+ format(tmp.H.dhreq[3])+" total GG) div hb2/y2 scaling by /<h3 style='color: #9BFFBD; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[3],3) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',151)) return "dH5-current: <h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[4]) + "</h3> (best:"+ format(player.H.dhmax[4]) + ")(next at "+ format(tmp.H.dhreq[4])+" Gse) reduce further e nerf by +<h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[4],4) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',154)) return "dH6-current: <h3 style='color: #339999; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[5]) + "</h3> (best:"+ format(player.H.dhmax[5]) + ")(next at "+ format(tmp.H.dhreq[5])+" Gsb6 eff) div hb3/y3 scaling by /<h3 style='color: #339999; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[5],3) +"<h4>"}]
@@ -369,7 +369,7 @@ addLayer("H", {
         31: {
             title:'H11',
             description: "H39 exp +0.4,Hb1 boost y6 1st eff,H36 app to Hb2 and Hy2.",       
-            cost(){return new Decimal(mil('Z',38)?'e4e32':'e4.5e30')},  
+            cost(){return new Decimal(mil('Z',39)?'e1.3e34':mil('Z',38)?'e4e32':'e4.5e30')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -385,7 +385,7 @@ addLayer("H", {
         32: {
             title:'H12',
             description: "y1 boost y2 eff,H11 exp +0.15.",            
-            cost(){return new Decimal(mil('Z',38)?'ee33':'e1.12e31')},  
+            cost(){return new Decimal(mil('Z',39)?'e2.6e34':mil('Z',38)?'ee33':'e1.12e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -400,7 +400,7 @@ addLayer("H", {
         33: {
             title:'H13',
             description: "y2 boost y4 1st eff,y6 2nd eff exp +0.04.", //remove next e nerf,      
-            cost(){return new Decimal(mil('Z',38)?'ee34':'e1.46e31')},  
+            cost(){return new Decimal(mil('Z',39)?'e3.3e34':mil('Z',38)?'ee34':'e1.46e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -415,7 +415,7 @@ addLayer("H", {
         34: {
             title:'H14',
             description: "Gse raise ha/hy,y5->y2,y5->y4,b8->b5.",      
-            cost(){return new Decimal(mil('Z',38)?'e2e34':'e1.92e31')},  
+            cost(){return new Decimal(mil('Z',39)?'e4.4e34':mil('Z',38)?'e2e34':'e1.92e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -430,7 +430,7 @@ addLayer("H", {
         35: {
             title:'H15',
             description: "harsh add to Gse 2nd eff hardcap, and all Hy costs are cheaper.", 
-            cost(){return new Decimal(mil('Z',38)?'e3e34':'e2.8e31')},  
+            cost(){return new Decimal(mil('Z',39)?'e5.8e34':mil('Z',38)?'e3e34':'e2.8e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -445,7 +445,7 @@ addLayer("H", {
         41: {
             title:'H16',
             description: "hyper add to Gse 2nd eff hardcap.", 
-            cost(){return new Decimal(mil('Z',38)?'e5e34':'e4e31')},  
+            cost(){return new Decimal(mil('Z',39)?'e8.7e34':mil('Z',38)?'e5e34':'e4e31')},  
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -461,7 +461,7 @@ addLayer("H", {
         42: {
             title:'H17',
             description: "dilate b9 by 1.02,y5 limit +2,Gsb6 boost Gsq6 and GsR.", //b8+1
-            cost:new Decimal('e6.6e34'),//904
+            cost(){return new Decimal(mil('Z',39)?'e1.1e35':'e6.6e34')}, 
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
             currencyInternalName: "Gse",
@@ -469,8 +469,8 @@ addLayer("H", {
         },
         43: {
             title:'H18',
-            description: "i eff nerf +0.0025,r3 exp -0.01,sb6 exp +0.1 <br>[req:1e255 GsR].", //b8+1
-            cost:new Decimal('e1.045e44'),
+            description: "Gr3 exp -0.01 <br>[req:1e255 GsR].", //b8+1
+            cost(){return new Decimal(mil('Z',39)?'ee46':'e1.045e44')}, 
             canAfford() {return player.G.Gsr.gte('1e255')}, 
             currencyLocation() {return player.G}, 
             currencyDisplayName: "Gse",
@@ -672,7 +672,7 @@ addLayer("H", {
         85: {
             title:'H40',
             description: "hyper eff exp +0.05,b/y1-2 exp /1.01.",    
-            cost(){return new Decimal(hasMilestone('Z',38)?'e566e6':hasMilestone('Z',37)?'e49906000':'e29963000')},
+            cost(){return new Decimal(hasMilestone('Z',39)?'ee10':hasMilestone('Z',38)?'e566e6':hasMilestone('Z',37)?'e49906000':'e29963000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -685,100 +685,49 @@ addLayer("H", {
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#00FFE6":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsr.gte(tmp.H.dhreq[0])},
             onClick() {player.H.dh[0]=player.H.dh[0].add(1)
-                //if(mil('H',18)&&!gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(0.5).sub(1).ceil().max(player.H.dh[0])
-                //if(gcs('I',73)) player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(5/9).sub(1).ceil().max(player.H.dh[0])
             },
             unlocked() {return mil('G',31)},
         },
-        // 12:{
-        //     display(){return "-1 dH1"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#00FFE6":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[0].gte(1)},
-        //     onClick() {player.H.dh[0]=player.H.dh[0].sub(1).max(0)},
-        //     unlocked() {return (mil('G',31)&&!mil('H',14))},
-        // },
         12:{
             display(){return "+1 dH2"},//'height':'80px','width':'80px',
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#2EDEC4":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.H.hyper.gte(tmp.H.dhreq[1])},
             onClick() {player.H.dh[1]=player.H.dh[1].add(1)
-                if(mil('H',18)&&!gcs('I',73)) {player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/1.58).sub(1).ceil().min(6000).max(player.H.dh[1])
-                player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/1.7).sub(1).ceil().max(player.H.dh[1])}
-                if(gcs('I',73)) player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/1.55).sub(1).ceil().max(player.H.dh[1])
             },
             unlocked() {return upg('G',144)},
         },
-        // 14:{
-        //     display(){return "-1 dH2"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#2EDEC4":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[1].gte(1)},
-        //     onClick() {player.H.dh[1]=player.H.dh[1].sub(1).max(0)},
-        //     unlocked() {return (upg('G',144)&&!mil('H',14))},
-        // },
         13:{
             display(){return "+1 dH3"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#4E40B6":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
-            canClick() {return n(getBuyableAmount('G',31)).gte(tmp.H.dhreq[2])},
+            canClick() {return player.G.Gsg.gte(tmp.H.dhreq[2])},
             onClick() {player.H.dh[2]=player.H.dh[2].add(1)
-                if(mil('H',18)) player.H.dh[2]=n(getBuyableAmount('G',31)).max(1).log(10).div(3).pow(1/1.7).sub(1).ceil().max(player.H.dh[2])
             },
             unlocked() {return upg('G',145)},
         },
-        // 16:{
-        //     display(){return "-1 dH3"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#4E40B6":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[2].gte(1)},
-        //     onClick() {player.H.dh[2]=player.H.dh[2].sub(1).max(0)},
-        //     unlocked() {return (upg('G',145)&&!mil('H',14))},
-        // },
         14:{
             display(){return "+1 dH4"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#9BFFBD":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.GGtot.gte(tmp.H.dhreq[3])},
             onClick() {player.H.dh[3]=player.H.dh[3].add(1)
-                if(mil('H',18)) player.H.dh[3]=player.G.GGtot.div(7500).pow(1/2.2).sub(3).ceil().max(player.H.dh[3])
             },
             unlocked() {return upg('G',145)},
         },
-        // 22:{
-        //     display(){return "-1 dH4"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#9BFFBD":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[3].gte(1)},
-        //     onClick() {player.H.dh[3]=player.H.dh[3].sub(1).max(0)},
-        //     unlocked() {return (upg('G',145)&&!mil('H',14))},
-        // },
         15:{
             display(){return "+1 dH5"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#5EA794":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsetot.gte(tmp.H.dhreq[4])},
             onClick() {player.H.dh[4]=player.H.dh[4].add(1)
-                if(upg('G',155)) player.H.dh[4]=player.G.Gsetot.max(1).log(10).max(1).log(10).div(2).pow(2/3).sub(1).ceil().max(player.H.dh[4])
             },
             unlocked() {return upg('G',151)},
         },
-        // 24:{
-        //     display(){return "-1 dH5"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#5EA794":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[4].gte(1)},
-        //     onClick() {player.H.dh[4]=player.H.dh[4].sub(1).max(0)},
-        //     unlocked() {return (upg('G',151)&&!mil('H',14))},
-        // },
         16:{
             display(){return "+1 dH6"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#339999":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return n(buyableEffect('G',33)).gte(tmp.H.dhreq[5])},
             onClick() {player.H.dh[5]=player.H.dh[5].add(1)
-                if(upg('G',155)) player.H.dh[5]=n(buyableEffect('G',33)).div(5).pow(20/27).ceil().max(player.H.dh[5])
             },
             unlocked() {return upg('G',154)},
         },
-        // 26:{
-        //     display(){return "-1 dH6"},
-        //     style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#339999":"#BF8F8F"}},
-        //     canClick() {return player.H.dh[5].gte(1)},
-        //     onClick() {player.H.dh[5]=player.H.dh[5].sub(1).max(0)},
-        //     unlocked() {return (upg('G',154)&&!mil('H',14))},
-        // },
         101:{
             display(){return "+1 all dHs"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#F3FF34":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
@@ -786,7 +735,7 @@ addLayer("H", {
             onClick() {
                 if(player.G.Gsr.gte(tmp.H.dhreq[0])) player.H.dh[0]=player.H.dh[0].add(1)
                 if(player.H.hyper.gte(tmp.H.dhreq[1])) player.H.dh[1]=player.H.dh[1].add(1)
-                if(n(gba('G',31)).gte(tmp.H.dhreq[2])) player.H.dh[2]=player.H.dh[2].add(1)
+                if(player.G.Gsg.gte(tmp.H.dhreq[2])) player.H.dh[2]=player.H.dh[2].add(1)
                 if(player.G.GGtot.gte(tmp.H.dhreq[3])) player.H.dh[3]=player.H.dh[3].add(1)
                 if(player.G.Gsetot.gte(tmp.H.dhreq[4])) player.H.dh[4]=player.H.dh[4].add(1)
                 if(n(buyableEffect('G',33)).gte(tmp.H.dhreq[5])) player.H.dh[5]=player.H.dh[5].add(1)},
@@ -886,7 +835,7 @@ addLayer("H", {
                 if(upg('H',85)) e=e.div(gba(this.layer, this.id).pow(0.1).div(20).add(0.95).min(1.1))
                 if(upg('H',31)) e=e.div(upgradeEffect('H',81))
                 if(upg('H',35)) e=e.div(1.02)
-                if(upg('G',145)) e=e.div(tmp.H.dhef[3])
+                if(upg('G',145) && tmp.H.dhef[3]) e=e.div(tmp.H.dhef[3].max(1))
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
@@ -1205,22 +1154,24 @@ addLayer("H", {
                 if(mil('H',13)) c = n(10).pow(n(10).pow(x.pow(this.sc())))
                 return c
             },
-            sc(){
+            sc(x){
+		if(x === undefined)x = getBuyableAmount(this.layer, this.id);
                 let sc=n(0.5)
                 if(upg('G',142)) sc=sc.sub(0.03)
                 if(mil('H',11)) sc=sc.sub(0.02)
-                let s=n(getBuyableAmount(this.layer, this.id)).sub(1000).max(0).pow(sc).div(500)
+                let s=n(x).sub(1000).max(0).pow(sc).div(500)
                 if(mil('H',13)) s=s.min(0.6)
                 let e=n(0.5).add(s)
+		if(player.Z.points.gte(40) && (hasUpgrade("G",213) || x.gte(10000)))e = n(0.7)
                 if(upg('H',84)) e=e.sub(0.05)
                 if(upg('H',85)) e=e.div(getBuyableAmount(this.layer, this.id).pow(0.1).div(100).add(0.99).min(1.1))
                 if(upg('H',31)) e=e.div(upgradeEffect('H',81))
                 if(upg('H',35)) e=e.div(1.03)
-                if(upg('G',145)) e=e.div(tmp.H.dhef[3])
+                if(upg('G',145)) e=e.div(layers.H.dhef()[3])
                 return e
             },
             canAfford() { return player[this.layer].hyper.gte(this.cost()) },
-            buy() { if(!upg('G',141)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
+            buy() { if(!upg('G',141) && !upg('G',213)) player[this.layer].hyper = player[this.layer].hyper.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   
                 let b=n(0.015)
@@ -1652,12 +1603,12 @@ addLayer("H", {
         let ef=[n(0),n(0),n(0),n(0),n(0)]
         ef[0]=n(10).pow(player.H.dh[0].add(1).pow(e[0]).mul(6)).mul('1e240')
         ef[1]=n(10).pow(n(10).pow(player.H.dh[1].add(1).pow(e[1]).mul(2).add(130.942)))
-        ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(3).add(262.25))
-        ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500).add(690300)
+        ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(3).add(262.25).mul(10))
+        ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500).add(690300).pow(3)
         if(mil('H',18)) {ef[0]=n(10).pow(player.H.dh[0].add(1).pow(e[0]).mul(6))
             ef[1]=n(10).pow(n(10).pow(player.H.dh[1].add(1).pow(e[1]).mul(2)))
-            ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(3))
-            ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500)}
+            ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(30))
+            ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500).pow(3)}
         ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(60)).mul(8.085))
         if(player.H.dh[4].gte(3)) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(60.15)))
         if((mil('G',34))&&player.G.Gsetot.gte('e2.86e603')) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2)))
