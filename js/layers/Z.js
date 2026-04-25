@@ -216,6 +216,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             }
             if(hasUpgrade("G",213) && player.Z.points.gte(40)){
                 player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
+
             }
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
