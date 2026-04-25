@@ -331,7 +331,7 @@ addLayer("G", {
                 ,["display-text", function() {if(upg("G", 175) && player.Z.points.gte(36)) return "You have <h3 style='color: #FFFF00; text-shadow: 0 0 2px #c2b280'>" + format(player.G.Gsg) + "</h3> Gsg,boost Gsq by lg(Gsq)^<h3 style='color: #FFFF00; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gsgef) + "</h3> (x\n\
                     <h3 style='color: #FFFF00; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gsgr) +"</h3> Gsq)<br>" + format(tmp.G.gsgb) + " Gsg/s "}]
                 ,["display-text", function() {if(upg("G", 215) && player.Z.points.gte(40)) return "You have <h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(player.G.Gsh) + "</h3> Gsh,boost Gsg by lg(Gsg)^<h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gshef) + "</h3> (x\n\
-                    <h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gshr) +"</h3> Gsq)<br>" + format(tmp.G.gshb) + " Gsg/s "}]
+                    <h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gshr) +"</h3> Gsg)<br>" + format(tmp.G.gshb) + " Gsh/s "}]
 
                 ,["row",[["buyable",21],["buyable",22],["buyable",23]]],["row",[["buyable",31],["buyable",32],["buyable",33]]],["row",[["buyable",41],["buyable",42],["buyable",43]]],["row",[["buyable",44],["buyable",51],["buyable",52]]],["row",[["buyable",81],["buyable",82],["buyable",83]]],["row",[["buyable",91],["buyable",92],["buyable",93]]],["row",[["buyable",101],["buyable",102],["buyable",103]]],["upgrades",[6,7,8,9,10,11,12,16,13,17,18,19,20,21]]],},
             "GG": {
@@ -2962,7 +2962,7 @@ addLayer("G", {
                 let ef = this.base().mul(x.pow(exp))
                 return ef},
             display() { 
-                return "GsR gain exp +"+ format(this.base()) + "  \n\
+                return "GsR gain exp +"+ format(this.base()) + "*x^0.9  \n\
                 Cost: " + format(this.cost()) + " GsR \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: +" + format(this.effect())},
@@ -2996,7 +2996,7 @@ addLayer("G", {
                 let ef2 = this.base2().mul(x.pow(exp[1]))
                 return [ef,ef2]},
             display() {
-                return "GsR eff exp +"+ format(this.base()) + " and r3 base +"+ format(this.base2()) + " \n\
+                return "GsR eff exp +"+ format(this.base()) + "*x^0.85 and r3 base +"+ format(this.base2()) + "*x^0.9 \n\
                 Cost: " + format(this.cost()) + " GsR \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: eff +" + format(this.effect()[0],3)+",r3 +"+ format(this.effect()[1],3)},

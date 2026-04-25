@@ -1236,7 +1236,7 @@ addLayer("H", {
                 return b},
             effect(x) { 
                 let ef = x.mul(this.base())
-                if(ef.gte(5)) ef=ef.div(5).pow(0.8).mul(5)
+                if(ef.gte(5) && player.Z.points.lt(41)) ef=ef.div(5).pow(0.8).mul(5)
                 let ef2 = x.mul(this.base2())
                 return [ef,ef2]},
             display() { 
@@ -1280,10 +1280,6 @@ addLayer("H", {
             effect(x) { 
                 let ef = x.add(this.extra()).mul(this.base())
                 let ef2 = x.add(this.extra()).mul(this.base2())
-                if(ef2.gte(0.75)&&!upg('G',155)) ef2=ef2.div(0.75).pow(0.4).mul(0.75)
-                //if(!upg('G',155)) 
-                ef2=ef2.min(1)
-                //if(ef2.gte(1))  ef2=ef2.pow(0.02)
                 return [ef,ef2]},
             display() { 
                 return "y2 1st eff +"+ format(this.base()) + " and Hb3 base +"+ format(this.base2()) + "  \n\
@@ -1407,10 +1403,10 @@ addLayer("H", {
                 let b = player[this.layer].dhp.add(10).log(10).pow(e).div(50).add(0.25)
                 return b},
             effect(x) { 
-                let exp=n(1)
-                let ef = this.base().mul(x.pow(exp))//.add(this.extra())
-                if(ef.gte(10)) ef=ef.div(10).pow(0.75).mul(10)
-                return ef},//" + "+ format(this.extra())+"
+                let ef = this.base().mul(x)
+                if(ef.gte(10) && player.Z.points.lte(40)) ef=ef.div(10).pow(0.75).mul(10)
+                return ef
+            },
             display() { 
                 return "dH points exp +"+ format(this.base()) + " \n\
                 Cost: " + format(this.cost()) + " dH points \n\
@@ -1438,9 +1434,9 @@ addLayer("H", {
                 let b=player[this.layer].dhp.add(10).log(10).pow(e).div(2).add(2)
                 return b},
             effect(x) { 
-                let exp=n(1)
-                let ef = this.base().pow(x.pow(exp))//.add(this.extra())
-                return ef},//" + "+ format(this.extra())+"
+                let ef = this.base().pow(x)
+                return ef
+            },
             display() { 
                 return "dH points x"+ format(this.base()) + " \n\
                 Cost: " + format(this.cost()) + " dH points \n\
@@ -1458,7 +1454,6 @@ addLayer("H", {
             },
             sc(){
                 let e=n(0.6)
-                if(gba(this.layer, this.id).gte(38)) e=e.add(0.01)
                 if(mil('G',32)) e=e.sub(0.05)
                 return e
             },
@@ -1475,12 +1470,13 @@ addLayer("H", {
                 return [b,b2,b3]},
             effect(x) { 
                 let exp=[n(0.75),n(0.75),n(1)]
-                let ef = this.base()[0].mul(x.pow(exp[0]))//.add(this.extra())
+                let ef = this.base()[0].mul(x.pow(exp[0]))
                 let ef2 = this.base()[1].mul(x.pow(exp[1]))
                 let ef3 = this.base()[2].pow(x.pow(exp[2]))
-                return [ef,ef2,ef3]},//" + "+ format(this.extra())+"
+                return [ef,ef2,ef3]
+            },
             display() { 
-                return "Gr2 base +"+ format(this.base()[0],4) + "*x^0.75,b2/y2 base +"+ format(this.base()[1],4) + "*x^0.75,dHp x"+ format(this.base()[2]) + "^x \n\
+                return "Gr2 base +"+ format(this.base()[0],4) + "*x^0.75, b2/y2 base +"+ format(this.base()[1],4) + "*x^0.75, dHp x"+ format(this.base()[2]) + "^x \n\
                 Cost: " + format(this.cost()) + " dH points \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: r2 +" + format(this.effect()[0])+",b2/y2 +" + format(this.effect()[1])+",dHpts x" + format(this.effect()[2])},
