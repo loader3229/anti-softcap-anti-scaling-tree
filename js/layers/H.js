@@ -1476,12 +1476,11 @@ addLayer("H", {
             effect(x) { 
                 let exp=[n(0.75),n(0.75),n(1)]
                 let ef = this.base()[0].mul(x.pow(exp[0]))//.add(this.extra())
-                if(ef.gte(0.05)) ef=ef.div(0.05).pow(0.4).mul(0.05)
                 let ef2 = this.base()[1].mul(x.pow(exp[1]))
                 let ef3 = this.base()[2].pow(x.pow(exp[2]))
                 return [ef,ef2,ef3]},//" + "+ format(this.extra())+"
             display() { 
-                return "Gr2 base +"+ format(this.base()[0],4) + ",b2/y2 base +"+ format(this.base()[1],4) + ",dHp x"+ format(this.base()[2]) + " \n\
+                return "Gr2 base +"+ format(this.base()[0],4) + "*x^0.75,b2/y2 base +"+ format(this.base()[1],4) + "*x^0.75,dHp x"+ format(this.base()[2]) + "^x \n\
                 Cost: " + format(this.cost()) + " dH points \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: r2 +" + format(this.effect()[0])+",b2/y2 +" + format(this.effect()[1])+",dHpts x" + format(this.effect()[2])},
