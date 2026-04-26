@@ -107,7 +107,7 @@ function getPointGen() {
     }
 
     if ((mil('G',14) || player.Z.points.gte(26)) && player.Z.points.lt(30))gain = gain.pow(tmp.G.gsef1)
-    if (player.Z.points.gte(29))gain = gain.pow(tmp.F.F1f2)
+    if (player.Z.points.gte(29) && player.Z.points.lt(41))gain = gain.pow(tmp.F.F1f2)
 
         if (player.Z.points.gte(30) && player.Z.points.lt(38))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G.gsef2))
         if (player.Z.points.gte(38) && gain.gte(1e10))gain = Decimal.pow(10,Decimal.pow(10,gain.add(1).log10().add(1).log10().pow(tmp.G.gsef3)))
@@ -120,6 +120,10 @@ function getPointGen() {
     }else if(mil('Z',39))tet = layers.A.challenges[42].eff().mul(player.A.challenges[42]).div(1000);
     if(upg('G',121) && mil('Z',39)) tet = tet.add(0.01)
     if(upg('G',194)) tet = tet.add(upgradeEffect('G',194))
+    if(player.Z.points.gte(41)){
+        tet = tet.add(layers.F.F1f3())
+        tet = tet.add(layers.F.F2f())
+    }
     if(gcs('I',124))  tet=tet.add(0.3)
     if(gcs('I',125))  tet=tet.add(0.5)
     if(gcs('I',135))  tet=tet.add(1)

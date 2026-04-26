@@ -198,6 +198,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
                 content: [["raw-html", () => `<h4 style="opacity:.5">this part is from Antimatter Dimensions(but easier).<br></h4>`]
                 //["raw-html", () => `<h4 style="opacity:.5">like Em,F1 mults F.<br></h4>`]
                 ,["display-text", function(){
+        if(player.Z.points.gte(41))return "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, point slog +<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(tmp.F.F1f3) + "</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"
         if(player.Z.points.gte(29))return "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, points ^<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F1f2) + "</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"
         return "You have <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F1) + "</h3> F1, mult F by <h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F1f) + "x</h3>.<br>" + "<h4>" + format(tmp.F.F1effect.mul(player.F.fd1)) + " F1/s<h4> <br>"}],
                 ,["display-text", () => "dim mult per buy: x<h3 style='color: #128253; text-shadow: 0 0 3px #c2b280'>" + format(tmp.F.fdbas)],
@@ -206,7 +207,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
                 ]}, 
             "F2": {
                 unlocked() {return player.Z.points.gte(22)},//false
-                content: [["display-text", () => (player.Z.points.gte(37)?("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, F1 effect slog +<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"):("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, raise F1 effect by ^<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"))],
+                content: [["display-text", () => (player.Z.points.gte(41)?("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, point slog +<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"):player.Z.points.gte(37)?("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, F1 effect slog +<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"):("You have <h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'>" + format(player.F.F2) + "</h3> F2, raise F1 effect by ^<h3 style='color: #C037A5; text-shadow: 0 0 3px #c2b280'> " + format(tmp.F.F2f,4) + "</h3>.<br>" + "<h4>" + format(tmp.F.F2effect.mul(player.F.f2d1)) + " F2/s<h4> <br>"))],
                 ,["buyables",[11,12]]]},   
         }
     },
@@ -1157,6 +1158,7 @@ if(hasMilestone("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+    if (player.Z.points.gte(41))return n(1.01);
     if (player.Z.points.gte(40))return n(1.002);
     if (player.Z.points.gte(37))return n(1.001);
     if (player.Z.points.gte(33))return n(1.06);
@@ -1199,6 +1201,18 @@ if(hasMilestone("Z",16))p = p.mul(10)
         if (player.Z.points.gte(37)) ef = Decimal.tetrate(10, ef.add(10).slog().add(layers.F.F2f()));else if (player.Z.points.gte(22))  ef = ef.pow(tmp.F.F2f);
         return ef;
     },
+    F1f3() {
+        let exp=n(hasMilestone('Z',15)?0.25:0.15)  
+        if (upg('F',52))  exp=Decimal.mul(exp,3)
+        if (upg('F',54))  exp=new Decimal(1)
+        if (upg('F',63))  exp=Decimal.mul(exp,1.1)
+        if (upg('F',65))  exp=Decimal.mul(exp,1.25/1.1)
+        if (upg('F',73))  exp=Decimal.mul(exp,1.3/1.25)
+        let ef=player.F.F1.add(1).slog();
+        if (upg('G',31) && ef.gte(2.4884352529959806))ef = ef.pow(1.5).div(2.4884352529959806**0.5);
+        ef = ef.pow(exp.div(2)).div(1000);
+        return ef;
+    },
     F2f() {
         let ef=player.F.F2.max(1).log(10).add(1).log(10).add(1).pow(0.1).sub(1).div(10).add(1);
         if (player.Z.points.gte(24)) ef=player.F.F2.max(1).log(10).add(1).log(10).div(10).add(1);
@@ -1207,7 +1221,8 @@ if(hasMilestone("Z",16))p = p.mul(10)
     if (upg('G',64) && player.Z.points.gte(31)) ef = ef.mul(player.F.F2.add(1).log(10).add(1).pow(player.Z.points.gte(32)?0.06:0.04));
     if (player.Z.points.gte(33)) ef = player.F.F2.add(10).log(10).pow(0.1);
     if (player.Z.points.gte(37)) ef = player.F.F2.add(10).slog().mul(0.002);
-    if (player.Z.points.gte(40)) ef = player.F.F2.add(10).slog().mul(0.005);
+    if (player.Z.points.gte(40)) ef = ef.mul(2.5);
+    if (player.Z.points.gte(41)) ef = ef.div(5);
         return ef
     },
     update(diff) {

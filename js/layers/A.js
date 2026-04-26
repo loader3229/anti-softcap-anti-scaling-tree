@@ -452,6 +452,7 @@ addLayer("A", {
             completionLimit(){ 
 		let ret=1;
 		if(hasUpgrade("G",204))ret++;
+		if(hasUpgrade("G",205) && player.Z.points.gte(41))ret++;
 		return ret;
 		},
             challengeDescription: function() {
@@ -464,8 +465,7 @@ addLayer("A", {
             },
             unlocked() { return (mil('Z',39))},
             goal(){
-                let a=[n(1e20),n(1e22),n(1e30)]
-                return a[(challengeCompletions(this.layer,this.id))]
+                return Decimal.tetrate(10,Decimal.pow(1.0064,challengeCompletions(this.layer,this.id)).mul(n(1e20).slog()));
             },            
             goalDescription:  function() {return format(this.goal())+' points'},
             canComplete() {return player.points.gte(this.goal())},

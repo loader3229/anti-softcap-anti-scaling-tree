@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","10^^10"][player.Z.points.toNumber()]);
+        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -92,6 +92,7 @@ addLayer("Z", {
             if(player.Z.points.gte(38))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
             if(player.Z.points.gte(39))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95];
             if(player.Z.points.gte(40))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105];
+            if(player.Z.points.gte(41))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115];
             if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
             if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
             if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -101,6 +102,12 @@ addLayer("Z", {
             if(player.Z.points.gte(31))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
             if(player.Z.points.gte(39))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
             if(player.Z.points.gte(40))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+            if(player.Z.points.gte(41))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
+            if(player.Z.points.gte(41))player.G.clickables[21]=player.G.clickables[31]=player.G.clickables[32]=player.G.clickables[33]=1;
+            if(player.Z.points.gte(41))player.G.clickables[41]=player.G.clickables[42]=player.G.clickables[43]=player.G.clickables[44]=1;
+            if(player.Z.points.gte(41))player.G.clickables[61]=player.G.clickables[62]=player.G.clickables[63]=player.G.clickables[51]=1;
+            if(player.Z.points.gte(41))player.G.clickables[71]=player.G.clickables[72]=player.G.clickables[73]=player.G.clickables[91]=1;
+            if(player.Z.points.gte(41))player.G.clickables[81]=player.G.clickables[82]=player.G.clickables[83]=1;
             if(player.Z.points.gte(37))player.H.milestones=['0','1'];
             player.points=new Decimal(10);
             for(let i=0;i<10;i++)updateTemp();
@@ -216,11 +223,13 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             }
             if(hasUpgrade("G",213) && player.Z.points.gte(40)){
                 player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
-
             }
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
+        if(player.Z.points.gte(41)){
+            player.H.buyables[12]=player.H.buyables[12].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[12].sc()).sub(1).ceil().max(0));
+        }
     },
     milestones: {
         0: {requirementDescription: "1 Z",
@@ -383,6 +392,11 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             done() {return player.Z.points.gte(40)}, 
             effectDescription: "Start with first 25 Gs upgrades and G milestones. Permanently unlock and autobuy max Gsb11-12 and GG1-3. Permanently unlock first 30 Gts. Unlock Ac8. Permanently autobuy max Hb1.",
         },
+        40: {requirementDescription: "41 Z",
+            done() {return player.Z.points.gte(41)}, 
+            effectDescription: "Start with first 30 Gs upgrades and G milestones. Start with first 19 Gts and permanently keep them. Playtime boost Gsq, Gsg and Gsh. Change Fd costs, F1 and F2 effect. Permanently autobuy max Hb2.",
+        },
+
 
     },
     setZ(a){
@@ -397,6 +411,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
     },
     getZp(){
         if(player.Z.points.lt(25))return player.points;
+    if(player.Z.points.gte(41)){
+        let ret=player.points.add(1).slog().div(1.01);
+	return Decimal.tetrate(10,ret);
+    }
     if(player.Z.points.gte(40)){
         let ret=player.points.add(1).slog().div(1.005);
 	if(ret.gte(6.392))ret = player.points.add(1).slog().div(1.006).max(6.392);
