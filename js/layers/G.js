@@ -227,7 +227,7 @@ addLayer("G", {
         32: {requirementDescription: "5e927 total GsR (33",
             done() {return player.G.Gsr.gte('5e927') && hasMilestone('Z',38)},
             unlocked() {return hasMilestone('Z',38)},
-            effectDescription: "e nerfs +0.005(improved at 3e1071),remove dH1 scaling,dHp3-4 sc -0.05,nerf rs at 1e1164/1e1284/5e1432.",
+            effectDescription: "some of dHs are cheaper.",
         },
         33: {requirementDescription: "e9.918e118 total Gse (34",
             done() {return player.G.Gsetot.gte('e9.918e118') && hasMilestone('Z',38)},
@@ -333,7 +333,7 @@ addLayer("G", {
                 ,["display-text", function() {if(upg("G", 215) && player.Z.points.gte(40)) return "You have <h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(player.G.Gsh) + "</h3> Gsh,boost Gsg by lg(Gsg)^<h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gshef) + "</h3> (x\n\
                     <h3 style='color: #FF9900; text-shadow: 0 0 2px #c2b280'>" + format(tmp.G.gshr) +"</h3> Gsg)<br>" + format(tmp.G.gshb) + " Gsh/s "}]
 
-                ,["row",[["buyable",21],["buyable",22],["buyable",23]]],["row",[["buyable",31],["buyable",32],["buyable",33]]],["row",[["buyable",41],["buyable",42],["buyable",43]]],["row",[["buyable",44],["buyable",51],["buyable",52]]],["row",[["buyable",81],["buyable",82],["buyable",83]]],["row",[["buyable",91],["buyable",92],["buyable",93]]],["row",[["buyable",101],["buyable",102],["buyable",103]]],["upgrades",[6,7,8,9,10,11,12,16,13,17,18,19,20,21]]],},
+                ,["row",[["buyable",21],["buyable",22],["buyable",23]]],["row",[["buyable",31],["buyable",32],["buyable",33]]],["row",[["buyable",41],["buyable",42],["buyable",43]]],["row",[["buyable",44],["buyable",51],["buyable",52]]],["row",[["buyable",81],["buyable",82],["buyable",83]]],["row",[["buyable",91],["buyable",92],["buyable",93]]],["row",[["buyable",101],["buyable",102],["buyable",103]]],["upgrades",[6,7,8,9,10,11,12,16,13,17,18,19,20,21,22]]],},
             "GG": {
                 unlocked() {return (upg("G",player.Z.points.gte(35)?82:115) || player.Z.points.gte(37))},
                 content: [["raw-html", () => `<h4 style="opacity:.5">welcome to the first upgrade tree --- strategy is significant now!</h4>`]
@@ -682,6 +682,7 @@ addLayer("G", {
                 let b = n(player[this.layer].upgrades.length)
                 let ba=n(1.008)
                 if(hasUpgrade('G',82)) ba=ba.add(hasMilestone('Z',31)?0.092:0.002)
+		if(hasUpgrade('G',222))ba = ba.add(8.9);
                 let ef=n(ba).pow(b.sub(player.Z.points.gte(35) && hasUpgrade('G',85)?Math.max(50-player[this.layer].upgrades.length,0):25).max(0))
                 return ef;
             },
@@ -1083,8 +1084,8 @@ addLayer("G", {
         },//1e1163
         151: {
             title:'G71',
-            description: "Hb8/y5 limit +15,unlock a dH,i 2 nerf +0.005.",       
-            cost:new Decimal('1e1705'),
+            description: "Hb8/y5 limit +15,unlock a dH.",       
+            cost:new Decimal('1e1702'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "GsR",
             currencyInternalName: "Gsr",
@@ -1092,7 +1093,7 @@ addLayer("G", {
         },//remove dH2 sc,
         152: {
             title:'G72',
-            description: "sb10 exp +0.02,boost dHs ef,buy max some bab.",       
+            description: "boost dHs ef.",       
             cost:new Decimal('5e2836'),
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "GsR",
@@ -1106,7 +1107,7 @@ addLayer("G", {
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "GsR",
             currencyInternalName: "Gsr",
-            unlocked() { return (upg('G',152))},
+            unlocked() { return (upg('G',152) && hasMilestone('Z',41))},
         },
         154: {
             title:'G74',
@@ -1353,6 +1354,7 @@ addLayer("G", {
             currencyInternalName: "Gsg",
             effect()  { 
                 let ef=player.H.upgrades.length*0.0002;
+		if(hasUpgrade("G",225))ef*=2;
                 return ef;
             },
             effectDisplay() { return '+'+format(this.effect()) },
@@ -1385,6 +1387,7 @@ addLayer("G", {
             currencyInternalName: "Gsg",
             effect()  { 
                 let ef=player.H.upgrades.length*0.01;
+		if(hasUpgrade("G",224))ef*=2;
                 return ef;
             },
             effectDisplay() { return '+'+format(this.effect()) },
@@ -1471,6 +1474,51 @@ addLayer("G", {
             currencyDisplayName: "Gsg",
             currencyInternalName: "Gsg",
             unlocked() { return (upg('G',143))},
+        },
+        221: {
+            title:'Gsh1',
+            description(){return "Gsb15 hardcap +1.2";},
+            cost(){return new Decimal(1e9)},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsh",
+            currencyInternalName: "Gsh",
+            unlocked() { return (upg('G',215))},
+        },
+        222: {
+            title:'Gsh2',
+            description(){return "G35 base is 10 and boost Gsb13.";},
+            cost(){return new Decimal(1e12)},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsh",
+            currencyInternalName: "Gsh",
+            unlocked() { return (upg('G',215))},
+        },
+        223: {
+            title:'Gsh3',
+            description(){return "dH2 is cheaper.";},
+            cost(){return new Decimal(1e15)},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsh",
+            currencyInternalName: "Gsh",
+            unlocked() { return (upg('G',215))},
+        },
+        224: {
+            title:'Gsh4',
+            description(){return "Gsg12 x2.";},
+            cost(){return new Decimal(1e22)},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsh",
+            currencyInternalName: "Gsh",
+            unlocked() { return (upg('G',215))},
+        },
+        225: {
+            title:'Gsh5',
+            description(){return "Gsg9 x2.";},
+            cost(){return new Decimal(1e42)},
+            currencyLocation() {return player[this.layer]}, 
+            currencyDisplayName: "Gsh",
+            currencyInternalName: "Gsh",
+            unlocked() { return (upg('G',215))},
         },
     },
     clickables:{    
@@ -3051,6 +3099,7 @@ addLayer("G", {
                 return e
             },
             base(){   let base = player.G.Gsq.add(10).log(10)
+if (hasUpgrade('G',222))  base=Decimal.mul(base,upgradeEffect('G',75))
                 return base},
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x.add(this.extra())).max(1)
@@ -3131,6 +3180,7 @@ addLayer("G", {
                    if(upg('G',202))h=h.add(upgradeEffect('G',202));
                    if(upg('G',212))h=h.add(upgradeEffect('G',212));
                    if(upg('G',141))h=h.add(0.1);
+                   if(upg('G',221))h=h.add(0.8);
                    return h;
                },
             display() { // Everything else displayed in the buyable button after the title
@@ -3191,6 +3241,8 @@ addLayer("G", {
                 let e=n(0)
                 e=e.add(getBuyableAmount('G',93))
                 e=e.add(layers.G.buyables[93].extra())
+                e=e.add(getBuyableAmount('G',102))
+                e=e.add(layers.G.buyables[102].extra())
                 return e
             },
             base(){   let base = player.G.Gsg.add(10).log(10).cbrt().div(20)
@@ -3220,6 +3272,8 @@ addLayer("G", {
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             extra(){
                 let e=n(0)
+                e=e.add(getBuyableAmount('G',103))
+                e=e.add(layers.G.buyables[103].extra())
                 return e
             },
             base(){   let base = n(0.1)
@@ -3252,6 +3306,8 @@ addLayer("G", {
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             extra(){
                 let e=n(0)
+                e=e.add(getBuyableAmount('G',102))
+                e=e.add(layers.G.buyables[102].extra())
                 return e
             },
             base(){   let base = player.G.Gsh.add(10).log(10)
@@ -3267,6 +3323,70 @@ addLayer("G", {
             style() {if (this.canAfford()) return {'background-color': '#FF9900' }},
             unlocked() { return (hasUpgrade('G',215)) && hasMilestone('Z',39)}
         },
+        102: {
+            title: "Gsb20", 
+            cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
+                let bas=n(1e3)
+                let e=n(2)
+                let cost = Decimal.pow(bas, x.pow(e)).times(1e6)
+                return cost
+            },
+            canAfford() { return player[this.layer].Gsh.gte(this.cost()) },
+            buy() { if(!mil('G',27)) {player[this.layer].Gsh = player[this.layer].Gsh.sub(this.cost())}
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
+            extra(){
+                let e=n(0)
+                e=e.add(getBuyableAmount('G',103))
+                e=e.add(layers.G.buyables[103].extra())
+                return e
+            },
+            base(){   let base = player.G.Gsh.add(10).log(10).cbrt().div(20)
+                return base},
+            effect(x) { // Effects of owning x of the items, x is a decimal
+                let ef = Decimal.mul(this.base(),x.add(this.extra())).add(1)
+                return ef},
+            display() { // Everything else displayed in the buyable button after the title
+                return "Gsh gain base +^"+ format(this.base()) + " and add 1 to Gsb17 and Gsb19 level \n\
+                Cost: " + format(this.cost()) + " Gsh \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
+                Effect: ^" + format(this.effect())},
+            style() {if (this.canAfford()) return {'background-color': '#FF9900' }},
+            unlocked() { return (hasUpgrade('G',215)) && hasMilestone('Z',40)}
+        },
+        103: {
+            title: "Gsb21", 
+            cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
+                let bas=n(1e4)
+                let e=n(3)
+                let cost = Decimal.pow(bas, x.pow(e)).times(1e24)
+                return cost
+            },
+            canAfford() { return player[this.layer].Gsh.gte(this.cost()) },
+            buy() { if(!mil('G',27)) {player[this.layer].Gsh = player[this.layer].Gsh.sub(this.cost())}
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
+            extra(){
+                let e=n(0)
+                return e
+            },
+            base(){   let base = n(0.1)
+                return base},
+            effect(x) { // Effects of owning x of the items, x is a decimal
+                let ef = Decimal.mul(this.base(),x.add(this.extra())).add(1).min(this.hardcap())
+                return ef},
+               hardcap(){
+                   let h=n(3);
+                   return h;
+               },
+            display() { // Everything else displayed in the buyable button after the title
+                return "Gsh effect +^"+ format(this.base()) + "  and add 1 to Gsb18 and Gsb20 level \n\
+                Cost: " + format(this.cost()) + " Gsh \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
+                Effect: ^" + format(this.effect(),3) + "(hardcap: "+format(this.hardcap(),3)+")"},
+            style() {if (this.canAfford()) return {'background-color': '#FF9900' }},
+            unlocked() { return (hasUpgrade('G',215)) && hasMilestone('Z',40)}
+
+        },
+
 
     },
     challenges:{
@@ -3749,14 +3869,21 @@ addLayer("G", {
 	},
     gshb(){
     	if(!hasUpgrade('G',215) || player.Z.points.lt(40))return n(0);
-    	let exp = n(1)
+    	let exp = buyableEffect('G',102)
     	let ef=player.G.Gsg.add(10).log(10).max(0).pow(exp).div(1000);
         ef=ef.mul(buyableEffect('G',101))
 	if(player.Z.points.gte(41))ef = ef.mul(1+player.timePlayed/10000);
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[0]));
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[1]));
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[2]));
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[3]));
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[4]));
+	if(hasUpgrade('H',44))ef = ef.mul(Decimal.pow(1.1,player.H.dh[5]));
+        ef=ef.mul(tmp.H.dhef[4])
     	return ef;
     },
     gshef(){
-        let exp = n(1)
+        let exp = buyableEffect('G',103)
         let ef=player.G.Gsh.add(1).log(10).pow(exp)
         return ef
 	}, 

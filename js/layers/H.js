@@ -234,7 +234,7 @@ addLayer("H", {
                 ,["display-text", function() {if(upg('G',144)) return "dH2-current: <h3 style='color: #2EDEC4; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[1]) + "</h3> (best:"+ format(player.H.dhmax[1]) + ")(next at "+ format(tmp.H.dhreq[1])+" hyper) reduce H threshold by /<h3 style='color: #2EDEC4; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[1]) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',145)) return "dH3-current: <h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[2]) + "</h3> (best:"+ format(player.H.dhmax[2]) + ")(next at "+ format(tmp.H.dhreq[2])+" Gsg) raise harsh by ^<h3 style='color: #4E40B6; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[2]) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',145)) return "dH4-current: <h3 style='color: #9BFFBD; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[3]) + "</h3> (best:"+ format(player.H.dhmax[3]) + ")(next at "+ format(tmp.H.dhreq[3])+" total GG) div hb2/y2 scaling by /<h3 style='color: #9BFFBD; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[3],3) +"<h4>"}]
-                ,["display-text", function() {if(upg('G',151)) return "dH5-current: <h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[4]) + "</h3> (best:"+ format(player.H.dhmax[4]) + ")(next at "+ format(tmp.H.dhreq[4])+" Gse) reduce further e nerf by +<h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[4],4) +"<h4>"}]
+                ,["display-text", function() {if(upg('G',151)) return "dH5-current: <h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[4]) + "</h3> (best:"+ format(player.H.dhmax[4]) + ")(next at "+ format(tmp.H.dhreq[4])+" Gse) boost Gsh by x<h3 style='color: #5EA794; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[4],4) +"<h4>"}]
                 ,["display-text", function() {if(upg('G',154)) return "dH6-current: <h3 style='color: #339999; text-shadow: 0 0 2px #c2b280'>" + format(player.H.dh[5]) + "</h3> (best:"+ format(player.H.dhmax[5]) + ")(next at "+ format(tmp.H.dhreq[5])+" Gsb6 eff) div hb3/y3 scaling by /<h3 style='color: #339999; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.dhef[5],3) +"<h4>"}]
                 ,["display-text",() => "total dH:"+format(tmp.H.totdh)]
                 ,["display-text", function() {if(gcs('I',311)&&mil('I',18)) return "<h4 style='color: #C52C14; text-shadow: 0 0 2px #c2b280'>the curse make dHs effective count ^" + format(tmp.I.resv[3]) }]
@@ -480,7 +480,7 @@ addLayer("H", {
         },
         44: {
             title:'H19',
-            description: "e nerf +0.005,r2 sc -0.02,total dH beyond 20 raise harsh/hyper.<br>[req:5e1214 dHpts]", 
+            description: "Total dH beyond 20 raise harsh/hyper, Gr2 is cheaper, each dH multiply Gsh by 1.1<br>[req:5e1214 dHpts]", 
             cost:new Decimal('e7.52e57'),
             canAfford() {return player.H.dhp.gte('5e1214')}, 
             currencyLocation() {return player.G}, 
@@ -1593,14 +1593,13 @@ addLayer("H", {
         if(player.H.dh[0].gte(6)&&!mil('G',32)) e[0]=e[0].add(0.1)
         if(player.H.dh[1].gte(2)&&!mil('H',10)) e[1]=e[1].add(0.17)//1.47
         if(player.H.dh[1].gte(4)) e[1]=e[1].add(0.28)
-        if(player.H.dh[1].gte(6000)) e[1]=e[1].add(0.12)
-        if(player.H.dh[2].gte(30)) e[2]=e[2].add(0.1)
-        if(player.H.dh[3].gte(30)) e[3]=e[3].add(0.2)
+        if(player.H.dh[1].gte(6)) e[1]=e[1].add(0.2)
+        if(player.H.dh[2].gte(6)) e[2]=e[2].add(0.39)
+        if(player.H.dh[3].gte(6)) e[3]=e[3].add(0.6)
+        if(player.H.dh[3].gte(20)) e[3]=e[3].add(player.H.dh[3].div(20).sub(1))
         if(player.H.dh[4].gte(3)) e[4]=e[4].add(0.2)
+	if(hasUpgrade("G",223))e[1] = e[1].sub(0.1)
 
-	for(let i=0;i<5;i++){
-		if(player.H.dh[i].gte(6))e[i] = e[i].add(0.5)
-	}
         if(gcs('I',73)) {e[0]=n(1.8),e[1]=n(1.55)}
         if(mil('G',34)) {if(player.G.Gsetot.gte('e1.48e480')) e[4]=e[4].sub(0.6)//2.1
             if(player.G.Gsetot.gte('e2.86e603')) e[4]=e[4].sub(0.6)}//1.5
@@ -1613,8 +1612,8 @@ addLayer("H", {
             ef[1]=n(10).pow(n(10).pow(player.H.dh[1].add(1).pow(e[1]).mul(2)))
             ef[2]=n(10).pow(player.H.dh[2].add(1).pow(e[2]).mul(30))
             ef[3]=player.H.dh[3].add(3).pow(e[3]).mul(7500).pow(3)}
-        ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(60)).mul(8.085))
-        if(player.H.dh[4].gte(3)) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(60.15)))
+        ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(58)))
+        if(player.H.dh[4].gte(3)) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2).add(58)))
         if((mil('G',34))&&player.G.Gsetot.gte('e2.86e603')) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2)))
         ef[5]=player.H.dh[5].pow(e[5]).mul(5).add(53.6)
         if(upg('G',155)) ef[5]=player.H.dh[5].pow(e[5]).mul(5)
@@ -1631,7 +1630,7 @@ addLayer("H", {
         if(mil('I',6))  for(let i=0;i<=5;i++) b[i]=b[i].mul(buyableEffect('I',23))
         return b},
     dhef(){
-        let e=[n(1.11),n(0.45),n(1.05),n(0.5),n(0.32),n(0.4)]
+        let e=[n(1.11),n(0.45),n(1.05),n(0.5),n(1),n(0.4)]
         let c=[n(0),n(0),n(0),n(0),n(0),n(0)]
         for(let i=0;i<=5;i++) c[i]=player.H.dh[i]     //4th curse effect(v0.7.1)
         if(gcs('I',311)) {for(let i=0;i<=5;i++) c[i]=player.H.dh[i].pow(tmp.I.resv[3])}
@@ -1650,12 +1649,12 @@ addLayer("H", {
         if(upg('G',152)) ef[2]=n(2).pow(c[2].pow(e[2]))
         ef[3]=c[3].add(1).pow(e[3]).div(25).add(0.96)
         //if(ef[3].gte(3.5)) ef[3]=ef[3].div(3.5).pow(0.5).mul(3.5)
-        ef[4]=c[4].pow(e[4]).div(1000)
-        if(mil('G',33)&&player.H.dh[4].gte(4)) {e[4]=n(0.35),ef[4]=c[4].pow(e[4]).div(800)}
+        ef[4]=c[4].pow(e[4])
+        if(mil('G',33)&&player.H.dh[4].gte(4)) {e[4]=n(0.35),ef[4]=c[4].pow(e[4])}
         if(mil('G',34)) {if(player.G.Gsetot.gte('e2.86e603')) e[4]=e[4].add(0.1)
             if(player.G.Gsetot.gte('e2.93e495')) e[4]=e[4].add(0.05)
-            if(player.G.Gsetot.gte('e1.48e480')) e[4]=e[4].add(0.05),ef[4]=c[4].pow(e[4]).div(400)}
-        ef[4]=ef[4].min(0.5)
+            if(player.G.Gsetot.gte('e1.48e480')) e[4]=e[4].add(0.05),ef[4]=c[4].pow(e[4])}
+        ef[4]=Decimal.pow(2,ef[4])
         ef[5]=c[5].add(1).pow(e[5]).div(40).add(0.975)
         return ef
     },
