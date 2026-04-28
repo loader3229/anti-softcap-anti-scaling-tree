@@ -453,6 +453,7 @@ addLayer("A", {
 		let ret=1;
 		if(hasUpgrade("G",204))ret++;
 		if(hasUpgrade("G",205) && player.Z.points.gte(41))ret++;
+        if(player.Z.points.gte(42))ret++;
 		return ret;
 		},
             challengeDescription: function() {

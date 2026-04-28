@@ -152,7 +152,7 @@ addLayer("H", {
             done() {return player[this.layer].dhp.gte('1e5904') && hasMilestone('Z',38)}, 
             unlocked() {return hasMilestone('Z',38)},
 
-            effectDescription: "boost dH1 eff,dilate GsR base to 1.05 at 2e3536 GsR,dilate dhpts to 1.05 at 1e6569 dhpts,nerf ??? at e9e500 hyper.",   
+            effectDescription: "boost dH1 eff,dilate GsR base to 1.05 at 2e3536 GsR,dilate dhpts to 1.05 at 1e6569 dhpts, some Hb and Hy are cheaper at e9e500 hyper.",   
         },
         12: {requirementDescription: "e1.42e1886 harsh (13",
             done() {return player[this.layer].harsh.gte('e1.42e1886') && hasMilestone('Z',38)}, 

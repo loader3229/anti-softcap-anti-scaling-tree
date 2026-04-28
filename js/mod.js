@@ -119,6 +119,7 @@ function getPointGen() {
         tet = layers.A.challenges[42].eff()
     }else if(mil('Z',39))tet = layers.A.challenges[42].eff().mul(player.A.challenges[42]).div(1000);
     if(upg('G',121) && mil('Z',39)) tet = tet.add(0.01)
+    if(upg('G',85) && mil('Z',41)) tet = tet.add(player.G.upgrades.length/10000)
     if(upg('G',194)) tet = tet.add(upgradeEffect('G',194))
     if(player.Z.points.gte(41)){
         tet = tet.add(layers.F.F1f3())
