@@ -286,10 +286,11 @@ if(hasMilestone("Z",16))p = p.mul(10)
         },
         23: {
             title:'F8',
-            description(){if(player.Z.points.gte(35))return "Zp boosts F,F5 is 100%,Eb4 x1.1.";return "pts boosts F,F5 is 100%,Eb4 x1.1."},
+            description(){if(player.Z.points.gte(42))return "Ap boosts F,F5 is 100%,Eb4 x1.1.";if(player.Z.points.gte(35))return "Zp boosts F,F5 is 100%,Eb4 x1.1.";return "pts boosts F,F5 is 100%,Eb4 x1.1."},
             cost:new Decimal(40),
             effect()  { 
                 let ef = player.points.add(10).log(10).div('4e4').add(1)
+                if(player.Z.points.gte(42))return layers.A.getAp().add(10);
                 if(player.Z.points.gte(35))return layers.Z.getZp().add(10);
                 return ef;
             },

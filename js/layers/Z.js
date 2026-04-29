@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","10^^10"][player.Z.points.toNumber()]);
+        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -94,6 +94,7 @@ addLayer("Z", {
             if(player.Z.points.gte(40))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105];
             if(player.Z.points.gte(41))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115];
             if(player.Z.points.gte(42))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125];
+            if(player.Z.points.gte(43))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135];
             if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
             if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
             if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -109,7 +110,11 @@ addLayer("Z", {
             if(player.Z.points.gte(41))player.G.clickables[61]=player.G.clickables[62]=player.G.clickables[63]=player.G.clickables[51]=1;
             if(player.Z.points.gte(41))player.G.clickables[71]=player.G.clickables[72]=player.G.clickables[73]=player.G.clickables[91]=1;
             if(player.Z.points.gte(41))player.G.clickables[81]=player.G.clickables[82]=player.G.clickables[83]=1;
+            if(player.Z.points.gte(43))player.G.clickables[101]=player.G.clickables[102]=player.G.clickables[103]=1;
+            if(player.Z.points.gte(43))player.G.clickables[104]=player.G.clickables[111]=player.G.clickables[112]=1;
+            if(player.Z.points.gte(43))player.G.clickables[121]=player.G.clickables[122]=player.G.clickables[131]=1;
             if(player.Z.points.gte(37))player.H.milestones=['0','1'];
+            if(player.Z.points.gte(43))player.H.milestones=['0','1','2'];
             player.points=new Decimal(10);
             for(let i=0;i<10;i++)updateTemp();
         }
@@ -137,7 +142,8 @@ addLayer("Z", {
             player.E.buyables[31]=player.E.buyables[31].max(player.E.points.add(1).log(2).max(0).root(1.2).ceil().max(0));
             player.E.buyables[32]=player.E.buyables[32].max(player.E.points.add(1).log(5).max(0).root(1.2).ceil().max(0));
             player.E.buyables[33]=player.E.buyables[33].max(player.E.points.add(1).log(hasUpgrade("E",93)?9:10).max(0).root(1.2).ceil().max(0));
-            player.E.buyables[41]=player.E.buyables[41].max(player.E.points.add(1).div(1e24).log(10).max(0).root(1.2).ceil().max(0));        player.E.buyables[42]=player.E.buyables[42].max(player.E.points.add(1).div(1e40).log(10).max(0).root(1.2).ceil().max(0));    player.E.buyables[22]=player.E.buyables[22].max(player.E.points.add(1).div('1e330').log(1e6).max(0).root(1.5).ceil().max(0));
+            player.E.buyables[41]=player.E.buyables[41].max(player.E.points.add(1).div(1e24).log(10).max(0).root(1.2).ceil().max(0));
+            player.E.buyables[42]=player.E.buyables[42].max(player.E.points.add(1).div(1e40).log(10).max(0).root(1.2).ceil().max(0));    player.E.buyables[22]=player.E.buyables[22].max(player.E.points.add(1).div('1e330').log(1e6).max(0).root(1.5).ceil().max(0));
 
         }
         if((player.Z.points.gte(17) || hasMilestone('G',3)) && player.Z.points.lt(30)){
@@ -187,13 +193,18 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 
         if(player.Z.points.gte(27)){
             let effective_Gs = player.G.Gs.add(1);
-                    if (hasUpgrade('G',81))  effective_Gs=effective_Gs.mul(upgradeEffect('G',81))
-                    if (hasUpgrade('G',65))  effective_Gs=effective_Gs.root(upgradeEffect('G',65))
-
-            if(mil('G',17) || player.Z.points.gte(29))player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(hasUpgrade("G",122)?4:4.1).max(0).root(hasUpgrade("G",122)?1.25:1.35).ceil().max(0));
-            if(player.Z.points.gte(30))player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(hasUpgrade("G",92)?5:10).max(0).root(player.Z.points.gte(33)?2:2.5).ceil().max(0));
-            if(mil('G',17) && player.Z.points.lt(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(100).max(0).root(1).ceil().max(0));
-            if(player.Z.points.gte(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(1000).max(0).root(3).ceil().max(0));
+            if (hasUpgrade('G',81))  effective_Gs=effective_Gs.mul(upgradeEffect('G',81))
+            if (hasUpgrade('G',65))  effective_Gs=effective_Gs.root(upgradeEffect('G',65))
+            if(player.Z.points.gte(42)){
+                player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(hasUpgrade("G",122)?2:4).max(0).root(1.25).ceil().max(0));
+                player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(hasUpgrade("G",92)?5:10).max(0).root(2).ceil().max(0));
+                player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(20).max(0).root(3).ceil().max(0));
+            }else{
+                if(mil('G',17) || player.Z.points.gte(29))player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(hasUpgrade("G",122)?4:4.1).max(0).root(hasUpgrade("G",122)?1.25:1.35).ceil().max(0));
+                if(player.Z.points.gte(30))player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(hasUpgrade("G",92)?5:10).max(0).root(player.Z.points.gte(33)?2:2.5).ceil().max(0));
+                if(mil('G',17) && player.Z.points.lt(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(100).max(0).root(1).ceil().max(0));
+                if(player.Z.points.gte(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(1000).max(0).root(3).ceil().max(0));
+            }
         }
     if(player.Z.points.gte(31)){
             let effective_Gsi = player.G.Gsi.add(1);
@@ -211,20 +222,32 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             if(player.Z.points.gte(40))player.G.buyables[51]=player.G.buyables[51].max(effective_Gse.add(1).log(10).add(1).log(2).pow(2).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[52]=player.G.buyables[52].max(effective_Gse.add(1).log(10).add(1).log(2).ceil().max(0));
         }
-    if(player.Z.points.gte(37)){
+        if(player.Z.points.gte(37)){
             let effective_Gsq = player.G.Gsq.add(1);
-                    if (hasUpgrade('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
+            if (hasUpgrade('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
             if(hasUpgrade("G",191) || player.Z.points.gte(42))player.G.buyables[81]=player.G.buyables[81].max(effective_Gsq.add(1).log(4).max(0).root(1.5).ceil().max(0));
             if(hasUpgrade("G",203)){
                 player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
-                player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
             }
-            if(hasUpgrade("G",204) || player.Z.points.gte(40)){
-                player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
+        }
+        if(player.Z.points.gte(42)){
+            let effective_Gsg = player.G.Gsg.add(1);
+            if (hasUpgrade('G',65))effective_Gsg=effective_Gsg.root(upgradeEffect('G',65))
+            if(hasUpgrade("G",234)){
+                player.G.buyables[91]=player.G.buyables[91].max(effective_Gsg.add(1).log(10).max(0).root(1.5).ceil().max(0));
             }
-            if(hasUpgrade("G",213) && player.Z.points.gte(40)){
-                player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
-            }
+        }
+        if(hasUpgrade("G",203) || player.Z.points.gte(43)){
+            player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",204) || player.Z.points.gte(40)){
+            player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",213) && player.Z.points.gte(40)){
+            player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",231)){
+            player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(1).log(10).add(1).log(10).root(layers.H.buyables[21].sc()).ceil().max(0));
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
@@ -399,7 +422,11 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         41: {requirementDescription: "42 Z",
             done() {return player.Z.points.gte(42)}, 
-            effectDescription: "Start with first 35 Gs upgrades. Permanently unlock Gsg. Ac8 max completions +1.",
+            effectDescription: "Start with first 35 Gs upgrades. Permanently unlock Gsg. Ac8 max completions +1. Permanently autobuy max Gsb13. Unlock Ap and B gain is based on Ap.",
+        },
+        42: {requirementDescription: "43 Z",
+            done() {return player.Z.points.gte(43)}, 
+            effectDescription: "Start with first 40 Gs upgrades and first 3 H milestones. Start with first 28 Gts and permanently keep them. Ac8 max completions +1. Permanently autobuy max Hy1. Unlock Gt32-33.",
         },
     },
     setZ(a){
@@ -421,7 +448,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 	return Decimal.tetrate(10,ret);
     }
     if(player.Z.points.gte(35)){
-        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003,1.005,1.01,1.012][player.Z.points.sub(35).toNumber()]));
+        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003,1.005,1.01,1.011,1.012][player.Z.points.sub(35).toNumber()]));
     }
     if(player.Z.points.gte(29)){
         return Decimal.pow(10,Decimal.pow(10,player.points.add(1).log10().add(1).log10().pow(Decimal.pow(0.99,player.Z.points.sub(28)))));

@@ -84,6 +84,8 @@ addLayer("A", {
     tabFormat: [
         "main-display",
         "prestige-button",
+        "resource-display",
+        ["display-text",function(){if(player.Z.points.gte(42))return "You have "+format(layers.A.getAp())+" Ap (based on A), which are boosting points by "+format(upgradeEffect("A",35))+"x (A15 effect)";return "";}],
         ["microtabs", "stuff"],
         ["blank", "25px"],
     ],
@@ -223,12 +225,13 @@ addLayer("A", {
         },
         35: {
             title:'A15',
-            description: "A^0.2 boost points. unlock B.",
+            description(){if(player.Z.points.gte(42))return "Ap boost points. unlock B.";return "A^0.2 boost points. unlock B.";},
             cost: new Decimal(2e4),
             unlocked() { return (upg(this.layer, 34))},
             effect()  { 
                 let ef=n(0.2)
                 if (upg('A',42))  ef=ef.mul(1.5)              
+                if(player.Z.points.gte(42))return layers.A.getAp().add(1).pow(ef);
                 return player[this.layer].points.add(1).pow(ef);          
             },
             effectDisplay() { return format(this.effect())+"x" }, 
@@ -454,6 +457,9 @@ addLayer("A", {
 		if(hasUpgrade("G",204))ret++;
 		if(hasUpgrade("G",205) && player.Z.points.gte(41))ret++;
         if(player.Z.points.gte(42))ret++;
+        if(hasUpgrade("G",175) && player.Z.points.gte(42))ret++;
+        if(player.Z.points.gte(43))ret++;
+        if(hasUpgrade("G",163) && player.Z.points.gte(43))ret++;
 		return ret;
 		},
             challengeDescription: function() {
@@ -473,5 +479,9 @@ addLayer("A", {
             rewardDescription() {return "Ac8's positive eff is applied outside Ac8 at a reduced rate"},
             rewardDisplay() {return "+"+formatSmall(this.eff().mul(player.A.challenges[42]).div(1000))},
         }
+    },
+    getAp(){
+        if(player.Z.points.lt(42))return player.A.points;
+        return Decimal.tetrate(10,player.A.points.slog().add(1).div([1.001,1.004][player.Z.points.sub(42).toNumber()]).sub(1));
     }
 })

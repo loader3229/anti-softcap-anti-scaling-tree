@@ -385,10 +385,10 @@ addLayer("E", {
         },
         35: {
             title:'E15',
-            description: "boost to E base on A.",
+            description(){if(player.Z.points.gte(42))return "boost to E based on Ap.";return "boost to E base on A."},
             cost:new Decimal(1e9),
             effect()  { 
-                let ef = player.A.points.add(10).log(10).div(500).add(1)
+                let ef = (player.Z.points.gte(42)?layers.A.getAp():player.A.points).add(10).log(10).div(500).add(1)
                 if (hasUpgrade('E',41)) ef = Decimal.pow(ef,1.5)
                 if (hasUpgrade('E',63)) ef = Decimal.pow(ef,1.2)
                 if (hasUpgrade('D',45)) ef = Decimal.pow(ef,1.2)

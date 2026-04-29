@@ -23,8 +23,8 @@ addLayer("B", {
         return new Decimal(3e4);
     },
     resource: "B", 
-    baseResource: "A", 
-    baseAmount() {return player.A.points}, 
+    baseResource() {if(player.Z.points.gte(42))return "Ap";return "A"}, 
+    baseAmount() {if(player.Z.points.gte(42))return layers.A.getAp();return player.A.points}, 
     type: "normal", 
     exponent(){
         if(player.Z.points.gte(34))return n(1);
@@ -340,7 +340,7 @@ addLayer("B", {
         },
         61: {
             title:'B26',
-            description(){return player.Z.points.gte(35)?"Zp mult B.":"lg pts mult B."},
+            description(){return player.Z.points.gte(42)?"Ap mult B.":player.Z.points.gte(35)?"Zp mult B.":"lg pts mult B."},
             cost(){
                 if(player.Z.points.gte(3))return new Decimal('1e63');
                 return new Decimal('1e65');
@@ -348,6 +348,7 @@ addLayer("B", {
             effect()  { 
                 let ef=player.points.add(10).log(10)
         if(player.Z.points.gte(35))ef = layers.Z.getZp().add(10);
+        if(player.Z.points.gte(42))ef = layers.A.getAp().add(10).log(10);
                 if (hasUpgrade('A',53)&&hasMilestone('Z',4)) ef=ef.mul(10)
                 if (hasUpgrade('A',62)&&hasMilestone('Z',4)) ef=ef.mul(upgradeEffect('A',62))
                 if (hasMilestone('Z',2))ef = ef.pow(2);
