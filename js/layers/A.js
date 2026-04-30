@@ -482,6 +482,6 @@ addLayer("A", {
     },
     getAp(){
         if(player.Z.points.lt(42))return player.A.points;
-        return Decimal.tetrate(10,player.A.points.slog().add(1).div([1.001,1.004][player.Z.points.sub(42).toNumber()]).sub(1));
+        return Decimal.tetrate(10,player.A.points.slog().add(1).div([1.001,1.004,1.01][player.Z.points.sub(42).toNumber()]).sub(1));
     }
 })

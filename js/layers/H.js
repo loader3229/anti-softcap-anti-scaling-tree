@@ -1599,10 +1599,16 @@ addLayer("H", {
         if(player.H.dh[3].gte(6)) e[3]=e[3].add(0.6)
         if(player.H.dh[4].gte(3)) e[4]=e[4].add(0.2)
         if(player.H.dh[0].gte(6)&&!mil('G',32)) e[0]=e[0].add(0.1)
+        if(player.H.dh[0].gte(80))e[0]=e[0].add(10)
+        if(player.H.dh[1].gte(80))e[1]=e[1].add(10)
+        if(player.H.dh[2].gte(80))e[2]=e[2].add(10)
+        if(player.H.dh[3].gte(80))e[3]=e[3].add(10)
         
         if(player.Z.points.gte(43)){
             e=[n(mil('G',32)?2.25:2.35),n(1.78),n(2),player.H.dh[3].div(20).add(2),n(2),n(1.35)]
             if(player.H.dh[0].gte(120))e[0]=e[0].add(10)
+            if(player.H.dh[1].gte(120))e[1]=e[1].add(10)
+            if(player.H.dh[2].gte(120))e[2]=e[2].add(10)
             if(player.H.dh[3].gte(120))e[3]=e[3].add(10)
         }
         
