@@ -760,7 +760,7 @@ addLayer("G", {
         },
         85: {
             title:'G40',
-            description(){return hasMilestone('Z',41)?"Each G upgrade boost point slog by +0.0001.":hasMilestone('Z',34)?"For G35, each Gs upgrade will count one previous G upgrade as a Gs upgrade.":hasMilestone('Z',32)?"boost Gsb7 base based on Gs upg amount.":hasMilestone('Z',30)?"boost Gsb4 base based on Gs upg amount.":hasMilestone('Z',29)?"boost Gsb4 base based on Gs upg amount, Gsb4 cost base is 7.":"boost Gsb4 base based on Gs upg amount,Gsb2 cost base /2.5,Gsb4 cost base is 7."}, 
+            description(){return hasMilestone('Z',43)?"Each G upgrade boost point slog by +0.0002.":hasMilestone('Z',41)?"Each G upgrade boost point slog by +0.0001.":hasMilestone('Z',34)?"For G35, each Gs upgrade will count one previous G upgrade as a Gs upgrade.":hasMilestone('Z',32)?"boost Gsb7 base based on Gs upg amount.":hasMilestone('Z',30)?"boost Gsb4 base based on Gs upg amount.":hasMilestone('Z',29)?"boost Gsb4 base based on Gs upg amount, Gsb4 cost base is 7.":"boost Gsb4 base based on Gs upg amount,Gsb2 cost base /2.5,Gsb4 cost base is 7."}, 
             cost(){return new Decimal(hasMilestone('Z',37)?0:hasMilestone('Z',36)?'1e26500':hasMilestone('Z',35)?'1e24520':hasMilestone('Z',34)?'1e715':hasMilestone('Z',33)?'1e93':hasMilestone('Z',32)?'1e70':hasMilestone('Z',31)?'1e28':hasMilestone('Z',30)?'1e20':hasMilestone('Z',29)?'1e48':hasMilestone('Z',27)?'1e13':'1e25')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName() {return hasMilestone('Z',37)?"Gsq":"Gsi"},
@@ -772,7 +772,7 @@ addLayer("G", {
                 let ef=n(ba).pow(b.sub(25).max(0))
                 return ef;
             },
-            effectDisplay() { return hasMilestone('Z',41)?'+'+format(player[this.layer].upgrades.length/10000,4):hasMilestone('Z',34)?'+'+(Math.max(Math.min(player[this.layer].upgrades.length-25,25),0))+' upgrades':'x'+format(this.effect(),4) },
+            effectDisplay() { return hasMilestone('Z',43)?'+'+format(player[this.layer].upgrades.length/5000,4):hasMilestone('Z',41)?'+'+format(player[this.layer].upgrades.length/10000,4):hasMilestone('Z',34)?'+'+(Math.max(Math.min(player[this.layer].upgrades.length-25,25),0))+' upgrades':'x'+format(this.effect(),4) },
             unlocked() { return (hasUpgrade(this.layer, 84))},
         },
         91: {

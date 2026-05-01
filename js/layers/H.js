@@ -942,17 +942,19 @@ addLayer("H", {
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
                 let c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1))).mul('1e143')
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) c=n(10).pow(n(10).pow(x.pow(this.sc())))
+		if(player.Z.points.gte(44))c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return c
             },
             sc(){
                 let s=n(gba(this.layer, this.id)).sub(500).max(0).pow(0.5).div(300)
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) s=s.min(0.25)
                 let e=n(0.48).add(s)
+                if(player.Z.points.gte(41))e = n(0.7)
                 if(upg('H',65)) e=e.sub(0.03)
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
-            buy() {if(!upg('G',141)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
+            buy() {if(!upg('G',141) && player.Z.points.lt(44)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))},
             base(){   let b = n(0.98)    
                 if(upg('H',63)) b=b.sub(0.005)
@@ -1648,10 +1650,10 @@ addLayer("H", {
         for(let i=0;i<=5;i++) s=s.add(player.H.dh[i])
         return s
     },
-    dhbs(){let b=[n(5),n(15),n(5),n(25),n(100),n(100)]
+    dhbs(){let b=[n(5),n(15),n(5),n(25),n(25),n(100)]
         if(mil('H',8)) {b[0]=n(10),b[2]=n(10)}
+        if(player.Z.points.gte(44))b=[n(100),n(100),n(100),n(100),n(100),n(100)]
         for(let i=0;i<=5;i++) b[i]=b[i].add(buyableEffect('H',84)[0])
-        if(mil('I',6))  for(let i=0;i<=5;i++) b[i]=b[i].mul(buyableEffect('I',23))
         return b},
     dhef(){
         let e=[n(1.11),n(0.45),n(1.05),n(0.5),n(1),n(0.4)]
@@ -1686,6 +1688,7 @@ addLayer("H", {
         let ef=n(5)
         let b=[n(5),n(15),n(5),n(25),n(25),n(100)]
         if(mil('H',8)) {b[0]=n(10),b[2]=n(10)}  //not 'dhbs' to avoid bugs
+        if(player.Z.points.gte(44))b=[n(100),n(100),n(100),n(100),n(100),n(100)]
         for(let i=0;i<=5;i++) b[i]=b[i].add(buyableEffect('H',84)[0])
         for(let i=0;i<=5;i++) ef=ef.mul(n(b[i]).pow(player.H.dh[i]))  //effective!
         if(player.H.dhp.gte('1e6569')&&mil('H',11)) ef=n(10).pow(ef.add(10).log(10).pow(1.05))
