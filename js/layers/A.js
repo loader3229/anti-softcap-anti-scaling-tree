@@ -460,6 +460,8 @@ addLayer("A", {
         if(hasUpgrade("G",175) && player.Z.points.gte(42))ret++;
         if(player.Z.points.gte(43))ret++;
         if(hasUpgrade("G",163) && player.Z.points.gte(43))ret++;
+        if(hasUpgrade("H",83) && player.Z.points.gte(44))ret++;
+        if(hasUpgrade("G",235))ret++;
 		return ret;
 		},
             challengeDescription: function() {

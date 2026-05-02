@@ -117,6 +117,7 @@ addLayer("Z", {
             if(player.Z.points.gte(43))player.G.clickables[121]=player.G.clickables[122]=player.G.clickables[131]=1;
             if(player.Z.points.gte(37))player.H.milestones=['0','1'];
             if(player.Z.points.gte(43))player.H.milestones=['0','1','2'];
+            if(player.Z.points.gte(44))player.H.milestones=['0','1','2','3','4'];
             player.points=new Decimal(10);
             for(let i=0;i<10;i++)updateTemp();
         }
@@ -239,25 +240,27 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
                 player.G.buyables[91]=player.G.buyables[91].max(effective_Gsg.add(1).log(10).max(0).root(1.5).ceil().max(0));
             }
         }
-        if(hasUpgrade("G",203) || player.Z.points.gte(43)){
-            player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
-        }
-        if(hasUpgrade("G",204) || player.Z.points.gte(40)){
-            player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
-        }
-        if(hasUpgrade("G",213) && player.Z.points.gte(40)){
-            player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
-        }
-        if(hasUpgrade("G",231)){
-            player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(1).log(10).add(1).log(10).root(layers.H.buyables[21].sc()).ceil().max(0));
-        }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
+        
+        if(hasUpgrade("G",203) || player.Z.points.gte(43)){
+            player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",204) || player.Z.points.gte(40)){
+            player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",213) && player.Z.points.gte(40)){
+            player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
+        }
+        if(hasUpgrade("G",231)){
+            player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).root(layers.H.buyables[21].sc()).ceil().max(0));
+        }
         if(player.Z.points.gte(41)){
-            player.H.buyables[12]=player.H.buyables[12].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[12].sc()).sub(1).ceil().max(0));
+            player.H.buyables[12]=player.H.buyables[12].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[12].sc()).sub(1).ceil().max(0));
         }
         if(player.Z.points.gte(44)){
-            player.H.buyables[22]=player.H.buyables[22].max(player.H.harsh.add(1).log(10).add(1).log(10).add(1).root(layers.H.buyables[22].sc()).sub(1).ceil().max(0));
+            player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[21].sc()).ceil().max(0));
+            player.H.buyables[22]=player.H.buyables[22].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[22].sc()).ceil().max(0));
         }
     },
     milestones: {
@@ -435,7 +438,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         },
         43: {requirementDescription: "44 Z",
             done() {return player.Z.points.gte(44)}, 
-            effectDescription: "Start with first 5 H upgrades and 3 Ac8 completions. Base dH point base for all 6 dHs are 100. Permanently autobuy max Hb5.",
+            effectDescription: "Start with first 5 H milestones/upgrades and 3 Ac8 completions. Base dH point base for all 6 dHs are 100. Permanently autobuy max Hb4 and Hb5.",
         },
     },
     setZ(a){
