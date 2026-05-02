@@ -7,7 +7,7 @@ addLayer("D", {
         points: n(0),
     }},
     passiveGeneration(){    let d_pg=100
-    
+
         if (mil("Z", 3))  d_pg=Decimal.mul(d_pg,100)
         if (mil("Z", 4))  d_pg=Decimal.mul(d_pg,100)
         if(mil("B", 5) ||mil('I',1))return n(d_pg);
@@ -155,9 +155,9 @@ addLayer("D", {
             cost: n(150),
             unlocked() { return (upg(this.layer, 14))},
             effect()  { 
-                let ef = 0.8
+                let ef = n(0.8)
         if (upg('D', 54) && player.Z.points.gte(25)) ef = 1
-                if (inChallenge('E',11))  ef = 0
+                if (inChallenge('E',11))  ef = n(0)
                 return player[this.layer].points.add(1).pow(ef);          
             },
             effectDisplay() { return format(this.effect())+"x" }, 
@@ -168,8 +168,8 @@ addLayer("D", {
             cost:n(5000),
             effect()  { 
                 let a=player.D.upgrades.length
-                let ef = Decimal.pow(2.718,a)
-                if (upg('D',23)) ef = Decimal.pow(ef,2)
+                let ef = n(2.718).pow(a)
+                if (upg('D',23)) ef = ef.pow(2)
                 return ef;          
             },
             unlocked() { return (upg('A', 52))},
@@ -192,8 +192,8 @@ addLayer("D", {
             description: "logC boost pts.",
             cost:n(15000),
             effect()  { 
-                let ef = player.C.points.add(1).log(10)
-                if (upg('D',34)) efd9 = Decimal.pow(ef,2)
+                let ef = player.C.points.max(1).log(10)
+                if (upg('D',34)) ef = ef.pow(2)
                 return ef.add(1);          
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -217,7 +217,7 @@ addLayer("D", {
             cost:n('8e4'),
             effect()  { 
                 let ef = player.B.points.add(1).log(10)
-                if (upg('D',35)) ef = Decimal.pow(ef,2)
+                if (upg('D',35)) ef = ef.pow(2)
                 return 1+ef;          
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -257,10 +257,10 @@ addLayer("D", {
             },
             effect()  { 
                 let a=player.D.upgrades.length
-                let bas =1.25
-                if (mil('D',4)) bas =bas+0.05
-                if (upg('E',75)) bas =bas+0.1
-                let ef = Decimal.pow(bas,a)
+                let b=n(1.25)
+                if (mil('D',4)) b=b.add(0.05)
+                if (upg('E',75)) b=b.add(0.1)
+                let ef=b.pow(a)
                 return ef;          
             },
             unlocked() { return (upg('C', 32))},
@@ -274,7 +274,7 @@ addLayer("D", {
             },
             effect()  { 
                 let a=getBuyableAmount('E', 12)
-                let ef = Decimal.pow(1.75,a)
+                let ef = n(1.75).pow(a)
                 return ef;          
             },
             unlocked() { return (upg('D', 42))},

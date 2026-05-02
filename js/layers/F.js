@@ -42,8 +42,6 @@ if(mil("Z",16))p = p.mul(10)
     },
     gainExp() {
         let ef=n(1)
-        //if (upg('F',32)) ef=Decimal.add(ef,1.1)
-        //if (upg('F',33)) ef=Decimal.add(ef,1.1)
         if(gcs('I',32)) ef=ef.add(0.2)
         return ef
     },
@@ -60,9 +58,9 @@ if(mil("Z",16))p = p.mul(10)
         if (mil('Z',14)) mult=Decimal.mul(mult,4)
         if (mil('Z',15)) mult=Decimal.mul(mult,5)
         if (mil('Z',16)) mult=Decimal.mul(mult,6)
-        if (upg('F',21)) mult=Decimal.mul(mult,2)
-        if (upg('F',23)) mult=Decimal.mul(mult,upgradeEffect('F',23))
-        if (upg('F',32)) mult=Decimal.mul(mult,upgradeEffect('F',32))
+        if (upg('F',21)) mult=mult.mul(2)
+        if (upg('F',23)) mult=mult.mul(upgradeEffect('F',23))
+        if (upg('F',32)) mult=mult.mul(upgradeEffect('F',32))
         if (player.Z.points.gte(14) && player.Z.points.lte(28)) mult=Decimal.mul(mult,tmp.F.F1f)
 
                 if (upg('G',14)) mult=Decimal.mul(mult,upgradeEffect('G',14))
@@ -177,9 +175,10 @@ if(mil("Z",16))p = p.mul(10)
             let keep = []
             if(gcs('I',13))  keep.push("challenges")
             if(gcs('I',36))  keep.push("milestones")
+            if(mil('I',23))  keep.push("upgrades")
             layerDataReset(this.layer, keep)
             if(gcs('I',15)&&!gcs('I',36))  player[this.layer].milestones=[11,12,13,14,15,16]
-            if(gcs('I',36))  player[this.layer].upgrades=[71,72,73,74,75,81,82,83,84,85]
+            if(gcs('I',36)&&!mil('I',23))  player[this.layer].upgrades=[71,72,73,74,75,81,82,83,84,85]
         }
     },
     microtabs: {
@@ -228,15 +227,15 @@ if(mil("Z",16))p = p.mul(10)
             effect()  { 
                 let ef = n('1e15')
                 let exp = n(0.5)
-                if (upg('F',13)) ef=Decimal.mul(ef,'1e30')
-                if (upg('F',15)) ef=Decimal.mul(ef,'1e30')
-                if (upg('F',21)) ef=Decimal.mul(ef,'1e30')
-                if (upg('F',25)) ef=Decimal.mul(ef,'1e40')
-                if (mil('F',8)) ef=Decimal.mul(ef,'1e100')
-                if (upg('F',32)) ef=Decimal.mul(ef,'1e111')
-                if (upg('F',34)) ef=Decimal.mul(ef,'1e120')
-                if (upg('F',23)) exp=Decimal.add(exp,0.5)
-                if (upg('F',15)) ef=Decimal.pow(ef,n(buyableEffect("E",21).sub(1).mul(exp).add(1)))
+                if (upg('F',13)) ef=ef.mul('1e30')
+                if (upg('F',15)) ef=ef.mul('1e30')
+                if (upg('F',21)) ef=ef.mul('1e30')
+                if (upg('F',25)) ef=ef.mul('1e40')
+                if (mil('F',8)) ef=ef.mul('1e100')
+                if (upg('F',32)) ef=ef.mul('1e111')
+                if (upg('F',34)) ef=ef.mul('1e120')
+                if (upg('F',23)) exp=exp.add(0.5)
+                if (upg('F',15)) ef=ef.pow(buyableEffect("E",21).sub(1).mul(exp).add(1))
                 if(mil("Z",16)) ef=ef.pow(10)
                 if(mil("Z",17)) ef=ef.pow(10)
                 return ef;          
@@ -321,7 +320,7 @@ if(mil("Z",16))p = p.mul(10)
             cost:n(4000),
             effect()  { 
                 let exp=n(0.1)
-                if (upg('F',33)) exp=Decimal.add(exp,0.1)
+                if (upg('F',33)) exp=exp.add(0.1)
                 let ef = player.F.total.add(1).pow(exp)
                 return ef;
             },
@@ -379,7 +378,7 @@ if(mil("Z",16))p = p.mul(10)
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.F.total.add(10).log(10).mul(0.2)
-                if (upg('F',63)) ef=Decimal.pow(ef,1.2)
+                if (upg('F',63)) ef=ef.pow(1.2)
                 return ef;
             },
             effectDisplay() { return format(this.effect())+'x' },
@@ -394,7 +393,7 @@ if(mil("Z",16))p = p.mul(10)
             currencyInternalName: "F1",
             effect()  { 
                 let ef = player.E.Em.add(10).log(10).div(80)
-                if (upg('F',63)) ef=Decimal.pow(ef,1.2)
+                if (upg('F',63)) ef=ef.pow(1.2)
                 return ef;
             },
             effectDisplay() { return format(this.effect())+'x' },
@@ -737,7 +736,7 @@ if(mil("Z",16))p = p.mul(10)
             effect(x) { // Effects of owning x of the items, x is a decimal
                 let ef = Decimal.pow(this.base(),x)
                 ef=Decimal.mul(ef,tmp.F.fdm)
-                
+
                 if (upg('F',43))  ef=Decimal.mul(ef,upgradeEffect('F',43))
                 if (upg('F',44))  ef=Decimal.mul(ef,upgradeEffect('F',44))
                 if (upg('F',51))  ef=Decimal.mul(ef,upgradeEffect('F',51))
@@ -1104,7 +1103,7 @@ if(mil("Z",16))p = p.mul(10)
         let expc4=n(1.5)
         if(upg('G',52))  expc4=expc4.add(0.5)
         if (inChallenge('G',22)) bas=n(1);
-            
+
         return bas},
     F1effect() {
         ef = n(1)

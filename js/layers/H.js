@@ -11,11 +11,10 @@ addLayer("H", {
         dh:[n(0),n(0),n(0),n(0),n(0),n(0)],
         dhmax:[n(0),n(0),n(0),n(0),n(0),n(0)],
         dhp: n(0),
-        //dhreq:[0],
     }},
     passiveGeneration(){  
-        let pg=n(0)
-        return pg
+        let p=n(0)
+        return p
     },
     color: "#747EC8",
     requires(){return player.Z.points.gte(36)?n(1):n('e2.31e8')}, 
@@ -42,7 +41,7 @@ addLayer("H", {
         if(player.Z.points.gte(41)) exp=exp.max(12)
         if(player.Z.points.gte(43)) exp=exp.max(player.Z.points.sub(30))
         exp=exp.min(min)
-        if(upg('G',144) && tmp.H.dhef[1]) exp=exp.div(tmp.H.dhef[1])
+        exp=exp.div(tmp.H.dhef[1] || 1).max(1e-100)//if(upg('G',144)) 
         return exp
     },
     base() {
@@ -82,13 +81,13 @@ addLayer("H", {
             if(gcs('I',46))  player[this.layer].milestones.push(5,6,7,8)
             if(gcs('I',46))  player[this.layer].milestones.push(9,10,15)
             if(mil('I',21))  player[this.layer].milestones.push(2,3,4,12,16)
-            if(n(challengeCompletions('I',22)).gte(3))  player[this.layer].milestones.push(18)
+            if(n(ccomp('I',22)).gte(3))  player[this.layer].milestones.push(18)
             if(gcs('I',86))  player[this.layer].upgrades.push(12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44)
         }
     },
-    autoUpgrade() {return (gcs('I',103))},
+    autoUpgrade() {return (gcs('I',103)&&!gcs('?',145))},
     effectDescription() {
-        return "which boost b6/9 hardcap by <h2 style='color: #747EC8; text-shadow: 0 0 2px #c2b280'>+"+format(tmp.H.effect)+"</h2> (based on max)(at most 20)"
+        return "which boost b6/9 hardcap by <h2 style='color: #747EC8'>+"+format(tmp.H.effect)+"</h2> (based on max)(at most 20)"
     },
     canBuyMax(){return mil('H',17)},
     autoPrestige() { return ((mil("H", 9)&&player.H.auto7)||mil('I',1)) },
@@ -218,17 +217,17 @@ addLayer("H", {
         stuff: {       
             "Main": {
                 unlocked() {return true},
-                content: [["upgrades",[1,2,3,4]]]}, 
+                content: [["upgrades",[1,2,3,4,5]]]}, 
             "Milestones": {
                 unlocked() {return true},
                 content: ["milestones"]},
             "harsh": {
                 unlocked() {return (mil("H",2))},
-                content: [["display-text", () => "You have <h3 style='color: #359280; text-shadow: 0 0 2px #c2b280'>" + format(player.H.harsh) + "</h3> harsh "+ "<h4>" + format(tmp.H.ha) + " harsh/s <h4>"]
+                content: [["display-text", () => "You have <h3 style='color: #359280'>" + format(player.H.harsh) + "</h3> harsh "+ "<h4>" + format(tmp.H.ha) + " harsh/s <h4>"]
                 ,["buyables",[1,2,3]],['upgrades',[6,7,8]]]}, 
             "hyper": {
                 unlocked() {return (mil("H",3))},
-                content: [["display-text", () => "You have <h3 style='color: #C3FFDE; text-shadow: 0 0 2px #c2b280'>" + format(player.H.hyper) + "</h3> hyper,raise harsh by ^"+ " <h3 style='color: #C3FFDE; text-shadow: 0 0 2px #c2b280'>" + format(tmp.H.hyef,3) +"<h4>"+ format(tmp.H.hy) + " hyper/s <h4>"]
+                content: [["display-text", () => "You have <h3 style='color: #C3FFDE'>" + format(player.H.hyper) + "</h3> hyper,raise harsh by ^"+ " <h3 style='color: #C3FFDE'>" + format(tmp.H.hyef,3) +"<h4>"+ format(tmp.H.hy) + " hyper/s <h4>"]
                 ,["buyables",[5,6]]]},    
             "dH": {
                 unlocked() {return (mil("G",31))},
@@ -1630,7 +1629,7 @@ addLayer("H", {
         if(player.H.dh[1].gte(80))e[1]=e[1].add(10)
         if(player.H.dh[2].gte(80))e[2]=e[2].add(10)
         if(player.H.dh[3].gte(80))e[3]=e[3].add(10)
-        
+
         if(player.Z.points.gte(43)){
             e=[n(mil('G',32)?2.25:2.35),n(1.78),n(2),player.H.dh[3].div(20).add(2),n(2),n(1.35)]
             if(player.H.dh[0].gte(120))e[0]=e[0].add(10)
@@ -1639,13 +1638,13 @@ addLayer("H", {
             if(player.H.dh[3].gte(120))e[3]=e[3].add(10)
             if(player.Z.points.gte(44))e[3]=n(1.2)
         }
-        
+
         if(mil('H',11)) e[0]=e[0].sub(0.15)
         if(mil('G',33)&&player.G.Gsr.gte('5e7628')) e[0]=e[0].sub(0.1)
-        
+
         if(player.H.dh[0].gte(4)&&!mil('H',10)) e[0]=e[0].add(0.15)
         if(player.H.dh[1].gte(2)&&!mil('H',10)) e[1]=e[1].add(0.17)
-        
+
         if(upg("G",223))e[1] = e[1].sub(0.1)
         if(upg("G",223) && mil('Z',41))e[0] = e[0].sub(0.05)
         if(upg("G",223) && mil('Z',42))e[0] = e[0].sub(0.1)
@@ -1654,7 +1653,7 @@ addLayer("H", {
         if(gcs('I',73)) {e[0]=n(1.8),e[1]=n(1.55)}
         if(mil('G',34)) {if(player.G.Gsetot.gte('e1.48e480')) e[4]=e[4].sub(0.6)//2.1
             if(player.G.Gsetot.gte('e2.86e603')) e[4]=e[4].sub(0.6)}//1.5
-        
+
         let ef=[n(0),n(0),n(0),n(0),n(0),n(0)]
         ef[0]=n(10).pow(player.H.dh[0].add(1).pow(e[0]).mul(6)).mul('1e240')
         ef[1]=n(10).pow(n(10).pow(player.H.dh[1].add(1).pow(e[1]).mul(2).add(130.942)))
@@ -1669,7 +1668,7 @@ addLayer("H", {
         if((mil('G',34))&&player.G.Gsetot.gte('e2.86e603')) ef[4]=n(10).pow(n(10).pow(player.H.dh[4].add(1).pow(e[4]).mul(2)))
         ef[5]=player.H.dh[5].pow(e[5]).mul(5).add(50).pow(5)
         if(upg('G',155)) ef[5]=player.H.dh[5].pow(e[5]).mul(5).pow(5)
-        
+
         if(player.Z.points.gte(44))ef[3]=Decimal.pow(2,player.H.dh[3].add(30).pow(e[3]));
         return ef
     },
@@ -1750,9 +1749,9 @@ addLayer("H", {
         player.H.max=player.H.max.max(player.H.points)
         for(let i=0;i<=5;i++) player.H.dhmax[i]=player.H.dhmax[i].max(player.H.dh[i])
         if (mil("G",31))  player.H.dhp = player.H.dhp.add(tmp.H.dhp.mul(diff))
-        if(gba('J',101).gte(6)) {player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(5/9).sub(1).ceil().max(player.H.dh[0])
+        if(gba('J',101).gte(6)&&player.I.auto1) {player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(5/9).sub(1).ceil().max(player.H.dh[0])
             player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/1.55).sub(1).ceil().max(player.H.dh[1])
-            player.H.dh[2]=n(getBuyableAmount('G',31)).max(1).log(10).div(3).pow(1/1.7).sub(1).ceil().max(player.H.dh[2])
+            player.H.dh[2]=n(gba('G',31)).max(1).log(10).div(3).pow(1/1.7).sub(1).ceil().max(player.H.dh[2])
             player.H.dh[3]=player.G.GGtot.div(7500).pow(1/2.2).sub(3).ceil().max(player.H.dh[3])
             player.H.dh[4]=player.G.Gsetot.max(1).log(10).max(1).log(10).div(2).pow(2/3).sub(1).ceil().max(player.H.dh[4])
             player.H.dh[5]=n(buyableEffect('G',33)).div(5).pow(20/27).ceil().max(player.H.dh[5])

@@ -8,16 +8,16 @@ addLayer("E", {
         Em: n(0),
         Ek: n(0),
     }},
-    passiveGeneration(){    let pg=0
-        if (mil('E',9)||mil('I',1)) pg=Decimal.add(pg,1)
-        if (mil('F',0)) pg=Decimal.add(pg,1)
-        if (mil('Z',9)) pg=Decimal.add(pg,10)
-        if (mil('Z',11)) pg=Decimal.mul(pg,10)
-        if (mil('Z',12)) pg=Decimal.mul(pg,10)
-        if (mil('E',10)) pg=Decimal.mul(pg,10)
-        if (mil('E',11)) pg=Decimal.mul(pg,10)
-        if (mil('E',15)) pg=Decimal.mul(pg,10)
-        return pg},
+    passiveGeneration(){    let p=n(0)
+        if (mil('E',9)||mil('I',1)) p=p.add(1)
+        if (mil('F',0)) p=p.add(1)
+        if (mil('Z',9)) p=p.mul(10)
+        if (mil('Z',11)) p=p.mul(10)
+        if (mil('Z',12)) p=p.mul(10)
+        if (mil('E',10)) p=p.mul(10)
+        if (mil('E',11)) p=p.mul(10)
+        if (mil('E',15)) p=p.mul(10)
+        return p},
     color: "#789A89",
     requires(){
         if (player.Z.points.gte(12)) return n(1);
@@ -42,8 +42,6 @@ addLayer("E", {
     ],
     layerShown(){ return ((mil('B',7))||player[this.layer].unlocked)},
     gainMult() {
-        //let emxp=0.25
-        //if (mil('E',12))  emxp=emxp+0.02
         mult = n(1)
         mult = mult.mul(mil("Z", 8)?10:1)
         mult = mult.mul(upg("E",13)?upgradeEffect("E",13):1)
@@ -53,13 +51,10 @@ addLayer("E", {
         mult = mult.mul(upg("E",35)?upgradeEffect("E",35):1)
         mult = mult.mul(upg("E",41)?5:1)
         mult = mult.mul(upg("E",42)?2:1)
-        //mult = mult.mul(upg("E",51)?2500:1)
-        //mult = mult.mul(upg("E",54)?100:1)
         mult = mult.mul(upg("E",23)?upgradeEffect("E",23):1)
         mult = mult.mul(upg("E",32)?upgradeEffect("E",32):1)
         mult = mult.mul(upg("C",32)?upgradeEffect("C",32):1)
         mult = mult.mul(upg("D",42)?upgradeEffect("D",42):1)
-        //mult = mult.mul(mil("E",11)?player.E.Em.max(1).pow(emxp):1)
         mult = mult.mul(mil("Z",9)?tmp.E.emf:1)
         mult = mult.mul(mil("E",20)?2026:1)
         mult = mult.mul(mil("F", 0)?10:1)
@@ -67,10 +62,9 @@ addLayer("E", {
         mult = mult.mul(upg("E",71)?upgradeEffect("E",71):1)
         mult = mult.mul(upg("E",102)?upgradeEffect("E",102):1)
         mult = mult.mul(upg("F",12)?upgradeEffect("F",12):1)
-        //mult = mult.mul(upg("G",22)?Decimal.pow(player.E.points.max(1),upgradeEffect("G",22)):1)
         if (hasChallenge("E", 11))  mult = mult.mul(challengeEffect('E',11))
         if (hasChallenge("E", 12))  mult = mult.mul(challengeEffect('E',12))
-        if (inChallenge('F',11)) mult=Decimal.pow(mult,0.25)
+        if (inChallenge('F',11)) mult=mult.pow(0.25)
         return mult
     },
     softcap(){return n(Infinity)},
@@ -239,14 +233,14 @@ addLayer("E", {
             description: function() {return '1e5x points \n\
                 '+'<br>layer E total: '+ format(this.effect()) +'x'},
             effect()  { 
-                let ef = 1e5
-                if (upg('E',15)) ef = ef*1e5
-                if (upg('E',33)) ef = ef*3e5
-                if (upg('E',51)) ef = ef*1e6
-                if (upg('E',53)) ef = ef*1e6
-                if (upg('E',55)) ef = ef*1e7
-                if (upg('E',65)) ef = ef*1e8
-                ef=Decimal.pow(ef,buyableEffect("E",21))
+                let ef = n(1e5)
+                if (upg('E',15)) ef = ef.mul(1e5)
+                if (upg('E',33)) ef = ef.mul(3e5)
+                if (upg('E',51)) ef = ef.mul(1e6)
+                if (upg('E',53)) ef = ef.mul(1e6)
+                if (upg('E',55)) ef = ef.mul(1e7)
+                if (upg('E',65)) ef = ef.mul(1e8)
+                ef=ef.pow(buyableEffect("E",21))
                 if(mil("Z",16)) ef=ef.pow(100)
                 if(mil("Z",17)) ef=ef.pow(10)
                 return ef;          
@@ -257,11 +251,11 @@ addLayer("E", {
             title:'E2',
             description: "E boost points.",
             effect()  { 
-                let ef = 1
-                if (upg('E',15)) ef = ef+0.5
-                if (mil('E',1)) ef = ef+0.5
-                if (upg('E',44)) ef = ef*1.5
-                if (inChallenge('E',11))  ef = 0
+                let ef = n(1)
+                if (upg('E',15)) ef = ef.add(0.5)
+                if (mil('E',1)) ef = ef.add(0.5)
+                if (upg('E',44)) ef = ef.mul(1.5)
+                if (inChallenge('E',11))  ef=n(0)
                 return player[this.layer].points.add(1).pow(ef);          
             },
             cost:n(10),
@@ -273,9 +267,9 @@ addLayer("E", {
             description: "boost to E base on D.",
             effect()  { 
                 let ef = player.D.points.add(10).log(10).div(50).add(1)
-                if (upg('E',24)) ef = Decimal.pow(ef,1.5)
-                if (upg('E',63)) ef = Decimal.pow(ef,1.2)
-                if (upg('C',35)) ef = Decimal.pow(ef,1.2)
+                if (upg('E',24)) ef = ef.pow(1.5)
+                if (upg('E',63)) ef = ef.pow(1.2)
+                if (upg('C',35)) ef = ef.pow(1.2)
                 return ef;
             },
             cost:n(30),
@@ -287,9 +281,9 @@ addLayer("E", {
             description: "boost to E base on C.",
             effect()  { 
                 let ef = player.C.points.add(10).log(10).div(200).add(1)
-                if (upg('E',25)) ef = Decimal.pow(ef,1.5)
-                if (upg('E',63)) ef = Decimal.pow(ef,1.2)
-                if (upg('C',35)) ef = Decimal.pow(ef,1.2)
+                if (upg('E',25)) ef = ef.pow(1.5)
+                if (upg('E',63)) ef = ef.pow(1.2)
+                if (upg('C',35)) ef = ef.pow(1.2)
                 return ef;          
             },
             cost:n(80),
@@ -313,11 +307,11 @@ addLayer("E", {
             description: "E upg boost pts.<br>(e^3x).",
             cost:n(5000),
             effect()  { 
-                let a=player.E.upgrades.length
-                let ef = Decimal.pow(20.09,a)
-                if (upg('E',25)) ef = Decimal.pow(54.6,a)
-                if (upg('E',33)) ef = Decimal.pow(ef,1.5)
-                if (upg('E',84)) ef = Decimal.pow(ef,1.5)
+                let a=n(player.E.upgrades.length)
+                let ef = n(2.718).pow(a.mul(3))
+                if (upg('E',25)) ef =n(2.718).pow(a.mul(4))
+                if (upg('E',33)) ef = ef.pow(1.5)
+                if (upg('E',84)) ef = ef.pow(1.5)
                 return ef;          
             },
             unlocked() { return (upg(this.layer, 21))},
@@ -328,13 +322,13 @@ addLayer("E", {
             description: "E upg boost E.<br>(1.2^x).",
             cost:n(10000),
             effect()  { 
-                let bas=1.2
-                let a=player.E.upgrades.length
-                if (upg('E',83)) bas = bas+0.15
-                if (upg('E',91)) bas = bas+0.15
-                if (upg('E',94)) bas = bas+0.1
-                let efe8 = Decimal.pow(bas,a)
-                return efe8;          
+                let b=n(1.2)
+                let a=n(player.E.upgrades.length)
+                if (upg('E',83)) b = b.add(0.15)
+                if (upg('E',91)) b = b.add(0.15)
+                if (upg('E',94)) b = b.add(0.1)
+                let ef = b.pow(a)
+                return ef;          
             },
             unlocked() { return (upg(this.layer, 22))},
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -355,7 +349,7 @@ addLayer("E", {
             title:'E11',
             description: "B26 ^1.1.",
             cost:n(1e6),
-            unlocked() { return  (challengeCompletions("E", 11) >= 1)},
+            unlocked() { return  (ccomp("E", 11).gte(1))},
         },
         32: {
             title:'E12',
@@ -363,9 +357,9 @@ addLayer("E", {
             cost:n(2e6),
             effect()  { 
                 let ef = player.B.points.add(10).log(10).div(300).add(1)
-                if (mil('E',3)) ef = Decimal.pow(ef,1.5)
-                if (upg('E',63)) ef = Decimal.pow(ef,1.2)
-                if (upg('D',45)) ef = Decimal.pow(ef,1.2)
+                if (mil('E',3)) ef = ef.pow(1.5)
+                if (upg('E',63)) ef = ef.pow(1.2)
+                if (upg('D',45)) ef = ef.pow(1.2)
                 return ef;          
             },
             effectDisplay() { return format(this.effect())+"x" }, 
@@ -389,9 +383,9 @@ addLayer("E", {
             cost:n(1e9),
             effect()  { 
                 let ef = (player.Z.points.gte(42)?layers.A.getAp():player.A.points).add(10).log(10).div(500).add(1)
-                if (upg('E',41)) ef = Decimal.pow(ef,1.5)
-                if (upg('E',63)) ef = Decimal.pow(ef,1.2)
-                if (upg('D',45)) ef = Decimal.pow(ef,1.2)
+                if (upg('E',41)) ef = ef.pow(1.5)
+                if (upg('E',63)) ef = ef.pow(1.2)
+                if (upg('D',45)) ef = ef.pow(1.2)
                 return ef;          
             },
             effectDisplay() { return format(this.effect())+"x" }, 
@@ -403,7 +397,7 @@ addLayer("E", {
             cost(){
                 return n(player.Z.points.gte(8)?1e13:5e14);
             },
-            unlocked() { return  (challengeCompletions("E", 12) >= 1)},
+            unlocked() { return  (ccomp("E", 12).gte(1))},
         },
         42: {
             title:'E17',
@@ -484,7 +478,7 @@ addLayer("E", {
                 return n(player.Z.points.gte(10)?1e36:2e40);
             },
             effect()  { 
-                let ef = Decimal.add(player.E.points,10).log(10).pow(0.8).div(50)
+                let ef = player.E.points.add(10).log(10).pow(0.8).div(50)
                 if(player.Z.points.gte(9))ef = Decimal.add(player.E.points,10).log(10).div(40)
                 return ef;          
             },
@@ -536,7 +530,7 @@ addLayer("E", {
             unlocked() { return (mil(this.layer, 11))},
             effect()  { 
                 let ef = player.E.Em.add(10).log(10)
-                if (upg('E',81)) ef = Decimal.pow(ef,1.5)
+                if (upg('E',81)) ef = ef.pow(1.5)
                 return ef;          
             },
             effectDisplay() { return format(this.effect())+"x" },
@@ -617,9 +611,9 @@ addLayer("E", {
             description: "Eb5-7 amt boost pts.<br>(1.7^x).",
             unlocked() { return (upg(this.layer, 84))},
             effect()  { 
-                let b=1.7
-                let a=getBuyableAmount('E', 31).add(getBuyableAmount('E', 32)).add(getBuyableAmount('E', 33))
-                let ef = Decimal.pow(b,a)
+                let b=n(1.7)
+                let a=gba('E', 31).add(gba('E', 32)).add(gba('E', 33))
+                let ef = b.pow(a)
                 return ef;          
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -640,10 +634,10 @@ addLayer("E", {
             description: "Eb5-7 amt boost B.<br>(1.3^x).",
             unlocked() { return (upg(this.layer, 91))},
             effect()  { 
-                let b=1.3
-                let a=getBuyableAmount('E', 31).add(getBuyableAmount('E', 32)).add(getBuyableAmount('E', 33))
-                if (upg('E',93)) b=b+0.1
-                let ef = Decimal.pow(b,a)
+                let b=n(1.3)
+                let a=gba('E', 31).add(gba('E', 32)).add(gba('E', 33))
+                if (upg('E',93)) b=b.add(0.1)
+                let ef = b.pow(a)
                 return ef;          
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -672,9 +666,9 @@ addLayer("E", {
             description: "Eb5-7 amt boost C.(1.15^x)",
             unlocked() { return (upg(this.layer, 94))},
             effect()  { 
-                let b=1.15
-                let a=getBuyableAmount('E', 31).add(getBuyableAmount('E', 32)).add(getBuyableAmount('E', 33))
-                let ef = Decimal.pow(b,a)
+                let b=n(1.15)
+                let a=gba('E', 31).add(gba('E', 32)).add(gba('E', 33))
+                let ef = b.pow(a)
                 return ef;          
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
@@ -692,7 +686,7 @@ addLayer("E", {
             description: "Ek mults E.",
             effect()  { 
                 let ef = player.E.Ek.add(10).log(10).pow(2)
-                if (mil('E',19)) ef=Decimal.pow(ef,1.6)
+                if (mil('E',19)) ef=ef.pow(1.6)
                 return ef;          
             },
             cost:n('1e198'),

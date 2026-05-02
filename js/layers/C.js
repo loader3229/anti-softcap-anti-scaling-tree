@@ -6,17 +6,16 @@ addLayer("C", {
         unlocked: false,
 		points: n(0),
     }},
-    passiveGeneration(){    let pg=1
-        if (mil("D", 2))  pg=pg*100
-        if (mil("B", 5))  pg=pg*100
+    passiveGeneration(){    let p=n(0)
+        if(mil('D', 1)||mil('I',1)) p=n(1)
+        if (mil("D", 2))  p=p.mul(100)
+        if (mil("B", 5))  p=p.mul(100)
 
-
-        if (mil("Z", 2))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 3))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 4))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 1))  return n(pg).mul(100);
-        return (mil("D", 1)||mil('I',1))?pg:0
-        },
+        if (mil("Z", 2))  p=p.mul(100)
+        if (mil("Z", 3))  p=p.mul(100)
+        if (mil("Z", 4))  p=p.mul(100)
+        if (mil("Z", 1))  return n(p).mul(100);
+        return p},
     color: "#A73E16",
     requires(){
         if (mil("Z", 4)) return n(1);
@@ -148,12 +147,13 @@ addLayer("C", {
             cost: n(10),
             unlocked() { return (upg(this.layer, 12))},
             effect()  { 
-                let ef = 0.5
-                if (upg('C',23))  ef = ef*1.3
-                if (upg('C',24))  ef = ef*1.2
-        if (upg('D', 54) && player.Z.points.gte(25)) ef = 1
-                if (inChallenge('C',11))  ef = 0
-                if (inChallenge('E',11))  ef = 0
+                let ef=n(0.5)
+                if (upg('C',23))  ef = ef.mul(1.3)
+                if (upg('C',24))  ef = ef.mul(1.2)
+        if (upg('D', 54) && player.Z.points.gte(25)) ef = n(1)
+                // if ()  ef = 0
+                // if ()  ef = 0
+                if(inChallenge('C',11)||inChallenge('E',11)) ef=n(0)
                 return player[this.layer].points.add(1).pow(ef);          
             },
             effectDisplay() { return format(this.effect())+"x" }, 
@@ -206,7 +206,7 @@ addLayer("C", {
             cost(){
                 return n(player.Z.points.gte(11)?'1e789':player.Z.points.gte(10)?'1e950':'1e1800');
             },
-            unlocked() { return (challengeCompletions("E", 21) >= 2)},
+            unlocked() { return (ccomp("E", 21).gte(2))},
         },
         32: {
             title:'C12',
@@ -215,10 +215,10 @@ addLayer("C", {
                 return n(player.Z.points.gte(11)?'1e876':player.Z.points.gte(10)?'1e1100':'1e2760');
             },
             effect()  { 
-                let bas=1.3
+                let b=n(1.3)
                 let a=player.C.upgrades.length
-                if (upg('E',75)) bas =bas+0.1
-                let ef = Decimal.pow(bas,a)
+                if (upg('E',75)) b=b.add(0.1)
+                let ef=b.pow(a)
                 return ef;          
             },
             unlocked() { return (upg('E', 64))},
@@ -232,7 +232,7 @@ addLayer("C", {
             },
             effect()  { 
                 let a=getBuyableAmount('E', 11)
-                let ef = Decimal.pow(1.5,a)
+                let ef=n(1.5).pow(a)
                 return ef;          
             },
             unlocked() { return (upg(this.layer, 32))},
