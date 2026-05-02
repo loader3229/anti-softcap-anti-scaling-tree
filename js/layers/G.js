@@ -4027,8 +4027,8 @@ if (upg('G',222))  base=Decimal.mul(base,upgradeEffect('G',75))
         if(ch('I',12)) ef=ef.pow(challengeEffect('I',12))   
         if(mil('I',9)) ef=ef.pow(buyableEffect('I',32))   
         if(gcs('I',311)) ef=n(10).tetrate(ef.max(10).slog().sub(tmp.I.resv[2]).max(0))
-        ef=ef.mul(buyableEffect('J',35))
-        ef=ef.pow(buyableEffect('J',85))
+        if(gba('J',101).gte(11))ef=ef.mul(buyableEffect('J',35))
+        if(mil('I',24))ef=ef.pow(buyableEffect('J',85))
         ef=ef.min(tmp.H.php)
         return ef
     },
