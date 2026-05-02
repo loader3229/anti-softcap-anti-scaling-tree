@@ -223,11 +223,11 @@ addLayer("H", {
                 content: ["milestones"]},
             "harsh": {
                 unlocked() {return (mil("H",2))},
-                content: [["display-text", () => "You have <h3 style='color: #359280'>" + format(player.H.harsh) + "</h3> harsh "+ "<h4>" + format(tmp.H.ha) + " harsh/s <h4>"]
+                content: [["display-text", () => "You have <h3 style='color: #359280; text-shadow: 0 0 2px #c2b280'>" + format(player.H.harsh) + "</h3> harsh "+ "<h4>" + format(tmp.H.ha) + " harsh/s <h4>"]
                 ,["buyables",[1,2,3]],['upgrades',[6,7,8]]]}, 
             "hyper": {
                 unlocked() {return (mil("H",3))},
-                content: [["display-text", () => "You have <h3 style='color: #C3FFDE'>" + format(player.H.hyper) + "</h3> hyper,raise harsh by ^"+ " <h3 style='color: #C3FFDE'>" + format(tmp.H.hyef,3) +"<h4>"+ format(tmp.H.hy) + " hyper/s <h4>"]
+                content: [["display-text", () => "You have <h3 style='color: #C3FFDE; text-shadow: 0 0 2px #c2b280'>" + format(player.H.hyper) + "</h3> hyper,raise harsh by ^"+ " <h3 style='color: #C3FFDE'>" + format(tmp.H.hyef,3) +"<h4>"+ format(tmp.H.hy) + " hyper/s <h4>"]
                 ,["buyables",[5,6]]]},    
             "dH": {
                 unlocked() {return (mil("G",31))},
@@ -518,7 +518,7 @@ addLayer("H", {
         62: {
             title:'H27',
             description(){if(mil('Z',41))return "Hb2 cost exp -0.02, unlock Hb7, harsh boost Gsg."; return "Hb2 cost exp -0.02,unlock a bab."},   
-            cost(){return n(mil('Z',43)?'1e660':mil('Z',42)?'1e575':mil('Z',40)?'1e500':mil('Z',39)?'1e333':mil('Z',38)?'1e295':mil('Z',37)?'1e280':mil('Z',36)?'1e270':'2e263')},
+            cost(){return n(mil('Z',44)?'1e1050':mil('Z',43)?'1e660':mil('Z',42)?'1e575':mil('Z',40)?'1e500':mil('Z',39)?'1e333':mil('Z',38)?'1e295':mil('Z',37)?'1e280':mil('Z',36)?'1e270':'2e263')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -527,7 +527,7 @@ addLayer("H", {
         63: {
             title:'H28',
             description: "Hb7 base +0.005,b5 -0.005,har^1.05.", 
-            cost(){return n(mil('Z',43)?'1e777':mil('Z',42)?'1e750':mil('Z',41)?'1e900':mil('Z',40)?'1e700':mil('Z',39)?'1e500':mil('Z',38)?'1e450':mil('Z',37)?'1e410':mil('Z',36)?'1e397':'5e387')},
+            cost(){return n(mil('Z',44)?'1e1200':mil('Z',43)?'1e777':mil('Z',42)?'1e750':mil('Z',41)?'1e900':mil('Z',40)?'1e700':mil('Z',39)?'1e500':mil('Z',38)?'1e450':mil('Z',37)?'1e410':mil('Z',36)?'1e397':'5e387')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -536,7 +536,7 @@ addLayer("H", {
         64: {
             title:'H29',
             description: "Hb6 base +0.01,Hb1 base exp +0.05,unlock a bab.",   
-            cost(){return n(mil('Z',43)?'1e1340':mil('Z',42)?'1e1050':mil('Z',41)?'1e1700':mil('Z',40)?'1e1100':mil('Z',39)?'1e800':mil('Z',38)?'1e650':mil('Z',37)?'1e630':mil('Z',36)?'1e594':'5e586')},
+            cost(){return n(mil('Z',44)?'1e2250':mil('Z',43)?'1e1340':mil('Z',42)?'1e1050':mil('Z',41)?'1e1700':mil('Z',40)?'1e1100':mil('Z',39)?'1e800':mil('Z',38)?'1e650':mil('Z',37)?'1e630':mil('Z',36)?'1e594':'5e586')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -545,7 +545,7 @@ addLayer("H", {
         65: {
             title:'H30',
             description: "Hb5 cost -0.03,Hb1 base exp +0.05.",   
-            cost(){return n(mil('Z',43)?'1e1560':mil('Z',42)?'1e1720':mil('Z',41)?'1e2100':mil('Z',40)?'1e2000':mil('Z',39)?'1e1111':mil('Z',38)?'1e1000':mil('Z',37)?'1e890':mil('Z',36)?'1e869':'1e836')},
+            cost(){return n(mil('Z',44)?'1e3600':mil('Z',43)?'1e1560':mil('Z',42)?'1e1720':mil('Z',41)?'1e2100':mil('Z',40)?'1e2000':mil('Z',39)?'1e1111':mil('Z',38)?'1e1000':mil('Z',37)?'1e890':mil('Z',36)?'1e869':'1e836')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -554,7 +554,7 @@ addLayer("H", {
         71: {
             title:'H31',
             description(){ if(player.Z.points.gte(44))return "H raise harsh and Gse.";return "H raise harsh and Gse,b1 amt ^1.02."},   
-            cost(){return n(mil('Z',43)?'1e1760':mil('Z',42)?'1e1980':mil('Z',40)?'1e2500':mil('Z',39)?'1e1345':mil('Z',38)?'1e1325':mil('Z',37)?'1e1820':mil('Z',36)?'1e1230':'5e1186')},
+            cost(){return n(mil('Z',45)?'e6e5':mil('Z',44)?'ee5':mil('Z',43)?'1e1760':mil('Z',42)?'1e1980':mil('Z',40)?'1e2500':mil('Z',39)?'1e1345':mil('Z',38)?'1e1325':mil('Z',37)?'1e1820':mil('Z',36)?'1e1230':'5e1186')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -572,7 +572,7 @@ addLayer("H", {
         72: {
             title:'H32',
             description: "GG raise harsh and Gse,b2 exp -0.02.",   
-            cost(){return n(mil('Z',43)?'1e2000':mil('Z',42)?'1e3020':mil('Z',41)?'1e5760':mil('Z',40)?'1e5470':mil('Z',39)?'1e4500':mil('Z',38)?'1e4000':mil('Z',37)?'1e3505':mil('Z',36)?'1e2282':'1e2221')},
+            cost(){return n(mil('Z',45)?'e98e4':mil('Z',44)?'e5e5':mil('Z',43)?'1e2000':mil('Z',42)?'1e3020':mil('Z',41)?'1e5760':mil('Z',40)?'1e5470':mil('Z',39)?'1e4500':mil('Z',38)?'1e4000':mil('Z',37)?'1e3505':mil('Z',36)?'1e2282':'1e2221')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -589,7 +589,7 @@ addLayer("H", {
         73: {
             title:'H33',
             description: "H beyond 12 provide b2,b2 exp -0.04.",    
-            cost(){return n(mil('Z',43)?'1e2610':mil('Z',42)?'1e4900':mil('Z',41)?'1e10270':mil('Z',40)?'1e7900':mil('Z',39)?'1e8000':mil('Z',38)?'1e6300':mil('Z',36)?'1e5000':'1e3003')},
+            cost(){return n(mil('Z',45)?'e77e5':mil('Z',44)?'e23e5':mil('Z',43)?'1e2610':mil('Z',42)?'1e4900':mil('Z',41)?'1e10270':mil('Z',40)?'1e7900':mil('Z',39)?'1e8000':mil('Z',38)?'1e6300':mil('Z',36)?'1e5000':'1e3003')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -602,7 +602,7 @@ addLayer("H", {
         74: {
             title:'H34',
             description: "b7 exp -0.04 and base +0.005,b4 -0.02,b5 -0.005.",   
-            cost(){return n(mil('Z',43)?'1e5480':mil('Z',41)?'1e13200':mil('Z',38)?'ee4':mil('Z',37)?'1e6570':mil('Z',36)?'1e6344':'5e3594')},
+            cost(){return n(mil('Z',45)?'e14e6':mil('Z',44)?'e37e5':mil('Z',43)?'1e5480':mil('Z',41)?'1e13200':mil('Z',38)?'ee4':mil('Z',37)?'1e6570':mil('Z',36)?'1e6344':'5e3594')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -611,7 +611,7 @@ addLayer("H", {
         75: {
             title:'H35',
             description: "Hb1 base exp +0.2,H31-32 ^1.25,unlock the final bab.",   
-            cost(){return n(mil('Z',43)?'1e6040':mil('Z',40)?'1e14400':mil('Z',39)?'1e11280':mil('Z',38)?'1e11230':mil('Z',37)?'1e7717':mil('Z',36)?'1e7465':'5e4542')},
+            cost(){return n(mil('Z',45)?'e23e6':mil('Z',44)?'e44e5':mil('Z',43)?'1e6040':mil('Z',40)?'1e14400':mil('Z',39)?'1e11280':mil('Z',38)?'1e11230':mil('Z',37)?'1e7717':mil('Z',36)?'1e7465':'5e4542')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -620,7 +620,7 @@ addLayer("H", {
         81: {
             title:'H36',
             description: "Gsb6 amt div Hb1/Hy1 cost exp.",   
-            cost(){return n(mil('Z',43)?'e145000':mil('Z',41)?'e566000':mil('Z',40)?'e500000':mil('Z',38)?'e506600':mil('Z',37)?'e208595':'e183174')},
+            cost(){return n(mil('Z',45)?'e61e6':mil('Z',44)?'e11e6':mil('Z',43)?'e145000':mil('Z',41)?'e566000':mil('Z',40)?'e500000':mil('Z',38)?'e506600':mil('Z',37)?'e208595':'e183174')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -641,7 +641,7 @@ addLayer("H", {
         82: {
             title:'H37',
             description: "H31-32 boost hyper,free bab:b3-->b2,y3-->y2-->y1.",   
-            cost(){return n(mil('Z',43)?'e194000':mil('Z',41)?'e979000':mil('Z',40)?'e910000':mil('Z',39)?'e963000':mil('Z',38)?'e927000':mil('Z',37)?'e536880':'e336215')},
+            cost(){return n(mil('Z',45)?'e5e12':mil('Z',44)?'e23e7':mil('Z',43)?'e194000':mil('Z',41)?'e979000':mil('Z',40)?'e910000':mil('Z',39)?'e963000':mil('Z',38)?'e927000':mil('Z',37)?'e536880':'e336215')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -650,7 +650,7 @@ addLayer("H", {
         83: {
             title:'H38',
             description(){if(player.Z.points.gte(44))return "Ac8 max completions +1.";return "remove Hb1 nerf,b5 mul b1 eff amt instead."},   
-            cost(){return n(mil('Z',43)?'e246500':mil('Z',41)?'1e1533000':mil('Z',40)?'e1489000':mil('Z',39)?'e1620000':mil('Z',38)?'e1454600':mil('Z',37)?'e784000':'e600000')},
+            cost(){return n(mil('Z',45)?'ee13':mil('Z',44)?'e45e7':mil('Z',43)?'e246500':mil('Z',41)?'1e1533000':mil('Z',40)?'e1489000':mil('Z',39)?'e1620000':mil('Z',38)?'e1454600':mil('Z',37)?'e784000':'e600000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -659,7 +659,7 @@ addLayer("H", {
         84: {
             title:'H39',
             description: "H36 ^1.5,b2/y2 sc -0.05,Gsi mult ha/hy,unlock 3 new bab.",   
-            cost(){return n(mil('Z',43)?'e46e5':mil('Z',42)?'e2230000':mil('Z',41)?'e2228000':mil('Z',40)?'e2168000':mil('Z',39)?'e2520000':mil('Z',38)?'e2399000':mil('Z',37)?'e1199160':'e958794')},
+            cost(){return n(mil('Z',45)?'e2e13':mil('Z',44)?'e7e8':mil('Z',43)?'e46e5':mil('Z',42)?'e2230000':mil('Z',41)?'e2228000':mil('Z',40)?'e2168000':mil('Z',39)?'e2520000':mil('Z',38)?'e2399000':mil('Z',37)?'e1199160':'e958794')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -675,7 +675,7 @@ addLayer("H", {
         85: {
             title:'H40',
             description: "hyper eff exp +0.05,b/y1-2 exp /1.01.",    
-            cost(){return n(mil('Z',39)?'ee10':mil('Z',38)?'e566e6':mil('Z',37)?'e49906000':'e29963000')},
+            cost(){return n(mil('Z',45)?'e4e13':mil('Z',39)?'ee10':mil('Z',38)?'e566e6':mil('Z',37)?'e49906000':'e29963000')},
             currencyLocation() {return player[this.layer]}, 
             currencyDisplayName: "harsh",
             currencyInternalName: "harsh",
@@ -1015,16 +1015,18 @@ addLayer("H", {
             cost(x) { 
                 let c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1))).mul('1e161')
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) c=n(10).pow(n(10).pow(x.pow(this.sc())))
+		        if(player.Z.points.gte(46))c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return c
             },
             sc(){
                 let s=n(gba(this.layer, this.id)).sub(50).max(0).pow(0.5).div(50)
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) s=s.min(0.32)
                 let e=n(0.75).add(s)
+                if(player.Z.points.gte(46))e = n(0.9)
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
-            buy() {if(!upg('G',141)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
+            buy() {if(!upg('G',141) && player.Z.points.lt(46)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let b = n(0.05)   
                 if(upg('H',64)) b=b.add(0.01) 
@@ -1034,6 +1036,11 @@ addLayer("H", {
                 let ef = Decimal.mul(this.base(),x.pow(exp))
                 return ef},
             display() {
+                if(player.Z.points.gte(46))return "b2/4 base mult +"+ format(this.base()) + " \n\
+                Cost: " + format(this.cost()) + " harsh \n\
+                Cost Factor: " + formatSmall(this.sc()) + " \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
+                Effect: +" + format(this.effect())
                 return "b2/4 base mult +"+ format(this.base()) + " \n\
                 Cost: " + format(this.cost()) + " harsh \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -1045,17 +1052,19 @@ addLayer("H", {
             cost(x) { 
                 let c = n(10).pow(n(10).pow(x.add(1).pow(this.sc()).sub(1))).mul('1e262')
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) c=n(10).pow(n(10).pow(x.pow(this.sc())))
+		        if(player.Z.points.gte(45))c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return c
             },
             sc(){
                 let s=n(gba(this.layer, this.id)).sub(50).max(0).pow(0.5).div(50)
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) s=s.min(0.3)
                 let e=n(0.72).add(s)
+                if(player.Z.points.gte(45))e = n(0.84)
                 if(upg('H',74)) e=e.sub(0.04)
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
-            buy() {if(!upg('G',141)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
+            buy() {if(!upg('G',141) && player.Z.points.lt(45)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let b = n(0.02)    
                 if(upg('H',63)) b=b.add(0.005)
@@ -1066,6 +1075,11 @@ addLayer("H", {
                 let ef = Decimal.mul(this.base(),x.pow(exp))
                 return ef},
             display() { 
+                if(player.Z.points.gte(45))return "b1 base exp +"+ format(this.base()) + " \n\
+                Cost: " + format(this.cost()) + " harsh \n\
+                Cost Factor: " + formatSmall(this.sc()) + " \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
+                Effect: +" + format(this.effect())
                 return "b1 base exp +"+ format(this.base()) + " \n\
                 Cost: " + format(this.cost()) + " harsh \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -1108,16 +1122,18 @@ addLayer("H", {
             cost(x) {
                 let c = n(10).pow(n(10).pow(x.add(1).pow(this.sc()).sub(1))).mul('5e7689')
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) c=n(10).pow(n(10).pow(x.pow(this.sc())))
+		        if(player.Z.points.gte(45))c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return c
             },
             sc(){
                 let s=n(gba(this.layer, this.id)).sub(200).max(0).pow(0.5).div(200)
                 if(mil('H',11)&&player.H.hyper.gte('e9e500')) s=s.min(0.3)
                 let e=n(0.5).add(s)
+                if(player.Z.points.gte(45))e = n(0.5)
                 return e
             },
             canAfford() { return player[this.layer].harsh.gte(this.cost()) },
-            buy() {if(!upg('G',141)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
+            buy() {if(!upg('G',141) && player.Z.points.lt(45)) player[this.layer].harsh = player[this.layer].harsh.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
             base(){   let b = n(1.11)
                 if(upg("G",141) && player.Z.points.gte(42))b=n(10)
@@ -1128,6 +1144,11 @@ addLayer("H", {
                 if(upg('H',42)) ef=n(10).pow(ef.add(10).log(10).pow(1.02))
                 return ef},
             display() {
+                if(player.Z.points.gte(45))return "Gs gain and eff ^"+ format(this.base()) + " \n\
+                Cost: " + format(this.cost()) + " harsh \n\
+                Cost Factor: " + formatSmall(this.sc()) + " \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
+                Effect: ^" + format(this.effect(),3)
                 return "Gs gain and eff ^"+ format(this.base()) + " \n\
                 Cost: " + format(this.cost()) + " harsh \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -1173,6 +1194,11 @@ addLayer("H", {
                 let ef = this.base().pow(x.add(this.extra()).pow(exp))//.add(this.extra())
                 return ef},//" + "+ format(this.extra())+"
             display() { 
+                if(player.Z.points.gte(46))return "give hyper a x"+ format(this.base()) + " mult \n\
+                Cost: " + format(this.cost()) + " hyper \n\
+                Cost Factor: " + formatSmall(this.sc()) + " \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
+                Effect: x" + format(this.effect())
                 return "give hyper a x"+ format(this.base()) + " mult \n\
                 Cost: " + format(this.cost()) + " hyper \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
@@ -1185,6 +1211,7 @@ addLayer("H", {
             cost(x) { 
                 let c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1))).mul('1e3929')
                 if(mil('H',13)) c = n(10).pow(n(10).pow(x.pow(this.sc())))
+                if(player.Z.points.gte(46))c = n(10).pow(n(10).pow(x.pow(this.sc()).max(1).sub(1)))
                 return c
             },
             sc(x){
@@ -1228,6 +1255,11 @@ addLayer("H", {
                 let ef2 = x.add(this.extra()).mul(this.base2())
                 return [ef,ef2]},
             display() { 
+                if(player.Z.points.gte(46))return "hyper exp +"+ format(this.base()) + " and Hy1 base +"+ format(this.base2()) + "  \n\
+                Cost: " + format(this.cost()) + " hyper \n\
+                Cost Factor: " + formatSmall(this.sc()) + " \n\
+                Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\
+                Effect: exp+" + format(this.effect()[0]) + " y1+" + format(this.effect()[1])
                 return "hyper exp +"+ format(this.base()) + " and Hy1 base +"+ format(this.base2()) + "  \n\
                 Cost: " + format(this.cost()) + " hyper \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" + "+ format(this.extra())+" \n\

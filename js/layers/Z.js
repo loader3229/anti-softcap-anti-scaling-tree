@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return n([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","10^^10"][player.Z.points.toNumber()]);
+        return n([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","eeeeee8","eeeeee10","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -98,7 +98,9 @@ addLayer("Z", {
             if(player.Z.points.gte(41))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115];
             if(player.Z.points.gte(42))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125];
             if(player.Z.points.gte(43))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135];
+            if(player.Z.points.gte(46))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175];
             if(player.Z.points.gte(44))player.H.upgrades=[11, 12, 13, 14, 15];
+            if(player.Z.points.gte(46))player.H.upgrades=[11, 12, 13, 14, 15, 61, 62, 63, 64, 65];
             if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
             if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
             if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
@@ -109,6 +111,7 @@ addLayer("Z", {
             if(player.Z.points.gte(39))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
             if(player.Z.points.gte(40))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
             if(player.Z.points.gte(41))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
+            if(player.Z.points.gte(45))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
             if(player.Z.points.gte(41))player.G.clickables[21]=player.G.clickables[31]=player.G.clickables[32]=player.G.clickables[33]=1;
             if(player.Z.points.gte(41))player.G.clickables[41]=player.G.clickables[42]=player.G.clickables[43]=player.G.clickables[44]=1;
             if(player.Z.points.gte(41))player.G.clickables[61]=player.G.clickables[62]=player.G.clickables[63]=player.G.clickables[51]=1;
@@ -226,14 +229,13 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             if((upg("H",11) && player.Z.points.gte(35)) || player.Z.points.gte(40))player.G.buyables[61]=player.G.buyables[61].max(player.G.Gse.add(1).log(10).max(0).root(3).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[51]=player.G.buyables[51].max(effective_Gse.add(1).log(10).add(1).log(2).pow(2).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[52]=player.G.buyables[52].max(effective_Gse.add(1).log(10).add(1).log(2).ceil().max(0));
+            if(player.Z.points.gte(45))player.G.buyables[43]=player.G.buyables[43].max(effective_Gse.add(1).log(10).add(1).log(1.5).ceil().max(0));
         }
         if(player.Z.points.gte(37)){
             let effective_Gsq = player.G.Gsq.add(1);
             if (upg('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
             if(upg("G",191) || player.Z.points.gte(42))player.G.buyables[81]=player.G.buyables[81].max(effective_Gsq.add(1).log(4).max(0).root(1.5).ceil().max(0));
-            if(upg("G",203)){
-                player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
-            }
+            if(upg("G",203) || player.Z.points.gte(45))player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
         }
         if(player.Z.points.gte(42)){
             let effective_Gsg = player.G.Gsg.add(1);
@@ -251,7 +253,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         if(upg("G",204) || player.Z.points.gte(40)){
             player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
         }
-        if(upg("G",213) && player.Z.points.gte(40)){
+        if((upg("G",213) && player.Z.points.gte(40)) || player.Z.points.gte(46)){
             player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
         }
         if(upg("G",231)){
@@ -263,6 +265,13 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         if(player.Z.points.gte(44)){
             player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[21].sc()).ceil().max(0));
             player.H.buyables[22]=player.H.buyables[22].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[22].sc()).ceil().max(0));
+        }
+        if(player.Z.points.gte(45)){
+            player.H.buyables[31]=player.H.buyables[31].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[31].sc()).ceil().max(0));
+            player.H.buyables[33]=player.H.buyables[33].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[33].sc()).ceil().max(0));
+        }
+        if(player.Z.points.gte(46)){
+            player.H.buyables[23]=player.H.buyables[23].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[23].sc()).ceil().max(0));
         }
     },
     milestones: {
@@ -442,6 +451,14 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             done() {return player.Z.points.gte(44)}, 
             effectDescription: "Start with first 5 H milestones/upgrades and 3 Ac8 completions. Base dH point base for all 6 dHs are 100. Permanently autobuy max Hb4 and Hb5.",
         },
+        44: {requirementDescription: "45 Z",
+            done() {return player.Z.points.gte(45)}, 
+            effectDescription: "Start with first 32 G milestones. Permanently unlock GsR and you can gain GsR anytime. Remove Gsb9 limit and permanently autobuy max Gsb9, Gsb14, Hb7 and Hb9.",
+        },
+        45: {requirementDescription: "46 Z",
+            done() {return player.Z.points.gte(46)}, 
+            effectDescription: "Start with all 10 Gsq upgrades and first 5 harsh upgrades. Permanently unlock Gsh. Permanently autobuy max Hb6 and Hy2. Remove Gsb15 hardcap.",
+        },
     },
     setZ(a){
         if(a === undefined)return;
@@ -462,7 +479,7 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 	return Decimal.tetrate(10,ret);
     }
     if(player.Z.points.gte(35)){
-        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003,1.005,1.01,1.011,1.012,1.013][player.Z.points.sub(35).toNumber()]));
+        return Decimal.tetrate(10,player.points.add(1).slog().div([1.00001,1.00005,1.002,1.0025,1.003,1.005,1.01,1.011,1.012,1.013,1.015,1.016,1.017,1.018,1.019,1.02][player.Z.points.sub(35).toNumber()]));
     }
     if(player.Z.points.gte(29)){
         return Decimal.pow(10,Decimal.pow(10,player.points.add(1).log10().add(1).log10().pow(Decimal.pow(0.99,player.Z.points.sub(28)))));

@@ -1158,6 +1158,12 @@ if(mil("Z",16))p = p.mul(10)
         return ef
     },
     scaling(){
+    if (player.Z.points.gte(50))return n(1.02);
+    if (player.Z.points.gte(49))return n(1.019);
+    if (player.Z.points.gte(48))return n(1.018);
+    if (player.Z.points.gte(47))return n(1.016);
+    if (player.Z.points.gte(46))return n(1.014);
+    if (player.Z.points.gte(45))return n(1.012);
     if (player.Z.points.gte(41))return n(1.01);
     if (player.Z.points.gte(40))return n(1.002);
     if (player.Z.points.gte(37))return n(1.001);
