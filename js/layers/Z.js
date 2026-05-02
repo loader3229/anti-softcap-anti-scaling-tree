@@ -32,16 +32,18 @@ addLayer("Z", {
 
     ],
     layerShown(){return true},
-    doReset(layer){
+    doReset(layer,b=false){
         if (layer=="Z") {
-            layerDataReset("A");
-            layerDataReset("B");
-            layerDataReset("C");
-            layerDataReset("D");
-            layerDataReset("E");
-            layerDataReset("F");
-            layerDataReset("G");
-            layerDataReset("H");
+            layerDataReset("A",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("B",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("C",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("D",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("E",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("F",b?["upgrades","milestones","clickables","buyables","challenges","fd1","fd2","fd3","fd4","fd5","fd6","fd7","fd8","f2d1","f2d2","f2d3","f2d4"]:[]);
+            layerDataReset("G",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            layerDataReset("H",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
+            player.points=n(10);
+            if(b)return;
             if(player.Z.points.gte(4))player.A.challenges[11]=1;
             if(player.Z.points.gte(4))player.A.challenges[12]=1;
             if(player.Z.points.gte(4))player.A.challenges[21]=1;
@@ -503,6 +505,17 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
                 layers.Z.setZ(player.Z.points.add(1));
             },
             unlocked: true,
-        },    
+        },    22: {
+            title() {
+                return "Partial Z Reset"
+            },
+            canClick() {
+                return true;
+            },
+            onClick() {
+                layers.Z.doReset('Z',true);
+            },
+            unlocked: false,
+        },
     }
 })

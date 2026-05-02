@@ -687,7 +687,7 @@ addLayer("H", {
             display(){return "+1 dH1"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#00FFE6":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsr.gte(tmp.H.dhreq[0])},
-            onClick() {player.H.dh[0]=player.H.dh[0].add(1)
+            onClick() {if(player.G.Gsr.gte(layers.H.dhreq()[0]))player.H.dh[0]=player.H.dh[0].add(1)
             },
             unlocked() {return mil('G',31)},
         },
@@ -695,7 +695,7 @@ addLayer("H", {
             display(){return "+1 dH2"},//'height':'80px','width':'80px',
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#2EDEC4":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.H.hyper.gte(tmp.H.dhreq[1])},
-            onClick() {player.H.dh[1]=player.H.dh[1].add(1)
+            onClick() {if(player.H.hyper.gte(layers.H.dhreq()[1]))player.H.dh[1]=player.H.dh[1].add(1)
             },
             unlocked() {return upg('G',144)},
         },
@@ -703,7 +703,7 @@ addLayer("H", {
             display(){return "+1 dH3"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#4E40B6":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsg.gte(tmp.H.dhreq[2])},
-            onClick() {player.H.dh[2]=player.H.dh[2].add(1)
+            onClick() {if(player.G.Gsg.gte(layers.H.dhreq()[2]))player.H.dh[2]=player.H.dh[2].add(1)
             },
             unlocked() {return upg('G',145)},
         },
@@ -711,7 +711,7 @@ addLayer("H", {
             display(){return "+1 dH4"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#9BFFBD":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.GGtot.gte(tmp.H.dhreq[3])},
-            onClick() {player.H.dh[3]=player.H.dh[3].add(1)
+            onClick() {if(player.G.GGtot.gte(layers.H.dhreq()[3]))player.H.dh[3]=player.H.dh[3].add(1)
             },
             unlocked() {return upg('G',145)},
         },
@@ -719,7 +719,7 @@ addLayer("H", {
             display(){return "+1 dH5"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#5EA794":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return player.G.Gsetot.gte(tmp.H.dhreq[4])},
-            onClick() {player.H.dh[4]=player.H.dh[4].add(1)
+            onClick() {if(player.G.Gsetot.gte(layers.H.dhreq()[4]))player.H.dh[4]=player.H.dh[4].add(1)
             },
             unlocked() {return upg('G',151)},
         },
@@ -727,7 +727,7 @@ addLayer("H", {
             display(){return "+1 dH6"},
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#339999":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return n(buyableEffect('G',33)).gte(tmp.H.dhreq[5])},
-            onClick() {player.H.dh[5]=player.H.dh[5].add(1)
+            onClick() {if(n(buyableEffect('G',33)).gte(layers.H.dhreq()[5]))player.H.dh[5]=player.H.dh[5].add(1)
             },
             unlocked() {return upg('G',154)},
         },
@@ -736,6 +736,7 @@ addLayer("H", {
             style() {return {'background-color': layers[this.layer].clickables[this.id].canClick()?"#F3FF34":"#BF8F8F",'height':'80px','min-height':'80px','width':'80px'}},
             canClick() {return true},
             onClick() {
+                tmp.H.dhreq=layers.H.dhreq();
                 if(player.G.Gsr.gte(tmp.H.dhreq[0])) player.H.dh[0]=player.H.dh[0].add(1)
                 if(player.H.hyper.gte(tmp.H.dhreq[1])) player.H.dh[1]=player.H.dh[1].add(1)
                 if(player.G.Gsg.gte(tmp.H.dhreq[2])) player.H.dh[2]=player.H.dh[2].add(1)

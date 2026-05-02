@@ -1777,7 +1777,7 @@ addLayer("I", {
 	    return dev
 	},
     update(diff){
-        player.devSpeed = tmp.I.devSpeedCal
+        if(false)player.devSpeed = tmp.I.devSpeedCal
         player.I.time = player.I.time.add(diff)
         if(mil('I',16)) player.I.si=player.I.si.add(tmp.I.sig.mul(diff))
         if (inChallenge('I',11)&&player.points.gte('ee30'))  player.I.chalbest[0]=player.I.chalbest[0].min(player.I.time)
