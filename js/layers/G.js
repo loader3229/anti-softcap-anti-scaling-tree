@@ -1907,7 +1907,7 @@ addLayer("G", {
         },
         83: {
             title(){return "Gt18"},
-            display(){if(player.Z.points.gte(41))return "Gb11-12 base +1"; return "b11 base +0.0025,b12 base +0.0015 <br> cost: 40 GG "},
+            display(){if(player.Z.points.gte(41))return "Gsb11-12 base +1"; return "b11 base +0.0025,b12 base +0.0015 <br> cost: 40 GG "},
             style() { return { 'background-color': gcs(this.layer,this.id)?"#77BF5F":layers.G.clickables[this.id].canClick()?"#695735":"#BF8F8F"}},
             canClick() {return player.G.GG.gte(40)&&!gcs(this.layer,this.id)&&gcs(this.layer,73)},
             onClick() {player.G.Gtc=player.G.Gtc.add(40)
@@ -2563,6 +2563,7 @@ addLayer("G", {
             ex(){
                 let e=n(0)
                 if(gcs('G',42)) e=e.add(getBuyableAmount('G',43))
+                if(gcs('G',42)) e=e.add(layers.G.buyables[43].extra())
                 return e
             },
             effect(x) { // Effects of owning x of the items, x is a decimal
@@ -2682,6 +2683,7 @@ addLayer("G", {
         extra(){
                 let e=n(0)
                 if (hasUpgrade('G',115) && player.Z.points.gte(34))  e=e.add(getBuyableAmount('G',43))
+                if (hasUpgrade('G',115) && player.Z.points.gte(34)) e=e.add(layers.G.buyables[43].extra())
                 return e
             },
             canAfford() { return player[this.layer].Gse.gte(this.cost()) },
