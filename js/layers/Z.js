@@ -4,18 +4,18 @@ addLayer("Z", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-        points: new Decimal(0),
-        best: new Decimal(0),
+        points: n(0),
+        best: n(0),
 
     }},
     color: "#FFFFFF",
-    requires(){ if(hasMilestone("Z",13))return new Decimal(1); return new Decimal(1e100);}, // Can be a funct}ion that takes requirement increases into account
+    requires(){ if(mil("Z",13))return n(1); return n(1e100);}, // Can be a funct}ion that takes requirement increases into account
     resource: "Z", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return new Decimal([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","10^^10"][player.Z.points.toNumber()]);
+        return n([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","10^^10"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -118,7 +118,7 @@ addLayer("Z", {
             if(player.Z.points.gte(37))player.H.milestones=['0','1'];
             if(player.Z.points.gte(43))player.H.milestones=['0','1','2'];
             if(player.Z.points.gte(44))player.H.milestones=['0','1','2','3','4'];
-            player.points=new Decimal(10);
+            player.points=n(10);
             for(let i=0;i<10;i++)updateTemp();
         }
     },
@@ -126,30 +126,30 @@ addLayer("Z", {
         player.Z.best=player.Z.best.floor();
         if(player.Z.points.gte(9)){
             let effective_B = player.B.points.add(1).mul(10);
-            if (hasMilestone('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
+            if (mil('B',1))effective_B=effective_B.mul(upgradeEffect('B',61));
                 if (hasChallenge('E',31))effective_B=effective_B.mul(challengeEffect('E',31))
             if(player.Z.points.gte(11))effective_B=effective_B.mul(tmp.E.ekf);
-            player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('E',73)?2.6:hasUpgrade('E',43)?2.7:2.8).max(0).root(1.1).ceil().max(0));
-            player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('E',73)?7:hasUpgrade('E',43)?7.5:8).max(0).root(1.1).ceil().max(0));
-            player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?3.6:9).max(0).root(1.1).ceil().max(0));
-            player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:hasUpgrade('F',35)?4.9:10).max(0).root(1.1).ceil().max(0));
-            player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(player.Z.points.gte(24)?2.5:hasUpgrade('F',35)?700:hasUpgrade('D',44)?800:hasUpgrade('E',62)?900:1000).max(0).root(player.Z.points.gte(24)?1.1:1.2).ceil().max(0));
+            player.B.buyables[11]=player.B.buyables[11].max(effective_B.log(player.Z.points.gte(24)?2.5:upg('E',73)?2.6:upg('E',43)?2.7:2.8).max(0).root(1.1).ceil().max(0));
+            player.B.buyables[12]=player.B.buyables[12].max(effective_B.log(player.Z.points.gte(24)?2.5:upg('E',73)?7:upg('E',43)?7.5:8).max(0).root(1.1).ceil().max(0));
+            player.B.buyables[21]=player.B.buyables[21].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:upg('F',35)?3.6:9).max(0).root(1.1).ceil().max(0));
+            player.B.buyables[22]=player.B.buyables[22].max(effective_B.log(player.Z.points.gte(24)?2.5:player.Z.points.gte(22)?2.6:upg('F',35)?4.9:10).max(0).root(1.1).ceil().max(0));
+            player.B.buyables[23]=player.B.buyables[23].max(effective_B.log(player.Z.points.gte(24)?2.5:upg('F',35)?700:upg('D',44)?800:upg('E',62)?900:1000).max(0).root(player.Z.points.gte(24)?1.1:1.2).ceil().max(0));
         }
         if(player.Z.points.gte(14)){
             let effective_E = player.E.points.add(1);
             if (hasChallenge('E',41))effective_E=effective_E.mul(challengeEffect('E',41));
-            player.E.buyables[11]=player.E.buyables[11].max(effective_E.div(hasUpgrade('E',54)?1:1000).log(2).max(0).root(1.1).ceil().max(0));
-            player.E.buyables[12]=player.E.buyables[12].max(effective_E.div(hasUpgrade('E',54)?1:1000).log(3).max(0).root(1.1).ceil().max(0));
-            player.E.buyables[13]=player.E.buyables[13].max(effective_E.div(hasUpgrade('E',54)?1:40000).log(5).max(0).root(1.1).ceil().max(0));
-            player.E.buyables[21]=player.E.buyables[21].max(effective_E.div(hasUpgrade('E',94)?1:1e10).log(25).max(0).root(1.1).ceil().max(0));
+            player.E.buyables[11]=player.E.buyables[11].max(effective_E.div(upg('E',54)?1:1000).log(2).max(0).root(1.1).ceil().max(0));
+            player.E.buyables[12]=player.E.buyables[12].max(effective_E.div(upg('E',54)?1:1000).log(3).max(0).root(1.1).ceil().max(0));
+            player.E.buyables[13]=player.E.buyables[13].max(effective_E.div(upg('E',54)?1:40000).log(5).max(0).root(1.1).ceil().max(0));
+            player.E.buyables[21]=player.E.buyables[21].max(effective_E.div(upg('E',94)?1:1e10).log(25).max(0).root(1.1).ceil().max(0));
             player.E.buyables[31]=player.E.buyables[31].max(player.E.points.add(1).log(2).max(0).root(1.2).ceil().max(0));
             player.E.buyables[32]=player.E.buyables[32].max(player.E.points.add(1).log(5).max(0).root(1.2).ceil().max(0));
-            player.E.buyables[33]=player.E.buyables[33].max(player.E.points.add(1).log(hasUpgrade("E",93)?9:10).max(0).root(1.2).ceil().max(0));
+            player.E.buyables[33]=player.E.buyables[33].max(player.E.points.add(1).log(upg("E",93)?9:10).max(0).root(1.2).ceil().max(0));
             player.E.buyables[41]=player.E.buyables[41].max(player.E.points.add(1).div(1e24).log(10).max(0).root(1.2).ceil().max(0));
             player.E.buyables[42]=player.E.buyables[42].max(player.E.points.add(1).div(1e40).log(10).max(0).root(1.2).ceil().max(0));    player.E.buyables[22]=player.E.buyables[22].max(player.E.points.add(1).div('1e330').log(1e6).max(0).root(1.5).ceil().max(0));
 
         }
-        if((player.Z.points.gte(17) || hasMilestone('G',3)) && player.Z.points.lt(30)){
+        if((player.Z.points.gte(17) || mil('G',3)) && player.Z.points.lt(30)){
             player.F.fd1=player.F.fd1.max(player.F.buyables[11]=player.F.buyables[11].max(player.F.points.div(player.Z.points.gte(19)?1:10).max(1).log(10).max(0).div(layers.F.scaling().pow(1)).root(layers.F.scaling()).ceil().max(0)));
             player.F.fd2=player.F.fd2.max(player.F.buyables[12]=player.F.buyables[12].max(player.F.points.div(player.Z.points.gte(19)?1:100).max(1).log(10).max(0).div(layers.F.scaling().pow(2)).root(layers.F.scaling()).ceil().max(0)));
             player.F.fd3=player.F.fd3.max(player.F.buyables[13]=player.F.buyables[13].max(player.F.points.div(player.Z.points.gte(19)?1:1e4).max(1).log(10).max(0).div(layers.F.scaling().pow(3)).root(layers.F.scaling()).ceil().max(0)));
@@ -165,10 +165,10 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             player.G.buyables[11]=player.G.buyables[11].max(player.G.points.add(1).log(10).max(0).root(1.1).ceil().max(0));
             player.G.buyables[12]=player.G.buyables[12].max(player.G.points.add(1).log(100).max(0).root(1.2).ceil().max(0));
         }
-        if((player.Z.points.gte(21) || hasUpgrade('F',85)) && player.Z.points.lt(30)){
+        if((player.Z.points.gte(21) || upg('F',85)) && player.Z.points.lt(30)){
             player.F.buyables[102]=player.F.buyables[102].max(player.F.buyables[32].div(player.Z.points.gte(21)?1:5).sqrt().floor());
         }
-        if(player.Z.points.gte(23) || hasMilestone('G',10)){
+        if(player.Z.points.gte(23) || mil('G',10)){
             player.F.f2d1 = player.F.f2d1.max(player.F.buyables[111]=player.F.buyables[111].max(player.G.points.add(1).log10().max(1).div(player.Z.points.gte(23)?1:43300000).log(1.01).ceil().max(0)));
         }
         if(player.Z.points.gte(23)){
@@ -196,63 +196,63 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
 
         if(player.Z.points.gte(27)){
             let effective_Gs = player.G.Gs.add(1);
-            if (hasUpgrade('G',81))  effective_Gs=effective_Gs.mul(upgradeEffect('G',81))
-            if (hasUpgrade('G',65))  effective_Gs=effective_Gs.root(upgradeEffect('G',65))
+            if (upg('G',81))  effective_Gs=effective_Gs.mul(upgradeEffect('G',81))
+            if (upg('G',65))  effective_Gs=effective_Gs.root(upgradeEffect('G',65))
             if(player.Z.points.gte(42)){
-                player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(hasUpgrade("G",122)?2:4).max(0).root(1.25).ceil().max(0));
-                player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(hasUpgrade("G",92)?5:10).max(0).root(2).ceil().max(0));
+                player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(upg("G",122)?2:4).max(0).root(1.25).ceil().max(0));
+                player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(upg("G",92)?5:10).max(0).root(2).ceil().max(0));
                 player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(20).max(0).root(3).ceil().max(0));
             }else{
-                if(mil('G',17) || player.Z.points.gte(29))player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(hasUpgrade("G",122)?4:4.1).max(0).root(hasUpgrade("G",122)?1.25:1.35).ceil().max(0));
-                if(player.Z.points.gte(30))player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(hasUpgrade("G",92)?5:10).max(0).root(player.Z.points.gte(33)?2:2.5).ceil().max(0));
+                if(mil('G',17) || player.Z.points.gte(29))player.G.buyables[21]=player.G.buyables[21].max(effective_Gs.add(1).log(upg("G",122)?4:4.1).max(0).root(upg("G",122)?1.25:1.35).ceil().max(0));
+                if(player.Z.points.gte(30))player.G.buyables[22]=player.G.buyables[22].max(effective_Gs.add(1).log(upg("G",92)?5:10).max(0).root(player.Z.points.gte(33)?2:2.5).ceil().max(0));
                 if(mil('G',17) && player.Z.points.lt(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(100).max(0).root(1).ceil().max(0));
                 if(player.Z.points.gte(30))player.G.buyables[23]=player.G.buyables[23].max(effective_Gs.add(1).log(1000).max(0).root(3).ceil().max(0));
             }
         }
     if(player.Z.points.gte(31)){
             let effective_Gsi = player.G.Gsi.add(1);
-                    if (hasUpgrade('G',65))  effective_Gsi=effective_Gsi.root(upgradeEffect('G',65))
-            if(player.Z.points.gte(31))player.G.buyables[31]=player.G.buyables[31].max(effective_Gsi.add(1).log(hasUpgrade("G",93)?4:4.8).max(0).root((hasUpgrade("G",122) && player.Z.points.gte(37))?1.25:hasUpgrade("G",122)?1.5:1.6).ceil().max(0));
-            if(player.Z.points.gte(32))player.G.buyables[32]=player.G.buyables[32].max(effective_Gsi.add(1).log(player.Z.points.gte(33)?5:100).max(0).root(player.Z.points.gte(33)?2:hasMilestone("G",18)?2:3).ceil().max(0));
+                    if (upg('G',65))  effective_Gsi=effective_Gsi.root(upgradeEffect('G',65))
+            if(player.Z.points.gte(31))player.G.buyables[31]=player.G.buyables[31].max(effective_Gsi.add(1).log(upg("G",93)?4:4.8).max(0).root((upg("G",122) && player.Z.points.gte(37))?1.25:upg("G",122)?1.5:1.6).ceil().max(0));
+            if(player.Z.points.gte(32))player.G.buyables[32]=player.G.buyables[32].max(effective_Gsi.add(1).log(player.Z.points.gte(33)?5:100).max(0).root(player.Z.points.gte(33)?2:mil("G",18)?2:3).ceil().max(0));
             if(player.Z.points.gte(36))player.G.buyables[33]=player.G.buyables[33].max(effective_Gsi.add(1).log(10).add(1).log(2.5).ceil().max(0));
         }
     if(player.Z.points.gte(34)){
             let effective_Gse = player.G.Gse.add(1);
-                    if (hasUpgrade('G',65))  effective_Gse=effective_Gse.root(upgradeEffect('G',65))
-            if(hasUpgrade("G",162) || player.Z.points.gte(35))player.G.buyables[41]=player.G.buyables[41].max(effective_Gse.add(1).log(4).max(0).root(1.4).ceil().max(0));
-            if((hasUpgrade("G",162) && player.Z.points.gte(35)) || player.Z.points.gte(37))player.G.buyables[42]=player.G.buyables[42].max(effective_Gse.add(1).log(100).max(0).root(2).ceil().max(0));
-            if((hasUpgrade("H",11) && player.Z.points.gte(35)) || player.Z.points.gte(40))player.G.buyables[61]=player.G.buyables[61].max(player.G.Gse.add(1).log(10).max(0).root(3).ceil().max(0));
+                    if (upg('G',65))  effective_Gse=effective_Gse.root(upgradeEffect('G',65))
+            if(upg("G",162) || player.Z.points.gte(35))player.G.buyables[41]=player.G.buyables[41].max(effective_Gse.add(1).log(4).max(0).root(1.4).ceil().max(0));
+            if((upg("G",162) && player.Z.points.gte(35)) || player.Z.points.gte(37))player.G.buyables[42]=player.G.buyables[42].max(effective_Gse.add(1).log(100).max(0).root(2).ceil().max(0));
+            if((upg("H",11) && player.Z.points.gte(35)) || player.Z.points.gte(40))player.G.buyables[61]=player.G.buyables[61].max(player.G.Gse.add(1).log(10).max(0).root(3).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[51]=player.G.buyables[51].max(effective_Gse.add(1).log(10).add(1).log(2).pow(2).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[52]=player.G.buyables[52].max(effective_Gse.add(1).log(10).add(1).log(2).ceil().max(0));
         }
         if(player.Z.points.gte(37)){
             let effective_Gsq = player.G.Gsq.add(1);
-            if (hasUpgrade('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
-            if(hasUpgrade("G",191) || player.Z.points.gte(42))player.G.buyables[81]=player.G.buyables[81].max(effective_Gsq.add(1).log(4).max(0).root(1.5).ceil().max(0));
-            if(hasUpgrade("G",203)){
+            if (upg('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
+            if(upg("G",191) || player.Z.points.gte(42))player.G.buyables[81]=player.G.buyables[81].max(effective_Gsq.add(1).log(4).max(0).root(1.5).ceil().max(0));
+            if(upg("G",203)){
                 player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
             }
         }
         if(player.Z.points.gte(42)){
             let effective_Gsg = player.G.Gsg.add(1);
-            if (hasUpgrade('G',65))effective_Gsg=effective_Gsg.root(upgradeEffect('G',65))
-            if(hasUpgrade("G",234)){
+            if (upg('G',65))effective_Gsg=effective_Gsg.root(upgradeEffect('G',65))
+            if(upg("G",234)){
                 player.G.buyables[91]=player.G.buyables[91].max(effective_Gsg.add(1).log(10).max(0).root(1.5).ceil().max(0));
             }
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
         
-        if(hasUpgrade("G",203) || player.Z.points.gte(43)){
+        if(upg("G",203) || player.Z.points.gte(43)){
             player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
         }
-        if(hasUpgrade("G",204) || player.Z.points.gte(40)){
+        if(upg("G",204) || player.Z.points.gte(40)){
             player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
         }
-        if(hasUpgrade("G",213) && player.Z.points.gte(40)){
+        if(upg("G",213) && player.Z.points.gte(40)){
             player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
         }
-        if(hasUpgrade("G",231)){
+        if(upg("G",231)){
             player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).root(layers.H.buyables[21].sc()).ceil().max(0));
         }
         if(player.Z.points.gte(41)){
@@ -443,9 +443,9 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
     },
     setZ(a){
         if(a === undefined)return;
-        player.Z.points=new Decimal(a).floor();
+        player.Z.points=n(a).floor();
         player.Z.milestones=[];
-        for(let i=0;i<new Decimal(a).floor().toNumber();i++){
+        for(let i=0;i<n(a).floor().toNumber();i++){
             player.Z.milestones.push(i+'');
         }
         player.Z.best=player.Z.best.max(player.Z.points);

@@ -1129,7 +1129,7 @@ addLayer("I", {
         //     description: function() {return '1000x points \n\
         //         '+'layer D total: \n\
         //         '+ format(this.effect()) +'x'},            
-        //     cost:new Decimal(1),
+        //     cost:n(1),
         // },
     },
     automate(){

@@ -410,25 +410,25 @@ addLayer("A", {
             let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(0.6).mul(50))
                     if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
             if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                    else return new Decimal(1)
+                    else return n(1)
         }
         if(mil("Z",16)){
             let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e6).pow(2/3).mul(10))
                     if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
             if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                    else return new Decimal(1)
+                    else return n(1)
         }
         if(mil("Z",15)){
             let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(2e5).pow(0.75).mul(4))
                     if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
             if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                    else return new Decimal(1)
+                    else return n(1)
         }
         if(mil("Z",14)){
             let ef = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1e5).pow(0.85).mul(2))
                     if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
             if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                    else return new Decimal(1)
+                    else return n(1)
         }
         if(mil("Z",12)){
             let ef1 = Decimal.pow(10,buyableEffect('B',11).add(10).log10().add(1000).pow(0.9).div(1.1));
@@ -436,7 +436,7 @@ addLayer("A", {
                     let ef = ef1.mul(ef2)
                     if (upg('E',52)) ef=ef.pow(upgradeEffect('E',52))
             if (n(challengeCompletions("A", 41)).gte(1))  return ef
-                    else return new Decimal(1)
+                    else return n(1)
         }
                 let b=ccomp("A", 41).pow(1.25)
                 let ef1 = n(buyableEffect('B',11)).pow(n(0.12).add(b.div(40)))

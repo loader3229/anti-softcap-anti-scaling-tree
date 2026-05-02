@@ -7,7 +7,7 @@ let modInfo = {
 
 	discordName: "loader3229's Discord Server",
 	discordLink: "https://discord.gg/jztUReQ2vT",
-    initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: n(10), // Used for hard resets and new players
     offlineLimit: 8760,  // In hours
 }
 
@@ -26,7 +26,7 @@ let winText = `Congratulations! You have reached the end and beaten this game, b
 var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
 
 function getStartPoints(){
-    return new Decimal(modInfo.initialStartPoints)
+    return n(modInfo.initialStartPoints)
 }
 
 // Determines if it should show points/sec
@@ -37,33 +37,33 @@ function canGenPoints(){
 // Calculate points/sec!
 function getPointGen() {
     if(!canGenPoints())
-        return new Decimal(0)
-        
-    let gain = new Decimal(1)
-    gain = gain.mul(hasUpgrade("A",11)?upgradeEffect("A",11):1)
-    gain = gain.mul(hasUpgrade("A",15)?upgradeEffect("A",15):1)
-    gain = gain.mul(hasUpgrade("A",24)?upgradeEffect("A",24):1)
-    gain = gain.mul(hasUpgrade("A",35)?upgradeEffect("A",35):1)
-    gain = gain.mul(hasUpgrade("B",11)?upgradeEffect("B",11):1)
-    gain = gain.mul(hasUpgrade("B",21)?upgradeEffect("B",21):1)
-    gain = gain.mul(hasUpgrade("B",44)?upgradeEffect("B",44):1)
-    gain = gain.mul(hasUpgrade("B",52)?upgradeEffect("B",52):1)
+		return n(0)
 
-    gain = gain.mul(hasUpgrade("C",11)?upgradeEffect("C",11):1)
-    gain = gain.mul(hasUpgrade("C",13)?upgradeEffect("C",13):1)
-    gain = gain.mul(hasUpgrade("D",11)?upgradeEffect("D",11):1)
-    gain = gain.mul(hasUpgrade("D",15)?upgradeEffect("D",15):1)
-    gain = gain.mul(hasUpgrade("D",21)?upgradeEffect("D",21):1)
-    gain = gain.mul(hasUpgrade("D",24)?upgradeEffect("D",24):1)
-    gain = gain.mul(hasUpgrade("D",32)?upgradeEffect("D",32):1)
-    gain = gain.mul(hasUpgrade("E",11)?upgradeEffect("E",11):1)
-    gain = gain.mul(hasUpgrade("E",12)?upgradeEffect("E",12):1)
-    gain = gain.mul(hasUpgrade("E",22)?upgradeEffect("E",22):1)
-    gain = gain.mul(hasUpgrade("C",33)?upgradeEffect("C",33):1)
-    gain = gain.mul(hasUpgrade("D",43)?upgradeEffect("D",43):1)
-    gain = gain.mul(hasUpgrade("E",85)?upgradeEffect("E",85):1)
-    gain = gain.mul(hasUpgrade("E",104)?upgradeEffect("E",104):1)
-    gain = gain.mul(hasUpgrade("F",11)?upgradeEffect("F",11):1)
+    let gain = n(1)
+    gain = gain.mul(upg("A",11)?upgradeEffect("A",11):1)
+    gain = gain.mul(upg("A",15)?upgradeEffect("A",15):1)
+    gain = gain.mul(upg("A",24)?upgradeEffect("A",24):1)
+    gain = gain.mul(upg("A",35)?upgradeEffect("A",35):1)
+    gain = gain.mul(upg("B",11)?upgradeEffect("B",11):1)
+    gain = gain.mul(upg("B",21)?upgradeEffect("B",21):1)
+    gain = gain.mul(upg("B",44)?upgradeEffect("B",44):1)
+    gain = gain.mul(upg("B",52)?upgradeEffect("B",52):1)
+
+    gain = gain.mul(upg("C",11)?upgradeEffect("C",11):1)
+    gain = gain.mul(upg("C",13)?upgradeEffect("C",13):1)
+    gain = gain.mul(upg("D",11)?upgradeEffect("D",11):1)
+    gain = gain.mul(upg("D",15)?upgradeEffect("D",15):1)
+    gain = gain.mul(upg("D",21)?upgradeEffect("D",21):1)
+    gain = gain.mul(upg("D",24)?upgradeEffect("D",24):1)
+    gain = gain.mul(upg("D",32)?upgradeEffect("D",32):1)
+    gain = gain.mul(upg("E",11)?upgradeEffect("E",11):1)
+    gain = gain.mul(upg("E",12)?upgradeEffect("E",12):1)
+    gain = gain.mul(upg("E",22)?upgradeEffect("E",22):1)
+    gain = gain.mul(upg("C",33)?upgradeEffect("C",33):1)
+    gain = gain.mul(upg("D",43)?upgradeEffect("D",43):1)
+    gain = gain.mul(upg("E",85)?upgradeEffect("E",85):1)
+    gain = gain.mul(upg("E",104)?upgradeEffect("E",104):1)
+    gain = gain.mul(upg("F",11)?upgradeEffect("F",11):1)
 
     if (inChallenge("A", 11))  gain = gain.pow(0.75)
     if (inChallenge("A", 21))  gain = gain.pow(0.55)
@@ -79,29 +79,29 @@ function getPointGen() {
     if (hasChallenge("C", 11))  gain = gain.mul(2000)
     if (hasChallenge("C", 12))  gain = gain.mul(8000)
     if (hasChallenge("A", 41))  gain = gain.mul(challengeEffect('A',41))
-        
-    if(hasMilestone("Z",11)){
+
+    if(mil("Z",11)){
         if (hasChallenge("E", 21))  gain = gain.mul(challengeEffect('E',21))
         if (hasChallenge("E", 22))  gain = gain.mul(challengeEffect('E',22))
     }
-    if (hasUpgrade("F", 14))  gain = gain.pow(1.0012)
-    if (hasUpgrade("F", 52))  gain = gain.pow(1.002)
-    if (hasUpgrade("F", 65))  gain = gain.pow(1.006)
+    if (upg("F", 14))  gain = gain.pow(1.0012)
+    if (upg("F", 52))  gain = gain.pow(1.002)
+    if (upg("F", 65))  gain = gain.pow(1.006)
     if (mil("I",0))  gain = gain.pow(1.01)
     if (mil("I",1))  gain = gain.pow(1.02)
     if (mil('I',3))  gain = gain.pow(buyableEffect('I',12))
     if(n(challengeCompletions('I',22)).gte(1))  gain = gain.pow(1.25)
 
-    if(hasMilestone("Z",12)){
+    if(mil("Z",12)){
         gain = gain.pow(1.25)
-    }else if(hasMilestone("Z",11)){
+    }else if(mil("Z",11)){
         gain = gain.pow(1.234321)
-        if (hasUpgrade("F", 11))  gain = gain.pow(1.0016)
+        if (upg("F", 11))  gain = gain.pow(1.0016)
     }else{
         if (hasChallenge("A", 32))  gain = gain.pow(1.01)
         if (hasChallenge("C", 11))  gain = gain.pow(1.01)
-        if(hasMilestone("Z", 3))gain = gain.pow(1.05)
-        if(hasMilestone("Z", 4))gain = gain.pow(1.02)
+        if(mil("Z", 3))gain = gain.pow(1.05)
+        if(mil("Z", 4))gain = gain.pow(1.02)
         if (hasChallenge("E", 21))  gain = gain.mul(challengeEffect('E',21))
         if (hasChallenge("E", 22))  gain = gain.mul(challengeEffect('E',22))
     }
@@ -111,7 +111,7 @@ function getPointGen() {
 
         if (player.Z.points.gte(30) && player.Z.points.lt(38))gain = Decimal.pow(10,gain.add(10).log10().pow(tmp.G.gsef2))
         if (player.Z.points.gte(38) && gain.gte(1e10))gain = Decimal.pow(10,Decimal.pow(10,gain.add(1).log10().add(1).log10().pow(tmp.G.gsef3)))
-            
+
 
     let tet=n(0)
     if (inChallenge("A", 42)){
@@ -136,8 +136,8 @@ function getPointGen() {
     gain=n(10).tetrate(gain.slog().add(tet).max(-1))
 
     gain=gain.min(tmp.H.php)
-    
-    
+
+
     gain = gain.min([1e100,1e250,"1e450","1e700","1e1000","1e1400","1e2740","1e4300","1e10100","1e22600","1e45100","1e99100","1e360100","1e650100","e56e5","e15e6","e8e7","e34e7","e342e7","e513e8","e25e13","e22e17","e25e24","e5e28","ee35","eee4","eee10","eee25","eee75","eee360","eee2e4","eeee110","eeee2000","eeeee5","eeeee7","eeeee11","eeeee21","eeeee31","eeeeee3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","eeeeee8","eeeeee9","10^^1e100"][player.Z.points.min(45).toNumber()]);
     return gain
 }

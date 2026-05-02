@@ -4,13 +4,13 @@ addLayer("C", {
     position: 0, 
     startData() { return {
         unlocked: false,
-        points: new Decimal(0),
+		points: n(0),
     }},
     passiveGeneration(){    let pg=1
-        if (hasMilestone("D", 2))  pg=pg*100
-        if (hasMilestone("B", 5))  pg=pg*100
-        
-        
+        if (mil("D", 2))  pg=pg*100
+        if (mil("B", 5))  pg=pg*100
+
+
         if (mil("Z", 2))  pg=Decimal.mul(pg,100)
         if (mil("Z", 3))  pg=Decimal.mul(pg,100)
         if (mil("Z", 4))  pg=Decimal.mul(pg,100)
@@ -19,8 +19,8 @@ addLayer("C", {
         },
     color: "#A73E16",
     requires(){
-        if (mil("Z", 4)) return new Decimal(1);
-        return new Decimal(2e36);
+        if (mil("Z", 4)) return n(1);
+        return n(2e36);
     },
     resource: "C", 
     baseResource() {if(player.Z.points.gte(25))return "B";return "points"}, 
@@ -34,7 +34,7 @@ addLayer("C", {
         return n(0.15).mul(Decimal.pow(0.95,player.Z.points));
     },
     gainExp() {
-        return new Decimal(1)
+        return n(1)
     },
     row: 1, 
     hotkeys: [
@@ -42,22 +42,22 @@ addLayer("C", {
     ],
     layerShown(){ return ((ch('A',22))||player[this.layer].unlocked)},
     gainMult() { 
-        mult = new Decimal(1)
-        mult = mult.pow(hasUpgrade('A',45)?1.1:1)
-        mult = mult.mul(hasUpgrade('C',21)?10:1)
-        mult = mult.mul(hasUpgrade('C',25)?5:1)
-        mult = mult.mul(hasUpgrade('D',31)?5:1)
+        mult = n(1)
+        mult = mult.pow(upg('A',45)?1.1:1)
+        mult = mult.mul(upg('C',21)?10:1)
+        mult = mult.mul(upg('C',25)?5:1)
+        mult = mult.mul(upg('D',31)?5:1)
         mult = mult.mul(mil("I", 0)?5:1)
 
-        mult = mult.mul(hasUpgrade('A',61)?upgradeEffect('A',61):1)
+        mult = mult.mul(upg('A',61)?upgradeEffect('A',61):1)
         mult = mult.mul(buyableEffect("E",13))
-        mult = mult.mul(hasUpgrade("E",95)?upgradeEffect("E",95):1)
-        mult = mult.mul(hasUpgrade("D",53)?upgradeEffect("D",53):1)
+        mult = mult.mul(upg("E",95)?upgradeEffect("E",95):1)
+        mult = mult.mul(upg("D",53)?upgradeEffect("D",53):1)
 
         return mult
     },
-    softcap(){return new Decimal(Infinity)},
-    softcapPower(){return new Decimal(1)},
+    softcap(){return n(Infinity)},
+    softcapPower(){return n(1)},
     branches: ['A','B'],
     milestones: {
         0: {requirementDescription: "3 total C",
@@ -86,7 +86,7 @@ addLayer("C", {
                 unlocked() {return true},
                 content: ["milestones"]    },
             "Challenges": {
-                unlocked() {return (hasUpgrade("D",15))},
+                unlocked() {return (upg("D",15))},
                 content: ["challenges"]    },
         }
     },
@@ -117,41 +117,41 @@ addLayer("C", {
             effect()  { 
                 let ef = n(20)
                 let exp = n(0.4)
-                if (hasUpgrade('C',12)) ef = ef.mul(20)
-                if (hasUpgrade('C',15)) ef = ef.mul(200)
-                if (hasUpgrade('C',25)) ef = ef.mul(1500)
-                if (hasMilestone('C',3)) ef = ef.mul(1000)
-                if (hasUpgrade('C',31)) ef = ef.mul(1e7)
-                if (hasUpgrade('C',41)) ef = ef.mul(1e100/1.2e18)
-                if (hasUpgrade('C',42)) ef = ef.mul('1e200')
+                if (upg('C',12)) ef = ef.mul(20)
+                if (upg('C',15)) ef = ef.mul(200)
+                if (upg('C',25)) ef = ef.mul(1500)
+                if (mil('C',3)) ef = ef.mul(1000)
+                if (upg('C',31)) ef = ef.mul(1e7)
+                if (upg('C',41)) ef = ef.mul(1e100/1.2e18)
+                if (upg('C',42)) ef = ef.mul('1e200')
                 if (inChallenge('C',11))  ef = n(1)
-                if (hasUpgrade('E',64)) exp=exp.add(0.1)
-                if (hasUpgrade('E',72)) exp=exp.add(0.1)
-                if (hasUpgrade('F',21)) exp=exp.add(0.4)
-                if (hasUpgrade('E',61)) ef=ef.pow(n(buyableEffect("E",21).sub(1).mul(exp).add(1)))
+                if (upg('E',64)) exp=exp.add(0.1)
+                if (upg('E',72)) exp=exp.add(0.1)
+                if (upg('F',21)) exp=exp.add(0.4)
+                if (upg('E',61)) ef=ef.pow(n(buyableEffect("E",21).sub(1).mul(exp).add(1)))
                 if(mil("Z",16)) ef=ef.pow(10)
                 if(mil("Z",17)) ef=ef.pow(10)
                 return ef;          
             },
-            cost:new Decimal(1),
+            cost:n(1),
         },
         12: {
             title:'C2',
             description: "20x points.",
-            cost:new Decimal(1),
-            unlocked() { return (hasUpgrade(this.layer, 11))},
+            cost:n(1),
+            unlocked() { return (upg(this.layer, 11))},
 
         },
         13: {
             title:'C3',
             description: "C^0.5 boost points.",
-            cost: new Decimal(10),
-            unlocked() { return (hasUpgrade(this.layer, 12))},
+            cost: n(10),
+            unlocked() { return (upg(this.layer, 12))},
             effect()  { 
                 let ef = 0.5
-                if (hasUpgrade('C',23))  ef = ef*1.3
-                if (hasUpgrade('C',24))  ef = ef*1.2
-        if (hasUpgrade('D', 54) && player.Z.points.gte(25)) ef = 1
+                if (upg('C',23))  ef = ef*1.3
+                if (upg('C',24))  ef = ef*1.2
+        if (upg('D', 54) && player.Z.points.gte(25)) ef = 1
                 if (inChallenge('C',11))  ef = 0
                 if (inChallenge('E',11))  ef = 0
                 return player[this.layer].points.add(1).pow(ef);          
@@ -161,44 +161,44 @@ addLayer("C", {
         14: {
             title:'C4',
             description: "B6^1.5.",
-            cost:new Decimal(30),
-            unlocked() { return (hasUpgrade(this.layer, 13))},
+            cost:n(30),
+            unlocked() { return (upg(this.layer, 13))},
         },
         15: {
             title:'C5',
             description: "200x points.<br>unlock a new chal.",
-            cost:new Decimal(60),
-            unlocked() { return (hasUpgrade(this.layer, 14))},
+            cost:n(60),
+            unlocked() { return (upg(this.layer, 14))},
         },
         21: {
             title:'C6',
             description: "10x C.",
-            cost:new Decimal(5e6),
-            unlocked() { return (hasUpgrade(this.layer, 15))},
+            cost:n(5e6),
+            unlocked() { return (upg(this.layer, 15))},
         },
         22: {
             title:'C7',
             description: "B6 ^1.3.",
-            cost:new Decimal(2e8),
-            unlocked() { return (hasUpgrade(this.layer, 21))},
+            cost:n(2e8),
+            unlocked() { return (upg(this.layer, 21))},
         },
         23: {
             title:'C8',
             description: "C3 ^1.3.",
-            cost:new Decimal(5e8),//5.6e8
-            unlocked() { return (hasUpgrade(this.layer, 22))},
+            cost:n(5e8),//5.6e8
+            unlocked() { return (upg(this.layer, 22))},
         },
         24: {
             title:'C9',
             description: "C3 ^1.15.",
-            cost:new Decimal(2e9),
-            unlocked() { return (hasUpgrade(this.layer, 23))},
+            cost:n(2e9),
+            unlocked() { return (upg(this.layer, 23))},
         },
         25: {
             title:'C10',
             description: "1500x points,50x B,5x C.",
-            cost:new Decimal(5e9),
-            unlocked() { return (hasUpgrade(this.layer, 24))},
+            cost:n(5e9),
+            unlocked() { return (upg(this.layer, 24))},
         },
         31: {
             title:'C11',
@@ -217,11 +217,11 @@ addLayer("C", {
             effect()  { 
                 let bas=1.3
                 let a=player.C.upgrades.length
-                if (hasUpgrade('E',75)) bas =bas+0.1
+                if (upg('E',75)) bas =bas+0.1
                 let ef = Decimal.pow(bas,a)
                 return ef;          
             },
-            unlocked() { return (hasUpgrade('E', 64))},
+            unlocked() { return (upg('E', 64))},
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
         },
         33: {
@@ -235,7 +235,7 @@ addLayer("C", {
                 let ef = Decimal.pow(1.5,a)
                 return ef;          
             },
-            unlocked() { return (hasUpgrade(this.layer, 32))},
+            unlocked() { return (upg(this.layer, 32))},
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, 
         },
         34: {
@@ -244,7 +244,7 @@ addLayer("C", {
             cost(){
                 return n(player.Z.points.gte(11)?'1e975':'1e2906');
             },
-            unlocked() { return (hasUpgrade(this.layer, 33))},
+            unlocked() { return (upg(this.layer, 33))},
         },
         35: {
             title:'C15',
@@ -252,24 +252,24 @@ addLayer("C", {
             cost(){
                 return n(player.Z.points.gte(11)?'1e1000':'1e2996');
             },
-            unlocked() { return (hasUpgrade(this.layer, 34))},
+            unlocked() { return (upg(this.layer, 34))},
         },
         41: {
             title:'C16',
             description: "x8.3e81 pts",
-            cost:new Decimal('1e14000'),
-            unlocked() { return (hasUpgrade('F', 31))},
+            cost:n('1e14000'),
+            unlocked() { return (upg('F', 31))},
         },
         42: {
             title:'C17',
             description: "x1e200 pts",
-            cost:new Decimal('1e21600'),
-            unlocked() { return (hasUpgrade(this.layer, 41))},
+            cost:n('1e21600'),
+            unlocked() { return (upg(this.layer, 41))},
         },
         43: {
             title:'C18',
             description: "C boost B",
-            cost:new Decimal('e88e5'),
+            cost:n('e88e5'),
             unlocked() { return player.Z.points.gte(21)},
             effect()  {
                 if(player.Z.points.gte(26))return player.C.points.pow(upg('C',54)?1:upg('C',53)?0.7:upg('C',52)?0.5:upg('C',51)?0.3:upg('C',45)?0.2:0.1).add(1);
@@ -286,7 +286,7 @@ addLayer("C", {
         44: {
             title:'C19',
             description: "E boost D",
-            cost:new Decimal('e205e5'),
+            cost:n('e205e5'),
             unlocked() { return player.Z.points.gte(21)},
             effect()  { 
                 return player.E.points.add(1);     
@@ -296,37 +296,37 @@ addLayer("C", {
         45: {
             title:'C20',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(23)?"e183e6":'e55e13')},
+            cost(){return n(player.Z.points.gte(23)?"e183e6":'e55e13')},
             unlocked() { return player.Z.points.gte(21)},
         },
         51: {
             title:'C21',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(26)?"e3e9":player.Z.points.gte(25)?"e967e17":player.Z.points.gte(24)?"e156e18":player.Z.points.gte(23)?"e4e15":'e191e13')},
+            cost(){return n(player.Z.points.gte(26)?"e3e9":player.Z.points.gte(25)?"e967e17":player.Z.points.gte(24)?"e156e18":player.Z.points.gte(23)?"e4e15":'e191e13')},
             unlocked() { return player.Z.points.gte(22)},
         },
         52: {
             title:'C22',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(27)?"e3e11":player.Z.points.gte(25)?Decimal.pow(10,4e21/9):player.Z.points.gte(24)?"e305e20":player.Z.points.gte(23)?"e325e15":'e12e16')},
+            cost(){return n(player.Z.points.gte(27)?"e3e11":player.Z.points.gte(25)?Decimal.pow(10,4e21/9):player.Z.points.gte(24)?"e305e20":player.Z.points.gte(23)?"e325e15":'e12e16')},
             unlocked() { return player.Z.points.gte(22)},
         },
         53: {
             title:'C23',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(27)?"e3e14":player.Z.points.gte(25)?"e8e24":player.Z.points.gte(24)?"e369e22":player.Z.points.gte(23)?"e585e15":'e342e15')},
+            cost(){return n(player.Z.points.gte(27)?"e3e14":player.Z.points.gte(25)?"e8e24":player.Z.points.gte(24)?"e369e22":player.Z.points.gte(23)?"e585e15":'e342e15')},
             unlocked() { return player.Z.points.gte(22)},
         },
         54: {
             title:'C24',
             description: "C18 is better",
-            cost(){return new Decimal(player.Z.points.gte(27)?"e3e17":player.Z.points.gte(24)?"e91e27":player.Z.points.gte(23)?"e204e17":'e112e18')},
+            cost(){return n(player.Z.points.gte(27)?"e3e17":player.Z.points.gte(24)?"e91e27":player.Z.points.gte(23)?"e204e17":'e112e18')},
             unlocked() { return player.Z.points.gte(22)},
         },
         55: {
             title:'C25',
             description: "F boost Em and Ek",
-            cost(){return new Decimal("e3e20")},
+            cost(){return n("e3e20")},
             unlocked() { return player.Z.points.gte(25)},
             effect()  { 
                 return player.F.points.add(1);     
@@ -339,7 +339,7 @@ addLayer("C", {
             name: "Cc1",
             completionLimit: 1,
             challengeDescription() {return "points ^0.45,C1-C10 are disabled."},
-            unlocked() { return (hasUpgrade("D",15))},
+            unlocked() { return (upg("D",15))},
             goalDescription: '1e39 points',
             canComplete() {return player.points.gte('1e39')},
             rewardDescription: "x2000 and ^1.01 points,unlock new A upg.",
@@ -348,7 +348,7 @@ addLayer("C", {
             name: "Cc2",
             completionLimit: 1,
             challengeDescription() {return "D1-D5 are disabled."},
-            unlocked() { return (hasUpgrade("A",52))},
+            unlocked() { return (upg("A",52))},
             goalDescription: '1e139 points',
             canComplete() {return player.points.gte('1e139')},
             rewardDescription: "x8000 points,A ^1.025.",

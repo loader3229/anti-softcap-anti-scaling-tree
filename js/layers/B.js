@@ -8,11 +8,11 @@ addLayer("B", {
     }},
     passiveGeneration(){    let pg=n(0)
         if (mil("C", 2)||mil('I',1)) pg=n(1)
-        if (mil("Z", 0))  pg=Decimal.add(pg,100)
-        if (mil("Z", 1))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 2))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 3))  pg=Decimal.mul(pg,100)
-        if (mil("Z", 4))  pg=Decimal.mul(pg,100)
+        if (mil("Z", 0))  pg=pg.max(100)
+        if (mil("Z", 1))  pg=pg.mul(100)
+        if (mil("Z", 2))  pg=pg.mul(100)
+        if (mil("Z", 3))  pg=pg.mul(100)
+        if (mil("Z", 4))  pg=pg.mul(100)
         if (mil("C", 3))  pg=pg.mul(100)
         if (mil("D", 1))  pg=pg.mul(100)
         if (mil("D", 2))  pg=pg.mul(100)
@@ -469,7 +469,7 @@ addLayer("B", {
                 if (mil('Z',6)) cost = Decimal.pow(2.8, x.pow(1.1))
         if (upg('E',43)) cost = Decimal.pow(2.7, x.pow(1.1))
         if (upg('E',73)) cost = Decimal.pow(2.6, x.pow(1.1))
-            
+
                 if (mil('Z',23)) cost = Decimal.pow(2.5, x.pow(1.1))
 
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
@@ -478,21 +478,18 @@ addLayer("B", {
         if(player.Z.points.gte(11)) cost = cost.div(tmp.E.ekf);
                 return cost
 
-                /*let cp=n(1.027)
-                cost = Decimal.pow(4, x.pow(1.1)).times('1e38')
-                if (upg('B',43)) cost = Decimal.pow(3.8, x.pow(1.03)).times('1e37')
-                if (upg('B',53)) cost = Decimal.pow(3.8, x.pow(1.03)).times('1e35')
-                if (upg('B',65)) cost = Decimal.pow(3.7, x.pow(1.028)).times('1e34')
-                if (upg('B',82)) cost = Decimal.pow(3.6, x.pow(1.027)).times('1e27')
-                //let sc=400
-                //if (mil('E',15)) sc=Decimal.add(sc,100)
-                //if (inChallenge('E',42)) sc=Decimal.add(sc,-300)
-                //sc = Decimal.add(sc,tmp.E.ekf.ceil())
+                /*
+                let cp=n(1.027)
+                let cost = n(4).pow(x.pow(1.035)).times('1e38')
+                if (upg('B',43)) cost = n(3.8).pow(x.pow(1.03)).times('1e37')
+                if (upg('B',53)) cost = n(3.8).pow(x.pow(1.03)).times('1e35')
+                if (upg('B',65)) cost = n(3.7).pow(x.pow(1.028)).times('1e34')
+                if (upg('B',82)) cost = n(3.6).pow(x.pow(1.027)).times('1e27')
                 let sc=tmp.B.scaling
                 let sc2=tmp.B.sc2
                 let scpow=tmp.B.scpow
                 if (x.gte(sc2)) cp =cp.add(x.sub(sc2).div(sc2).div(80))
-                if (upg('F',35)) cost = Decimal.pow(3.6, x.pow(cp))
+                if (upg('F',35)) cost = n(3.6).pow(x.pow(cp))
                 let t=tmp.B.scad
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
                 if (x.gte(sc)) cost =cost.pow(x.sub(sc).div(t).add(1).pow(scpow))
@@ -505,7 +502,7 @@ addLayer("B", {
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {
                 if (!mil('B',0)) player[this.layer].points = player[this.layer].points.sub(this.cost())
-                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))},
+                setBuyableAmount(this.layer, this.id, gba(this.layer, this.id).add(1))},
             base(){   let b = n(3)
                 if (mil('Z',7)) b = Decimal.add(b,1)
                 if (upg('B',54)) b = b.add(0.05)
@@ -519,12 +516,11 @@ addLayer("B", {
                 if (inChallenge('E',12)) b = n(2)
                 if (inChallenge('E',31)) b = n(1.2)
                 return b},
-            //purchaseLimit() {return n('1e300')},
-            effect(x) { // Effects of owning x of the items, x is a decimal
-                let ef = Decimal.pow(this.base(),x)
+            effect(x) { 
+                let ef = this.base().pow(x)
                 if (inChallenge('A',32)) ef=ef.pow(0.5)
                 return ef},
-            display() { // Everything else displayed in the buyable button after the title
+            display() { 
                 return "give A a x"+ format(this.base()) + " mult \n\
                 Cost: " + format(this.cost()) + " B \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -534,7 +530,7 @@ addLayer("B", {
         12: {
             title: "Bb2", 
             cost(x) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                
+
         let cost = Decimal.pow(10, x.pow(1.1)).times('1e40')
                 if (upg('B',43)) cost = Decimal.pow(10, x.pow(1.1)).times('1e30')
                 if (upg('B',65)) cost = Decimal.pow(10, x.pow(1.1)).times('1e20')
@@ -545,7 +541,7 @@ addLayer("B", {
         if (upg('E',73)) cost = Decimal.pow(7, x.pow(1.1))
 
                 if (mil('Z',23)) cost = Decimal.pow(2.5, x.pow(1.1))
-                    
+
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
                 if (mil('Z',2)) cost = cost.div(10)
                 if (hasChallenge('E',31)) cost = cost.div(challengeEffect('E',31))
@@ -591,27 +587,27 @@ addLayer("B", {
         if (mil('Z',21)) cost = Decimal.pow(2.6, x.pow(1.1))
 
                 if (mil('Z',23)) cost = Decimal.pow(2.5, x.pow(1.1))
-                    
+
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
                 if (mil('Z',2)) cost = cost.div(10)
                 if (hasChallenge('E',31)) cost = cost.div(challengeEffect('E',31))
         if(player.Z.points.gte(11)) cost = cost.div(tmp.E.ekf);
                 return cost
-                
+
                /* cost = Decimal.pow(10, x.pow(1.07)).times('1e41')
                 if (upg('B',65))  cost = Decimal.pow(10, x.pow(1.065)).times('1e40')
                 let sc=n(400)
-                if (inChallenge('E',42)) sc=Decimal.add(sc,-300)                
+                if (inChallenge('E',42)) sc=sc.sub(300)                
                 let sc2=tmp.B.sc2
                 let scpow=tmp.B.scpow
                 let cp=n(1.065)
-                if (x.gte(sc2)) cp =Decimal.add(cp,x.sub(sc2).div(sc2).div(40))
-                if (upg('F',35))  cost = Decimal.pow(10, x.pow(cp))
+                if (x.gte(sc2)) cp =cp.add(x.sub(sc2).div(sc2).div(40))
+                if (upg('F',35))  cost = n(10).pow(x.pow(cp))
                 let t=tmp.B.scad
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
 
-                if (x.gte(sc)) cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(scpow))
-                if (hasChallenge('E',31)) cost = Decimal.pow(cost, challengeEffect('E',31))
+                if (x.gte(sc)) cost =cost.pow(x.sub(sc).div(t).add(1).pow(scpow))
+                if (hasChallenge('E',31)) cost = cost.pow( challengeEffect('E',31))
                 if(gcs('I',105)) cost=n(8).pow(x.pow(1.06))
                 return cost*/
             },
@@ -631,7 +627,7 @@ addLayer("B", {
                 if (inChallenge('E',31)) ef=n(1)
                 if (inChallenge('E',42)) ef=n(1)
                 return ef},
-            display() { // Everything else displayed in the buyable button after the title
+            display() { 
                 return "boost to B's pts mult(exp) \n\
                 Cost: " + format(this.cost()) + " B \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -649,7 +645,7 @@ addLayer("B", {
         if (mil('Z',21)) cost = Decimal.pow(2.6, x.pow(1.1))
 
                 if (mil('Z',23)) cost = Decimal.pow(2.5, x.pow(1.1))
-                    
+
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
                 if (mil('Z',2)) cost = cost.div(10)
                 if (hasChallenge('E',31)) cost = cost.div(challengeEffect('E',31))
@@ -661,15 +657,15 @@ addLayer("B", {
                 if (inChallenge('E',42)) sc=Decimal.add(sc,-300)
                 let sc2=tmp.B.sc2
                 let scpow=tmp.B.scpow
-                let cp=1.07
-                if (x.gte(sc2)) cp =Decimal.add(cp,x.sub(sc2).div(sc2).div(40))
+                let cp=n(1.07)
+                if (x.gte(sc2)) cp =cp.add(x.sub(sc2).div(sc2).div(40))
                 let t=tmp.B.scad
-                if (upg('B',65))  cost = Decimal.pow(16, x.pow(1.065)).times('1e48')
-                if (upg('F',35))  cost = Decimal.pow(16, x.pow(cp))
+                if (upg('B',65))  cost = n(16).pow(x.pow(1.065)).times('1e48')
+                if (upg('F',35))  cost = n(16).pow(x.pow(cp))
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
-                if (x.gte(sc)) cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(scpow))
+                if (x.gte(sc)) cost =cost.pow(x.sub(sc).div(t).add(1).pow(scpow))
 
-                if (hasChallenge('E',31)) cost = Decimal.pow(cost, challengeEffect('E',31))
+                if (hasChallenge('E',31)) cost = cost.pow( challengeEffect('E',31))
                 if(gcs('I',105)) cost=n(10).pow(x.pow(1.07))
                 return cost*/
             },
@@ -688,7 +684,7 @@ addLayer("B", {
                 if (inChallenge('E',31)) ef=n(1)
                 if (inChallenge('E',42)) ef=n(1)
                 return ef},
-            display() { // Everything else displayed in the buyable button after the title
+            display() { 
                 return "boost to A's pts mult(exp) \n\
                 Cost: " + format(this.cost()) + " B \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -707,7 +703,7 @@ addLayer("B", {
                 if (upg('F',35)) cost = Decimal.pow(700, x.pow(1.2))
 
                 if (mil('Z',23)) cost = Decimal.pow(2.5, x.pow(1.1))
-                    
+
                 if (mil('B',1)) cost = cost.div(upgradeEffect('B',61))
                 if (mil('Z',2)) cost = cost.div(10)
                 if (hasChallenge('E',31)) cost = cost.div(challengeEffect('E',31))
@@ -716,19 +712,18 @@ addLayer("B", {
 
 /*
                 let sc=n(400)
-                if (inChallenge('E',42)) sc=Decimal.add(sc,-300)
+                if (inChallenge('E',42)) sc=sc.sub(300)
                 let sc2=tmp.B.sc2
                 let scpow=tmp.B.scpow
                 let cp=n(1.2)
-                if (x.gte(sc2)) cp =Decimal.add(cp,x.sub(sc2).div(sc2).div(15))
+                if (x.gte(sc2)) cp =cp.add(x.sub(sc2).div(sc2).div(15))
                 let t=tmp.B.scad
-                if (upg('B',75)) cost = Decimal.pow(1200, x.pow(1.2)).times('1e135')
-                if (upg('E',62)) cost = Decimal.pow(1100, x.pow(1.2)).times('1e135')
-                if (upg('F',35))  cost = Decimal.pow(1100, x.pow(cp))
-                if (x.gte(sc)) cost =Decimal.pow(cost,x.sub(sc).div(t).add(1).pow(scpow))
-
-                if (upg('D',44)) cost = Decimal.pow(cost,0.98)
-                if (hasChallenge('E',31)) cost = Decimal.pow(cost, challengeEffect('E',31))
+                if (upg('B',75)) cost = n(1200).pow(x.pow(1.2)).times('1e135')
+                if (upg('E',62)) cost = n(1100).pow(x.pow(1.2)).times('1e135')
+                if (upg('F',35))  cost = n(1100).pow(x.pow(cp))
+                if (x.gte(sc)) cost =cost.pow(x.sub(sc).div(t).add(1).pow(scpow))
+                if (upg('D',44)) cost = cost.pow(0.98)
+                if (hasChallenge('E',31)) cost = cost.pow( challengeEffect('E',31))
                 if(gcs('I',105)) cost=n(10).pow(x.pow(1.2))
                 return cost*/
             },
@@ -754,7 +749,7 @@ addLayer("B", {
                 if (inChallenge('E',41)) ef = Decimal.mul(ef,0.4)
                 if (inChallenge('A',41)) ef = n(0)
                 if (inChallenge('E',42)) ef = n(0)
-                    
+
                 if(player.Z.points.gte(24)) ef = ef.add(1)
                 if (upg('G',25) && player.Z.points.gte(24)) ef = ef.pow(upgradeEffect('G',25))
                 return ef},
@@ -764,7 +759,7 @@ addLayer("B", {
                 Cost: " + format(this.cost()) + " B \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
                 Effect: x" + format(this.effect())
-                
+
                 return "boost Bb1-2 base \n\
                 Cost: " + format(this.cost()) + " B \n\
                 Amount: " + format(player[this.layer].buyables[this.id])  +" \n\
@@ -772,34 +767,49 @@ addLayer("B", {
             unlocked() { return mil('B',3) }
         }
     },
-    /*scaling(){
+    /*
+    bulk(){
+        let tar=n(1)
+        if (mil('B', 8)) tar=tar.mul(10)
+        if (mil('F', 2)) tar=tar.mul(2)
+        if (upg('F', 34)) tar=tar.mul(5)
+        if (upg('F', 62)) tar=tar.mul(3)
+        if (upg('F', 64)) tar=tar.mul(3)
+        if (mil('F', 16)) tar=tar.mul(10)
+        if (upg('G', 14)) tar=tar.mul(10)
+        if (upg('G', 23)) tar=tar.mul(10)
+        if (mil('G',2)) tar=tar.mul(10)
+        if (mil('F',17)) tar=tar.mul(n(5).mul(player.G.total.add(10).log(10)))
+        return tar 
+    },
+    scaling(){
         let sc=n(400)
-        if (mil('E',15)) sc=Decimal.add(sc,100)
-        if (inChallenge('E',42)) sc=Decimal.add(sc,-300)
-        if (!upg('G',32)) sc=Decimal.add(sc,tmp.E.ekf.ceil())
-        sc = Decimal.add(sc,upgradeEffect('F',31).ceil())
+        if (mil('E',15)) sc=sc.add(100)
+        if (inChallenge('E',42)) sc=sc.sub(300)
+        if (!upg('G',32)) sc=sc.add(tmp.E.ekf.ceil())
+        sc = sc.add(upgradeEffect('F',31).ceil())
         if (upg('G',15))  sc=n(Infinity)
         return sc
     },
-    scpow(){let scpow=n(0.45)
-        if (upg('A',65)) scpow=Decimal.add(scpow,-0.01)
-        if (upg('E',103)) scpow=Decimal.add(scpow,-0.005)
-        if (upg('F',34)) scpow=Decimal.add(scpow,-0.003)
-        if (upg('F',54)) scpow=Decimal.add(scpow,-0.008)
-        if (upg('G',15))  scpow=n(0)
-        return scpow
-    },*/
+    scpow(){let ef=n(0.45)
+        if (upg('A',65)) ef=ef.sub(0.01)
+        if (upg('E',103)) ef=ef.sub(0.005)
+        if (upg('F',34)) ef=ef.sub(0.003)
+        if (upg('F',54)) ef=ef.sub(0.008)
+        if (upg('G',15))  ef=n(0)
+        return ef
+    },
     scad(){let t=n(800)
-        if (upg('A',65)) t=Decimal.add(t,150)
-        if (upg('E',103)) t=Decimal.add(t,50)
+        if (upg('A',65)) t=t.add(150)
+        if (upg('E',103)) t=t.add(50)
         return t
     },
-    sc2(){let sc=Decimal.add(tmp.B.scaling,60000)
-        if (upg('F',42)) sc=Decimal.add(sc,1000)
-        if (upg('F',55)) sc=Decimal.add(sc,2000)
-        if (upg('F',63)&&!upg('G',32)) sc=Decimal.add(sc,tmp.E.ekf)//{if () }
+    sc2(){let sc=n(6e4).add(tmp.B.scaling)
+        if (upg('F',42)) sc=sc.add(1000)
+        if (upg('F',55)) sc=sc.add(2000)
+        if (upg('F',63)&&!upg('G',32)) sc=sc.add(tmp.E.ekf)
         if (upg('G',32))  sc=n(Infinity)
-        //let sc=50000
         return sc
     }
+    */
 })
