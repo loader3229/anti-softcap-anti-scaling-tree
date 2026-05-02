@@ -61,7 +61,7 @@ addLayer("E", {
         mult = mult.mul(hasUpgrade("D",42)?upgradeEffect("D",42):1)
         //mult = mult.mul(hasMilestone("E",11)?player.E.Em.max(1).pow(emxp):1)
         mult = mult.mul(hasMilestone("Z",9)?tmp.E.emf:1)
-        mult = mult.mul(hasMilestone("E",20)?2025:1)
+        mult = mult.mul(hasMilestone("E",20)?2026:1)
         mult = mult.mul(hasMilestone("F", 0)?10:1)
         mult = mult.mul(mil("I", 0)?5:1)
         mult = mult.mul(hasUpgrade("E",71)?upgradeEffect("E",71):1)
@@ -173,7 +173,7 @@ addLayer("E", {
         20: {requirementDescription: "1e650 total E (21",
             unlocked(){ return player.Z.points.gte(12)},
             done() {return player[this.layer].total.gte('1e650') && player.Z.points.gte(12)}, 
-            effectDescription: "x2025 E,unlock the next layer.",
+            effectDescription: "x2026 E,unlock the next layer.",
         },
     },
     microtabs: {
