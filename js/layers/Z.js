@@ -15,7 +15,7 @@ addLayer("Z", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
-        return n([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","eeeeee8","eeeeee10","10^^10"][player.Z.points.toNumber()]);
+        return n([1e100,1e150,1e175,1e200,1e225,1e260,"1e440","1e600","1e1250","1e2500","1e4500","e9e3","e3e4","e5e4","e4e5","ee6","e5e6","e2e7","e19e7","e27e8","e124e11","ee17","ee24","e18e26","e4e33","ee9990","ee9999999990","eee24","eee70","eee350","eee17000","eeee100","eeee1000","eeee50000","eeeee6","eeeee10","eeeee20","eeeee30","eeeee174","eeeee2e3","eeeeee4","eeeeee5","eeeeee6","eeeeee7","eeeeee8","eeeeee10","eeeeeee1.1","eeeeee27","eeeeee53","10^^10","10^^1e308"][player.Z.points.toNumber()]);
     },
     exponent: n(1), // Prestige currency exponent
     row: "side", // Row the layer is in on the tree (0 is the first row)
@@ -44,88 +44,100 @@ addLayer("Z", {
             layerDataReset("H",b?["upgrades","milestones","clickables","buyables","challenges"]:[]);
             player.points=n(10);
             if(b)return;
-            if(player.Z.points.gte(4))player.A.challenges[11]=1;
-            if(player.Z.points.gte(4))player.A.challenges[12]=1;
-            if(player.Z.points.gte(4))player.A.challenges[21]=1;
-            if(player.Z.points.gte(4))player.A.challenges[22]=1;
-            if(player.Z.points.gte(4))player.A.challenges[31]=1;
-            if(player.Z.points.gte(4))player.A.challenges[32]=1;
-            if(player.Z.points.gte(8))player.A.challenges[41]=5;
-            if(player.Z.points.gte(44))player.A.challenges[42]=3;
-            if(player.Z.points.gte(5))player.C.challenges[11]=1;
-            if(player.Z.points.gte(5))player.C.challenges[12]=1;
-            if(player.Z.points.gte(11))player.E.challenges[11]=3;
-            if(player.Z.points.gte(11))player.E.challenges[12]=3;
-            if(player.Z.points.gte(12))player.E.challenges[21]=3;
-            if(player.Z.points.gte(12))player.E.challenges[22]=3;
-            if(player.Z.points.gte(13))player.E.challenges[31]=5;
-            if(player.Z.points.gte(13))player.E.challenges[32]=5;
-            if(player.Z.points.gte(14))player.E.challenges[41]=5;
-            if(player.Z.points.gte(14))player.E.challenges[42]=5;
-            if(player.Z.points.gte(20))player.F.challenges[11]=3;
-            if(player.Z.points.gte(20))player.F.challenges[12]=3;
-            if(player.Z.points.gte(21))player.E.challenges[11]=6;
-            if(player.Z.points.gte(21))player.E.challenges[12]=6;
-            if(player.Z.points.gte(21))player.E.challenges[21]=6;
-            if(player.Z.points.gte(21))player.E.challenges[22]=6;
-            if(player.Z.points.gte(21))player.E.challenges[31]=6;
-            if(player.Z.points.gte(21))player.E.challenges[32]=6;
-            if(player.Z.points.gte(21))player.E.challenges[41]=6;
-            if(player.Z.points.gte(21))player.E.challenges[42]=6;
-            if(player.Z.points.gte(26))player.G.challenges[11]=5;
-            if(player.Z.points.gte(26))player.G.challenges[12]=5;
-            if(player.Z.points.gte(27))player.G.challenges[21]=5;
-            if(player.Z.points.gte(27))player.G.challenges[22]=5;
-            if(player.Z.points.gte(6))player.A.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
-            if(player.Z.points.gte(7))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82];
-            if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
-            if(player.Z.points.gte(15))player.D.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52];
-            if(player.Z.points.gte(13))player.F.upgrades=[11];
-            if(player.Z.points.gte(16))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 55];
-            if(player.Z.points.gte(18))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
-            if(player.Z.points.gte(24))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
-            if(player.Z.points.gte(23))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25];
-            if(player.Z.points.gte(29))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35];
-            if(player.Z.points.gte(30))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
-            if(player.Z.points.gte(30))player.D.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
-            if(player.Z.points.gte(30))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
-            if(player.Z.points.gte(32))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
-            if(player.Z.points.gte(36))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
-            if(player.Z.points.gte(37))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75];
-            if(player.Z.points.gte(38))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
-            if(player.Z.points.gte(39))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95];
-            if(player.Z.points.gte(40))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105];
-            if(player.Z.points.gte(41))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115];
-            if(player.Z.points.gte(42))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125];
-            if(player.Z.points.gte(43))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135];
-            if(player.Z.points.gte(46))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175];
-            if(player.Z.points.gte(44))player.H.upgrades=[11, 12, 13, 14, 15];
-            if(player.Z.points.gte(46))player.H.upgrades=[11, 12, 13, 14, 15, 61, 62, 63, 64, 65];
-            if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
-            if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
-            if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
-            if(player.Z.points.gte(13))player.E.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
-            if(player.Z.points.gte(18))player.F.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
-            if(player.Z.points.gte(22))player.G.milestones=['0','1','2','3','4','5','6'];
-            if(player.Z.points.gte(31))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
-            if(player.Z.points.gte(39))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
-            if(player.Z.points.gte(40))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
-            if(player.Z.points.gte(41))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
-            if(player.Z.points.gte(45))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-            if(player.Z.points.gte(41))player.G.clickables[21]=player.G.clickables[31]=player.G.clickables[32]=player.G.clickables[33]=1;
-            if(player.Z.points.gte(41))player.G.clickables[41]=player.G.clickables[42]=player.G.clickables[43]=player.G.clickables[44]=1;
-            if(player.Z.points.gte(41))player.G.clickables[61]=player.G.clickables[62]=player.G.clickables[63]=player.G.clickables[51]=1;
-            if(player.Z.points.gte(41))player.G.clickables[71]=player.G.clickables[72]=player.G.clickables[73]=player.G.clickables[91]=1;
-            if(player.Z.points.gte(41))player.G.clickables[81]=player.G.clickables[82]=player.G.clickables[83]=1;
-            if(player.Z.points.gte(43))player.G.clickables[101]=player.G.clickables[102]=player.G.clickables[103]=1;
-            if(player.Z.points.gte(43))player.G.clickables[104]=player.G.clickables[111]=player.G.clickables[112]=1;
-            if(player.Z.points.gte(43))player.G.clickables[121]=player.G.clickables[122]=player.G.clickables[131]=1;
-            if(player.Z.points.gte(37))player.H.milestones=['0','1'];
-            if(player.Z.points.gte(43))player.H.milestones=['0','1','2'];
-            if(player.Z.points.gte(44))player.H.milestones=['0','1','2','3','4'];
-            player.points=n(10);
+            this.gainUpgrades(true);
             for(let i=0;i<10;i++)updateTemp();
         }
+    },
+    gainUpgrades(a){
+        if(!a)return;
+        if(player.Z.points.gte(4))player.A.challenges[11]=1;
+        if(player.Z.points.gte(4))player.A.challenges[12]=1;
+        if(player.Z.points.gte(4))player.A.challenges[21]=1;
+        if(player.Z.points.gte(4))player.A.challenges[22]=1;
+        if(player.Z.points.gte(4))player.A.challenges[31]=1;
+        if(player.Z.points.gte(4))player.A.challenges[32]=1;
+        if(player.Z.points.gte(8))player.A.challenges[41]=5;
+        if(player.Z.points.gte(44))player.A.challenges[42]=3;
+        if(player.Z.points.gte(5))player.C.challenges[11]=1;
+        if(player.Z.points.gte(5))player.C.challenges[12]=1;
+        if(player.Z.points.gte(11))player.E.challenges[11]=3;
+        if(player.Z.points.gte(11))player.E.challenges[12]=3;
+        if(player.Z.points.gte(12))player.E.challenges[21]=3;
+        if(player.Z.points.gte(12))player.E.challenges[22]=3;
+        if(player.Z.points.gte(13))player.E.challenges[31]=5;
+        if(player.Z.points.gte(13))player.E.challenges[32]=5;
+        if(player.Z.points.gte(14))player.E.challenges[41]=5;
+        if(player.Z.points.gte(14))player.E.challenges[42]=5;
+        if(player.Z.points.gte(20))player.F.challenges[11]=3;
+        if(player.Z.points.gte(20))player.F.challenges[12]=3;
+        if(player.Z.points.gte(21))player.E.challenges[11]=6;
+        if(player.Z.points.gte(21))player.E.challenges[12]=6;
+        if(player.Z.points.gte(21))player.E.challenges[21]=6;
+        if(player.Z.points.gte(21))player.E.challenges[22]=6;
+        if(player.Z.points.gte(21))player.E.challenges[31]=6;
+        if(player.Z.points.gte(21))player.E.challenges[32]=6;
+        if(player.Z.points.gte(21))player.E.challenges[41]=6;
+        if(player.Z.points.gte(21))player.E.challenges[42]=6;
+        if(player.Z.points.gte(26))player.G.challenges[11]=5;
+        if(player.Z.points.gte(26))player.G.challenges[12]=5;
+        if(player.Z.points.gte(27))player.G.challenges[21]=5;
+        if(player.Z.points.gte(27))player.G.challenges[22]=5;
+        if(player.Z.points.gte(6))player.A.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
+        if(player.Z.points.gte(7))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82];
+        if(player.Z.points.gte(14))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42];
+        if(player.Z.points.gte(15))player.D.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52];
+        if(player.Z.points.gte(13))player.F.upgrades=[11];
+        if(player.Z.points.gte(16))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 55];
+        if(player.Z.points.gte(18))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
+        if(player.Z.points.gte(24))player.F.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+        if(player.Z.points.gte(23))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25];
+        if(player.Z.points.gte(29))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35];
+        if(player.Z.points.gte(30))player.C.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
+        if(player.Z.points.gte(30))player.D.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
+        if(player.Z.points.gte(30))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55];
+        if(player.Z.points.gte(32))player.B.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+        if(player.Z.points.gte(36))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65];
+        if(player.Z.points.gte(37))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75];
+        if(player.Z.points.gte(38))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+        if(player.Z.points.gte(39))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95];
+        if(player.Z.points.gte(40))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105];
+        if(player.Z.points.gte(41))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115];
+        if(player.Z.points.gte(42))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125];
+        if(player.Z.points.gte(43))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135];
+        if(player.Z.points.gte(46))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175];
+        if(player.Z.points.gte(47))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 141, 142, 143, 144, 145, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175, 181, 182, 183, 184, 185];
+        if(player.Z.points.gte(48))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 141, 142, 143, 144, 145, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175, 181, 182, 183, 184, 185, 191, 192, 193, 194, 195, 201, 202, 203, 204, 205, 211, 212, 213, 214, 215];
+        if(player.Z.points.gte(49))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 141, 142, 143, 144, 145, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175, 181, 182, 183, 184, 185, 191, 192, 193, 194, 195, 201, 202, 203, 204, 205, 211, 212, 213, 214, 215, 221, 222, 223, 224, 225, 231, 232, 233, 234, 235];
+        if(player.Z.points.gte(50))player.G.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85, 91, 92, 93, 94, 95, 101, 102, 103, 104, 105, 111, 112, 113, 114, 115, 121, 122, 123, 124, 125, 131, 132, 133, 134, 135, 141, 142, 143, 144, 145, 151, 152, 153, 154, 155, 161, 162, 163, 164, 165, 171, 172, 173, 174, 175, 181, 182, 183, 184, 185, 191, 192, 193, 194, 195, 201, 202, 203, 204, 205, 211, 212, 213, 214, 215, 221, 222, 223, 224, 225, 231, 232, 233, 234, 235];
+        if(player.Z.points.gte(44))player.H.upgrades=[11, 12, 13, 14, 15];
+        if(player.Z.points.gte(46))player.H.upgrades=[11, 12, 13, 14, 15, 61, 62, 63, 64, 65];
+        if(player.Z.points.gte(47))player.H.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75];
+        if(player.Z.points.gte(48))player.H.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+        if(player.Z.points.gte(49))player.H.upgrades=[11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31, 32, 33, 34, 35, 41, 42, 43, 44, 45, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84, 85];
+        if(player.Z.points.gte(10))player.B.milestones=['0','1','2','3','4','5','6','7'];
+        if(player.Z.points.gte(10))player.C.milestones=['0','1','2','3'];
+        if(player.Z.points.gte(12))player.D.milestones=['0','1','2','3','4'];
+        if(player.Z.points.gte(13))player.E.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
+        if(player.Z.points.gte(18))player.F.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'];
+        if(player.Z.points.gte(22))player.G.milestones=['0','1','2','3','4','5','6'];
+        if(player.Z.points.gte(31))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
+        if(player.Z.points.gte(39))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
+        if(player.Z.points.gte(40))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+        if(player.Z.points.gte(41))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
+        if(player.Z.points.gte(45))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+        if(player.Z.points.gte(49))player.G.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37'];
+        if(player.Z.points.gte(41))player.G.clickables[21]=player.G.clickables[31]=player.G.clickables[32]=player.G.clickables[33]=1;
+        if(player.Z.points.gte(41))player.G.clickables[41]=player.G.clickables[42]=player.G.clickables[43]=player.G.clickables[44]=1;
+        if(player.Z.points.gte(41))player.G.clickables[61]=player.G.clickables[62]=player.G.clickables[63]=player.G.clickables[51]=1;
+        if(player.Z.points.gte(41))player.G.clickables[71]=player.G.clickables[72]=player.G.clickables[73]=player.G.clickables[91]=1;
+        if(player.Z.points.gte(41))player.G.clickables[81]=player.G.clickables[82]=player.G.clickables[83]=1;
+        if(player.Z.points.gte(43))player.G.clickables[101]=player.G.clickables[102]=player.G.clickables[103]=1;
+        if(player.Z.points.gte(43))player.G.clickables[104]=player.G.clickables[111]=player.G.clickables[112]=1;
+        if(player.Z.points.gte(43))player.G.clickables[121]=player.G.clickables[122]=player.G.clickables[131]=1;
+        if(player.Z.points.gte(37))player.H.milestones=['0','1'];
+        if(player.Z.points.gte(43))player.H.milestones=['0','1','2'];
+        if(player.Z.points.gte(44))player.H.milestones=['0','1','2','3','4'];
+        if(player.Z.points.gte(48))player.H.milestones=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
     },
     update(){
         player.Z.best=player.Z.best.floor();
@@ -230,12 +242,14 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             if(player.Z.points.gte(40))player.G.buyables[51]=player.G.buyables[51].max(effective_Gse.add(1).log(10).add(1).log(2).pow(2).ceil().max(0));
             if(player.Z.points.gte(40))player.G.buyables[52]=player.G.buyables[52].max(effective_Gse.add(1).log(10).add(1).log(2).ceil().max(0));
             if(player.Z.points.gte(45))player.G.buyables[43]=player.G.buyables[43].max(effective_Gse.add(1).log(10).add(1).log(1.5).ceil().max(0));
+            if(player.Z.points.gte(49))player.G.buyables[44]=player.G.buyables[44].max(effective_Gse.add(1).log(10).add(1).log(2).ceil().max(0));
         }
         if(player.Z.points.gte(37)){
             let effective_Gsq = player.G.Gsq.add(1);
             if (upg('G',65))  effective_Gsq=effective_Gsq.root(upgradeEffect('G',65))
             if(upg("G",191) || player.Z.points.gte(42))player.G.buyables[81]=player.G.buyables[81].max(effective_Gsq.add(1).log(4).max(0).root(1.5).ceil().max(0));
             if(upg("G",203) || player.Z.points.gte(45))player.G.buyables[82]=player.G.buyables[82].max(effective_Gsq.add(1).log(4).max(0).root(2).ceil().max(0));
+            if(player.Z.points.gte(47))player.G.buyables[83]=player.G.buyables[83].max(effective_Gsq.add(1).log(10).add(1).log(2).ceil().max(0));
         }
         if(player.Z.points.gte(42)){
             let effective_Gsg = player.G.Gsg.add(1);
@@ -243,24 +257,27 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
             if(upg("G",234)){
                 player.G.buyables[91]=player.G.buyables[91].max(effective_Gsg.add(1).log(10).max(0).root(1.5).ceil().max(0));
             }
+            if(upg("G",221)&&player.Z.points.gte(47)){
+                player.G.buyables[92]=player.G.buyables[92].max(effective_Gsg.add(1).log(10).max(0).root(2).ceil().max(0));
+            }
         }
         if(player.Z.points.gte(40))player.G.buyables[62]=player.G.buyables[62].max(player.points.slog().sub(5).max(0).mul(2).root(0.15).ceil().max(1));
         if(player.Z.points.gte(40))player.G.buyables[63]=player.G.buyables[63].max(player.G.Gsq.add(1).log(10).max(0).root(3).ceil().max(1));
         
         if(upg("G",203) || player.Z.points.gte(43)){
-            player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[51].sc()).sub(1).ceil().max(0));
+            player.H.buyables[51]=player.H.buyables[51].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[51].sc()).ceil().max(0));
         }
         if(upg("G",204) || player.Z.points.gte(40)){
-            player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[11].sc()).sub(1).ceil().max(0));
+            player.H.buyables[11]=player.H.buyables[11].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[11].sc()).ceil().max(0));
         }
         if((upg("G",213) && player.Z.points.gte(40)) || player.Z.points.gte(46)){
-            player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[52].sc()).sub(1).ceil().max(0));
+            player.H.buyables[52]=player.H.buyables[52].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[52].sc()).ceil().max(0));
         }
         if(upg("G",231)){
             player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).root(layers.H.buyables[21].sc()).ceil().max(0));
         }
         if(player.Z.points.gte(41)){
-            player.H.buyables[12]=player.H.buyables[12].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[12].sc()).sub(1).ceil().max(0));
+            player.H.buyables[12]=player.H.buyables[12].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[12].sc()).ceil().max(0));
         }
         if(player.Z.points.gte(44)){
             player.H.buyables[21]=player.H.buyables[21].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[21].sc()).ceil().max(0));
@@ -273,6 +290,40 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         if(player.Z.points.gte(46)){
             player.H.buyables[23]=player.H.buyables[23].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[23].sc()).ceil().max(0));
         }
+        if(player.Z.points.gte(47)){
+            player.H.buyables[13]=player.H.buyables[13].max(player.H.harsh.add(10).log(10).log(10).add(1).root(layers.H.buyables[13].sc()).ceil().max(0));
+            player.H.buyables[53]=player.H.buyables[53].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[53].sc()).ceil().max(0));
+            player.G.buyables[71]=player.G.buyables[71].max(player.G.Gsr.add(10).log(10).log(4).add(1).root(layers.G.buyables[71].sc()).ceil().max(0));
+            player.G.buyables[72]=player.G.buyables[72].max(player.G.Gsr.add(10).log(10).log(2).add(1).root(layers.G.buyables[72].sc()).ceil().max(0));
+            player.G.buyables[73]=player.G.buyables[73].max(player.G.Gsr.add(10).log(10).log(2).add(1).root(layers.G.buyables[73].sc()).ceil().max(0));
+            player.G.buyables[74]=player.G.buyables[74].max(player.G.Gsr.add(10).log(10).log(2).add(1).root(layers.G.buyables[74].sc()).ceil().max(0));
+        }
+        if(player.Z.points.gte(48)){
+            player.H.buyables[63]=player.H.buyables[63].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[63].sc()).ceil().max(0));
+            player.H.buyables[61]=player.H.buyables[61].max(player.H.hyper.add(10).log(10).log(10).add(1).root(layers.H.buyables[61].sc()).ceil().max(0));
+            player.H.buyables[81]=player.H.buyables[81].max(player.H.dhp.add(3.1).log(3.1).log(10).add(1).root(layers.H.buyables[81].sc()).ceil().max(0));
+            player.H.buyables[82]=player.H.buyables[82].max(player.H.dhp.add(1e3).log(1e3).log(10).add(1).root(layers.H.buyables[82].sc()).ceil().max(0));
+            player.H.buyables[83]=player.H.buyables[83].max(player.H.dhp.add(1e3).log(1e3).log(10).add(1).root(layers.H.buyables[83].sc()).ceil().max(0)).min(20);
+            player.H.buyables[84]=player.H.buyables[84].max(player.H.dhp.add(1e4).log(1e4).log(10).add(1).root(layers.H.buyables[84].sc()).ceil().max(0));
+        }
+        if(hasUpgrade("G",244) && inChallenge('A',42)){
+            if(player.points.gte(Decimal.tetrate(10,Decimal.pow(1.0064,player.A.challenges[42]).mul(n(1e20).slog()))))player.A.challenges[42]++;
+        }
+        if(upg('G',245) && player.G.Gss.gte(1e137) && player.Z.points.eq(49)){
+            player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/2).sub(1).ceil().max(player.H.dh[1])
+        }
+        if(upg('G',245) && player.G.Gss.gte(player.Z.points.gte(50)?1e140:1e149)){
+            player.G.buyables[101]=player.G.buyables[101].max(player.G.Gsh.add(1).log(10).max(0).root(1.5).ceil().max(0));
+            player.G.buyables[102]=player.G.buyables[102].max(player.G.Gsh.add(1).log(1e3).max(0).root(2).ceil().max(0));
+        }
+        if(upg('G',245) && player.G.Gss.gte(1e143)&&player.Z.points.gte(50))player.H.dh[3]=player.G.GGtot.add(1).log(2).floor().max(player.H.dh[3]);
+        if(upg('G',245) && player.G.Gss.gte(1e145)&&player.Z.points.gte(50))player.H.dh[0]=player.G.Gsr.max(1).log(10).div(6).pow(1/1.85).sub(1).ceil().max(player.H.dh[0]);
+        if(upg('G',245) && player.G.Gss.gte(1e146)&&player.Z.points.gte(50))player.H.dh[4]=player.G.Gsetot.max(1).log(10).max(1).log(10).div(2).pow(1/1.3).sub(1).ceil().max(player.H.dh[4]);
+        if(upg('G',245) && player.G.Gss.gte(1e147)&&player.Z.points.gte(50))player.H.dh[2]=player.G.Gsg.max(1).log(10).div(30).pow(1/1.5).sub(1).ceil().max(player.H.dh[2]);
+        if(upg('G',245) && player.G.Gss.gte(1e150)&&player.Z.points.gte(50))player.H.dh[1]=player.H.hyper.max(1).log(10).max(1).log(10).div(2).pow(1/2).sub(1).ceil().max(player.H.dh[1])
+        if(upg('G',245) && player.points.gte("10^^9")&&player.Z.points.gte(50))player.H.dh[6]=player.G.Gss.max(1).log(100).ceil().max(player.H.dh[6])
+        if(upg('G',245) && player.points.gte("10^^10")&&player.Z.points.gte(50))player.H.dh[5]=n(buyableEffect('G',33)).ceil().max(player.H.dh[5])
+        if(upg('G',245) && player.points.gte("10^^12")&&player.Z.points.gte(50)){for(let i=0;i<7;i++)player.H.dh[i]=player.H.dh[i].max(player.H.points.min("10^^93.5"));}
     },
     milestones: {
         0: {requirementDescription: "1 Z",
@@ -458,6 +509,22 @@ player.F.buyables[101]=player.F.buyables[101].max(player.F.points.div(player.Z.p
         45: {requirementDescription: "46 Z",
             done() {return player.Z.points.gte(46)}, 
             effectDescription: "Start with all 10 Gsq upgrades and first 5 harsh upgrades. Permanently unlock Gsh. Permanently autobuy max Hb6 and Hy2. Remove Gsb15 hardcap.",
+        },
+        46: {requirementDescription: "47 Z",
+            done() {return player.Z.points.gte(47)}, 
+            effectDescription: "Start with first 5 GsR/Gsg upgrades and first 10 H/harsh upgrades. Remove Hb3/Hy3 limit and permanently buy max Hb3/Hy3/Gsb15. Permanently buy max GsR buyables.",
+        },
+        47: {requirementDescription: "48 Z",
+            done() {return player.Z.points.gte(48)}, 
+            effectDescription: "Start with all 20 Gsg upgrades, first 15 H/harsh upgrades and first 18 H milestones. Permanently autobuy max Hy4 and Hy6. Permanently buy max dHp buyables.",
+        },
+        48: {requirementDescription: "49 Z",
+            done() {return player.Z.points.gte(49)}, 
+            effectDescription: "Start with all 10 Gsh upgrades, first 20 H upgrades and all G milestones. Remove Gsb10 hardcap/limit, permanently autobuy max Gsb10. Remove Gse 2nd effect hardcap.",
+        },
+        49: {requirementDescription: "50 Z",
+            done() {return player.Z.points.gte(50)}, 
+            effectDescription: "Start with all 10 GsR upgrades. Unlock I.",
         },
     },
     setZ(a){

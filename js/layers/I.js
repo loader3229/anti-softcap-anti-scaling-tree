@@ -52,7 +52,7 @@ addLayer("I", {
     hotkeys: [
         {key: "i", description: "I: Reset for I points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return ((upg('G',155))||player[this.layer].unlocked)},
+    layerShown(){return player.Z.points.gte(50)},
     gainMult() { 
         let m=n(1)
         if(mil('J',2)) m=m.mul(1.5)
@@ -286,6 +286,7 @@ addLayer("I", {
         player.I.time=n(0)
         player.I.resetamt=player.I.resetamt.add(1)
         //mpr=mpr.max(player.points.max(10).slog().div(100).max(1).pow(0.75).ceil())
+        setTimeout("layers.Z.gainUpgrades(true);",100);
     },
     sig(){
         let ef=n(0)

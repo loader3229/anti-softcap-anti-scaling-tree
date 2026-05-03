@@ -460,6 +460,8 @@ addLayer("A", {
         if(upg("G",163) && player.Z.points.gte(43))ret++;
         if(upg("H",83) && player.Z.points.gte(44))ret++;
         if(upg("G",235))ret++;
+		if(upg("G",203) && player.Z.points.gte(47))ret++;
+        if(upg("G",244))ret+=9990;
 		return ret;
 		},
             challengeDescription: function() {
